@@ -138,20 +138,7 @@ class AdmController extends Controller
 			$open->domingo = 'Fechado';
 		}
 	
-		if($req->hasFile('album')){
-			$len = count($req->album);
-			
-			for($i= 0; $i<$len ; $i++){
-				$name = uniqid(date('HisYmd'));
-				$extension = $req->album[$i]->extension();
-				$nameFile = "{$name}.{$extension}";
-				$upload = $req->album[$i]->storeAs('album-empresa', $nameFile);
-				$album->photo = $nameFile;	
 				
-			}				
-			$validalbum = $user[0]->permissions->empresas->album()->save($album);	
-		}
-
 		if($req->hasFile('imagem') && $req->file('imagem')->isValid()){
 				
 			$name = uniqid(date('HisYmd'));
@@ -165,22 +152,28 @@ class AdmController extends Controller
 			$valid = $user[0]->permissions->empresas()->save($empresa);
 			$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 			$validOpen = $user[0]->permissions->empresas->open()->save($open);
-			if($valid){
-				if($validFacilite){
-					return response()->json("Cadastrado!");
-				}
-				return response()->json('ErroFacilite');
-			}
-			return response()->json("Error");
+			
 		}
+
 		$valid = $valid = $user[0]->permissions->empresas()->save($empresa);
 		$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 		$validOpen = $user[0]->permissions->empresas->open()->save($open);
+		
+		if($req->hasFile('album')){
+			$len = count($req->album);
+			$id = $user[0]->id;
+			for($i= 0; $i<$len ; $i++){
+				$name = uniqid(date('HisYmd'));
+				$extension = $req->album[$i]->extension();
+				$nameFile = "{$name}.{$extension}";
+				$upload = $req->album[$i]->storeAs('album-empresa', $nameFile);
+				$valid = $this->savePhotos($id, $nameFile);
+			}				
+			
+		}
+
 		if($valid){
-			if($validFacilite){
-				return response()->json("Cadastrado!");
-			}
-			return response()->json("ErroFacilite");
+			return response()->json("Cadastrado!");
 		}
 			return response()->json('Error');
 	}
@@ -359,5 +352,12 @@ class AdmController extends Controller
 		$empresa->save();
 		$empresa->facilities->save();
 		$empresa->open->save();
+	}
+	public function savePhotos($id, $nameFile){
+		$user = User::find($id);
+		$album = new Album();
+		$album->photo = $nameFile;
+		$user->empresas->album()->save($album);
+		return 'ok';
 	}
 }

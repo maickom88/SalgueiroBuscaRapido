@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Empresa\facilities\Facilite;
 use App\Empresa\Open\Open;
 use App\Empresa\Album\Album;
+
 class Empresa extends Model
 {
 	
