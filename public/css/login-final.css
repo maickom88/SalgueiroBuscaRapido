@@ -1,0 +1,286 @@
+.login{
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.6)), url('../img/cadastrar3.jpg');
+	 background-size: cover;
+	 background-position: center;
+	 background-repeat: no-repeat;
+    padding:100px 0px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family:'Open Sans',sans-serif;
+    height: 100%;
+    width:100%;
+    position:relative;
+    overflow:hidden;
+}
+.bloco{
+    width: 300px;
+    height: auto;
+    border-radius:5px;
+    position: absolute;
+    overflow: hidden;
+    z-index:-1;
+}
+.marca{
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    margin-top:30px;
+}
+.marca img{
+    width:170px;
+}
+.container{
+    width: 300px;
+    height: auto;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0,0, 0.1);
+    box-shadow: 5px 5px 12px rgba(0, 0,0, 0.3);
+    border-radius:5px;
+    position: relative;
+    overflow: hidden;
+
+}
+.container-empresarial{
+    width: 300px;
+    height: auto;
+    background: #111111;
+    border: 1px solid rgba(0, 0,0, 0.1);
+    box-shadow: 5px 5px 12px rgba(0, 0,0, 0.3);
+    border-radius:5px;
+    overflow: hidden;
+    -webkit-transition:0.5s;
+    -moz-transition:0.5s;
+    -o-transition:0.5s;
+    -ms-transition:0.5s;
+    transition:0.5s;
+    transform: translateX(300px);
+    overflow:hidden;
+}
+@keyframes getpainel{
+    100%{
+        transform: translateX(0px); 
+    }
+    
+}
+@keyframes getpainelvoltar{
+    100%{
+        transform: translateX(300px); 
+    }
+    
+}
+
+.container-empresarial .login-usuario{
+    width:100%;
+    height:100% ;
+    padding:10px 15px;
+    position:relative;
+}
+.login-usuario{
+    width:100%;
+    height:100%;
+    padding:10px 5px;
+    position:relative;    
+}
+.container-empresarial .login-usuario .get-empresa{
+    visibility:hidden!important;
+    cursor:none !important;
+}
+.login .login-usuario .get-empresa{
+    width: 50px;
+    height:50px;
+    color:white;
+    border-radius:5px;
+    background: black;
+    box-shadow:1px 1px 5px rgba(0,0,0,0.4);
+    cursor: pointer;
+    line-height:50px;
+    position:relative;
+    left:235px;
+    z-index: 3;
+    -webkit-transition:0.5s;
+    -moz-transition:0.5s;
+    -o-transition:0.5s;
+    -ms-transition:0.5s;
+    transition:0.5s;
+}
+
+@keyframes push{
+    100%{   
+        left:-35px; 
+    }
+}
+@keyframes pushvoltar{
+    100%{   
+        left:235px; 
+    }
+}
+
+.login .login-usuario .get-empresa i{
+    font-size:19px;
+}
+
+.container-empresarial .avatar-usuario{
+    border:17px solid #3174b359;
+    background:#0f78db9a;
+    color:rgb(141, 189, 252);
+    box-shadow:0px 0px 0px 15px #2294ff69;
+}
+.avatar-usuario{
+    text-align:center;
+    font-size:30px;
+    background:#d1d1d1;
+    border:17px solid #e6e6e6;
+    width:100px;
+    height:100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius:50%;
+    box-shadow:0px 0px 0px 15px #f1f1f1;
+    color:rgb(1, 155, 231);
+}
+.login .login-usuario .avatar-login{
+    text-align: center!important;
+    width:100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    padding:20px 0;
+    margin-bottom: 20px;
+}
+
+.login form .txtb{  
+    margin-bottom:0px;
+}
+.container-empresarial .login-usuario form .txtb input{
+    border-bottom: 2px solid #ebebeb !important;
+    color:#f3f3f3!important;
+    background:transparent;
+}
+.login .login-usuario form .txtb input{
+    display: block;
+    width:100%;
+    height:30px;
+    border:none;
+    border-bottom: 2px solid #d1d1d1;
+    color:#8b8b8b;
+    transition: border-bottom 0.5s linear;
+    -webkit-transition: border-bottom 0.5s linear;
+    -moz-transition: border-bottom 0.5s linear;
+    -o-transition: border-bottom 0.5s linear;
+    padding-left:2px;
+}
+
+.login .login-usuario form .txtb input:focus{
+    border-bottom: 2px solid rgb(3, 126, 187)!important;
+}
+
+
+.txtb label{
+    position: relative;
+    top:-28px;
+    left:-108px;
+    color: #b1b1b1;
+    transition: 0.2s ease-in;
+    transform: translateY(0px);
+}
+.txtb input:focus ~ label{
+    transform: translateY(-30px)
+}
+
+.container-empresarial .login-usuario form .mostrar-senha{
+    color:white !important
+}
+.login .login-usuario form input[id="mostrar"]{
+    width:18px;
+    height:18px;
+    margin-left:-5px;
+}
+.login .login-usuario .mostrar-senha{
+    display:flex;
+    align-items:center;
+}
+.login .login-usuario .mostrar-senha label{
+    font-size:14px;
+    padding-left:5px;
+    margin-top:5px; 
+}
+.container-empresarial .login-usuario form input[id="enviar-2"],
+.login .login-usuario form input[id="enviar"]{
+    display: none;
+}
+.container-empresarial .login-usuario label[for="enviar-2"]{
+    background:linear-gradient(to right,rgb(0, 94, 141),rgb(1, 111, 167)) !important;
+}
+
+.container-empresarial .login-usuario label[for="enviar-2"],
+.login .login-usuario label[for="enviar"]{
+    width:100%;
+    height:40px;
+    background:linear-gradient(to right,rgb(3, 126, 187),rgb(151, 84, 190));
+    line-height: 40px;
+    text-align:center;
+    margin-top:20px;
+    color:white;
+    border-radius: 5px;
+    transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition:all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    padding-left:2px;
+    cursor:pointer;
+}
+.container-empresarial .login-usuario label[for="enviar"]:hover,
+.login .login-usuario label[for="enviar"]:hover{
+    background:linear-gradient(to right,rgb(191, 83, 253), rgb(4, 162, 241));
+}
+.container-empresarial .login-usuario button{
+    border: 2px solid rgb(1, 111, 167)!important;
+}
+
+.login .login-usuario button{
+    width:100%;
+    font-size:13px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:transparent;
+    border-radius:5px;
+    border: 2px solid #858B92;
+    transition: .2s ;
+    height:60px;
+    margin-bottom:10px;
+}
+.container-empresarial .login-usuario button a{
+    color:rgb(1, 111, 167) !important;
+}
+.login .login-usuario button a{
+    margin-top:11px;
+    text-decoration: none;
+    color: #858B92;
+}
+.container-empresarial .login-usuario button:hover{
+    background: rgb(1, 111, 167) !important;
+}
+.login .login-usuario button:hover{
+    background: #858B92;
+}
+.container-empresarial  .login-usuario button:hover a{
+    color:#fff !important;
+}
+.login .login-usuario button:hover a{
+    color:#fff;
+}
+.container-empresarial  .login-usuario a{
+    color:white !important;
+}
+.login .login-usuario a{
+
+    color:rgb(0, 87, 185)
+}
+.login *:focus{
+	outline: none;
+	border:none;
+}

@@ -1,0 +1,251 @@
+*{
+    scroll-behavior: smooth
+}
+
+.blog{
+    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(../img/lendo3.jpg);
+    background-size: cover! important;
+    background-position: center;
+    height:100vh;
+    width:100% !important;
+    font-family:'Open Sans Condensed', sans-serif;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    overflow-x: hidden;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+.blog h1{
+    text-align:center;
+    font-weight:bold;
+    color:white;
+}
+.blog a{
+    color:white;
+    padding: 5px 10px;
+    float:left;
+}
+.blog .lis{
+    left:50%;
+    position: absolute;
+    transform: translateX(-50%)
+}
+.container-blog{
+    width: 100%;
+}
+
+
+.ponto{
+    font-size:50px;
+    margin-top:-40px;
+    color:deepskyblue !important;
+    text-shadow:0px 0px 0px 10px deepskyblue;
+    font-weight:bold;
+    
+}
+.blog a:hover{
+    color:#fff !important;
+    text-decoration:none;
+}
+.lestget{
+    background:linear-gradient(to top, rgb(4, 125, 182),#00A3EE);
+    box-shadow: 0px 0px 0px 8px rgba(255,255,255,0.4   );
+    border-radius:5px;
+    position: absolute;
+    left:50%;
+    padding-left: 5px;
+    top:100%;
+    transform:translate(-50%,-50%);
+    width:100px;
+    height:100px;
+    display:flex;
+    align-items:top;
+    align-content:justify;
+    z-index:1;   
+    transition:0.4s;
+}
+.lestget:hover{
+    background:white;
+   
+}
+.lestget a:hover{ 
+    color:rgb(87, 87, 87) !important;
+}   
+.posts{
+    padding:100px 0px;
+    background: #f6f6f6;
+    overflow:hidden;
+}
+.card-content{
+    margin-bottom: 20px;
+}
+.card-content .lermais{
+    padding:5px 10px;
+    background: #fff;
+    border:2px solid #00A3EE;
+    border-radius:5px;
+}
+.card-content .lermais {
+    color: #7a7a7a !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+}
+.card-content .lermais:hover{
+    background: #00A3EE;
+    color:#fff !important;
+    box-shadow:0px 0px 8px rgba(0, 119, 255, 0.3)
+}
+.img-card{
+    overflow:hidden;
+}
+.card-img-top{
+    transition: all 0.4s ease-in;
+}
+.card-img-top:hover{
+    transform: scale(1.3);   
+}
+.pagination{
+    display:flex;
+    align-items:center;
+    justify-content: center
+}
+.pagination .voltar{
+    width:44px;
+    height:44px;
+    background:white;
+    font-size:18px;
+    border-radius:5px;
+    border:1px solid rgba(0,0,0,0.1);
+    line-height:44px;
+}
+
+.pagination .next{
+    width:44px;
+    height:44px;
+    background:white;
+    font-size:18px;
+    border-radius:5px;
+    border:1px solid rgba(0,0,0,0.1);
+    line-height:44px;
+    margin-left: 5px;
+}
+.pagination .numeracao{
+    width:44px;
+    height:44px;
+    background:white;
+    font-size:18px;
+    border-radius:5px;
+    border:1px solid rgba(0,0,0,0.1);
+    line-height:44px;
+    margin-left: 5px;
+}
+.pagination a{
+    color:#969696;
+}
+.pagination .voltar:hover,
+.pagination .next:hover,
+.pagination .numeracao:hover{
+    background:#00A3EE;
+    border: 1px solid #00A3EE;
+    box-shadow: 0px 0px 6px rgba(0, 195, 255, 0.3);
+}
+.pagination .voltar:hover a,
+.pagination .next:hover a,
+.pagination .numeracao:hover a{
+    color:#fff;
+    text-decoration: none;
+}
+
+.pagination .active{
+    background:#00A3EE;
+}
+
+.pagination .active a{
+    color:#fff;
+}
+.search-blog{
+    padding:50px 15px;
+    font-family:'Open Sans Condensed',sans-serif;
+    width:100%;
+}
+.search-blog h3{
+    color:#334E6F;
+    font-weight:bold;
+    padding-bottom:10px;
+}
+@media(max-width:400px){
+    
+    .search-blog label i{
+        padding:15px 14px !important;
+    }
+}
+.search-blog input[id="procurar"]{
+    width:80%; 
+    margin-left:20px;
+    height:50px;
+    padding-left:10px;
+    border-radius:5px;
+    border:1px solid rgba(0,0,0,0.1);
+}
+.search-blog input:focus{
+    border:1px solid rgba(0,0,0,0.1) !important;
+}
+.search-blog label{
+    margin-left:-5px;
+    cursor:pointer;
+}
+.search-blog label i {
+    padding:15px 35px;
+    background: #00A3EE;
+    border-radius: 0px 5px 5px 0px;
+    border:1px solid  #00A3EE !important;
+    color:white;
+}
+.search-blog label i:hover{
+    background: rgb(0, 116, 170);
+    border:1px solid rgb(0, 116, 170) !important;
+}
+.search-blog input[id="enviar"]{
+    display:none;
+}
+.chamada-usuario-cadastro{
+    background: url(../img/blue-back.jpg);
+    background-size: cover! important;
+    background-position: center;
+    height:65vh;
+    width:100% !important;
+    font-family:'Open Sans Condensed', sans-serif;
+    overflow: hidden;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    overflow-x: hidden;
+    padding:60px 60px;
+}
+.chamada-usuario-cadastro h2{
+    color:white;
+    font-weight:bold;
+}
+.chamada-usuario-cadastro p{
+    color: #f6f6f6;
+    padding:20px 0px;
+    font-size:18px;
+}
+.container-cadastro{
+    border-left:1px solid rgba(255,255,255,0.2);
+    padding:30px 
+}
+.chamada-usuario-cadastro a{
+    padding:15px 55px;
+    color:rgb(73, 73, 73);
+    border-radius:40px;
+    box-shadow:0px 0px 0px 6px rgba(255,255,255,0.4);
+    background:#fff;
+    font-size:17px;
+    text-decoration: none;
+}
+.chamada-usuario-cadastro a:hover{
+    color:white;
+    background: #084270
+}
