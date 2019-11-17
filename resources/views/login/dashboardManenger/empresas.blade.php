@@ -81,20 +81,21 @@
 								<input type="file" id="avatarEmp" style="display:none" name="imagem" onchange="previewImagam()" class="form-control" >
 							</div>
 							<div class="form-group" id="previaAvatar">
-									<div class="previaImg" id="prevImg" style="left: 10px !important; width: 120px !important;background:black !important; border:none;"><div id="prev"><img class="previa" id="prevAvatar" src={{asset('img/profilezim.png')}} ></div><div id="cancelAvatar" class="cancelarOp"><i id="excluirAvatar" class="fa fa-times fa-2x" style="cursor:pointer"></i></div></div>'
-							</div>
-							</div>
-							<div class="form-group">
-							<label for="albumEmp" class="btn btn-warning">Adicionar fotos ao Album</label><label class="btn btn-info" id="fotoQuant" style="display:none;"></label><label id="resetaAlbum" style="display:none;" class="btn btn-danger"><i class="fa fa-trash-o"></i></label>
-								<input type="file" id="albumEmp" style="display:none;" name="album[]" multiple class="form-control" >
+									<div class="previaImg" id="prevImg" style="left: 10px !important; width: 120px !important;background:black !important; border:none;"><div id="prev"><img class="previa" id="prevAvatar" src={{asset('img/profilezim.png')}} ></div><div id="cancelAvatar" class="cancelarOp"><i id="excluirAvatar" class="fa fa-times fa-2x" style="cursor:pointer"></i></div></div>
+							
 							</div>
 							<div class="form-group">
 								<label for="bannerEmp" class="btn btn-warning">Adicionar um banner</label>
 								<input type="file" style="display:none;" id="bannerEmp" onchange="previewBanner()" name="banner" class="form-control" >
 							</div>
 							<div class="form-group" id="previaBanner">
-									<div class="previaImg" id="prevImg" style="left: 10px !important; width: 300px !important;height:120px !important; background:black !important; border:none;"><div id="prev"><img class="previa" id="prevBanner" src='' ></div><div class="cancelarOp"><i id="excluirBanner" class="fa fa-times fa-2x" style="cursor:pointer; margin-left: 40px !important;"></i></div></div>'
+									<div class="previaImg" id="prevImg" style="left: 10px !important; width: 300px !important;height:120px !important; background:black !important; border:none;"><div id="prev"><img class="previa" id="prevBanner" src={{asset('img/bannerDefault.png')}}  ></div><div class="cancelarOp" id="excluirBanner"><i class="fa fa-times fa-2x" style="cursor:pointer; margin-left: 40px !important;"></i></div></div>
 							</div>
+							<div class="form-group">
+							<label for="albumEmp" class="btn btn-warning">Adicionar fotos ao Album</label><label class="btn btn-info" id="fotoQuant" style="display:none;"></label><label id="resetaAlbum" style="display:none;" class="btn btn-danger"><i class="fa fa-trash-o"></i></label>
+								<input type="file" id="albumEmp" style="display:none;" name="album[]" multiple class="form-control" >
+							</div>
+							
 							
 							<div class="form-group">
 								<label>Nome da empresa</label>
@@ -102,7 +103,7 @@
 							</div>
 							<div class="form-group">
 								<label>Descrição</label>
-								<textarea class="form-control" id="descriptionEmp" name="descriptionEmp" ></textarea>
+								<textarea class="form-control" id="descriptionEmp" name="descriptionEmp" maxlength="800"></textarea>
 							</div>
 							<div class="form-group">
 								<label style="display:block;">Tags</label>
@@ -473,7 +474,7 @@
 							</div>
 							<div class="form-group">
 								<label>Descrição</label>
-								<textarea class="form-control" id="descriptionEmpEdit" name="descriptionEmp" ></textarea>
+								<textarea class="form-control" id="descriptionEmpEdit" name="descriptionEmp" maxlength="800"></textarea>
 							</div>
 							<div class="form-group">
 								<label style="display:block;">Tags</label>
@@ -835,6 +836,10 @@ $('#prevAvatar').hover(function(){
 	$(this).css('opacity', '1');
 	$('#excluirAvatar').hide();
 });
+$('#prevBanner').hover(function(){
+	$(this).css('opacity', '1');
+	$('#excluirBanner').hide();
+});
 
 $('#albumEmp').change(function(){
 	var arquivos = $('#albumEmp')[0].files;
@@ -865,8 +870,12 @@ $('#excluirAvatar').click(function(){
 });
 
 $('#excluirBanner').click(function(){
-	$('#prevBanner').attr('src', '');
+	$('#prevBanner').attr('src', "{!!asset('img/bannerDefault.png')!!}");
 	$('#bannerEmp').val('');
+	$('#prevBanner').hover(function(){
+	$(this).css('opacity', '1');
+	$('#excluirBanner').hide();
+});
 });
 
 function previewImagam(){
@@ -904,6 +913,22 @@ function previewImagam(){
 
 
 $('#bannerEmp').change(function(){
+
+	$('#prevBanner').hover(function(){
+		$(this).css('opacity', '0.6');
+		$('#excluirBanner').show();
+	},
+	function(){
+		$(this).css('opacity', '1');
+	});
+	$('#excluirBanner').hover(function(){
+		$('#prevbanner').css('opacity', '0.6');
+		$('#excluirBanner').show();
+	},
+	function(){
+		$('#prevBanner').css('opacity', '1');
+	});
+
 	var imagem = document.querySelector('input[name=banner]').files[0];
 	var preview = document.getElementById('prevBanner');
 	var reader = new FileReader();
@@ -1493,6 +1518,21 @@ $(window).on('hashchange', function() {
 						$('.inputs-caract').val('nao');
 						$('.timepicker-24').val('');
 						$('.inputs-Hors').val('');
+						$('#albumEmp').val('');
+						$('#fotoQuant').hide();
+						$('#resetaAlbum').hide();
+						$('#prevAvatar').attr('src', "{!!asset('img/profilezim.png')!!}");
+						$('#avatarEmp').val('');
+						$('#prevAvatar').hover(function(){
+							$(this).css('opacity', '1');
+							$('#excluirAvatar').hide();
+						});
+						$('#prevBanner').attr('src', "{!!asset('img/bannerDefault.png')!!}");
+						$('#bannerEmp').val('');
+						$('#prevBanner').hover(function(){
+						$(this).css('opacity', '1');
+						$('#excluirBanner').hide();
+						});
 						getData(1);
 					}
 				}

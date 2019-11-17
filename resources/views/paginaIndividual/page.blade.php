@@ -101,49 +101,25 @@
         <!-- Grid row -->
         <div class="row">
         </div>
-        <!-- Grid row -->
 
-        <!-- Grid row -->
-        <div class="gallery" id="gallery">
+        <div class="gallery" style="text-align:center !important" id="gallery">
+			@php
+				 $email = $empresa->permissions->users->email;
+			@endphp
+			@if(count($empresa->album) > 0)
+				@foreach ($empresa->album as $fotos)
+				
+				<div class="mb-2 pics animation all 2">
+					<img class="img-fluid" src={{asset("storage/album-empresa/".$email."/".$fotos->photo)}} alt="{{$empresa->name}}">
+				</div>
+				@endforeach		
+			@else
+			<h1 style="color:darkgray; text-align:center;">Não há fotos dessa empresa!</h1>
+			@endif
+			<div>
 
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 2">
-        <img class="img-fluid" src={{asset("img-empresa/img-1.jpeg")}} alt="Card image cap">
-        </div>
-        <!-- Grid column -->
 
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 1">
-        <img class="img-fluid" src={{asset("img-empresa/img-2.jpeg")}} alt="Card image cap">
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 1">
-        <img class="img-fluid" src={{asset("img-empresa/img-3.jpeg")}} alt="Card image cap">
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 2">
-        <img class="img-fluid" src={{asset("img-empresa/img-4.jpg")}} alt="Card image cap">
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="mb-3 pics animation all 2">
-        <img class="img-fluid" src={{asset("img-empresa/img-5.jpeg")}} alt="Card image cap">
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="mb-0 pics animation all 1">
-        <img class="img-fluid" src={{asset("img-empresa/img-6.jpg")}} alt="Card image cap">
-        </div>
-        <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
+			
     </div>
 </section>
 <section id="detalhes">
@@ -201,10 +177,10 @@
         <div class="container tags">
         <h4>Tags</h4>
             <div class="row">
-				<a href="#">Churrascaria</a>
-				<a href="#">Restaurante</a>
-				<a href="#">Comida</a>
-				<a href="#">Almoço</a>
+					@foreach ($tags as $tag)
+					<a href="#">{{$tag}}</a>
+					@endforeach
+					{{$segundatoJson->Inicio}}
 				</div>
         </div>
     </div>

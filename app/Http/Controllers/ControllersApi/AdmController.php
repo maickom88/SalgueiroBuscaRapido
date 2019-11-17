@@ -78,7 +78,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioSegunda'))){
 			$inicio = $req->input('inicioSegunda');
 			$fim = $req->input('fimSegunda');
-			$jsonSegunda = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonSegunda = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->segunda = $jsonSegunda;
 		}
 		else{
@@ -87,7 +87,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioTerca'))){
 			$inicio = $req->input('inicioTerca');
 			$fim = $req->input('fimTerca');
-			$jsonTerca = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonTerca = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->terca = $jsonTerca;
 		}
 		else{
@@ -96,7 +96,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioQuarta'))){
 			$inicio = $req->input('inicioQuarta');
 			$fim = $req->input('fimQuarta');
-			$jsonQuarta = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonQuarta = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->quarta = $jsonQuarta;
 		}
 		else{
@@ -105,7 +105,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioQuinta'))){
 			$inicio = $req->input('inicioQuinta');
 			$fim = $req->input('fimQuinta');
-			$jsonQuinta = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonQuinta = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->quinta = $jsonQuinta;
 		}
 		else{
@@ -114,7 +114,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioSexta'))){
 			$inicio = $req->input('inicioSexta');
 			$fim = $req->input('fimSexta');
-			$jsonSexta = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonSexta = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->sexta = $jsonSexta;
 		}
 		else{
@@ -123,7 +123,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioSabado'))){
 			$inicio = $req->input('inicioSabado');
 			$fim = $req->input('fimSabado');
-			$jsonSabado = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonSabado = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->sabado = $jsonSabado;
 		}
 		else{
@@ -132,7 +132,7 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioDomingo'))){
 			$inicio = $req->input('inicioDomingo');
 			$fim = $req->input('fimDomingo');
-			$jsonDomingo = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonDomingo = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$open->domingo = $jsonDomingo;
 		}else{
 			$open->domingo = 'Fechado';
@@ -162,11 +162,12 @@ class AdmController extends Controller
 		if($req->hasFile('album')){
 			$len = count($req->album);
 			$id = $user[0]->id;
+			$email = $user[0]->email;
 			for($i= 0; $i<$len ; $i++){
 				$name = uniqid(date('HisYmd'));
 				$extension = $req->album[$i]->extension();
 				$nameFile = "{$name}.{$extension}";
-				$upload = $req->album[$i]->storeAs('album-empresa', $nameFile);
+				$upload = $req->album[$i]->storeAs('album-empresa/'.$email, $nameFile);
 				$valid = $this->savePhotos($id, $nameFile);
 			}				
 			
@@ -310,43 +311,43 @@ class AdmController extends Controller
 		if(!empty($req->input('inicioSegunda'))){
 			$inicio = $req->input('inicioSegunda');
 			$fim = $req->input('fimSegunda');
-			$jsonSegunda = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonSegunda = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->segunda = $jsonSegunda;
 		}
 		if(!empty($req->input('inicioTerca'))){
 			$inicio = $req->input('inicioTerca');
 			$fim = $req->input('fimTerca');
-			$jsonTerca = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonTerca = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->terca = $jsonTerca;
 		}
 		if(!empty($req->input('inicioQuarta'))){
 			$inicio = $req->input('inicioQuarta');
 			$fim = $req->input('fimQuarta');
-			$jsonQuarta = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonQuarta = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->quarta = $jsonQuarta;
 		}
 		if(!empty($req->input('inicioQuinta'))){
 			$inicio = $req->input('inicioQuinta');
 			$fim = $req->input('fimQuinta');
-			$jsonQuinta = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonQuinta = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->quinta = $jsonQuinta;
 		}
 		if(!empty($req->input('inicioSexta'))){
 			$inicio = $req->input('inicioSexta');
 			$fim = $req->input('fimSexta');
-			$jsonSexta = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonSexta = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->sexta = $jsonSexta;
 		}
 		if(!empty($req->input('inicioSabado'))){
 			$inicio = $req->input('inicioSabado');
 			$fim = $req->input('fimSabado');
-			$jsonSabado = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonSabado = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->sabado = $jsonSabado;
 		}
 		if(!empty($req->input('inicioDomingo'))){
 			$inicio = $req->input('inicioDomingo');
 			$fim = $req->input('fimDomingo');
-			$jsonDomingo = "{'Inicio':$inicio,'Fim':$fim}";
+			$jsonDomingo = '{"Inicio":"'.$inicio.'","Fim":"'.$fim.'"}';
 			$empresa->open->domingo = $jsonDomingo;
 		}
 		$empresa->save();
