@@ -23,9 +23,10 @@ class PaginaIndividualController extends Controller
 			$segundatoJson = json_decode($segunda);
 			$tercatoJson = json_decode($terca);
 			$quartatoJson = json_decode($quarta);
+			$quintatoJson = json_decode($quinta);
+			$sextatoJson = json_decode($segunda);
+			$sabadotoJson = json_decode($sabado);
 			$segundatoJson = json_decode($segunda);
-			$segundatoJson = json_decode($segunda);
-
 
 	$horarios = array($segunda, $terca, $quarta, $quinta, $sexta, $sabado, $domingo);
 	$horariosJson = json_encode($horarios);
