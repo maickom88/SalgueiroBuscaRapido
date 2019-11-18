@@ -154,6 +154,21 @@ class AdmController extends Controller
 			$validOpen = $user[0]->permissions->empresas->open()->save($open);
 			
 		}
+		if($req->hasFile('banner') && $req->file('banner')->isValid()){
+				
+			$name = uniqid(date('HisYmd'));
+			$extension = $req->banner->extension();
+			$nameFile = "{$name}.{$extension}";
+			$upload = $req->banner->storeAs('logo-empresas', $nameFile);
+			if ( !$upload ){
+				return response()->json("ErrorSavedImg");
+			}
+			$empresa->banner = $nameFile;
+			$valid = $user[0]->permissions->empresas()->save($empresa);
+			$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
+			$validOpen = $user[0]->permissions->empresas->open()->save($open);
+			
+		}
 
 		$valid = $valid = $user[0]->permissions->empresas()->save($empresa);
 		$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);

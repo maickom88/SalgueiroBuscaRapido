@@ -134,25 +134,26 @@
                 </div>
             <div class="container">
                 <div class="row card-slide">
-                    <div class="col-md-4 card-content">
+                    @foreach ($empresa as $emp)
+								<div class="col-md-4 card-content " style="outline:none !important;">
                         <div class="likes">
-                            <span>550 <i class="fas fa-heart"></i></span>
+                            <span>23 <i class="fas fa-heart"></i></span>
                         </div>
                         <div class="card" style="width: 19rem;">
                             <div class="img-card">
                                 <div class="gradient">
-                                    <img class="card-img-top" src={{asset('img/20.jpg')}} alt="Card image cap">
+                                    <img class="card-img-top" src={{asset('storage/logo-empresas/'.$emp->banner)}} alt="Banner da empresa, {{$emp->name}}">
                                 </div>
                             </div>
                             <div class="avatar">
-                                <img src={{asset('img/1.jpg')}} alt="">
+                                <img src={{asset('storage/logo-empresas/'.$emp->logoMarca)}} alt="Logo marca da empresa, {{$emp->name}}">
                             </div>
                             <div class="tag text-center">
-                                <h6>Academias</h6>
+                                <h6 style="text-transform:capitalize">{{$emp->nincho}}</h6>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title"><a href="#">Academia self</a></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+                                <h5 class="card-title"><a href="#">{{$emp->name}}</a></h5>
+                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="#" style="color:blue;">Ler mais</a></p> 
                             </div>
                             <div class="star">
                                 <i class="fas fa-star"></i>
@@ -163,254 +164,12 @@
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="local">
-                                <span><i class="fas fa-map-marker-alt"></i></span><p>Rua Aurelio de Barros, 230</p>
+                                <span><i class="fas fa-map-marker-alt"></i></span><p>{{$emp->location}}</p>
                             </div>
                         </div>    
                     </div>
-    
-    
-    
-                    <div class="col-md-4 card-content">
-                            <div class="likes">
-                                <span>560 <i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="card" style="width: 19rem;">
-                                <div class="img-card">
-                                    <div class="gradient">
-                                        <img class="card-img-top" src={{asset('img/heder5.jpg')}} alt="Card image cap">
-                                    </div>
-                                </div>
-                                <div class="avatar">
-                                    <img src={{asset('img/2.jpg')}} alt="">
-                                </div>
-                                <div class="tag text-center">
-                                    <h6>Loja</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="#">Gazeta</a></h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                </div>
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i><span>(41 Visitas)<span>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <div class="local">
-                                    <span><i class="fas fa-map-marker-alt"></i></span><p>Rua Vasconcelos, 09</p>
-                                </div>
-                            </div>    
-                        </div>
-    
-    
-                        <div class="col-md-4 card-content">
-                            <div class="likes">
-                                <span>180 <i class="fas fa-heart"></i></span>
-                            </div>
-                            <div class="card" style="width: 19rem;">
-                                <div class="img-card">
-                                        <div class="gradient">
-                                            <img class="card-img-top" src={{asset('img/header2.jpg')}} alt="Card image cap">
-                                        </div>
-                                    </div>
-                                    <div class="avatar">
-                                        <img src={{asset('img/3.jpg')}} alt="">
-                                    </div>
-                                    <div class="tag text-center">
-                                        <h6>Credito</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="#">CrediarioGv</a></h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                    </div>
-                                    <div class="star">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i><span>(21 Visitas)<span>
-                                    </div>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="local">
-                                        <span><i class="fas fa-map-marker-alt"></i></span><p>Rua Aldemiro Goveia,762</p>
-                                    </div>
-                                </div>    
-                            </div>
-    
-                            <div class="col-md-4 card-content">
-                                    <div class="likes">
-                                        <span>19 <i class="fas fa-heart"></i></span>
-                                    </div>
-                                    <div class="card" style="width: 19rem;">
-                                        <div class="img-card">
-                                                <div class="gradient">
-                                                    <img class="card-img-top" src={{asset('img/banner7.jpg')}} alt="Card image cap">
-                                                </div>
-                                            </div>
-                                            <div class="avatar">
-                                                <img src={{asset('img/6.jpg')}} alt="">
-                                            </div>
-                                            <div class="tag text-center">
-                                                <h6>Pizzaria</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title"><a href="#">Pizzaria Run</a></h5>
-                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                            </div>
-                                            <div class="star">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i><span>(69 Visitas)<span>
-                                            </div>
-                                            <div class="dropdown-divider"></div>
-                                            <div class="local">
-                                                <span><i class="fas fa-map-marker-alt"></i></span><p>Rua José Toledo, 210</p>
-                                            </div>
-                                        </div>    
-                                    </div>
-    
-                                    <div class="col-md-4 card-content">
-                                            <div class="likes">
-                                                <span>7 <i class="fas fa-heart"></i></span>
-                                            </div>
-                                            <div class="card" style="width: 19rem;">
-                                                <div class="img-card">
-                                                        <div class="gradient">
-                                                            <img class="card-img-top" src={{asset('img/banner3.jpg')}} alt="Card image cap">
-                                                        </div>
-                                                    </div>
-                                                    <div class="avatar">
-                                                        <img src={{asset('img/5.jpg')}} alt="">
-                                                    </div>
-                                                    <div class="tag text-center">
-                                                        <h6>Academia</h6>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <h5 class="card-title"><a href="#">Saúde Fitnnes</a></h5>
-                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                                    </div>
-                                                    <div class="star">
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <i class="fas fa-star"></i><span>(12 Visitas)<span>
-                                                    </div>
-                                                    <div class="dropdown-divider"></div>
-                                                    <div class="local">
-                                                        <span><i class="fas fa-map-marker-alt"></i></span><p>Rua Gustavo Soares, 171</p>
-                                                    </div>
-                                                </div>    
-                                            </div>
-    
-    
-                                            <div class="col-md-4 card-content">
-                                                    <div class="likes">
-                                                        <span>9 <i class="fas fa-heart"></i></span>
-                                                    </div>
-                                                    <div class="card" style="width: 19rem;">
-                                                        <div class="img-card">
-                                                                <div class="gradient">
-                                                                    <img class="card-img-top" src={{asset('img/banner4.jpg')}} alt="Card image cap">
-                                                                </div>
-                                                            </div>
-                                                            <div class="avatar">
-                                                                <img src={{asset('img/4.jpg')}} alt="">
-                                                            </div>
-                                                            <div class="tag text-center">
-                                                                <h6>Restaurante</h6>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <h5 class="card-title"><a href="pageindividual.html">Boi na Brasa</a></h5>
-                                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                                            </div>
-                                                            <div class="star">
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i><span>(17 Visitas)<span>
-                                                            </div>
-                                                            <div class="dropdown-divider"></div>
-                                                            <div class="local">
-                                                                <span><i class="fas fa-map-marker-alt"></i></span><p>Av. bonfin, 014</p>
-                                                            </div>
-                                                        </div>    
-                                                    </div>
-    
-    
-                                                    <div class="col-md-4 card-content">
-                                                            <div class="likes">
-                                                                <span>39 <i class="fas fa-heart"></i></span>
-                                                            </div>
-                                                            <div class="card" style="width: 19rem;">
-                                                                <div class="img-card">
-                                                                        <div class="gradient">
-                                                                            <img class="card-img-top" src={{asset('img/img-01.jpg')}} alt="Card image cap">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="avatar">
-                                                                        <img src={{asset('img/3.jpg')}} alt="">
-                                                                    </div>
-                                                                    <div class="tag text-center">
-                                                                        <h6>Sushi</h6>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <h5 class="card-title"><a href="#">Sushi Fut</a></h5>
-                                                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                                                    </div>
-                                                                    <div class="star">
-                                                                        <i class="fas fa-star"></i>
-                                                                        <i class="fas fa-star"></i>
-                                                                        <i class="fas fa-star"></i>
-                                                                        <i class="fas fa-star"></i>
-                                                                        <i class="fas fa-star"></i><span>(29 Visitas)<span>
-                                                                    </div>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <div class="local">
-                                                                        <span><i class="fas fa-map-marker-alt"></i></span><p>Av. Paulo Goveia, 230</p>
-                                                                    </div>
-                                                                </div>    
-                                                            </div>
-    
-    
-                                                            <div class="col-md-4 card-content">
-                                                                    <div class="likes">
-                                                                        <span>5 <i class="fas fa-heart"></i></span>
-                                                                    </div>
-                                                                    <div class="card" style="width: 19rem;">
-                                                                        <div class="img-card">
-                                                                                <div class="gradient">
-                                                                                    <img class="card-img-top" src={{asset('img/banner6.jpg')}} alt="Card image cap">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="avatar">
-                                                                                <img src={{asset('img/3.jpg')}} alt="">
-                                                                            </div>
-                                                                            <div class="tag text-center">
-                                                                                <h6>Imobiliária</h6>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <h5 class="card-title"><a href="#">IMob</a></h5>
-                                                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
-                                                                            </div>
-                                                                            <div class="star">
-                                                                                <i class="fas fa-star"></i>
-                                                                                <i class="fas fa-star"></i>
-                                                                                <i class="fas fa-star"></i>
-                                                                                <i class="fas fa-star"></i>
-                                                                                <i class="fas fa-star"></i><span>(7 Visitas)<span>
-                                                                            </div>
-                                                                            <div class="dropdown-divider"></div>
-                                                                            <div class="local">
-                                                                                <span><i class="fas fa-map-marker-alt"></i></span><p>Rua Joao Conserva, 030</p>
-                                                                            </div>
-                                                                        </div>    
-                                                                    </div>
+						  @endforeach
+					
                 </div>
             </div>
     </section>
@@ -670,6 +429,29 @@
 
 <!--Slid card-->
 <script>
+
+	$(function(){
+		$('#dropdownUser').click(function(){
+			$('#balao').slideToggle(200);
+			
+		});
+
+
+		$('#fecharMenu').click(function(){
+			$('#balao').slideUp(200);
+		});
+
+		$('#dropdownMobile').click(function(){
+			$('#balaoMobile').slideToggle(200);
+			
+		});
+			
+
+		$('#fecharMenuMenu').click(function(){
+			$('#balaoMobile').slideUp(200);
+		});
+	});
+	
     $('.card-slide').slick({
         dots: true,
         infinite: false,

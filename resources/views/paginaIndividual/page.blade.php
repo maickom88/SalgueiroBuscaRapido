@@ -17,12 +17,12 @@
 @include('templetes.top-menu')
 
 
-<section class="header-empresa">
+<section class="header-empresa" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url({{asset("../storage/logo-empresas/".$empresa->banner)}}); background-size:cover; background-position:center; background-repeat:no-repeat">
 <div class="container ">
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="content-empresa">
-                <h3>{{$empresa->name}}<span><i class="fas fa-user-check"></i> <div class="balao2">Verificado!</div></span></h3>
+                <h3>{{$empresa->name}}<span><i class="fas fa-user-check"></i> </span></h3>
                 <div class="star-empresa" style="margin-top:5px !important;">
                     <span><i class="fas fa-star"></i></span>
                     <span><i class="fas fa-star"></i></span>
@@ -102,7 +102,7 @@
         <div class="row">
         </div>
 
-        <div class="gallery" style="text-align:center !important" id="gallery">
+        <div class="gallery"  id="gallery" >
 			@php
 				 $email = $empresa->permissions->users->email;
 			@endphp
@@ -113,10 +113,11 @@
 					<img class="img-fluid" src={{asset("storage/album-empresa/".$email."/".$fotos->photo)}} alt="{{$empresa->name}}">
 				</div>
 				@endforeach		
+				<div>
 			@else
-			<h1 style="color:darkgray; text-align:center;">Não há fotos dessa empresa!</h1>
+			<h1 style="color:darkgray;">Não há fotos dessa empresa!</h1>
 			@endif
-			<div>
+			
 
 
 			
@@ -127,7 +128,16 @@
         <div class="sobre">
             <h4>Sobre a Churrascaria</h4>
             <p>{{$empresa->description}}</p>
-            <a href="#">Visitar WebSite</a>
+				@if(!empty($empresa->whatsapp))
+				<a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{$empresa->whatsapp}}" target="blank">Entrar em contato</a>
+				@elseif(!empty($empresa->instagram))
+				<a href={{$empresa->instagram}} target="blank">Entrar em contato</a>
+				@elseif(!empty($empresa->facebook))
+				<a href={{$empresa->facebook}} target="blank">Entrar em contato</a>
+				@else
+				
+				@endempty
+            
         </div>
         <div class="facilidades">
             <h4>Facilidades</h4>
@@ -177,10 +187,12 @@
         <div class="container tags">
         <h4>Tags</h4>
             <div class="row">
-					@foreach ($tags as $tag)
-					<a href="#">{{$tag}}</a>
-					@endforeach
-					{{$segundatoJson->Inicio}}
+					@empty(!$empresa->tags)
+						@foreach ($tags as $tag)
+							<a href="#">{{$tag}}</a>
+						@endforeach
+					@endempty
+					
 				</div>
         </div>
     </div>
@@ -306,26 +318,54 @@
                     </div>
                     <div class="horario-empresa">
                         <div class="hora-aberto">
-                            <p>Segunda</p><span><p>8h - 18h</p></span>
+								@if($array['segunda']=='Fechado')
+								<p>Segunda</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+									<p>Segunda</p><span><p>{{substr($array['segunda']->Inicio, 0 , 2)}}h - {{substr($array['segunda']->Fim, 0 , 2)}}h</p></span>
+								@endif
+                        </div>
+								<div class="hora-aberto">
+								@if($array['terca']=='Fechado')
+								<p>Terça</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+								<p>Terça</p><span><p>{{substr($array['terca']->Inicio, 0 , 2)}}h - {{substr($array['terca']->Fim, 0 , 2)}}h</p></span>
+								@endif
                         </div>
                         <div class="hora-aberto">
-                            <p>Terça</p><span><p>8h - 18h</p></span>
-                        </div>
+								@if($array['quarta']=='Fechado')
+								<p>Quarta</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+                        <p>Quarta</p><span><p>{{substr($array['quarta']->Inicio, 0 , 2)}}h - {{substr($array['quarta']->Fim, 0 , 2)}}h</p></span>
+                        @endif
+								</div>
                         <div class="hora-aberto">
-                            <p>Quarta</p><span><p>8h - 18h</p></span>
-                        </div>
+								@if($array['quinta']=='Fechado')
+								<p>Quinta</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+                        <p>Quinta</p><span><p>{{substr($array['quinta']->Inicio, 0 , 2)}}h - {{substr($array['quinta']->Fim, 0 , 2)}}h</p></span>
+                        @endif
+								</div>
                         <div class="hora-aberto">
-                            <p>Quinta</p><span><p>8h - 18h</p></span>
-                        </div>
+                        @if($array['sexta']=='Fechado')
+								<p>Sexta</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+								<p>Sexta</p><span><p>{{substr($array['sexta']->Inicio, 0 , 2)}}h - {{substr($array['sexta']->Fim, 0 , 2)}}h</p></span>
+								@endif
+								</div>
                         <div class="hora-aberto">
-                            <p>Sexta</p><span><p>8h - 18h</p></span>
-                        </div>
+								@if($array['sabado']=='Fechado')
+								<p>Sabádo</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+                        <p>Sabádo</p><span><p>{{substr($array['sabado']->Inicio, 0 , 2)}}h - {{substr($array['sabado']->Fim, 0 , 2)}}h</p></span>
+                        @endif
+								</div>
                         <div class="hora-aberto">
-                            <p>Sabádo</p><span><p>8h - 12h</p></span>
-                        </div>
-                        <div class="hora-aberto">
-                            <p>Domingo</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
-                        </div>
+								@if($array['domingo']=='Fechado')
+								<p>Domingo</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@else
+                        <p>Domingo</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
+								@endif
+								</div>
                     </div>
                 </div>
             </div>
@@ -336,23 +376,37 @@
                     </div>
                     <div class="endereco">
                         <div class="localizacao-empresa">
-                            <div class="lo">
+									@empty(!$empresa->location)
+									 <div class="lo">
                             <i class="fas fa-compass"></i><p>Endereço:</p><span><p>{{$empresa->location}}</p></span>
                             </div>
+									@endempty
+									 @empty(!$empresa->tel)
                             <div class="lo">
                             <i class="fas fa-tty"></i><p>Telefone:</p><span><p>{{$empresa->tel}}</p></span>
                             </div>
-                            <div class="lo">
-                            <i class="fas fa-envelope"></i><p>Email:</p><span><p>{{$empresa->email}}</p></span>
-                            </div>
+									 @endempty
+									 @empty(!$empresa->email)
+										<div class="lo">
+										<i class="fas fa-envelope"></i><p>Email:</p><span><p>{{$empresa->email}}</p></span>
+										</div>
+									 @endempty
+									 @empty(!$empresa->site)
                             <div class="lo">
                             <i class="fas fa-globe"></i><p>Website:</p><span><p>www.seusite.com</p></span>
                             </div>
+									 @endempty
                         </div>
                         <div class="redes">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+										@empty(!$empresa->facebook)
+											<a href="{{$empresa->facebook}}" target="blank"><i class="fab fa-facebook-f"></i></a>
+										@endempty
+										@empty(!$empresa->whatsapp)
+                                <a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{$empresa->whatsapp}}" target="blank"><i class="fab fa-whatsapp"></i></a>
+										@endempty
+										@empty(!$empresa->instagram)
+											<a href="{{$empresa->instagram}}" target="blank"><i class="fab fa-instagram"></i></a>
+										@endempty
                         </div>
                     </div>
                 </div>

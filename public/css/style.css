@@ -1152,3 +1152,80 @@ nav a img{
 		width: 350px !important;
 	}
 }
+
+.balao2{
+    margin: 0 auto; 
+    background: #019FEA;
+    font-family: 'open sans';
+    font-size: 0.85em;
+    line-height: 1.6em;  
+    border-radius: 15px;
+    width: 478px;
+    height: auto;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    margin-top: 30px;
+}
+.balao2:after{ /*Triangulo*/
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    /*Faz seta "apontar para baixo. Definir o valor como 'top' fará ela "apontar para cima" */
+    /*Aqui entra a cor da "aba" do balão */
+    border-bottom: 20px solid #019FEA;
+    top: -15px; /*localização. Experimente alterar para 'bottom'*/
+    left: 84%;
+}
+#balao{
+	position: absolute;
+	right:10px;
+	top:41px;
+	
+}
+#balao a:hover{
+	color: #24324F;
+	text-decoration: none;;
+}
+#dropdownUser:hover{
+	color:white !important;
+}
+
+@media (max-width: 767px) {
+	
+#balaoMobile{
+	top:55%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	width:100% !important;
+	height:100% !important;
+	overflow: hidden;
+	z-index: 10000 !important;
+	color: white;
+	position: fixed !important;
+}
+#balaoMob{
+	overflow: hidden;
+	width: 100% !important;
+	border-radius: 0px !important;
+}
+#balaoMob:after{
+	left: 50% !important;
+	top:19px !important;
+}
+#balaoMobile a{
+	color:white !important;
+}
+
+#menuMobileActive{
+	display: inline !important;
+}
+#imgNavbarLogo{
+	width: 90px !important;
+	margin-right: 50%;
+}
+
+}

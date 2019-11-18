@@ -19,17 +19,59 @@ class PaginaIndividualController extends Controller
 		$sexta = $empresa->open->sexta;
 		$sabado = $empresa->open->sabado;
 		$domingo = $empresa->open->domingo;
-		
-			$segundatoJson = json_decode($segunda);
-			$tercatoJson = json_decode($terca);
-			$quartatoJson = json_decode($quarta);
-			$quintatoJson = json_decode($quinta);
-			$sextatoJson = json_decode($segunda);
-			$sabadotoJson = json_decode($sabado);
-			$segundatoJson = json_decode($segunda);
 
-	$horarios = array($segunda, $terca, $quarta, $quinta, $sexta, $sabado, $domingo);
-	$horariosJson = json_encode($horarios);
-		return view('paginaIndividual.page', compact('empresa', 'tags', 'segundatoJson'));
+		if($segunda=='Fechado'){
+			$segundatoJson = 'Fechado';
+		}
+		else{
+			$segundatoJson = json_decode($segunda);
+		}
+		if($terca=='Fechado'){
+			$tercatoJson = 'Fechado';
+		}
+		else{
+			$tercatoJson = json_decode($terca);
+		}
+		if($quarta=='Fechado'){
+			$quartatoJson = 'Fechado';
+		}
+		else{
+			$quartatoJson = json_decode($quarta);
+		}
+		if($quinta=='Fechado'){
+			$quintatoJson = 'Fechado';
+		}
+		else{
+			$quintatoJson = json_decode($quinta);
+		}
+		if($sexta=='Fechado'){
+			$sextatoJson = 'Fechado';
+		}
+		else{
+			$sextatoJson = json_decode($segunda);
+		}
+		if($sabado=='Fechado'){
+			$sabadotoJson = 'Fechado';
+		}
+		else{
+			$sabadotoJson = json_decode($sabado);
+		}
+		if($domingo=='Fechado'){
+			$domingotoJson = 'Fechado';
+		}
+		else{
+			$domingotoJson = json_decode($domingo);
+		}
+		
+		$array = ['segunda' => $segundatoJson,
+						'terca'   => $tercatoJson,
+						'quarta'  => $quartatoJson,
+						'quinta'  => $quintatoJson,
+						'sexta'   => $sextatoJson,
+						'sabado'  => $sabadotoJson,
+						'domingo' => $domingotoJson
+		];
+		
+		return view('paginaIndividual.page', compact('empresa', 'tags', 'array'));
 	}
 }

@@ -23,10 +23,11 @@ class DashboardController extends Controller
             $userID = Auth::user()->id;
             $validEmp = $user->find($userID)->permissions->empresario;
 				$vlaidAdmin = $user->find($userID)->permissions->adm;
+				$validUser = $user->find($userID)->permissions->user;
             if($validEmp=='sim'){
                return  redirect()->back();
             }
-				else if($vlaidAdmin){
+				else if($vlaidAdmin == 'sim'){
 					return redirect()->route('empManenger');
 				}
       }
