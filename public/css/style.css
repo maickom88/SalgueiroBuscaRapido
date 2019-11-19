@@ -1153,7 +1153,7 @@ nav a img{
 	}
 }
 
-.balao2{
+.balao10{
     margin: 0 auto; 
     background: #019FEA;
     font-family: 'open sans';
@@ -1167,7 +1167,7 @@ nav a img{
     position: relative;
     margin-top: 30px;
 }
-.balao2:after{ /*Triangulo*/
+.balao10:after{ /*Triangulo*/
     content: "";
     width: 0;
     height: 0;
@@ -1195,7 +1195,10 @@ nav a img{
 }
 
 @media (max-width: 767px) {
-	
+
+#loginMobile{
+	display: block !important;
+}
 #balaoMobile{
 	top:55%;
 	left:50%;
@@ -1203,7 +1206,7 @@ nav a img{
 	width:100% !important;
 	height:100% !important;
 	overflow: hidden;
-	z-index: 10000 !important;
+	z-index: 100000 !important;
 	color: white;
 	position: fixed !important;
 }

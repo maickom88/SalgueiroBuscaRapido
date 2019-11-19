@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Empresa\Empresa;
 use App\User;
 use App\Parceiro;
 use Exception;
@@ -57,8 +59,9 @@ class DashboardController extends Controller
 				];
 			$insta = $json;
 		};
-		
-		return view('login.dashboardUser.paginas.painel', compact(['user', 'insta']));
+		$empresa = Empresa::all()->where('status', 'ativa')->random(1);
+
+		return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa']));
    }
 	public function perfil(){
 
@@ -67,7 +70,6 @@ class DashboardController extends Controller
 		$user = User::find($idUser);
 		
 		$verificacao = $user->permissions->user;
-	
 		if($verificacao=="sim"){
 			return view('login.dashboardUser.paginas.perfil', compact('user'));
 		}

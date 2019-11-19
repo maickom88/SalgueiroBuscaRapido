@@ -11,9 +11,13 @@ class IndexController extends Controller
    public function index()
    {
 		$empresa = Empresa::where('status', 'ativa')->get();
-		$userId = Auth::user()->id;
-		$user = User::find($userId);
+		if (Auth::check()) {
+    		$userId = Auth::user()->id;
+			 $user = User::find($userId);
 		return view('home.index', compact('empresa', 'user'));
+		}
+		return view('home.index', compact('empresa'));
+		
 	}
 	public function login(){
 		if(Auth::check())
@@ -38,7 +42,11 @@ class IndexController extends Controller
 		return view('cadastro.logar');
 	}
 	public function contato(){
-
+		if(Auth::check()){
+			$idUser = Auth::user()->id;$user = User::find($idUser);
+		
+		return view('contato.contato', compact('user'));
+		}
 		return view('contato.contato');
 	}
 }

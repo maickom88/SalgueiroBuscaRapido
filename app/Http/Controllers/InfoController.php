@@ -77,13 +77,13 @@ class InfoController extends Controller
 				$user->info->interesse = $request->input('interesse');
 			}
 			if(!empty($request->input('endereco'))){
-				$user->info->interesse = $request->input('endereco');
+				$user->info->endereco = $request->input('endereco');
 			}
 			if(!empty($request->input('telefone'))){
-				$user->info->interesse = $request->input('telefone');
+				$user->info->telefone = $request->input('telefone');
 			}
 			if(!empty($request->input('email'))){
-				$user->info->interesse = $request->input('email');
+				$user->info->email = $request->input('email');
 			}
 			if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
 				$name = uniqid(date('HisYmd'));

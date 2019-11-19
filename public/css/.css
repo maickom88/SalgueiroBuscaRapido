@@ -12,6 +12,7 @@
     background-repeat: no-repeat;
     
 }
+
 .header-empresa .container{
     position: relative;
     top: 20%;
@@ -213,7 +214,6 @@
     top:75px;
     left:0;
     z-index: 2; 
-	 
 }
 .navbar-empresa a{
     position: relative;
@@ -292,6 +292,12 @@ section#contato:hover ~  .navbar-empresa a[href="#contato"]{
         }
         }
         
+        @media (max-width: 400px) {
+        .btn.filter {
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+        }
+        }
 #galeria{
     width:100%;
     height:auto;
@@ -841,187 +847,4 @@ section#contato:hover ~  .navbar-empresa a[href="#contato"]{
 
 .share2 i:nth-last-child(1){
     background: #0089c9;
-}
-
-
-#album   #gallery .button{
-	background: transparent;
-	color:white;
-	border:1px solid rgb(255, 255, 255);
-	transition: all 0.4s;
-	
-}
-
-
-#album #gallery .button:focus{
-	outline: none;
-}
- #album #gallery img{
-	transition: all 0.4s;
-}
-
-
-#album{
-	overflow: hidden;
-}
-#album #gallery .pics{
-	overflow: visible !important;
-}
-#album #gallery .pics:hover{
-	overflow: visible !important;
-}
-#album #gallery .pics:hover img{
-	opacity: 0.1;
-	transform: scale(1.3);
-}	
- #album #gallery .button:hover{
-	background: #fff !important;
-	color:black !important;
-}
- #album #gallery .button:hover .linkhover{
-	color:black !important;
-}
- #album #gallery .pics:hover .button-2{
-	visibility: visible !important;
-	transform: translateY(80px);
-	top:-60px; left:25%;
-	display: block !important;
-}
- #album #gallery .pics:hover .button-1{
-	visibility: visible !important;
-	transform: translateY(80px);
-	top:-60px; left:5%;
-	opacity: 1;
-	
-}
- #album #gallery .fundo-imagem{
-	background:linear-gradient(to top, rgba(0,0,0,1), rgba(0, 0, 0, 0.89));
-	overflow: hidden;
-	width: 100%;
-	height:100%;
-}
-#carregando{
-	position: relative;
-	top:20px;
-}
-
-.previaImg{	
-	display:inline-block;
-	line-height: 110px;
-	text-align: center;
-	margin-right: 15px;
-	width:110px;
-	height: 110px;;
-	border:2px dotted #999;
-	overflow: hidden;
-	position: relative;
-	
-}
-.previaImg .previa{
-	opacity: 1;	
-	width: 100%;
-}
-
-.previaImg:hover .previa{
-	opacity: 0.4;
-}
-.previaImg:hover .cancelarOp{
-	transform: scale(1);
-}
-.cancelarOp{
-	position: absolute;
-	top:-30%;
-	left:75%;
-}
-.cancelarOp:hover i{
-	color:#FFFFFF;
-}
-.cancelarOp{
-	transform: scale(0);
-	transition: all 0.2s;
-}
-.lds-spinner {
-  color: official;
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
-}
-.lds-spinner div {
-  transform-origin: 32px 32px;
-  animation: lds-spinner 1.2s linear infinite;
-}
-.lds-spinner div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 3px;
-  left: 29px;
-  width: 5px;
-  height: 14px;
-  border-radius: 20%;
-  background: #fff;
-}
-.lds-spinner div:nth-child(1) {
-  transform: rotate(0deg);
-  animation-delay: -1.1s;
-}
-.lds-spinner div:nth-child(2) {
-  transform: rotate(30deg);
-  animation-delay: -1s;
-}
-.lds-spinner div:nth-child(3) {
-  transform: rotate(60deg);
-  animation-delay: -0.9s;
-}
-.lds-spinner div:nth-child(4) {
-  transform: rotate(90deg);
-  animation-delay: -0.8s;
-}
-.lds-spinner div:nth-child(5) {
-  transform: rotate(120deg);
-  animation-delay: -0.7s;
-}
-.lds-spinner div:nth-child(6) {
-  transform: rotate(150deg);
-  animation-delay: -0.6s;
-}
-.lds-spinner div:nth-child(7) {
-  transform: rotate(180deg);
-  animation-delay: -0.5s;
-}
-.lds-spinner div:nth-child(8) {
-  transform: rotate(210deg);
-  animation-delay: -0.4s;
-}
-.lds-spinner div:nth-child(9) {
-  transform: rotate(240deg);
-  animation-delay: -0.3s;
-}
-.lds-spinner div:nth-child(10) {
-  transform: rotate(270deg);
-  animation-delay: -0.2s;
-}
-.lds-spinner div:nth-child(11) {
-  transform: rotate(300deg);
-  animation-delay: -0.1s;
-}
-.lds-spinner div:nth-child(12) {
-  transform: rotate(330deg);
-  animation-delay: 0s;
-}
-@keyframes lds-spinner {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.btnAdd:hover{
-	background: rgb(0, 148, 74) !important;
-}
-.btnAdd:active{
-	background: rgb(82, 116, 99) !important;
-	box-shadow: 0px 0px 3px  rgb(46, 63, 54);
 }

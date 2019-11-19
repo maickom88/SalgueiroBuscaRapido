@@ -27,20 +27,40 @@
       integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"
       crossorigin="anonymous"
     ></script>
-<script src={{asset('lib/bootstrap/js/bootstrap.min.js')}}></script>
-<script class="include" type="text/javascript" src={{asset('lib/jquery.dcjqaccordion.2.7.js')}}></script>
-<script src={{asset('lib/jquery.scrollTo.min.js')}}></script>
-<script src={{asset('lib/jquery.nicescroll.js')}} type="text/javascript"></script>
-<script src={{asset('lib/jquery.sparkline.js')}}></script>
-<script src={{asset('lib/common-scripts.js')}}></script>
-<script type="text/javascript" src={{asset('lib/gritter/js/jquery.gritter.js')}}></script>
-<script type="text/javascript" src={{asset('lib/gritter-conf.js')}}></script>
-<script type="text/javascript" src={{asset('js/jBox.all.js')}}></script>
-<script type="text/javascript" src={{asset('js/demo.js')}}></script>
-<script src={{asset("lib/sparkline-chart.js")}}></script>
-<script src={{asset("lib/zabuto_calendar.js")}}></script>
+	 <script src={{asset('js/typed.js')}}></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src={{asset('js/jquery-1.11.0.min.js')}}></script>
+<script src={{asset('js/jquery-migrate-1.2.1.min.js')}}></script>
+<script src={{asset('js/slick.min.js')}}></script>
+<script src={{asset('js/menu-fixo.js')}}></script>
+
 @yield('script')
 
+<script>
+	$(function(){
+		$('#dropdownUser').click(function(){
+			$('#balao').slideToggle(200);
+			
+		});
+
+
+		$('#fecharMenu').click(function(){
+			$('#balao').slideUp(200);
+		});
+
+		$('#dropdownMobile').click(function(){
+			$('#balaoMobile').slideToggle(200);
+			
+		});
+			
+
+		$('#fecharMenuMenu').click(function(){
+			$('#balaoMobile').slideUp(200);
+		});
+	});
+</script>
 
 </body>
 

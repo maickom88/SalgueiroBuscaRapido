@@ -6,8 +6,8 @@ use App\Empresa\Empresa;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-
+use App\Contact\Contact;
+use App\Parceiro;
 class PainelManengerController extends Controller
 {
 	public function __construct()
@@ -62,10 +62,12 @@ class PainelManengerController extends Controller
 		$user = User::find($idUser);
 		
 		$verificacao = $user->permissions->adm;
-			
+		$contact = Contact::orderBy('id')->paginate(5);
+		$parceiro = Parceiro::orderBy('id')->paginate(5);
+
 		if($verificacao=="sim")
 		{
-			return view('login.dashboardManenger.contato', compact('user'));
+			return view('login.dashboardManenger.contato', compact('user', 'contact', 'parceiro'));
 		}
 		return redirect()->back();
 

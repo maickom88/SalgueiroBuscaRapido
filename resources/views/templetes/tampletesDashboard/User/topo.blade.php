@@ -27,6 +27,7 @@ $telefone = $user->info->telefone;
 }
 ?>
 <head>
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -45,13 +46,14 @@ $telefone = $user->info->telefone;
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
 	<link rel="stylesheet" href={{asset('css/painel.css')}}>
 	<link rel="stylesheet" href={{asset('css/loader-bouncing.css')}}>
-	<link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
+	
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 	@yield('links')
 </head>
 
 <body>
-	<div class="loader loader-bouncing"></div>
+	
+<div id="loader" class="loader loader-bouncing"></div>
 <section id="container">
 	<header class="header black-bg">
 		<div class="sidebar-toggle-box">
@@ -59,7 +61,7 @@ $telefone = $user->info->telefone;
 			</div>
 
 			<!--logo start-->
-			<a href="dashboard" class="logo"><img src={{asset('img/logofinal1.png')}} style="width:120px"alt=""></a>
+			<a href="/" class="logo"><img src={{asset('img/logofinal1.png')}} style="width:120px"alt=""></a>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<ul class="nav top-menu">
@@ -196,10 +198,10 @@ $telefone = $user->info->telefone;
 			<ul class="sidebar-menu" id="nav-accordion">
 				<p class="centered"><a href={{route('userPerfil')}}>
 				@if(empty($user->info->avatar))
-								<img src={{asset('storage/avatar/212511201910055d990a37ee653.jpeg')}} class="img-circle" width="80">
-								@else
-								<img src={{asset('storage/avatar/'.$user->info->avatar)}} class="img-circle" width="80">
-								@endif
+					<img src={{asset('img/profilezim.png')}} class="img-circle" width="80">
+				@else
+					<img src={{asset('storage/avatar/'.$user->info->avatar)}} class="img-circle" width="80">
+				@endif
 				</a><img>
 				<h5 class="centered">{{Auth::user()->name}}</h5>
 				<li class="mt">

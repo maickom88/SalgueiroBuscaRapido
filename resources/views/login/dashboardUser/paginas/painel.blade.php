@@ -28,25 +28,25 @@
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="content-panel pn">
+			<div class="content-panel pn" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../storage/logo-empresas/{{$empresa[0]->banner}}'); background-size:cover;">
 			<div id="spotify">
 			<div class="col-xs-4 col-xs-offset-8">
 			<button class="btn btn-sm btn-clear-g"><i class="fa fa-heart"></i></button>
 			</div>
 			<div class="sp-title">
-			<h3>NOME DA EMPRESA</h3>
+			<a href="#" style="color:white"><h3>{{$empresa[0]->name}}</h3></a>
 			</div>
 			<div class="play">
 			<i class="fa fa-play-circle"></i>
 			</div>
 			</div>
-			<p class="followers"><i class="fa fa-user"></i> 12 PESSOAS GOSTARAM</p>
+			<p class="followers" style="color:white; font-weight:bold; "><i class="fa fa-user"></i> 12 PESSOAS GOSTARAM</p>
 			</div>
 			<!-- /grey-panel -->
 		</div>
 		<!-- /col-md-4-->
 		<div class="col-md-4 col-sm-4 mb">
-			<div class="content-panel pn">
+			<div class="content-panel pn" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../img/negocio.jpg'); background-size:cover;">
 			<div id="profile-01">
 			<h3>Possui alguma micro empresa ou vende algum produto?</h3>
 			<h6 style="padding-bottom:4px; text-transform:uppercase ">QUER AUMENTAR SUAS VENDAS? <br> Se torne nosso parceiro e anuncie na plataforma</h6>
@@ -56,7 +56,7 @@
 			<p>ANUNCIAR MEU NEGOCIO</p>
 			</div>
 			<div class="centered">
-			<h6><i class="fa fa-envelope"></i><br/>SALGUEIROBUSCARAPIDO@GMAIL.COM</h6>
+			<h6 style="color:white;"><i class="fa fa-envelope"></i><br/>SALGUEIROBUSCARAPIDO@GMAIL.COM</h6>
 			</div>
 			</div>
 		</div>

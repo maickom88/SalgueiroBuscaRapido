@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Noticia;
 
 
@@ -11,12 +12,13 @@ class BlogController extends Controller
 {
     public function index(){
 
-        $dados = Noticia::all();
-        
-        
-         
-       
-        return view('noticias.noticias',compact('dados'));
+		if(Auth::check()){
+			$idUser = Auth::user()->id;
+			$user = User::find($idUser);	
+			return view('noticias.noticias',compact('dados', 'user'));
+		}
+		$dados = Noticia::all();
+		return view('noticias.noticias',compact('dados'));
     }
     public function artigo(Request $titulo, $id)
     {

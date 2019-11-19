@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empresa\Empresa;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PaginaIndividualController extends Controller
 {
    public function page($nome, $id){
+		$empresas = Empresa::all()->where('status', 'ativa')->random(4);
 		$empresa = Empresa::find($id);
+		if(!isset($empresa)){
+			return 'Erro';
+		}
 		$tag = $empresa->tags;
 		$tags = explode(',', $tag);
-
+		
+		
 		$segunda = "".$empresa->open->segunda."";
 		$terca = $empresa->open->terca;
 		$quarta = $empresa->open->quarta;
@@ -71,7 +78,12 @@ class PaginaIndividualController extends Controller
 						'sabado'  => $sabadotoJson,
 						'domingo' => $domingotoJson
 		];
+		if(Auth::check()){
+			$idUser = Auth::user()->id;
+			$user = User::find($idUser);
+			return view('paginaIndividual.page', compact('empresa', 'tags', 'array', 'user', 'empresas'));
+		}
 		
-		return view('paginaIndividual.page', compact('empresa', 'tags', 'array'));
+		return view('paginaIndividual.page', compact('empresa', 'tags', 'array','empresas'));
 	}
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Contact\Contact;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 class ContatoController extends Controller
 {
 

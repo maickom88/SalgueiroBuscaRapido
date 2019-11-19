@@ -1,15 +1,10 @@
 @extends('templetes.site')
 
 @section('links')
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
-		<link rel="stylesheet" href={{asset("css/slick.css")}}>
-    <link rel="stylesheet" href={{asset("css/slick-theme.css")}}>
-	 <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
+	<link href={{asset('css/style-empresa.css')}} rel="stylesheet">
+	<link rel="stylesheet" href={{asset("css/slick.css")}}>
+	<link rel="stylesheet" href={{asset("css/slick-theme.css")}}>
+	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 
@@ -416,14 +411,15 @@
 </section>
 
 <section id="vejamais">
-    <div class="container">
-            <div class="row card-empresas">
-                <div class="col-md-4">
+	<div class="container">
+			<div class="row card-empresas" >
+				@foreach ($empresas as $emp)
+					 <div class="col-md-4" style="outline:none !important">
                     <div class="empresa-content">    
-                        <img src={{asset("img/campras-2.jpg")}} class="img-fluid">
+                        <img src={{asset("storage/logo-empresas/$emp->banner")}} class="img-fluid">
                         
                         <div class="name-empresa">
-                            <h4>Boi na Brasa 1</h4>
+                            <h4>{{$emp->name}}</h4>
                                 <span><i class="fas fa-star"></i></span>
                                 <span><i class="fas fa-star"></i></span>
                                 <span><i class="fas fa-star"></i></span>
@@ -444,121 +440,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="empresa-content">    
-                        <img src={{asset("img/campras-1.jpg")}} class="img-fluid">
-                        
-                        <div class="name-empresa">
-                            <h4>Boi na Brasa 1</h4>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="rodape">
-                            <button ID="btn-modal" style="display:none;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">                          </button>
-
-                            <label for="btn-modal"><i class="fas fa-window-restore"></i></label>
-                            <i onclick="blue(2)" id="like2" class="coracao-2 fas fa-heart"></i>
-                            <i onclick="share(2)"  class="fas fa-share-alt"></i>
-                            <div id="share2" class="share2">
-                                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></i></a>
-                                <a href="#"><i class="fab fa-whatsapp-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="empresa-content">    
-                        <img src={{asset("img/img-15.jpg")}} class="img-fluid">
-                        
-                        <div class="name-empresa">
-                            <h4>Boi na Brasa 1</h4>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="rodape">
-                            <button ID="btn-modal" style="display:none;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">                          </button>
-
-                            <label for="btn-modal"><i class="fas fa-window-restore"></i></label>
-                            <i onclick="blue(3)"  id="like3" class="coracao-3 fas fa-heart"></i>
-                            <i onclick="share(3)"  class="fas fa-share-alt"></i>
-                            <div id="share3" class="share2">
-                                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></i></a>
-                                <a href="#"><i class="fab fa-whatsapp-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="empresa-content">    
-                        <img src={{asset("img/campras-2.jpg")}} class="img-fluid">
-                        
-                        <div class="name-empresa">
-                            <h4>Boi na Brasa 1</h4>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="rodape">
-                            <button ID="btn-modal" style="display:none;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">                          </button>
-
-                            <label for="btn-modal"><i class="fas fa-window-restore"></i></label>
-                            <i onclick="blue(4)" id="like4" class="coracao-4 fas fa-heart"></i>
-                            <i onclick="share(4)"  class="fas fa-share-alt"></i>
-                            <div id="share4" class="share2">
-                                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></i></a>
-                                <a href="#"><i class="fab fa-whatsapp-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="empresa-content">    
-                        <img src={{asset("img/campras-1.jpg")}} class="img-fluid">
-                        
-                        <div class="name-empresa">
-                            <h4>Boi na Brasa 1</h4>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="rodape">
-                            <button ID="btn-modal" style="display:none;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">                          </button>
-
-                            <label for="btn-modal"><i class="fas fa-window-restore"></i></label>
-                            <i onclick="blue(5)" id="like5" class=" coracao-5 fas fa-heart"></i>
-                            <i onclick="share(5)"  class="fas fa-share-alt"></i>
-                            <div id="share5" class="share2">
-                                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></i></a>
-                                <a href="#"><i class="fab fa-whatsapp-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-    </div>
+				@endforeach
+					
+					
+					
+					
+					
+			</div>
+	</div>
 </section>
 
 
 @section('script')
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src={{asset("js/slick.min.js")}}></script>
 
 <script>
     $(function()

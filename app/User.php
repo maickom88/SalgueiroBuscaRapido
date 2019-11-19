@@ -66,8 +66,7 @@ class User extends Authenticatable
 		return $this->hasOne(info::class);
 	}
 	public function parceiro(){
-		return $this->hasOne(info::class, "user_id")
-		;
+		return $this->hasOne(Parceiro::class, 'user_id');
 	}
 
 }

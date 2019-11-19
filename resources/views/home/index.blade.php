@@ -1,10 +1,5 @@
 @extends('templetes.site')
 
-@section('links')
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href={{asset('css/slick.css')}}>
-    <link rel="stylesheet" href={{asset('css/slick-theme.css')}}>
-@endsection
 
 
 @section('titulo','SALGUEIRO BUSCA RAPIDO: HOME')
@@ -152,7 +147,11 @@
                                 <h6 style="text-transform:capitalize">{{$emp->nincho}}</h6>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title"><a href="#">{{$emp->name}}</a></h5>
+										 @php
+											$str = $emp->name;
+											$str2 = str_replace(' ', '-', $str);
+										 @endphp	
+                                <h5 class="card-title"><a href="/empresa/{{$str2}}/{{$emp->id}}" >{{$emp->name}}</a></h5>
                                 <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="#" style="color:blue;">Ler mais</a></p> 
                             </div>
                             <div class="star">
@@ -417,40 +416,13 @@
 
 
 @section('script')
-<script src={{asset('js/typed.js')}}></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src={{asset('js/jquery-1.11.0.min.js')}}></script>
-<script src={{asset('js/jquery-migrate-1.2.1.min.js')}}></script>
-<script src={{asset('js/slick.min.js')}}></script>
-<script src={{asset('js/menu-fixo.js')}}></script>
+
 <!--efeito no mouse scroll-->
 
 <!--Slid card-->
 <script>
 
-	$(function(){
-		$('#dropdownUser').click(function(){
-			$('#balao').slideToggle(200);
-			
-		});
-
-
-		$('#fecharMenu').click(function(){
-			$('#balao').slideUp(200);
-		});
-
-		$('#dropdownMobile').click(function(){
-			$('#balaoMobile').slideToggle(200);
-			
-		});
-			
-
-		$('#fecharMenuMenu').click(function(){
-			$('#balaoMobile').slideUp(200);
-		});
-	});
+	
 	
     $('.card-slide').slick({
         dots: true,

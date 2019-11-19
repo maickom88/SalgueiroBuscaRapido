@@ -1,16 +1,12 @@
 @extends('templetes.site')
 
 @section('links')
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href={{asset('css/blog.css')}}>
-    <link href={{asset('css/blog-single.css')}} rel="stylesheet">
+
+    
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
     <link href={{asset('css/style-contato.css')}} rel="stylesheet">
 	 <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
+	 <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 
@@ -169,7 +165,8 @@
 <script src={{asset('js/jquery-3.4.1.min.js')}}></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src={{asset('js/jBox.all.js')}}></script>
+<script type="text/javascript" src={{asset('js/demo.js')}}></script>
 
 
 	<script type="text/javascript">
@@ -177,8 +174,25 @@
 	headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 	});
 
-
+	
+		
 	$(function(){
+		
+		
+	var ModalErrorNumber = new jBox('Modal', {
+			attach: '#test',
+			title: '<div width="100%" class="text-center"><i class="fa fa-times fa-3x" style="color: red"></i></div>',
+			content: "Seu telefone deve conter apenas números!",
+			animation: 'zoomIn',
+			audio: '../audio/bling2',
+			volume: 80,
+			closeButton: true,
+			delayOnHover: true,
+			showCountdown: true
+		}); 
+		
+
+
 	function load(action){
 	var load_div = $(".loader");
 	if(action==="open"){
@@ -193,6 +207,7 @@
 	e.preventDefault();
 
 	var form = $(this);
+	var tel
 
 	dados = {
 	nome: $('#name').val(),
@@ -200,6 +215,7 @@
 	tel: $('#tel').val(),
 	content: $('#content').val()
 	};
+
 
 	$.ajax({
 	url: 'api/contato/mensagem',
@@ -224,6 +240,7 @@
 	$('#enviarBTN').delay( 1500 ).fadeIn( 450 );
 	}
 	});
+	
 
 	});
 

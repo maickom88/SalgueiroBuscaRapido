@@ -8,7 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
-    <title >@yield('titulo')</title>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+	 <link rel="stylesheet" href={{asset('css/slick.css')}}>
+    <link rel="stylesheet" href={{asset('css/slick-theme.css')}}>
+	 <title >@yield('titulo')</title>
     @yield('links')
             
     <!--font-family: 'Open Sans', sans-serif;
