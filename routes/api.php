@@ -63,4 +63,8 @@ Route::post('administrativo/lista-contato/exlcuir', 'ControllersApi\AdmControlle
 
 
 
+Route::post('administrativo/parceria/aprovar', 'ControllersApi\AdmController@parceriaAprovar');
+
+
+
 Route::resource('painel/editar/empresa', 'ControllersApi\EmpresaController');

@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\info;
 use App\Parceiro;
 use function Psy\info;
+use App\Like;
 
 class User extends Authenticatable
 {
@@ -67,6 +68,9 @@ class User extends Authenticatable
 	}
 	public function parceiro(){
 		return $this->hasOne(Parceiro::class, 'user_id');
+	}
+	public function likes(){
+	return $this->hasMany(Like::class);
 	}
 
 }

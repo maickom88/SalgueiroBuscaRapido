@@ -2,6 +2,7 @@
 
 namespace App\Empresa;
 
+use App\Like;
 use App\Permission\Permission;
 use App\User;
 use App\Comment\Comment;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Empresa\facilities\Facilite;
 use App\Empresa\Open\Open;
 use App\Empresa\Album\Album;
+use App\pageView\View;
 
 class Empresa extends Model
 {
@@ -36,5 +38,10 @@ class Empresa extends Model
 	public function open(){
 	return $this->hasOne(Open::class);
 	}
-	
+	public function views(){
+	return $this->hasOne(View::class);
+	}
+	public function likes(){
+		return $this->hasMany('asd');
+	}
 }

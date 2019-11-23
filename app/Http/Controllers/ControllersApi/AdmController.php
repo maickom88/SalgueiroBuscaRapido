@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ControllersApi;
 
+use App\pageView\View;
 use App\Empresa\facilities\Facilite;
 use App\User;
 use App\Permission\Permission;
@@ -16,6 +17,7 @@ class AdmController extends Controller
 {
   public function adicionarEmpresa(Request $req)
 	{
+		$view = new View();
 		$open = new Open();
 		$facilite = new Facilite();
 		$empresa = new Empresa();
@@ -149,11 +151,12 @@ class AdmController extends Controller
 			if ( !$upload ){
 				return response()->json("ErrorSavedImg");
 			}
+			$view->views = 0;
 			$empresa->logoMarca = $nameFile;
 			$valid = $user[0]->permissions->empresas()->save($empresa);
 			$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 			$validOpen = $user[0]->permissions->empresas->open()->save($open);
-			
+			$validViews = $user[0]->permissions->empresas->views()->save($view);
 		}
 		if($req->hasFile('banner') && $req->file('banner')->isValid()){
 				
@@ -168,13 +171,15 @@ class AdmController extends Controller
 			$valid = $user[0]->permissions->empresas()->save($empresa);
 			$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 			$validOpen = $user[0]->permissions->empresas->open()->save($open);
+			$validViews = $user[0]->permissions->empresas->views()->save($view);
 			
 		}
 
 		$valid = $valid = $user[0]->permissions->empresas()->save($empresa);
 		$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 		$validOpen = $user[0]->permissions->empresas->open()->save($open);
-		
+		$validViews = $user[0]->permissions->empresas->views()->save($view);
+
 		if($req->hasFile('album')){
 			$len = count($req->album);
 			$id = $user[0]->id;
@@ -391,5 +396,13 @@ class AdmController extends Controller
 		$contato = Contact::find($idContato);
 		$valid = $contato->delete();
 		return response()->json($valid);;
+	}
+	public function parceriaAprovar(Request $id){
+		
+		$idParceria = $id->keys()[0];
+		$parceria = Parceiro::find($idParceria);
+		$parceria->pedidos = 'Ativo';
+		$valid = $parceria->save();
+		return response()->json($valid);
 	}
 }

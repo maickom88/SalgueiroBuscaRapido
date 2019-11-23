@@ -32,7 +32,7 @@
                 <div class="haert">
                     <div class="bloco">
                     <i class="fas fa-eye"></i> 
-                    <span>12</span>
+                    <span>{{$empresa->views->views}}</span>
                     </div>
                 </div>
                 <div class="haert">

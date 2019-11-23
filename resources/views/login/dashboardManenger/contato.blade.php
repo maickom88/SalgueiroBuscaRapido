@@ -119,8 +119,8 @@
 										</td>
 																				
 										<td>
-											<button onclick="carregarEmpresa(1)" style="background:#FFBF00; padding:1px; border: none; border-radius:4px; "><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i style="color: white !important;" class="fa fa-check" data-toggle="tooltip" title="Editar"></i></a></button>
-											<button  onclick="excluirEmpPorra(1)" class="delete " style="background:#FE2E2E; color:white; padding:1px; border: none; border-radius:4px; " ><i class="fa fa-times" data-toggle="tooltip" title="Excluir"></i></button>
+											<button onclick="parceria({{$pedido->id}})" style="background:green; padding:1px; border: none; border-radius:4px; "><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i style="color: white !important;" class="fa fa-check" data-toggle="tooltip" title="Editar"></i></a></button>
+											<button  onclick="negarParceria({{$pedido->id}})" class="delete " style="background:#FE2E2E; color:white; padding:1px; border: none; border-radius:4px; " ><i class="fa fa-times" data-toggle="tooltip" title="Excluir"></i></button>
 										</td>
 								</tr>
 									
@@ -159,6 +159,17 @@
 			delayOnHover: true,
 			showCountdown: true
 			}); 
+	var parceriaAtivada = new jBox('Modal', {
+		attach: '#test',
+		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+		content: "Parceria ativada!",
+		animation: 'zoomIn',
+		audio: '../audio/bling2',
+		volume: 80,
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+		}); 
 
 	function load(action){
 			var load_div = $(".loader");
@@ -189,6 +200,9 @@
 					console.log(Response);
 					
 				},
+				error: function(error){
+					console.log(error);
+				},
 				complete: function(){
 					load('close');
 					successDeleteContato.open();
@@ -198,16 +212,15 @@
 	}
 	}
 
-	function parceria(id){
-		 
+	function parceria(id){	 
 		$.ajaxSetup({
 			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 		});
 
-		if(confirm('Deseja excluir?')){		
+		if(confirm('Deseja Aprovar?')){		
 		$.ajax({
 				type:"POST",
-				url:'../api/administrativo/lista-contato/exlcuir',	
+				url:'../api/administrativo/parceria/aprovar',	
 				data: id,
 				processData : false,
 				beforeSend: function(){
@@ -219,7 +232,7 @@
 				},
 				complete: function(){
 					load('close');
-					successDeleteContato.open();
+					parceriaAtivada.open();
 					getData(1);
 				}
 		});

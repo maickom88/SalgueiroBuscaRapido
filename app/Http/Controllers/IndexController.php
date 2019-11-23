@@ -5,12 +5,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Empresa\Empresa;
+use App\pageView\View;
 
 class IndexController extends Controller
 {
    public function index()
    {
 		$empresa = Empresa::where('status', 'ativa')->get();
+		$view = new View;
+		
+		foreach($empresa as $emp){
+			
+			$emp->views->views++;
+			$emp->views->save();
+			
+		}
+
 		if (Auth::check()) {
     		$userId = Auth::user()->id;
 			 $user = User::find($userId);

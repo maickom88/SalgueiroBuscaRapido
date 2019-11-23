@@ -159,7 +159,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i><span>(17 Visitas)<span>
+                                <i class="fas fa-star"></i><span>({{$emp->views->views}} Visitas)<span>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="local">
