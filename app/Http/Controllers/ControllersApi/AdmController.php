@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Empresa\Open\Open;
 use App\Empresa\Album\Album;
-
+use App\Contact\Contact;
+use App\Parceiro;
 class AdmController extends Controller
 {
   public function adicionarEmpresa(Request $req)
@@ -375,5 +376,20 @@ class AdmController extends Controller
 		$album->photo = $nameFile;
 		$user->empresas->album()->save($album);
 		return 'ok';
+	}
+	public function mensagens(Request $request){
+	$contact = Contact::orderBy('id','desc')->paginate(5);
+	$parceiro = Parceiro::orderBy('id','desc')->paginate(5);;
+		if ($request->ajax()) {
+			return view('login.dashboardManenger.contatoTabela', compact('contact', 'parceiro'));
+		}
+	return view('login.dashboardManenger.contato',compact('contact','parceiro'));
+	}
+
+	public function excluirMensagens(Request $id){
+		$idContato = $id->keys()[0];
+		$contato = Contact::find($idContato);
+		$valid = $contato->delete();
+		return response()->json($valid);;
 	}
 }

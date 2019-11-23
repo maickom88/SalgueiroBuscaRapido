@@ -23,7 +23,7 @@
 					</div>
 					</div>
 					<div class="col-sm-6">
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
+						<a  href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
 						<div class="form-search" style="display:flex; margin-left: 70px">
 						
 						<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
@@ -32,56 +32,7 @@
 					</div>
 				</div>
 				<div class="table-responsive" id="table_data">
-					<table class="table table-striped table-hover">
-							<thead>
-								<tr>
-								<th>
-									<span class="custom-checkbox">
-										<input type="checkbox" id="selectAll">
-										<label for="selectAll"></label>
-									</span>
-								</th>
-										<th>Id</th>
-										<th>Data</th>
-										<th>Nome</th>
-										<th>Telefone</th>
-										<th>Email</th>
-										<th>Mensagem</th>
-										<th>Excluir</th>
-								</tr>
-							</thead>
-							<tbody id="myTable">
-								@foreach ($contact as $messenge)
-								@php
-									$data = $messenge->created_at;
-									$data = explode(' ', $data);
-									$dataBr = explode('-', $data[0]);
-									$dataBr = $dataBr[2].'/'.$dataBr[1].'/'.$dataBr[0];
-								@endphp 
-
-								<tr>
-								<td>
-									<span class="custom-checkbox">
-										<input type="checkbox" class="checkDelete" name="check" value=1>
-										<label for="checkbox1"></label>
-									</span>
-								</td>
-										<td>{{$messenge->id}}</td>
-										<td>{{$dataBr}}</td>
-										<td>{{$messenge->name}}</td>
-										<td>{{$messenge->tel}}</td>
-										<td>{{$messenge->email}}</td>
-										<td>{{$messenge->content}}</td>
-										<td>
-		
-											<button  onclick="excluirEmpPorra(1)" class="delete " style="background:#FE2E2E; color:white; padding:2px; border: none; border-radius:4px; " ><i class="fa fa-trash-o" data-toggle="tooltip" title="Excluir"></i></button>
-										</td>
-								</tr>									
-								@endforeach						
-								</tbody>
-								
-						</table>
-{{ $contact->links() }}
+					@include('login.dashboardManenger.contatoTabela')
 					<div class="clearfix">
 							<div class="hint-text">Mostrando <b>{{$contact->count()}}</b> de <b> {{$contact->total()}} </b>empresas</div>
 						</div>
@@ -181,7 +132,7 @@
 											
 
 					<div class="clearfix">
-							<div class="hint-text">Mostrando <b>4</b> de <b> 4 </b>empresas</div>
+							<div class="hint-text">Mostrando <b>{{$parceiro->count()}}</b> de <b>{{$parceiro->total()}} </b>empresas</div>
 						</div>
 																</div>
 
@@ -197,12 +148,130 @@
 
 @section('scripts')
 <script>
-$(function(){
-function carregarContato(id){
-$.getJSON('../api/administrativo/empresas/mensagens/', function(data){		
+	var successDeleteContato = new jBox('Modal', {
+			attach: '#test',
+			title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+			content: "Mensagem deletada com sucesso!",
+			animation: 'zoomIn',
+			audio: '../audio/bling2',
+			volume: 80,
+			closeButton: true,
+			delayOnHover: true,
+			showCountdown: true
+			}); 
+
+	function load(action){
+			var load_div = $(".loader");
+			if(action==="open"){
+			load_div.addClass("is-active");
+			}
+			else{
+			load_div.removeClass("is-active");
+			}
+		}
+
+	function excluirMensagens(id){
+		 
+		$.ajaxSetup({
+			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+		});
+
+		if(confirm('Deseja excluir?')){		
+		$.ajax({
+				type:"POST",
+				url:'../api/administrativo/lista-contato/exlcuir',	
+				data: id,
+				processData : false,
+				beforeSend: function(){
+					load('open');
+				},
+				success: function(Response) {
+					console.log(Response);
+					
+				},
+				complete: function(){
+					load('close');
+					successDeleteContato.open();
+					getData(1);
+				}
+		});
+	}
+	}
+
+	function parceria(id){
+		 
+		$.ajaxSetup({
+			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+		});
+
+		if(confirm('Deseja excluir?')){		
+		$.ajax({
+				type:"POST",
+				url:'../api/administrativo/lista-contato/exlcuir',	
+				data: id,
+				processData : false,
+				beforeSend: function(){
+					load('open');
+				},
+				success: function(Response) {
+					console.log(Response);
+					
+				},
+				complete: function(){
+					load('close');
+					successDeleteContato.open();
+					getData(1);
+				}
+		});
+	}
+	}
 	
-});				
-}
+$(window).on('hashchange', function() {
+		if (window.location.hash) {
+			var page = window.location.hash.replace('#', '');
+			if (page == Number.NaN || page <= 0) {
+					return false;
+			}else{
+					getData(page);
+			}
+		}
+	});
+	
+	$(document).ready(function()
+	{
+		$(document).on('click', '.pagination a',function(event)
+		{
+			event.preventDefault();
+
+			$('li').removeClass('active');
+			$(this).parent('li').addClass('active');
+
+			var myurl = $(this).attr('href');
+			var page=$(this).attr('href').split('page=')[1];
+
+			getData(page);
+		});
+
+	});
+
+	function getData(page){
+		$.ajax(
+		{
+			url: '../api/administrativo/lista-contato?page=' + page,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$("#table_data").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+				alert('No response from server');
+		});
+	}
+
+$(function(){
+	getData(1);
+
+	
 });
 
 </script>

@@ -56,5 +56,11 @@ Route::get('administrativo/empresas/buscar/{id}', 'ControllersApi\AdmController@
 Route::post('administrativo/empresas/editar', 'ControllersApi\AdmController@editarEmpresa');
 
 
+Route::get('administrativo/lista-contato', 'ControllersApi\AdmController@mensagens');
+
+
+Route::post('administrativo/lista-contato/exlcuir', 'ControllersApi\AdmController@excluirMensagens');
+
+
 
 Route::resource('painel/editar/empresa', 'ControllersApi\EmpresaController');
