@@ -390,6 +390,17 @@ class AdmController extends Controller
 		}
 	return view('login.dashboardManenger.contato',compact('contact','parceiro'));
 	}
+	public function listarTodasMensagens(Request $request){
+	
+	$todas = "MostrarTodas";
+	$contact = Contact::all();
+
+	if ($request->ajax()) {
+		return view('login.dashboardManenger.contatoTabela', compact('contact', 'todas'));
+	}
+
+	return view('login.dashboardManenger.empresas',compact('contact', 'todas'));
+	}
 
 	public function excluirMensagens(Request $id){
 		$idContato = $id->keys()[0];
@@ -402,6 +413,40 @@ class AdmController extends Controller
 		$idParceria = $id->keys()[0];
 		$parceria = Parceiro::find($idParceria);
 		$parceria->pedidos = 'Ativo';
+		$parceria->user->permissions->blogueiro = 'sim';
+		$parceria->save();
+		$valid = $parceria->user->permissions->save();
+		return response()->json($valid);
+	}
+
+	public function updatePartner(Request $id){
+		$idUser = $id->keys()[0];
+		$user = User::find($idUser);
+		$user->permissions->blogueiro = 'nao';
+		$valid = $user->permissions->save();
+		$user->parceiro->pedidos = 'Desejo ser Parceiro do site!';
+		$user->parceiro->save();
+		return response()->json($valid);
+	}
+	public function listarTodasParceriasAtivas(Request $request)
+	{
+		$todas = "MostrarTodas";
+		$userPer = Permission::where('blogueiro','sim')->get();
+		if ($request->ajax()) {
+			return view('login.dashboardManenger.parceriaAtivas', compact('userPer', 'todas'));
+		}
+		return view('login.dashboardManenger.parceria',compact('userPer', 'todas'));
+	}
+	public function listarTodasParceriasPendentes(){
+		$todas = "MostrarTodas";
+		$parceiro = Parceiro::all()->where('pedidos', 'Desejo ser Parceiro do site!');
+		
+		return view('login.dashboardManenger.parceriaTabela', compact('parceiro', 'todas'));
+	}
+	public function parceriaNegar(Request $id){
+		$idParceria = $id->keys()[0];
+		$parceria = Parceiro::find($idParceria);
+		$parceria->pedidos = 'negado';
 		$valid = $parceria->save();
 		return response()->json($valid);
 	}

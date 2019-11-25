@@ -47,4 +47,15 @@
 								</tbody>
 								
 						</table>
-{{ $contact->links() }}
+						@if(isset($todas))
+						
+						@elseif(isset($desativadas))
+						
+						@else
+						{{$contact->links()}}
+
+						<div class="clearfix">
+							  <div class="hint-text">Mostrando <b>{{$contact->count()}}</b> de <b> {{$contact->total()}} </b>Mensagens</div>
+						 </div>
+						@endif
+						

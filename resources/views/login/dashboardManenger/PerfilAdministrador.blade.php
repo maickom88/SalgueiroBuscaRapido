@@ -32,7 +32,7 @@
 					<div class="col-md-4 centered">
 							<div class="profile-pic">
 								@if(empty($user->info->avatar))
-								<p><img src={{asset('storage/avatar/212511201910055d990a37ee653.jpeg')}} class="img-circle"></p>
+								<p><img src={{asset('img/profilezim.png')}} class="img-circle"></p>
 								@else
 								<p><img  id="avatarImg" src="" class="img-circle"></p>
 								@endif

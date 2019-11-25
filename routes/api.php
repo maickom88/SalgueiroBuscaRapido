@@ -66,7 +66,22 @@ Route::post('administrativo/lista-contato/exlcuir', 'ControllersApi\AdmControlle
 Route::post('administrativo/parceria/aprovar', 'ControllersApi\AdmController@parceriaAprovar');
 
 
+Route::post('administrativo/parceria/negar', 'ControllersApi\AdmController@parceriaNegar');
+
+
 Route::get('empresa/like/{empresaId}/{userId}', 'ControllersApi\LikeController@like');
+
+
+Route::get('administrativo/empresas/lista-todas-mensagens', 'ControllersApi\AdmController@listarTodasMensagens');
+
+
+Route::get('administrativo/lista-parcerias-ativas', 'ControllersApi\AdmController@listarTodasParceriasAtivas');
+
+
+Route::get('administrativo/lista-parcerias-pendentes', 'ControllersApi\AdmController@listarTodasParceriasPendentes');
+
+
+Route::post('administrativo/empresas/parceria/update', 'ControllersApi\AdmController@updatePartner');
 
 
 

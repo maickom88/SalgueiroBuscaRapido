@@ -5,6 +5,7 @@
 @section('parceria', 'active')
 
 @section('conteudo')
+<div class="loader loader-bouncing "></div>
 	<section id="main-content">
       <section class="wrapper site-min-height">
 		
@@ -18,55 +19,8 @@
 							 	</div>
 							</div>
 						 </div>
-						 <table class="table table-striped table-hover">
-							  <thead>
-									<tr>
-								 <th>
-									 <span class="custom-checkbox">
-										 <input type="checkbox" id="selectAll">
-										 <label for="selectAll"></label>
-									 </span>
-								 </th>
-								<th>Id</th>
-								<th>Email</th>
-								<th>Pedido</th>
-								<th>Status</th>
-								</tr>
-							  	</thead>
-							  	<tbody>
-								<tr>
-								<td>
-									<span class="custom-checkbox">
-										<input type="checkbox" id="checkbox1" name="options[]" value="1">
-										<label for="checkbox1"></label>
-									</span>
-								</td>
-								<td>1</td>
-								<td>orlando@silva.com</td>
-								<td>Quero me tornar parceiro</td>
-								<td>	
-									<p style="background: rgb(9, 161, 9);color:#fff; text-align:center; border-radius: 2px; padding: 5px;">Ativo</p>
-								</td>
-									<td>
-										 <a  class="edit" data-toggle="modal"><i class="fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
-										 <a  class="delete" data-toggle="modal"><i class="fa fa-trash-o" data-toggle="tooltip" title="Excluir"></i></a>
-									 </td>
-								</tr>
-									 
-							  </tbody>
-						 </table>
-					 <div class="clearfix">
-							  <div class="hint-text">Mostrando <b>5</b> de <b>25 </b>empresas pendentes</div>
-							  <ul class="pagination">
-									<li class="page-item disabled"><a href="#">Anterior</a></li>
-									<li class="page-item"><a href="#" class="page-link">1</a></li>
-									<li class="page-item"><a href="#" class="page-link">2</a></li>
-									<li class="page-item active"><a href="#" class="page-link">3</a></li>
-									<li class="page-item"><a href="#" class="page-link">4</a></li>
-									<li class="page-item"><a href="#" class="page-link">5</a></li>
-									<li class="page-item"><a href="#" class="page-link">Próximo</a></li>
-							  </ul>
-						 </div>
+						 <div class="table-responsive" id="table_data">
+					@include('login.dashboardManenger.parceriaAtivas')
 					</div>
 			  </div>
 			 <!-- Delete Modal HTML -->
@@ -74,5 +28,129 @@
       </section>
       <!-- /wrapper -->
     </section>
+
+@section('scripts')
+<script>
+	function load(action){
+			var load_div = $(".loader");
+			if(action==="open"){
+			load_div.addClass("is-active");
+			}
+			else{
+			load_div.removeClass("is-active");
+			}
+		}
+	var successUpdatePartner = new jBox('Modal', {
+		attach: '#test',
+		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+		content: "Permissão do usúario atualizada com sucesso!",
+		animation: 'zoomIn',
+		audio: '../audio/bling2',
+		volume: 80,
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+	}); 
+
+	var permirssaoUser = new jBox('Modal',{
+		attach: '#test',
+		title: 'EDITAR PERMISSÃO DESSE USÚARIO',
+		content: "<h4>Deseja desativar a permissão de blogueiro dessa conta?</h4>",
+		footer: '<div class="form-group"><span onclick="btnCancel()" id="btn-cancel-partner" class="btn btn-danger" style="margin-right:5px;">Não</span><span id="btn-save-partner" onclick class="btn btn-success">Sim</span></div>',
+		animation: 'zoomIn',
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+	}); 
+
+	function editPartner(id){
+		
+		permirssaoUser.open();
+		$('#btn-save-partner').attr('onclick', 'savePartner('+id+')');
+	}
 	
+	function btnCancel(){
+		permirssaoUser.close();
+		$('#permissaoUser').val('op');
+	}
+	function savePartner(id){
+		$.ajaxSetup({
+			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+		});
+
+		if(confirm('Deseja aplicar essa alteração?')){		
+		$.ajax({
+				type:"POST",
+				url:'../api/administrativo/empresas/parceria/update',	
+				data: id,
+				processData : false,
+				beforeSend: function(){
+					permirssaoUser.close();
+					load('open');
+				},
+				success: function(Response) {
+					console.log(Response);
+				},
+				error:function(error){
+					console.log(error);
+				},
+				complete: function(){
+					load('close');
+					successUpdatePartner.open();
+					getData(1);
+
+				}
+		});
+	}
+	}
+	$(window).on('hashchange', function() {
+		if (window.location.hash) {
+			var page = window.location.hash.replace('#', '');
+			if (page == Number.NaN || page <= 0) {
+					return false;
+			}else{
+					getData(page);
+			}
+		}
+	});
+	
+	$(document).ready(function()
+	{
+		$(document).on('click', '.pagination a',function(event)
+		{
+			event.preventDefault();
+
+			$('li').removeClass('active');
+			$(this).parent('li').addClass('active');
+
+			var myurl = $(this).attr('href');
+			var page=$(this).attr('href').split('page=')[1];
+
+			getData(page);
+		});
+
+	});
+
+	function getData(page){
+		$.ajax(
+		{
+			url: '../api/administrativo/lista-parcerias-ativas?page=' + page,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$("#table_data").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+				alert('No response from server');
+		});
+	}
+
+$(function(){
+	getData(1);
+	
+});
+
+</script>
+@endsection	
 @endsection
+

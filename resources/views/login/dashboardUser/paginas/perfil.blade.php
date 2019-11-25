@@ -234,7 +234,9 @@ function carregarPerfil(){
 		$('.endereco').val(data.endereco);
 		$('.tel').val(data.telefone);
 		$('.email').val(data.email);
-		$('#avatarUser').attr('src', "{!!asset('storage/avatar/"+data.avatar+"')!!}");
+		if(data.avatar){
+			$('#avatarUser').attr('src', "{!!asset('storage/avatar/"+data.avatar+"')!!}");
+		}
 		$('.idadetx').text(data.idade);
 		$('.enderecotx').html('Endereço: <br/>'+data.endereco);
 		$('.telefonetx').html('Telefone: '+data.telefone);

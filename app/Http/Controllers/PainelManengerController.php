@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Contact\Contact;
 use App\Parceiro;
+use App\Permission\Permission;
+
 class PainelManengerController extends Controller
 {
 	public function __construct()
@@ -63,7 +65,7 @@ class PainelManengerController extends Controller
 		
 		$verificacao = $user->permissions->adm;
 		$contact = Contact::orderBy('id')->paginate(5);
-		$parceiro = Parceiro::orderBy('id')->paginate(5);
+		$parceiro = Parceiro::all()->where('pedidos', 'Desejo ser Parceiro do site!');
 
 		if($verificacao=="sim")
 		{
@@ -81,7 +83,8 @@ class PainelManengerController extends Controller
 			
 		if($verificacao=="sim")
 		{
-			return view('login.dashboardManenger.parceria', compact('user'));
+			$userPer = Permission::where('blogueiro','sim')->get();
+			return view('login.dashboardManenger.parceria', compact('userPer'));
 		}
 		return redirect()->back();
 
