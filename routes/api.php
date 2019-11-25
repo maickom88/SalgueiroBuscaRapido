@@ -66,5 +66,13 @@ Route::post('administrativo/lista-contato/exlcuir', 'ControllersApi\AdmControlle
 Route::post('administrativo/parceria/aprovar', 'ControllersApi\AdmController@parceriaAprovar');
 
 
+Route::get('empresa/like/{empresaId}/{userId}', 'ControllersApi\LikeController@like');
+
+
+
+Route::get('empresa/deslike/{empresaId}/{userId}', 'ControllersApi\LikeController@deslike');
+
+Route::get('likeEmp/{empresaId}/{userId}', 'ControllersApi\LikeController@isLike');
+
 
 Route::resource('painel/editar/empresa', 'ControllersApi\EmpresaController');

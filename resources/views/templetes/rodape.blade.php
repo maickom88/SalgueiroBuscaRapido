@@ -36,6 +36,7 @@
 <script src={{asset('js/slick.min.js')}}></script>
 <script src={{asset('js/menu-fixo.js')}}></script>
 
+
 @yield('script')
 
 <script>

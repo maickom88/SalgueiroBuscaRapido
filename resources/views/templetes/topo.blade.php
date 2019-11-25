@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 	 <link rel="stylesheet" href={{asset('css/slick.css')}}>
     <link rel="stylesheet" href={{asset('css/slick-theme.css')}}>
+	 <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
 	 <title >@yield('titulo')</title>
     @yield('links')
             

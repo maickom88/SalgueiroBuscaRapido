@@ -47,9 +47,9 @@
                     </div>
                 </div>
                 <div class="haert">
-                    <div  onclick="likepage()" class="bloco" id="likepage">
+                    <div  onclick="likepage({{$empresa->id}})" class="bloco" id="likepage">
                     <i class="fab fa-gratipay"></i>
-                        <span>23</span>
+                        <span id="likesCount">{{$empresa->likes->count()}}</span>
                     </div>
                 </div> 
             </div>
@@ -453,6 +453,10 @@
 
 @section('script')
 
+@if(!Auth::check())
+<script type="text/javascript" src={{asset('js/jBox.all.js')}}></script>
+<script type="text/javascript" src={{asset('js/demo.js')}}></script>
+@endif
 <script>
     $(function()
     {
@@ -545,6 +549,7 @@ $(window).scroll(function()
                 document.getElementById('like1').style.backgroundColor="rgba(255, 255, 255, 0.2)"
                 document.getElementById('like1').style.color="#00a3ee"
                 aux++
+					 
             }
             else if(controller==2 & aux!=0){
                 document.getElementById('like1').style.backgroundColor="transparent"
@@ -708,20 +713,59 @@ $(window).scroll(function()
 </script>
     
 <script>
-    var controller = 0
-    var aux = 0
-    function likepage(){
-            controller++
-            if(controller==1 & aux==0){
-                document.getElementById('likepage').style.background="#00a3ee"
-                aux++
-            }
-            else if(controller==2 & aux!=0){
-                document.getElementById('likepage').style.background="rgba(255, 255, 255, 0.2)"
-                controller=0 
-                aux=0
-            }
-        }
+
+	@if(!Auth::check()	)
+	var likeIsLogin = new jBox('Modal', {
+			attach: '#test',
+			title: '<div width="100%" class="text-center"><h3>Ops</h3></div>',
+			content: "Para avaliar é necessário estar logado ou ter um conta na plataforma, se não tiver uma conta <a href='/cadastro'><b>Clique Aqui</b></a> e cadastre-se é grátis!",
+			animation: 'pulse',
+			audio: '../audio/bling2',
+			volume: 80,
+			closeButton: true,
+			delayOnHover: true,
+			showCountdown: true
+			}); 
+	@endif
+	function IsLike(){
+		
+		@if(Auth::check())
+		var idUser = {{Auth::user()->id}}
+		var idEmp = {{$empresa->id}}
+		if(idUser){
+		$.get('../../api/likeEmp/'+idEmp+'/'+idUser+'').done(function(data){
+			console.log(data);
+			if(data[0]>0){
+				document.getElementById('likepage').style.background="#00a3ee";
+			}
+			else{
+				document.getElementById('likepage').style.background="rgba(255, 255, 255, 0.2)"
+			}
+			$('#likesCount').text(data[1]);
+		});
+
+		}
+		@endif
+		
+	}
+
+	$(function(){
+		IsLike();
+	});
+
+	var controller = 0;
+	var aux = 0;
+	
+   function likepage(idEmp){		
+		@if(Auth::check())	
+		var idUser = {{Auth::user()->id}}
+			$.get('../../api/empresa/like/'+idEmp+'/'+idUser+'').done(function(data){
+				IsLike();
+		});
+		@else
+			likeIsLogin.open();
+		@endif
+		}
 </script>
 <script>
     var controller = 0

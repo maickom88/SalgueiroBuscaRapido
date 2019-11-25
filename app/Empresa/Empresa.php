@@ -16,7 +16,10 @@ use App\pageView\View;
 class Empresa extends Model
 {
 	
-	
+	public function likes(){
+		return $this->hasMany(Like::class , 'empresa_id');
+	}
+
 	public function permissions(){
 		return $this->belongsTo(Permission::class, 'permission_id');
 	}
@@ -41,7 +44,5 @@ class Empresa extends Model
 	public function views(){
 	return $this->hasOne(View::class);
 	}
-	public function likes(){
-		return $this->hasMany('asd');
-	}
+	
 }

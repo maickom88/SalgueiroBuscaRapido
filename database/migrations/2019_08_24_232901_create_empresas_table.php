@@ -26,7 +26,6 @@ class CreateEmpresasTable extends Migration
 				$table->string('tel');
 				$table->string('whatsapp')->nullable();
 				$table->string('email')->nullable();
-            $table->integer('likes')->nullable();
             $table->string('facebook')->nullable();
 				$table->string('instagram')->nullable();
             $table->enum('status',['ativa','desativada'])->default('ativa');

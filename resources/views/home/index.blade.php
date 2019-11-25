@@ -132,7 +132,7 @@
                     @foreach ($empresa as $emp)
 								<div class="col-md-4 card-content " style="outline:none !important;">
                         <div class="likes">
-                            <span>23 <i class="fas fa-heart"></i></span>
+                            <span>{{$emp->likes->count()}} <i class="fas fa-heart"></i></span>
                         </div>
                         <div class="card" style="width: 19rem;">
                             <div class="img-card">
