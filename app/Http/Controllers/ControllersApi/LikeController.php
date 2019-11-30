@@ -11,8 +11,8 @@ class LikeController extends Controller
 {
    public function like($empresaId, $userId){
 		$count = Like::where('empresa_id', $empresaId)->where('user_id', $userId)->get()->count();
-		if($count > 0){
-			$like = Like::where('empresa_id', '=',  $empresaId, 'and', 'user_id', '=', $userId)->get();
+		if($count == 1){
+			 $like = Like::where('empresa_id', $empresaId)->where('user_id', $userId)->get();
 			$valid = $like[0]->delete();
 			return response()->json($valid);
 		}

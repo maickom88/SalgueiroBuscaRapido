@@ -84,7 +84,7 @@ class PainelManengerController extends Controller
 		if($verificacao=="sim")
 		{
 			$userPer = Permission::where('blogueiro','sim')->get();
-			return view('login.dashboardManenger.parceria', compact('userPer'));
+			return view('login.dashboardManenger.parceria', compact('userPer','user'));
 		}
 		return redirect()->back();
 

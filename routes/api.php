@@ -83,11 +83,16 @@ Route::get('administrativo/lista-parcerias-pendentes', 'ControllersApi\AdmContro
 
 Route::post('administrativo/empresas/parceria/update', 'ControllersApi\AdmController@updatePartner');
 
+Route::get('empresa/lista-comments-page/{id}', 'ControllersApi\CommentController@listarComment');
+
 
 
 Route::get('empresa/deslike/{empresaId}/{userId}', 'ControllersApi\LikeController@deslike');
 
 Route::get('likeEmp/{empresaId}/{userId}', 'ControllersApi\LikeController@isLike');
 
+Route::post('empresa/comentar', 'ControllersApi\CommentController@adicionarComment');
+
+Route::post('painel/postar', 'ControllersApi\FeedController@postar');
 
 Route::resource('painel/editar/empresa', 'ControllersApi\EmpresaController');

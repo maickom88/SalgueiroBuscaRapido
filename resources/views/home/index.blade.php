@@ -391,8 +391,8 @@
                     Siaba o que as pessoas pensam sobre sua empresa/serviço!.
                     </p>
                     <div class="btn-empresa">
-                        <a href="#">Quero anunciar! <i class="fas fa-bullhorn"></i></a>
-                        <a href="#" class="a-r">Quero detalhes! <i class="fas fa-chart-line"></i></a>
+                        <a href="/contato#contato">Quero anunciar! <i class="fas fa-bullhorn"></i></a>
+                        <a href="/contato" class="a-r">Quero detalhes! <i class="fas fa-chart-line"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -94,11 +94,11 @@ Route::post('/painel/empresa/alterar', ['uses'=>'PainelEmpresarialController@alt
 Route::get('/painel/tabela-pagamento', ['uses'=>'PainelEmpresarialController@pagamento'])->name('pagEmp');
 
 //-----------------------Rota de postagens empresario-------------------------//
-Route::get('/painel/postagens', ['uses'=>'PainelEmpresarialController@posts'])->name('postsEmp');
+Route::get('/painel/postagens', ['uses'=>'PainelEmpresarialController@postagens'])->name('postsEmp');
 
 
 //-----------------------Rota de postar do perfil do empresario-------------------------//
-Route::get('/painel/publicar', ['uses'=>'PainelEmpresarialController@postar'])->name('postarEmp');
+Route::get('/painel/publicar', ['uses'=>'PainelEmpresarialController@postagens'])->name('postarEmp');
 
 //-----------------------Rota de comentarios  do  perfil do empresario-------------------------//
 Route::get('/painel/comentarios', ['uses'=>'PainelEmpresarialController@comentarios'])->name('comentEmp');
@@ -140,6 +140,7 @@ Route::get('administrativo/parceria', ['uses'=>'PainelManengerController@parceri
 
 //-----------------------Rota de pagamento do perfil adm--------------//
 Route::get('administrativo/pagamento', ['uses'=>'PainelManengerController@pagamento'])->name('pagamentoManenger');
+
 
 
 

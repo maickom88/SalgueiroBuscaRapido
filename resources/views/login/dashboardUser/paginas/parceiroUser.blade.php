@@ -100,6 +100,10 @@ de confiabilidade e as quantidades de postagens feitas.
 	@csrf
 	@if(empty($isParceiro))
 		<label  class="btn-primary btn-lg mb" for="parceria">Me tornar parceiro</label>
+	@elseif($user->parceiro->pedidos == 'negado')
+		<label  class=" btn-lg mb"> <i class="fa fa-times"></i> Seu pedido para se tornar blogueiro foi negado, tente novamente em 30 a 60 dias</label>
+	@elseif($user->parceiro->pedidos == 'Ativo')
+	<label style="padding:10px; background:#3e3e3e; color:white" class="btn-lg mb"> <i class="fa fa-check"></i> Parábens seu pedido foi aprovado! <a href="">Click aqui</a> e faça seu primeiro post!</label>
 	@else
 		<label  class="btn-success btn-lg mb"> <i class="fa fa-check"></i> Aguardando aprovação</label>
 	@endif

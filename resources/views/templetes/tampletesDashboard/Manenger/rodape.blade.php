@@ -28,7 +28,7 @@
 <script type="text/javascript" src={{asset('lib/gritter/js/jquery.gritter.js')}}></script>
 <script type="text/javascript" src={{asset('lib/gritter-conf.js')}}></script>
 <script type="text/javascript" src={{asset('js/jBox.all.js')}}></script>
-<script type="text/javascript" src={{asset('js/demo.js')}}></script>
+
 <script src={{asset("lib/sparkline-chart.js")}}></script>
 <script src={{asset("lib/zabuto_calendar.js")}}></script>
 <script src={{asset("js/jquery.tagsinput.min.js")}}></script>

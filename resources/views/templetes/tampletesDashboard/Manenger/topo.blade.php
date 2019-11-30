@@ -165,10 +165,10 @@ $telefone = $user->info->telefone;
 			<ul class="sidebar-menu" id="nav-accordion">
 				<p class="centered"><a href={{route('userPerfil')}}>
 				@if(empty($user->info->avatar))
-								<img src={{asset('img/profilezim.png')}} class="img-circle" width="80">
-								@else
-								<img id="avatar-menu" src="" class="img-circle" width="80">
-								@endif
+					<img src={{asset('img/profilezim.png')}} class="img-circle" width="80">
+				@else
+				<img id="avatar-menu" src="" class="img-circle" width="80">
+				@endif
 				</a><img>
 				<h5 class="centered">{{Auth::user()->name}}</h5>
 				<li class="mt">
@@ -220,6 +220,15 @@ $telefone = $user->info->telefone;
 						<span>Eventos</span>
 					</a>
 				</li>
+				<li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-plus-square"></i>
+              <span>Promoções</span>
+            </a>
+            <ul class="sub" style="background:#D4D4D4 !important;">
+              <li><a href="#">Lista de promoções</a></li>
+            </ul>
+          </li>
 			</ul>
 		</div>
 	</aside>

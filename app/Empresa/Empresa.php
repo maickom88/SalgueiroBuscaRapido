@@ -11,21 +11,27 @@ use Illuminate\Database\Eloquent\Model;
 use App\Empresa\facilities\Facilite;
 use App\Empresa\Open\Open;
 use App\Empresa\Album\Album;
+use App\Empresa\Feed\Feed;
+use App\Empresa\Feed\NovidadeEmpresa;
+use App\Empresa\Feed\Post;
 use App\pageView\View;
-
+use App\Empresa\Novidade;
+use App\Empresa\Album\PhotosFeed;
 class Empresa extends Model
 {
 	
 	public function likes(){
 		return $this->hasMany(Like::class , 'empresa_id');
 	}
-
+	public function novidades(){
+		return $this->hasMany(NovidadeEmpresa::class);
+	}
 	public function permissions(){
 		return $this->belongsTo(Permission::class, 'permission_id');
 	}
 
 	public function comments(){
-		return $this->hasMany(Comment::class,'empresa_id');
+		return $this->hasMany(Comment::class, 'empresa_id');
 	}
 	
 	public function album(){

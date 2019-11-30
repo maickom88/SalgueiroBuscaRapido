@@ -2,16 +2,17 @@
 
 @section('links')
 	<link href={{asset('css/style-empresa.css')}} rel="stylesheet">
-	<link rel="stylesheet" href={{asset("css/slick.css")}}>
-	<link rel="stylesheet" href={{asset("css/slick-theme.css")}}>
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
+<link href={{asset('css/style-painel.css')}} rel="stylesheet">
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 
 @section('conteudo')
 @include('templetes.top-menu')
 
-
+	
+<div class="loader loader-bouncing "></div>
 <section class="header-empresa" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url({{asset("../storage/logo-empresas/".$empresa->banner)}}); background-size:cover; background-position:center; background-repeat:no-repeat">
 <div class="container ">
     <div class="row">
@@ -193,82 +194,14 @@
     </div>
 </section>
 <section id="reviwes">
-    <div class="container comentarios-empresa">
-    <h4>Feedback</h4>
-    <div class="block">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="img-comentarios">
-                    <img src={{asset("img/1.jpg")}} class="img-fluid">
-                </div>
-            </div>
-                <div class="col-md-7">
-                    <h5>Jessica Martins<h5>
-                </div>
-                <div class="col-md-3">
-                    <div class="star-comentarios">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                    </div>
-                </div>  
-            <div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>    
-                    <div class="calendario-post">
-                        <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
-                    </div>
-                </blockquote>
-            </div>
-        </div>
-        </div>
-        </div>
-        <div class="block">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="img-comentarios">
-                    <img src={{asset("img/1.jpg")}} class="img-fluid">
-                </div>
-            </div>
-                <div class="col-md-7">
-                    <h5>Jessica Martins<h5>
-                </div>
-                <div class="col-md-3">
-                    <div class="star-comentarios">
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                        <span><i class="fas fa-star"></i></span>
-                    </div>
-                </div>  
-            <div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>    
-                    <div class="calendario-post">
-                        <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
-                    </div>
-                </blockquote>
-            </div>
-        </div>
-        </div>
-
-        </div>
-    </div>
+   @include('paginaIndividual.pageComments')
 </section>
 <section id="contato">
     <div class="container contato-empresa">
         <h4>Deixe seu comentario ou sugestão</h4>
-        <form action="" method="GET" enctype="multipart/form-data">
-            <div class="star-contato">
+        <form role="form" id="form-data" class="form-horizontal" enctype="multipart/form-data">
+					@csrf
+				<div class="star-contato">
                 <p>Sua classificação para esta listagem:</p>
                 <input type="radio" id="vazio" name="estrela"value="" checked>
                 <label for="estrela_um"><i class="fas"></i></label>
@@ -281,19 +214,23 @@
                 <input type="radio" id="estrela_quatro" name="estrela"value="4">
                 <label for="estrela_cinco"><i class="fas"></i></label>
                 <input type="radio" id="estrela_cinco" name="estrela"value="5">
-            </div>
-            <div class="mensagem-empresa">
+            </div><div class="mensagem-empresa">
+				@if(!Auth::check())
+				
                 <div class="tex-input">
                     <label for="nome"><i class="fas fa-user-alt"></i></label>
                     <input type="text"placeholder="Digite seu nome" id="nome" name="nome">
-                </div>
-                <div class="mensagem-empresa">
+            	</div>
+            	<div class="mensagem-empresa">
                 <label for="email"><i class="fas fa-envelope"></i></label>
                 <input type="email" placeholder="Digite seu email" id="email" name="email">
-                </div>
+                </div>	 
+				@endif
                 <div class="text-area">
-                    <textarea id="message" name="message" placeholder="Digite seu comentario..."></textarea>
+                    <textarea id="message" style="font-size:23px; color:#6d6d6dFf" name="message" placeholder="Digite seu comentario..."></textarea>
                 </div>
+					 <input type="hidden" name="idEmp" value={{$empresa->id}}>
+					 <input type="hidden" name="idUser" value={{Auth::id()}}> 
             </div>
             <div class="btn-enviar-comentario">
                 <label for="enviar">Enviar comentário<i class="fas fa-paper-plane"></i></label>
@@ -302,6 +239,64 @@
         </form>
     </div>
 </section>
+
+<section id="contato">
+    <div class="container contato-empresa">
+	 @if(!empty($empresa->novidades))
+	 @php
+		$novidades = $empresa->novidades;
+	 @endphp
+        <h4>Última Novidade!</h4>
+        @foreach ($novidades as $novidade)
+		  @php
+			$avatar = $empresa->logoMarca;
+		  @endphp
+				<div style="margin-bottom:20px; background:url({{asset("../img/bg.png")}}); background-size:size; background-repeat:no-repeat; border-radius:5px; padding:10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.2)">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 text-center">
+							<img src={{asset('storage/logo-empresas/'.$avatar)}} style="border-radius: 50%; border: 6px solid #fff" width="120"  alt="">
+						</div>
+						<div class="col-md-9">
+							<p style="color:white; font-size:21px;">{{$novidade->content}}</p>
+						</div>
+					</div>
+					
+						<div class="page-head">
+						<div class="demo-gallery">
+						<ul id="lightgallery">
+					@if(!empty($novidade->photos))
+					
+					@php
+						$email = $empresa->permissions->users->email;
+						$count = $novidade->photos->count();
+					for ($i=0; $i <$count ; $i++):
+					
+					@endphp				
+					<li  class="visi" data-src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
+					<a href="">
+					<img class="img-responsive" src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
+					<div class="demo-gallery-poster">
+					<img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+					</div>
+					</a>
+					</li>
+					@php
+					endfor
+					@endphp
+					
+				@endif
+				
+					</ul>
+					</div>
+					</div>
+				</div>
+		  </div>
+		  @endforeach
+		@endif
+    </div>
+</section>
+
 
 <section id="horario-endereco">
     <div class="container">
@@ -452,344 +447,199 @@
 
 
 @section('script')
+<script src="js/picturefill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/js/lightgallery-all.min.js"></script>
 
 @if(!Auth::check())
 <script type="text/javascript" src={{asset('js/jBox.all.js')}}></script>
 <script type="text/javascript" src={{asset('js/demo.js')}}></script>
 @endif
-<script>
-    $(function()
-    {
-        var nav = $('.navbar-empresa');
-        $(window).scroll(function()
-        {
-            if($(this).scrollTop()>400){
-                nav.addClass("navbar-empresa-fixo");
-            }
-            else
-            {
-                nav.removeClass("navbar-empresa-fixo");
-            }
-        });
-    });
-</script>
-<script>
-$(function () {
-$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
-});
-$(function()
-{
-var nav = $('.menu');
-$(window).scroll(function()
-{
-		if($(this).scrollTop()>410){
-			nav.addClass("menu-fixo");
-		}
-		else
-		{
-			nav.removeClass("menu-fixo");
-		}
-});
-});
-
-
-</script>
 
 <script>
-    $('.card-empresas').slick({
-        dots: true,
-        infinite: true,
-        autoplay:true,
-        autoplaySpeed:1700,
-        speed: 300,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        responsive: [
-        {
-            breakpoint: 1024,
-            settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-            }
-            },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
-            },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-            },
-        {
-            breakpoint: 320,
-            settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-            }
-        }
-        ]
-        });
-        </script>
-<script>
-    var controller = 0
-    var aux = 0
-    function blue(one){
-        if(one==1)
-        {
-            controller++
-            if(controller==1 & aux==0){
-                document.getElementById('like1').style.backgroundColor="rgba(255, 255, 255, 0.2)"
-                document.getElementById('like1').style.color="#00a3ee"
-                aux++
-					 
-            }
-            else if(controller==2 & aux!=0){
-                document.getElementById('like1').style.backgroundColor="transparent"
-                document.getElementById('like1').style.color="white"
-                controller=0 
-                aux=0
-            }
-        }
-        if(one==2)
-        {
-            controller++
-            if(controller==1 & aux==0){
-                document.getElementById('like2').style.backgroundColor="rgba(255, 255, 255, 0.2)"
-                document.getElementById('like2').style.color="#00a3ee"
-                aux++
-            }
-            else if(controller==2 & aux!=0){
-                document.getElementById('like2').style.backgroundColor="transparent"
-                document.getElementById('like2').style.color="white"
-                controller=0 
-                aux=0
-            }
-        }
-        if(one==3)
-        {
-            controller++
-            if(controller==1 & aux==0){
-                document.getElementById('like3').style.backgroundColor="rgba(255, 255, 255, 0.2)"
-                document.getElementById('like3').style.color="#00a3ee"
-                aux++
-            }
-            else if(controller==2 & aux!=0){
-                document.getElementById('like3').style.backgroundColor="transparent"
-                document.getElementById('like3').style.color="white"
-                controller=0 
-                aux=0
-            }
-        }
-        if(one==4)
-        {
-            controller++
-            if(controller==1 & aux==0){
-                document.getElementById('like4').style.backgroundColor="rgba(255, 255, 255, 0.2)"
-                document.getElementById('like4').style.color="#00a3ee"
-                aux++
-            }
-            else if(controller==2 & aux!=0){
-                document.getElementById('like4').style.backgroundColor="transparent"
-                document.getElementById('like4').style.color="white"
-                controller=0 
-                aux=0
-            }
-        }
-        if(one==5)
-        {
-            controller++
-            if(controller==1 & aux==0){
-                document.getElementById('like5').style.backgroundColor="rgba(255, 255, 255, 0.2)"
-                document.getElementById('like5').style.color="#00a3ee"
-                aux++
-            }
-            else if(controller==2 & aux!=0){
-                document.getElementById('like5').style.backgroundColor="transparent"
-                document.getElementById('like5').style.color="white"
-                controller=0 
-                aux=0
-            }
-        }       
-}
-</script>
-<script>
-    var controller = 0
-    var aux = 0
-    function share(one){
-    if(one==1)
-    {
-       controller++
-        if(controller==1 & aux==0){
-            document.getElementById('share1').style.opacity="1"
-            document.getElementById('share1').style.transform="translateY(0px)"
-            document.getElementById('share1').style.zIndex="1"
-            aux++
-        }
-        else if(controller==2 & aux!=0){
-            document.getElementById('share1').style.opacity="0"
-            document.getElementById('share1').style.transform="translateY(20px)"
-            document.getElementById('share1').style.zIndex="-1"
-            controller=0 
-            aux=0
-        }
-    }
-    if(one==2)
-    {
-        controller++
-        if(controller==1 & aux==0){
-            document.getElementById('share2').style.opacity="1"
-            document.getElementById('share2').style.transform="translateY(0px)"
-            document.getElementById('share2').style.zIndex="1"
-            aux++
-        }
-        else if(controller==2 & aux!=0){
-            document.getElementById('share2').style.opacity="0"
-            document.getElementById('share2').style.transform="translateY(20px)"
-            document.getElementById('share2').style.zIndex="-1"
-            controller=0 
-            aux=0
-        }
-    }
-    if(one==3)
-    {
-       controller++
-        if(controller==1 & aux==0){
-            document.getElementById('share3').style.opacity="1"
-            document.getElementById('share3').style.transform="translateY(0px)"
-            document.getElementById('share3').style.zIndex="1"
-            aux++
-        }
-        else if(controller==2 & aux!=0){
-            document.getElementById('share3').style.opacity="0"
-            document.getElementById('share3').style.transform="translateY(20px)"
-            document.getElementById('share3').style.zIndex="-1"
-            controller=0 
-            aux=0
-        }
-    }
-    if(one==4)
-    {
-        controller++
-        if(controller==1 & aux==0){
-            document.getElementById('share4').style.opacity="1"
-            document.getElementById('share4').style.transform="translateY(0px)"
-            document.getElementById('share4').style.zIndex="1"
-            aux++
-        }
-        else if(controller==2 & aux!=0){
-            document.getElementById('share4').style.opacity="0"
-            document.getElementById('share4').style.transform="translateY(20px)"
-            document.getElementById('share4').style.zIndex="-1"
-            controller=0 
-            aux=0
-        }
-    }
-    if(one==5)
-    {
-        controller++
-        if(controller==1 & aux==0){
-            document.getElementById('share5').style.opacity="1"
-            document.getElementById('share5').style.transform="translateY(0px)"
-            document.getElementById('share5').style.zIndex="1"
-            aux++
-        }
-        else if(controller==2 & aux!=0){
-            document.getElementById('share5').style.opacity="0"
-            document.getElementById('share5').style.transform="translateY(20px)"
-            document.getElementById('share5').style.zIndex="-1"
-            controller=0 
-            aux=0
-        }
-    }
-}       
-</script>
-    
-<script>
 
-	@if(!Auth::check()	)
-	var likeIsLogin = new jBox('Modal', {
-			attach: '#test',
-			title: '<div width="100%" class="text-center"><h3>Ops</h3></div>',
-			content: "Para avaliar é necessário estar logado ou ter um conta na plataforma, se não tiver uma conta <a href='/cadastro'><b>Clique Aqui</b></a> e cadastre-se é grátis!",
-			animation: 'pulse',
-			audio: '../audio/bling2',
-			volume: 80,
-			closeButton: true,
-			delayOnHover: true,
-			showCountdown: true
-			}); 
-	@endif
-	function IsLike(){
-		
-		@if(Auth::check())
-		var idUser = {{Auth::user()->id}}
+	$('#lightgallery').lightGallery({
+	pager: true
+	});
+$(function(){
+	
+	IsLike();
+@if(Auth::check())
+	$("#form-data").submit(function(e){	
 		var idEmp = {{$empresa->id}}
-		if(idUser){
-		$.get('../../api/likeEmp/'+idEmp+'/'+idUser+'').done(function(data){
-			console.log(data);
-			if(data[0]>0){
-				document.getElementById('likepage').style.background="#00a3ee";
+		var mens = $('#message').val();
+		if(mens){
+		$.ajax({
+			type:"POST",
+			url:'../../api/empresa/comentar',	
+			data: new FormData(this),
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function(){
+			load("open");
+			},
+			success: function(Response) {
+				console.log(Response);
+			},
+			error: function(error){
+				console.log(error);
+			},
+			complete: function(){
+				$('#vazio').attr('checked', 'checked');
+				$('#message').val('');
+				load("close");
+				getCommentsPage(idEmp);
 			}
-			else{
-				document.getElementById('likepage').style.background="rgba(255, 255, 255, 0.2)"
-			}
-			$('#likesCount').text(data[1]);
 		});
-
 		}
-		@endif
-		
-	}
+		else{
+			alert('digite uma mensagem');
+		}
+	e.preventDefault();
+});
+@endif
 
-	$(function(){
-		IsLike();
+
+
+});
+$('.card-empresas').slick({
+	dots: true,
+	infinite: true,
+	autoplay:true,
+	autoplaySpeed:1700,
+	speed: 300,
+	slidesToShow: 3,
+	slidesToScroll: 3,
+	responsive: [
+	{
+		breakpoint: 1024,
+		settings: {
+		slidesToShow: 3,
+		slidesToScroll: 3,
+		infinite: true,
+		dots: true
+		}
+		},
+	{
+		breakpoint: 600,
+		settings: {
+				slidesToShow: 2,
+				slidesToScroll: 2
+		}
+		},
+	{
+		breakpoint: 480,
+		settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1
+		}
+		},
+	{
+		breakpoint: 320,
+		settings: {
+		slidesToShow: 1,
+		slidesToScroll: 1
+		}
+	}
+	]
+	});
+	
+</script>
+<script>
+var modalCommentInfo = new jBox('Modal', {
+	attach: '#test',
+	title: '<div width="100%" class="text-center"><i class="fa fa-ban fa-3x" style="color: red"></i></div>',
+	content: "Para comentar é necessário estar logado na plataforma, caso não possua uma conta <a href='/cadastro'>Clique aqui</a> e cadastre-se, é grátis! ",
+	animation: 'zoomIn',
+	closeButton: true,
+	delayOnHover: true,
+	showCountdown: true
+}); 
+function load(action){
+	var load_div = $(".loader");
+	if(action==="open"){
+	load_div.addClass("is-active");
+	}
+	else{
+	load_div.removeClass("is-active");
+	}
+}
+
+@if(!Auth::check()	)
+var likeIsLogin = new jBox('Modal', {
+	attach: '#test',
+	title: '<div width="100%" class="text-center"><h3>Ops</h3></div>',
+	content: "Para avaliar é necessário estar logado ou ter um conta na plataforma, se não tiver uma conta <a href='/cadastro'><b>Clique Aqui</b></a> e cadastre-se é grátis!",
+	animation: 'pulse',
+	audio: '../audio/bling2',
+	volume: 80,
+	closeButton: true,
+	delayOnHover: true,
+	showCountdown: true
+}); 
+
+
+@endif
+function IsLike(){
+	
+	@if(Auth::check())
+	var idUser = {{Auth::user()->id}}
+	var idEmp = {{$empresa->id}}
+	if(idUser){
+	$.get('../../api/likeEmp/'+idEmp+'/'+idUser+'').done(function(data){
+		console.log(data);
+		if(data[0]>0){
+			document.getElementById('likepage').style.background="#00a3ee";
+		}
+		else{
+			document.getElementById('likepage').style.background="rgba(255, 255, 255, 0.2)";
+		}
+		$('#likesCount').text(data[1]);
 	});
 
-	var controller = 0;
-	var aux = 0;
+	}
+	@endif
 	
-   function likepage(idEmp){		
-		@if(Auth::check())	
-		var idUser = {{Auth::user()->id}}
-			$.get('../../api/empresa/like/'+idEmp+'/'+idUser+'').done(function(data){
-				IsLike();
+}
+
+@if(!Auth::check())
+	$("#form-data").submit(function(e){	
+	modalCommentInfo.open();
+	e.preventDefault();
+});
+@endif
+
+var controller = 0;
+var aux = 0;
+
+function likepage(idEmp){		
+	@if(Auth::check())	
+	var idUser = {{Auth::user()->id}}
+		$.get('../../api/empresa/like/'+idEmp+'/'+idUser+'').done(function(data){
+			IsLike();
+	});
+	@else
+		likeIsLogin.open();
+	@endif
+	}
+
+	function getCommentsPage(idEmp){
+		$.ajax(
+		{
+			url: '../../api/empresa/lista-comments-page/'+idEmp,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$("#reviwes").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+				alert('No response from server');
 		});
-		@else
-			likeIsLogin.open();
-		@endif
-		}
+	}
+
+
 </script>
-<script>
-    var controller = 0
-    var aux = 0
-    function sharepage(){
-            controller++
-            if(controller==1 & aux==0){
-                var ol = $('#sharebloco')
-                ol.addClass("blocoshare")
-                document.getElementById('sharepage').style.opacity="1"
-                document.getElementById('sharepage').style.transform="translateY(0)"
-                document.getElementById('sharepage').style.zIndex="1"
-                aux++
-            }
-            else if(controller==2 & aux!=0){
-                var ol = $('#sharebloco')
-                ol.removeClass("blocoshare")
-                document.getElementById('sharepage').style.opacity="0"
-                document.getElementById('sharepage').style.transform="translateY(-100px)"
-                document.getElementById('sharepage').style.zIndex="-1"
-                controller=0 
-                aux=0
-            }
-        }
-</script>
+
 @endsection
 @endsection

@@ -27,15 +27,7 @@
 					</div>
 					<div class="col-md-4 profile-text">
 						<h3>{{Auth::user()->name}}</h3>
-						@if(!empty($user->info))
-							@if(!empty($user->info->idade))
-								<h6>{{$user->info->idade}}</h6>
-							@else
-							<h6 class="idade idadetx" >Defina sua idade</h6>
-							@endif
-						@else
-						<h6 class="idade idadetx">Defina sua idade</h6>
-						@endif
+					
 						
 						@if($user->permissions->blogueiro=="nao")
 						<p>Permissão de usúario <i class="fa fa-user"></i></p>
@@ -136,12 +128,7 @@
 					<input type="file" id="exampleInputFile" name="imagem" class="file-pos">
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">IDADE</label>
-				<div class="col-lg-6">
-			<input type="text" placeholder=" " id="idade" name="idade" class="idade form-control">
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label class="col-lg-2 control-label">INTERESSE</label>
 				<div class="col-lg-6">

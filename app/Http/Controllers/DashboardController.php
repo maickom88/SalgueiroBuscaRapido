@@ -33,8 +33,14 @@ class DashboardController extends Controller
 					return redirect()->route('empManenger');
 				}
       }
+
 		$idUser = Auth::id();
 		$user = User::find($idUser);
+		$chave='385bc83d';
+		$cid = '457982';
+
+		
+
 		try{
 			$instagram = new Instagram('2089363990.1677ed0.96d466364c2d4f4fbf55e7097920f69d');
 			$insta = $instagram->media(['count'=>2	]);	
@@ -61,7 +67,22 @@ class DashboardController extends Controller
 		};
 		$empresa = Empresa::all()->where('status', 'ativa')->random(1);
 
-		return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa']));
+		try{
+			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
+			
+			return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa', 'dados']));
+		
+		}
+		catch(Exception $e){
+		$dados = ([
+			"results"=>[
+				"temp"=>25
+			]
+		]);
+		return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa', 'dados']));
+		}
+
+		
    }
 	public function perfil(){
 

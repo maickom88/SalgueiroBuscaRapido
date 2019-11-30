@@ -195,17 +195,12 @@ $telefone = $user->info->telefone;
 						<span>Tabela de pagamentos</span>
 					</a>
 				</li>
-				 <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-plus-square"></i>
-              <span>Feed</span>
-              </a>
-            <ul class="sub" style="background:#D4D4D4 !important;">
-              <li><a href="grids.html">Suas postagens</a></li>
-              <li><a href="calendar.html">Publicar postagem</a></li>
-              <li><a href="gallery.html">Comentários</a></li>
-            </ul>
-          </li>
+				<li class="sub-menu">
+					<a class="@yield('novidade')"  href={{route('postsEmp')}}>
+						<i class="fa fa-plus-square"></i>
+						<span>Postar Novidades</span>
+					</a>
+				</li>
 				<li class="sub-menu">
 					<a class="@yield('noticias')"  href={{route('noticiasEmp')}}>
 						<i class="fa fa-list-alt"></i>

@@ -4,16 +4,12 @@
 $perc = 50;
 if(!empty($user->info)){
 
-$idade = $user->info->idade;
 $avatar = $user->info->avatar;
 $interesse = $user->info->interesse;
 $endereco = $user->info->endereco;
 $telefone = $user->info->telefone;
-	if(!empty($idade)){
-		$perc += 10;
-	}
 	if(!empty($avatar)){
-		$perc += 10;
+		$perc += 20;
 	}
 	if(!empty($interesse)){
 		$perc += 10;
@@ -46,6 +42,7 @@ $telefone = $user->info->telefone;
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
 	<link rel="stylesheet" href={{asset('css/painel.css')}}>
 	<link rel="stylesheet" href={{asset('css/loader-bouncing.css')}}>
+	<link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
 	
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 	@yield('links')
@@ -68,7 +65,7 @@ $telefone = $user->info->telefone;
 					<li class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="dashboard#">
 							<i class="fa fa-tasks"></i>
-							<span class="badge" style="background-color:#00a3ee" >@if($perc==100)5 @else 6 @endif</span>
+							<span class="badge" style="background-color:#00a3ee" >@if($perc==100 && $user->comments->count() >= 5 && $user->likes->count() >=5 )  @elseif($perc==100 && $user->comments->count() >= 5 ) 1 @elseif($perc==100) 3 @else 4 @endif</span>
 						</a>
 						<ul class="dropdown-menu extended tasks-bar">
 							<div class="notify-arrow notify-arrow-green"></div>
@@ -98,66 +95,103 @@ $telefone = $user->info->telefone;
 							<li>
 								<a href="dashboard#">
 									<div class="task-info">
-										<div class="desc">Comente em cinco empresas</div>
-										<div class="percent">0%</div>
+										@if($user->comments->count() >= 5)
+											<div class="desc">Você concluiu essa tarefa</div>
+										@else
+											<div class="desc">Faça cinco comentários</div>	 
+										@endif
+										
+										@if (!empty($user->comments))
+											@php
+											$count = $user->comments->count();
+											if($count>=2)
+											{
+												$color = 'warning';
+											}
+											if($count>=5){
+												$color = 'success';
+											}
+											else{
+												$color = 'danger';
+											}
+											@endphp
+										<div class="percent">{{$count*20}}%</div>
 									</div>
 									<div class="progress progress-striped">
-										<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-											<span class="sr-only">0% Complete (Important)</span>
+										<div class="progress-bar progress-bar-{{$color}}" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: {{$count*20}}%">
+											<span class="sr-only">{{$count*20}}% Complete (Important)</span>
 										</div>
-									</div>
+									</div>	
+										@endif
 								</a>
 							</li>
 							<li>
 								<a href="dashboard#">
 									<div class="task-info">
-										<div class="desc">Curta cinco empresas</div>
-										<div class="percent">0%</div>
+										@if($user->comments->count() >= 5)
+											<div class="desc">Você concluiu essa tarefa</div>
+										@else
+										<div class="desc">Avalie três empresas</div>	 
+										@endif
+										
+										@if (!empty($user->comments))
+
+										@php
+											$count = $user->comments->count();
+											if($count>=2)
+											{
+												$color = 'warning';
+											}
+											if($count>=5){
+												$color = 'success';
+											}
+											else{
+												$color = 'danger';
+											}
+										@endphp
+											<div class="percent">{{$count*20}}%</div>
 									</div>
 									<div class="progress progress-striped">
-										<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-											<span class="sr-only">0% Complete (Important)</span>
+										<div class="progress-bar progress-bar-{{$color}}" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: {{$count*20}}%">
+											<span class="sr-only">{{$count*20}}% Complete (Important)</span>
 										</div>
 									</div>
+										@endif
 								</a>
 							</li>
 							<li>
 								<a href="dashboard#">
 									<div class="task-info">
-										<div class="desc">Avalie 3 empresas que você conhece</div>
-										<div class="percent">0%</div>
+										@if($user->likes->count()>= 5)
+											<div class="desc">Você concluiu essa tarefa</div>
+										@else
+										<div class="desc">Curta cinco empresas</div> 
+										@endif
+										
+										
+										@if (!empty($user->likes))
+											@php
+											$count = $user->likes->count();
+											if($count>=2)
+											{
+												$color = 'warning';
+											}
+											if($count>=5){
+												$color = 'success';
+											}
+											else if ($count<2){
+												$color = 'danger';
+											}
+										@endphp
+
+										<div class="percent">{{$count*20}}%</div>
 									</div>
 									<div class="progress progress-striped">
-										<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-											<span class="sr-only">0% Complete (Important)</span>
+										<div class="progress-bar progress-bar-{{$color}}" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: {{$count*20}}%">
+											<span class="sr-only">{{$count*20}}% Complete (Important)</span>
 										</div>
 									</div>
-								</a>
-							</li>
-							<li>
-								<a href="dashboard#">
-									<div class="task-info">
-										<div class="desc">Siga nosso instagram</div>
-										<div class="percent">50%</div>
-									</div>
-									<div class="progress progress-striped">
-										<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-											<span class="sr-only">50% Complete (Important)</span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="dashboard#">
-									<div class="task-info">
-										<div class="desc">Curta nossa página no facebook</div>
-										<div class="percent">50%</div>
-									</div>
-									<div class="progress progress-striped">
-										<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-											<span class="sr-only">50% Complete</span>
-										</div>
-									</div>
+										@endif
 								</a>
 							</li>
 						</ul>
@@ -167,20 +201,56 @@ $telefone = $user->info->telefone;
 					<li id="header_notification_bar" class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="dashboard#">
 							<i class="fa fa-bell-o"></i>
-							<span class="badge bg-warning">1</span>
+							
+								@if(!empty($user->parceiro))
+									
+									@if($user->parceiro->pedidos == 'negado')
+									<span class="badge bg-warning">
+									1
+									</span>
+									@elseif($user->parceiro->pedidos == 'Ativo')
+									<span class="badge bg-warning">
+									1
+									</span>
+									@else
+
+									@endif
+									
+								@endif 
+							
 						</a>
 						<ul class="dropdown-menu extended notification">
 							<div class="notify-arrow notify-arrow-yellow"></div>
 							<li>
-								<p class="yellow">Veja suas notificações</p>
+								<p class="yellow">Notificações</p>
 							</li>
-							<li>
-								<a href="dashboard#">
-									<span class="label label-danger"><i class="fa fa-bolt"></i></span>
-									Você tem novo comentário!
-									<span class="small italic">4 mins.</span>
-								</a>
-							</li>
+							@empty(!$user->parceiro)
+								@if($user->parceiro->pedidos == 'negado')
+								<li>
+									<a href="/dashboard/parceiro">
+										<span class="label label-danger"><i class="fa fa-ban"></i></span>
+										Seu pedido de parceria foi negado!
+										<span class="small italic" style="margin-top:4px;">4 mins.</span>
+									</a>
+								</li>
+								@elseif($user->parceiro->pedidos == 'Ativo')
+								<li>
+									<a href="/dashboard/parceiro">
+										<span class="label label-info"><i class="fa fa-check"></i></span>
+										Seu pedido de parceria foi aprovado!
+										<span class="small italic" style="margin-top:4px;">4 mins.</span>
+									</a>
+								</li>
+								@else
+								
+								@endif
+								
+							@else
+							<li style="padding:5px;">
+								<span>Não há Notificações!</span>
+							</li>	
+							@endempty
+							
 						</ul>
 					</li>
 					<!-- notification dropdown end -->
@@ -240,6 +310,19 @@ $telefone = $user->info->telefone;
 						<span>Parceiro</span>
 					</a>
 				</li>
+				@if ($user->permissions->blogueiro == 'sim')
+				<li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-plus-square"></i>
+              <span>Blog</span>
+            </a>
+            <ul class="sub" style="background:#D4D4D4 !important;">
+              <li><a href="#">Postagens</a></li>
+              <li><a href="#">Comentários</a></li>
+				  <li><a href="#">Estatísticas</a></li>
+            </ul>
+          </li>
+				@endif
 			</ul>
 		</div>
 	</aside>

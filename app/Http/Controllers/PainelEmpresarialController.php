@@ -138,6 +138,17 @@ class PainelEmpresarialController extends Controller
 		}
 		return redirect()->back();
 	}
+	public function postagens(){
+		$idUser = Auth::id();
+		$user = User::find($idUser);
+		
+		$verificacao = $user->permissions->empresario;
+	
+		if($verificacao=="sim"){
+		return view('login.dashboard.paginas.feed.postagens', compact('user'));
+		}
+		return redirect()->back();
+	}
 
 	public function logout(){
 		Auth::logout();

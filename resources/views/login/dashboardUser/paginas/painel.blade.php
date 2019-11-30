@@ -160,7 +160,7 @@
 		<div class="col-md-4 mb">
 			<div class="weather pn">
 			<i class="fa fa-cloud fa-4x"></i>
-			<h2>25º C</h2>
+			<h2>{{$dados['results']['temp']}}</h2>
 			<h4>SALGUEIRO</h4>
 			</div>
 		</div>
