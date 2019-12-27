@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Contact\Contact;
+use App\Empresa\Contrato\Contrato;
 use App\Parceiro;
 use App\Permission\Permission;
 
@@ -20,7 +21,6 @@ class PainelManengerController extends Controller
 	public function perfilUser(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
 		$verificacao = $user->permissions->adm;
 
 		if($verificacao=="sim")
@@ -28,17 +28,15 @@ class PainelManengerController extends Controller
 			return view('login.dashboardManenger.perfilAdministrador', compact('user'));
 		}
 		return redirect()->back();
-
-
-		
 	}
+
 	public function empresas(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
 		$empresas = Empresa::paginate(5);
 
 		$verificacao = $user->permissions->adm;
-			
+
 		if($verificacao=="sim")
 		{
 			return view('login.dashboardManenger.empresas', compact('user', 'empresas'));
@@ -49,20 +47,21 @@ class PainelManengerController extends Controller
 
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->adm;
-			
+
 		if($verificacao=="sim")
 		{
-			return view('login.dashboardManenger.usuario', compact('user'));
+			$users = User::orderBy('id', 'desc')->paginate(5);
+			return view('login.dashboardManenger.usuarios', compact('user', 'users'));
 		}
 		return redirect()->back();
-
 	}
+
 	public function contato(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->adm;
 		$contact = Contact::orderBy('id')->paginate(5);
 		$parceiro = Parceiro::all()->where('pedidos', 'Desejo ser Parceiro do site!');
@@ -72,32 +71,44 @@ class PainelManengerController extends Controller
 			return view('login.dashboardManenger.contato', compact('user', 'contact', 'parceiro'));
 		}
 		return redirect()->back();
-
-
 	}
+
 	public function parceria(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->adm;
-			
+
 		if($verificacao=="sim")
 		{
 			$userPer = Permission::where('blogueiro','sim')->get();
 			return view('login.dashboardManenger.parceria', compact('userPer','user'));
 		}
 		return redirect()->back();
-
 	}
+
 	public function pagamento(){
-$idUser = Auth::id();
+		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->adm;
-			
+
 		if($verificacao=="sim")
 		{
-			return view('login.dashboardManenger.pagamento', compact('user'));
+        date_default_timezone_set("Brazil/East");
+        $contratosAll = Contrato::all();
+        $contratos = Contrato::orderBy('id', 'desc')->paginate(5);
+        foreach ($contratosAll as $contrato) {
+            $dt_atual = date("Y-m-d"); // data atual
+            $timestamp_dt_atual = strtotime($dt_atual); // converte para timestamp Unix
+            $dt_expira = $contrato->fim_contrato; // data de expiração do anúncio
+            $timestamp_dt_expira = strtotime($dt_expira); // converte para timestamp Unix
+            if($timestamp_dt_atual > $timestamp_dt_expira){
+                $contrato->status = 'expirado';
+                $contrato->save();
+            }
+        }
+			return view('login.dashboardManenger.pagamento', compact('user', 'contratos'));
 		}
 		return redirect()->back();
 	}

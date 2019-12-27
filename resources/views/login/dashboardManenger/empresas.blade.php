@@ -11,12 +11,12 @@
 <link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-datetimepicker/datertimepicker.css")}} />
 @endsection
 
-@section('conteudo')
+@section('conteudo')x
 <div class="loader loader-bouncing "></div>
 <section id="main-content">
 
 <section class="wrapper site-min-height">
-	
+
 	<div class="row mt">
 		<div class="container" style="width:100%">
 			<div class="table-wrapper" >
@@ -36,9 +36,9 @@
 							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus"></i> <span>Adicionar Empresa</span></a>
 							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
 							<div class="form-search" style="display:flex; margin-left: 70px">
-							
+
 							<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
-							</div>						
+							</div>
 						</div>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 						@include('login.dashboardManenger.empresasAll')
 					</div>
 
-					
+
 			</div>
 		</div>
 		<!-- Edit Modal HTML -->
@@ -55,23 +55,35 @@
 				<div class="modal-content">
 					<form id="form-data" enctype="multipart/form-data">
 					@csrf
-						<div class="modal-header">						
+						<div class="modal-header">
 							<h4 class="modal-title">Adicionar empresa</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
-						<div class="modal-body">	
+						<div class="modal-body">
 							<div class="form-group">
-								<label>Email da empresa</label>
-								<input type="email" id="emailEmp" class="form-control" name="emailEmp" required >
+								<span id="vincular" class="btn btn-info">Vincular a um usúario existente</span>
 							</div>
-							<div class="form-group">
-								<label>Senha da conta</label>
-								<input type="password" id="passEmp" name="password" class="form-control" required>
+							<div id="userAccount">
+								<div class="form-group">
+									<label>Email da empresa</label>
+									<input type="email" id="emailEmp" class="form-control" name="emailEmp" required >
+								</div>
+								<div class="form-group">
+									<label>Senha da conta</label>
+									<input type="password" id="passEmp" name="password" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label>Confirmar senha</label>
+									<input type="password" id="confPassEmp" name="confSenha" class="form-control" required>
+								</div>
 							</div>
-							<div class="form-group">
-								<label>Confirmar senha</label>
-								<input type="password" id="confPassEmp" name="confSenha" class="form-control" required>
-							</div>				
+							<div id="userVincule" style="display:none;">
+								<div class="form-group">
+									<label>Email do usúario</label>
+									<input type="email" id="emailVincule" name="emailVincule" class="form-control">
+								</div>
+
+							</div>
 							<div class="form-group">
 								<label>Proprietário</label>
 								<input type="text" id="nameUser" name="name" class="form-control" required>
@@ -82,7 +94,7 @@
 							</div>
 							<div class="form-group" id="previaAvatar">
 									<div class="previaImg" id="prevImg" style="left: 10px !important; width: 120px !important;background:black !important; border:none;"><div id="prev"><img class="previa" id="prevAvatar" src={{asset('img/profilezim.png')}} ></div><div id="cancelAvatar" class="cancelarOp"><i id="excluirAvatar" class="fa fa-times fa-2x" style="cursor:pointer"></i></div></div>
-							
+
 							</div>
 							<div class="form-group">
 								<label for="bannerEmp" class="btn btn-warning">Adicionar um banner</label>
@@ -95,8 +107,8 @@
 							<label for="albumEmp" class="btn btn-warning">Adicionar fotos ao Album</label><label class="btn btn-info" id="fotoQuant" style="display:none;"></label><label id="resetaAlbum" style="display:none;" class="btn btn-danger"><i class="fa fa-trash-o"></i></label>
 								<input type="file" id="albumEmp" style="display:none;" name="album[]" multiple class="form-control" >
 							</div>
-							
-							
+
+
 							<div class="form-group">
 								<label>Nome da empresa</label>
 								<input type="text" id="nameEmp" name="nameEmp" class="form-control" required>
@@ -120,7 +132,7 @@
 									<option value="varejos">VAREJOS</option>
 									<option value="comidas">COMIDA</option>
 									<option value="lazer">LAZER</option>
-									<option value="distrubuidoras">DISTRIBUIDORAS</option> 
+									<option value="distrubuidoras">DISTRIBUIDORAS</option>
 							</select>
 								<button type="button"  class="demo-button" id="addNincho" class="btnAdd"	 style="width: 40px; height: 30px; background:springgreen; color:white; border:none; border-radius:3px; outline:none; "><i class="fa fa-plus" style="margin-left:4px;"></i></button>
 								<div id="addNichoOp" class="form-group" style="display:none; margin-top:5px;">
@@ -129,7 +141,7 @@
 									<button type="button" class="btnAdd" id="addNinchoConfirm" data-jbox-content="Content 1" style="width: 40px; height: 30px; background:springgreen; color:white; border:none; border-radius:3px; outline:none; ">ADD</button>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 									<label>Endereço</label>
 									<input type="text" id="locationEmp" name="location" class="form-control" required>
@@ -154,12 +166,25 @@
 									<label>Email para contato</label>
 									<input type="email" name="emailContato" id="emailContato" class="form-control" >
 								</div>
-								<div class="form-group">
+
+							<div class="form-group">
 									<span  id="addCaracteristicas" class="btn btn-info" ><i class="fa fa-plus"></i> Adicionar caracteristicas</span>
 								</div>
 								<div class="form-group">
 									<span  id="addHorarios" class="btn btn-info" ><i class="fa fa-plus"></i> Adicionar horários</span>
 								</div>
+								<div class="form-group">
+								<label style="display:block">Contrato</label>
+								<select  name="tipoContrato" id="contratoEmp"  class="form-control"  style="margin-bottom: 5px;;width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
+									<option value="mensal">MENSAL</option>
+									<option value="trimensal">TRIMENSAL</option>
+									<option value="semestral">SEMESTRAL</option>
+								</select>
+							</div>
+							<div class="form-group">
+							<label><b>R$</b></label>
+								<input type="text" name="valorContrato" id="valorContrato" class="dinheiro" style="">
+							</div>
 							<div class="form-group">
 								<label>Status: </label>
 								<select id="statusEmp" name="status">
@@ -218,35 +243,35 @@
 									<label style="display:block">Wifi público</label>
 									<select  name="wifi" id="wifiEmp"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Vaga para estacionamentos</label>
 									<select  name="estacionamento" id="estacionamentoEmp"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Aceita cartões</label>
 									<select  name="cartao" id="cartaoEmp"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Serviço de entrega</label>
 									<select  name="delivery" id="deliveryEmp"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Orçamento grátis</label>
 									<select  name="orcamento" id="orcamentoEmp"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
@@ -447,7 +472,7 @@
 		</div>
 
 
-	
+
 		<!-- Edit Modal HTML -->
 		<div id="editEmployeeModal" class="modal fade">
 			<div class="modal-dialog">
@@ -455,11 +480,11 @@
 					<form id="form-data-edit" enctype="multipart/form-data">
 					@csrf
 					<input type="hidden" id="inputIdEdit" name="idEmpresa" value="">
-						<div class="modal-header">						
+						<div class="modal-header">
 							<h4 class="modal-title">Editar Informações da Empresa</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
-						<div class="modal-body">		
+						<div class="modal-body">
 							<div class="form-group">
 								<label>Avatar da Empresa</label>
 								<input type="file" id="avatarEmpEdit" name="imagem" class="form-control" >
@@ -481,8 +506,8 @@
 								<input type="text" id="tagsEmpEdit" name="tags" class="form-control"  required>
 							</div>
 							<div class="form-group">
-								<label style="display:block">Nicho</label>
-								<select  name="nincho" id="selectNinchoEdit"  class="form-control"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmpEdit" required>
+								<label style="display:block"> Editar nincho</label>
+								<select  name="nincho" id="selectNinchoEdit2"  class="form-control"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmpEdit" required>
 									<option value="roupas">ROUPAS</option>
 									<option value="suplementos">SUPLEMENTOS</option>
 									<option value="construção">CONSTRUÇÃO</option>
@@ -491,16 +516,16 @@
 									<option value="varejos">VAREJOS</option>
 									<option value="comidas">COMIDA</option>
 									<option value="lazer">LAZER</option>
-									<option value="distrubuidoras">DISTRIBUIDORAS</option> 
+									<option value="distrubuidoras">DISTRIBUIDORAS</option>
 							</select>
-								<button type="button"  class="demo-button" id="addNinchoEdit" class="btnAdd"	 style="width: 40px; height: 30px; background:springgreen; color:white; border:none; border-radius:3px; outline:none; "><i class="fa fa-plus" style="margin-left:4px;"></i></button>
-								<div id="addNichoOpEdit" class="form-group" style="display:none; margin-top:5px;">
+								<button type="button"  class="demo-button" id="addNinchoEdit2" class="btnAdd"	 style="width: 40px; height: 30px; background:springgreen; color:white; border:none; border-radius:3px; outline:none; "><i class="fa fa-plus" style="margin-left:4px;"></i></button>
+								<div id="addNichoOpEdit2" class="form-group" style="display:none; margin-top:5px;">
 									<label>Novo nincho </label>
-									<input type="text" id="ninchoOpEdit" style="height: 30px; border: 1px solid springgreen; border-radius:5px; padding-left:8px;" >
-									<button type="button" class="btnAdd" id="addNinchoConfirmEdit" data-jbox-content="Content 1" style="width: 40px; height: 30px; background:springgreen; color:white; border:none; border-radius:3px; outline:none; ">ADD</button>
+									<input type="text" id="ninchoOpEdit2" style="height: 30px; border: 1px solid springgreen; border-radius:5px; padding-left:8px;" >
+									<button type="button" class="btnAdd" id="addNinchoConfirmEdit2" data-jbox-content="Content 1" style="width: 40px; height: 30px; background:springgreen; color:white; border:none; border-radius:3px; outline:none; ">ADD</button>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 									<label>Endereço</label>
 									<input type="text" id="locationEmpEdit" name="location" class="form-control" required>
@@ -589,35 +614,35 @@
 									<label style="display:block">Wifi público</label>
 									<select  name="wifi" id="wifiEmpEdit"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Vaga para estacionamentos</label>
 									<select  name="estacionamento" id="estacionamentoEmpEdit"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Aceita cartões</label>
 									<select  name="cartao" id="cartaoEmpEdit"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Serviço de entrega</label>
 									<select  name="delivery" id="deliveryEmpEdit"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
 									<label style="display:block">Orçamento grátis</label>
 									<select  name="orcamento" id="orcamentoEmpEdit"  class="form-control selectCaract"  style="width: 80% !important; display:inline-block; text-transform:uppercase" id="ninchoEmp" required>
 										<option value="nao">NÃO</option>
-										<option value="sim">SIM</option> 
+										<option value="sim">SIM</option>
 									</select>
 									</div>
 									<div class="form-group">
@@ -815,9 +840,9 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Delete Modal HTML -->
-		
+
 </section>
 <!-- /wrapper -->
 </section>
@@ -830,8 +855,32 @@
 <script type="text/javascript" src={{asset("lib/bootstrap-daterangepicker/moment.min.js")}}></script>
 <script type="text/javascript" src={{asset("lib/bootstrap-timepicker/js/bootstrap-timepicker.js")}}></script>
 <script src={{asset("lib/advanced-form-components.js")}}></script>
-
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 <script>
+$('.dinheiro').mask('#.##0,00', {reverse: true}).append('R$');
+
+$('#vincular').click(function(){
+	$('#userAccount').toggle(function(){
+		$('#emailVincule').val('');
+
+	});
+
+	$('#emailEmp').prop('required',true);
+		$('#passEmp').prop('required', true);
+		$('#confPassEmp').prop('required',true);
+
+	$('#userVincule').toggle(function(){
+		$('#emailEmp').removeAttr('required');
+		$('#passEmp').removeAttr('required');
+		$('#confPassEmp').removeAttr('required');
+		$('#emailEmp').val('');
+		$('#passEmp').val('');
+		$('#confPassEmp').val('');
+	});
+
+});
+
+
 $('#prevAvatar').hover(function(){
 	$(this).css('opacity', '1');
 	$('#excluirAvatar').hide();
@@ -846,7 +895,7 @@ $('#albumEmp').change(function(){
 	var quantArquivos = arquivos.length;
 	$('#fotoQuant').show();
 	$('#resetaAlbum').show();
-	$('#fotoQuant').text(quantArquivos+' Arquivos'); 
+	$('#fotoQuant').text(quantArquivos+' Arquivos');
 });
 
 $('#resetaAlbum').click(function(){
@@ -857,7 +906,7 @@ $('#resetaAlbum').click(function(){
 
 function verificaIMG(){
 	$('#previewImg').attr('src', '');
-	
+
 }
 
 $('#excluirAvatar').click(function(){
@@ -901,7 +950,7 @@ function previewImagam(){
 	reader.onload = function(){
 		preview.src = reader.result;
 	}
-	
+
 	if(preview){
 		reader.readAsDataURL(imagem);
 	}else{
@@ -936,7 +985,7 @@ $('#bannerEmp').change(function(){
 	reader.onload = function(){
 		preview.src = reader.result;
 	}
-	
+
 	if(preview){
 		reader.readAsDataURL(imagem);
 	}else{
@@ -948,7 +997,7 @@ $('#bannerEmp').change(function(){
 
 function carregarEmpresa(id){
 	idEmpresa = id
-	$.getJSON('../api/administrativo/empresas/buscar/'+id , function(data){		
+	$.getJSON('../api/administrativo/empresas/buscar/'+id , function(data){
 		$('#nameEmpEdit').val(data[0].name);
 		$('#descriptionEmpEdit').val(data[0].description);
 		$('#tagsEmpEdit').val(data[0].tags);
@@ -966,7 +1015,7 @@ function carregarEmpresa(id){
 		$('#cartaoEmpEdit').val(data[0].facilities.cartao);
 		$('#deliveryEmpEdit').val(data[0].facilities.delivery);
 		$('#orcamentoEmpEdit').val(data[0].facilities.orcamento);
-	});				
+	});
 }
 
 var addNinchoIsset = new jBox("Tooltip",{
@@ -993,16 +1042,40 @@ new jBox("Mouse",{
 	zIndex:4e3
 	});
 
+var addNinchoIsset2 = new jBox("Tooltip",{
+	target:"#ninchoOpEdit2",
+	theme:"TooltipBorder",
+	trigger:"click",adjustTracker:!0,
+	closeOnClick:"body",
+	closeButton:"box",
+	animation:"move",
+	position:{x:"left",y:"top"},
+	outside:"y",
+	pointer:"left:20",
+	offset:{x:25},
+	content:"Digite um nincho que seja valido",
+	adjustDistance:{top:55,right:5,bottom:5,left:5},
+	zIndex:4e3
+	});
+
+new jBox("Mouse",{
+	attach:"#addNinchoEdit2",
+	position:{x:"right",y:"bottom"},
+	offset:{x:-5,y:5},
+	content:"Adicionar outro nincho",
+	zIndex:4e3
+	});
+
 	new jBox('Tooltip', {
 		attach: '.tooltip',
 		getTitle: 'data-jbox-title',
 		getContent: 'data-jbox-content'
 		});
-	
+
 	$( "#addNincho" ).click(function() {
 		$( "#addNichoOp" ).slideToggle();
 	});
-	
+
 	$("#addNinchoConfirm").click(function(){
 		var nincho = $('#ninchoOp').val().toLowerCase();
 		if(nincho && $.isNumeric(nincho)==false){
@@ -1015,10 +1088,27 @@ new jBox("Mouse",{
 		}
 	});
 
+	$( "#addNinchoEdit2" ).click(function() {
+		$( "#addNichoOpEdit2" ).slideToggle();
+	});
+
+	$("#addNinchoConfirmEdit2").click(function(){
+		var nincho = $('#ninchoOpEdit2').val().toLowerCase();
+		if(nincho && $.isNumeric(nincho)==false){
+		$('#selectNinchoEdit2').prepend('<option style="text-transform:uppercase;" value="'+nincho+'">'+nincho+'</option>').val(nincho);
+		$("#addNichoOpEdit2").slideUp(200);
+		$('#ninchoOpEdit2').val('');
+		}
+		else{
+			addNinchoIsset2.open();
+		}
+	});
+
+
 	function pegaId(id){
 		var myModal = new jBox('Modal', {
 		content: $('#modalDescricao'+id).data('description'),
-		});	
+		});
 		myModal.open();
 	  }
 
@@ -1041,7 +1131,7 @@ new jBox("Mouse",{
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-			}); 
+			});
 
 				var confirDelete = new jBox('Confirm', {
 				attach: '.button-1',
@@ -1064,7 +1154,7 @@ $(window).on('hashchange', function() {
 			}
 		}
 	});
-	
+
 	$(document).ready(function()
 	{
 		$(document).on('click', '.pagination a',function(event)
@@ -1104,7 +1194,7 @@ $(window).on('hashchange', function() {
 			datatype: "html"
 		}).done(function(data){
 			$("#table_data").empty().html(data);
-			
+
 		}).fail(function(jqXHR, ajaxOptions, thrownError){
 				alert('No response from server');
 		});
@@ -1118,7 +1208,7 @@ $(window).on('hashchange', function() {
 			datatype: "html"
 		}).done(function(data){
 			$("#table_data").empty().html(data);
-			
+
 		}).fail(function(jqXHR, ajaxOptions, thrownError){
 				alert('No response from server');
 		});
@@ -1129,10 +1219,10 @@ $(window).on('hashchange', function() {
 			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 		});
 
-		if(confirm('Deseja excluir?')){		
+		if(confirm('Deseja excluir?')){
 		$.ajax({
 				type:"POST",
-				url:'../api/administrativo/empresas/excluir',	
+				url:'../api/administrativo/empresas/excluir',
 				data: id,
 				processData : false,
 				beforeSend: function(){
@@ -1140,7 +1230,7 @@ $(window).on('hashchange', function() {
 				},
 				success: function(Response) {
 					console.log(Response);
-					
+
 				},
 				complete: function(){
 					load('close');
@@ -1170,16 +1260,16 @@ $(window).on('hashchange', function() {
 
 		getData(1);
 		var modalHors = new jBox('Modal', {
-		title: 'Adicionar Horarios de atendimento',	
+		title: 'Adicionar Horarios de atendimento',
 		content: $('#formHors'),
-		});	
-		
+		});
+
 
 		var modalCaract = new jBox('Modal', {
-		title: 'Adicionar caracteristicas da Empresa',	
+		title: 'Adicionar caracteristicas da Empresa',
 		content: $('#formCaract'),
-		});	
-		
+		});
+
 		$('#addHorarios').click(function(){
 			modalHors.open();
 		});
@@ -1222,21 +1312,21 @@ $(window).on('hashchange', function() {
 			modalCaract.toggle();
 			$('.selectCaract').val('nao');
 			$('.inputs-caract').val('nao');
-			
+
 		});
 		/*funcoes do editar empresa*/
 
 		var modalHorsEdit = new jBox('Modal', {
-		title: 'Editar Horarios de atendimento',	
+		title: 'Editar Horarios de atendimento',
 		content: $('#formHorsEdit'),
-		});	
-		
+		});
+
 
 		var modalCaractEdit = new jBox('Modal', {
-		title: 'Editar caracteristicas da empresa',	
+		title: 'Editar caracteristicas da empresa',
 		content: $('#formCaractEdit'),
-		});	
-		
+		});
+
 		$('#addHorariosEdit').click(function(){
 			modalHorsEdit.open();
 		});
@@ -1288,7 +1378,7 @@ $(window).on('hashchange', function() {
 
 			getEmpresa(page);
 		});
-		
+
 		function getEmpresa(page){
 			$.ajax({
 				url: '../api/administrativo/empresas?page='+page,
@@ -1299,7 +1389,7 @@ $(window).on('hashchange', function() {
 			});
 
 		}
-*/		
+*/
 		/*$("#myInput").on("keyup", function() {
 			var value = $(this).val().toLowerCase();
 			$("#myTable tr").filter(function() {
@@ -1321,17 +1411,17 @@ $(window).on('hashchange', function() {
 					$("#myTable tr").filter(function() {
 				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
-					
+
 				}).fail(function(jqXHR, ajaxOptions, thrownError){
 						alert('No response from server');
 				});
-				
+
 			}
 			else{
 				getData(1)
 			}
 		});
-		
+
 
 		validation = '';
 		function load(action){
@@ -1344,7 +1434,7 @@ $(window).on('hashchange', function() {
 			}
 		}
 
-		
+
 		var successDelete = new jBox('Modal', {
 			attach: '#test',
 			title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
@@ -1355,7 +1445,7 @@ $(window).on('hashchange', function() {
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-			}); 
+			});
 
 		var modalEmpCadastro = new jBox('Modal', {
 			attach: '#test',
@@ -1367,11 +1457,22 @@ $(window).on('hashchange', function() {
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-			}); 
+			});
 		var modalEmpEmailExist = new jBox('Modal', {
 			attach: '#test',
 			title: '<div width="100%" class="text-center"><i class="fa fa-times fa-3x" style="color: red"></i></div>',
 			content: "Esse email já existe! Tente outro.",
+			animation: 'zoomIn',
+			audio: '../audio/bling2',
+			volume: 80,
+			closeButton: true,
+			delayOnHover: true,
+			showCountdown: true
+		});
+		var modalEmailNotExist = new jBox('Modal', {
+			attach: '#test',
+			title: '<div width="100%" class="text-center"><i class="fa fa-times fa-3x" style="color: red"></i></div>',
+			content: "O email a qual você atribuiu a empresa não existe! Tente outro.",
 			animation: 'zoomIn',
 			audio: '../audio/bling2',
 			volume: 80,
@@ -1389,7 +1490,7 @@ $(window).on('hashchange', function() {
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-		}); 
+		});
 		var modalEditConfirm = new jBox('Modal', {
 			attach: '#test',
 			title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
@@ -1400,7 +1501,7 @@ $(window).on('hashchange', function() {
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-		}); 
+		});
 
 		function limparInputs(){
 			$('#emailUser').val('');
@@ -1419,7 +1520,10 @@ $(window).on('hashchange', function() {
 			$('#passEmp').val('');
 			$('#bannerEmp').val('');
 			$('#telEmp').val('');
-			$('#statusEmp').val('ativo');
+			$('#statusEmp').val('ativa');
+			$('#emailContato').val('');
+			$('#selectNincho').val('');
+
 
 		}
 
@@ -1427,21 +1531,21 @@ $(window).on('hashchange', function() {
 			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 		});
 
-		$("#form-data-edit").submit(function(e){	 
+		$("#form-data-edit").submit(function(e){
 			$('#inputIdEdit').attr('value', idEmpresa);
 			$.ajax({
 				type:"POST",
-				url:'../api/administrativo/empresas/editar',	
+				url:'../api/administrativo/empresas/editar',
 				data: new FormData(this),
 				contentType: false,
 				cache: false,
 				processData: false,
-				
+
 				beforeSend: function(){
 					load("open");
 				},
 				success: function(Response) {
-					let valid = Response; 
+					let valid = Response;
 					validation = valid;
 					console.log(Response);
 				},
@@ -1458,11 +1562,16 @@ $(window).on('hashchange', function() {
 			e.preventDefault();
 		});
 
-		$("#form-data").submit(function(e){	 
-
-			var tamPass = $('#passEmp').val().length;
-			var tamConfPass = $('#confPassEmp').val().length;
-			
+		$("#form-data").submit(function(e){
+			var valid = $('#emailVincule').val();
+			if(valid.length <= 0){
+				var tamPass = $('#passEmp').val().length;
+				var tamConfPass = $('#confPassEmp').val().length;
+			}
+			else{
+				var tamPass = 9;
+				var tamConfPass = 9;
+			}
 			if(tamPass < 8 && tamConfPass < 8 ){
 				var errorSenhaFraca = new jBox("Tooltip",{
 					target:"#submitEmp",
@@ -1483,22 +1592,22 @@ $(window).on('hashchange', function() {
 			}
 			else{
 
-			
+
 			if($('#passEmp').val() === $('#confPassEmp').val()){
-				
+
 			$.ajax({
 				type:"POST",
-				url:'../api/administrativo/empresas/cadastro',	
+				url:'../api/administrativo/empresas/cadastro',
 				data: new FormData(this),
 				contentType: false,
 				cache: false,
 				processData: false,
-				
+
 				beforeSend: function(){
 					load("open");
 				},
 				success: function(Response) {
-					let valid = Response; 
+					let valid = Response;
 					validation = valid;
 					console.log(Response);
 				},
@@ -1507,9 +1616,12 @@ $(window).on('hashchange', function() {
 				},
 				complete: function(){
 					load("close");
-					if(validation=='emailExist'){
+					if(validation == 'emailNotExist'){
+						modalEmailNotExist.open();
+					}
+					else if(validation== 'emailExist'){
 						modalEmpEmailExist.open();
-						
+
 					}else{
 						$('#addEmployeeModal').modal('hide');
 						modalEmpCadastro.open();

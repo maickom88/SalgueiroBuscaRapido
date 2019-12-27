@@ -193,6 +193,7 @@
         </div>
     </div>
 </section>
+
 <section id="reviwes">
    @include('paginaIndividual.pageComments')
 </section>
@@ -240,63 +241,11 @@
     </div>
 </section>
 
-<section id="contato">
-    <div class="container contato-empresa">
-	 @if(!empty($empresa->novidades))
-	 @php
-		$novidades = $empresa->novidades;
-	 @endphp
-        <h4>Última Novidade!</h4>
-        @foreach ($novidades as $novidade)
-		  @php
-			$avatar = $empresa->logoMarca;
-		  @endphp
-				<div style="margin-bottom:20px; background:url({{asset("../img/bg.png")}}); background-size:size; background-repeat:no-repeat; border-radius:5px; padding:10px; box-shadow: 0px 0px 3px rgba(0,0,0,0.2)">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 text-center">
-							<img src={{asset('storage/logo-empresas/'.$avatar)}} style="border-radius: 50%; border: 6px solid #fff" width="120"  alt="">
-						</div>
-						<div class="col-md-9">
-							<p style="color:white; font-size:21px;">{{$novidade->content}}</p>
-						</div>
-					</div>
-					
-						<div class="page-head">
-						<div class="demo-gallery">
-						<ul id="lightgallery">
-					@if(!empty($novidade->photos))
-					
-					@php
-						$email = $empresa->permissions->users->email;
-						$count = $novidade->photos->count();
-					for ($i=0; $i <$count ; $i++):
-					
-					@endphp				
-					<li  class="visi" data-src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
-					<a href="">
-					<img class="img-responsive" src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
-					<div class="demo-gallery-poster">
-					<img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
-					</div>
-					</a>
-					</li>
-					@php
-					endfor
-					@endphp
-					
-				@endif
-				
-					</ul>
-					</div>
-					</div>
-				</div>
-		  </div>
-		  @endforeach
-		@endif
-    </div>
-</section>
-
+@if($empresa->novidades->count() > 0)
+<section id="novidades" style="background:#F9F9F9">
+@include('paginaIndividual.pageNovidades')
+</section>	
+@endif
 
 <section id="horario-endereco">
     <div class="container">
@@ -457,12 +406,53 @@
 @endif
 
 <script>
-
 	$('#lightgallery').lightGallery({
 	pager: true
 	});
-$(function(){
+
+	$(window).on('hashchange', function() {
+		if (window.location.hash) {
+			var page = window.location.hash.replace('#', '');
+			if (page == Number.NaN || page <= 0) {
+					return false;
+			}else{
+					getData(page);
+			}
+		}
+	});
 	
+		$(document).on('click', '.pagination a',function(event)
+		{
+			event.preventDefault();
+
+			$('li').removeClass('active');
+			$(this).parent('li').addClass('active');
+
+			var myurl = $(this).attr('href');
+			var page=$(this).attr('href').split('page=')[1];
+
+			getData(page);
+		});
+
+	function getData(page){
+		var id = {{$empresa->id}};
+		$.ajax(
+		{
+			url: '../../api/page-novidades/'+id+'?page=' + page,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$("#novidades").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+				alert('No response from server');
+		});
+	}
+
+	
+	
+$(function(){
+	getData(1);
 	IsLike();
 @if(Auth::check())
 	$("#form-data").submit(function(e){	

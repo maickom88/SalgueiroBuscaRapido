@@ -33,7 +33,7 @@ Route::get('painel/info/user/{id}', 'ControllersApi\UserInfoController@show')->n
 Route::post('painel/info/alterar', 'ControllersApi\UserInfoController@update')->name('alteraInfoApi');
 
 Route::post('painel/empresa/editar/alterar', 'ControllersApi\Empresas@update')->name('alteraEmpApi');
-	
+
 Route::post('administrativo/empresas/cadastro', 'ControllersApi\AdmController@adicionarEmpresa')->name('addEmp');
 
 Route::get('administrativo/empresas', 'ControllersApi\AdmController@listarEmpresas')->name('listarEmp');
@@ -75,6 +75,14 @@ Route::get('empresa/like/{empresaId}/{userId}', 'ControllersApi\LikeController@l
 Route::get('administrativo/empresas/lista-todas-mensagens', 'ControllersApi\AdmController@listarTodasMensagens');
 
 
+Route::get('administrativo/usuarios/lista-todos-usuarios', 'ControllersApi\AdmController@listarUsuarios');
+
+
+
+Route::get('administrativo/usuarios/lista-usuarios', 'ControllersApi\AdmController@usuariosPaginate');
+
+
+
 Route::get('administrativo/lista-parcerias-ativas', 'ControllersApi\AdmController@listarTodasParceriasAtivas');
 
 
@@ -95,4 +103,21 @@ Route::post('empresa/comentar', 'ControllersApi\CommentController@adicionarComme
 
 Route::post('painel/postar', 'ControllersApi\FeedController@postar');
 
+
+Route::get('page-novidades/{id}', 'ControllersApi\FeedController@show');
+
 Route::resource('painel/editar/empresa', 'ControllersApi\EmpresaController');
+
+
+Route::post('administrativo/usuarios/editar', 'ControllersApi\AdmController@updateUser');
+
+Route::post('administrativo/usuarios/excluir', 'ControllersApi\AdmController@deleteUser');
+
+
+Route::get('administrativo/empresas/listar-contratos', 'ControllersApi\AdmController@listarTodosContratos');
+
+
+Route::get('administrativo/empresas/contratos', 'ControllersApi\AdmController@listarContratos');
+
+
+Route::get('administrativo/empresas/contratos-expirados', 'ControllersApi\AdmController@listarContratosExpirados');

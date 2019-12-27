@@ -45,4 +45,11 @@ class FeedController extends Controller
 
 		return 'ok';
 	}
+
+	public function show($id){
+	$empresa = Empresa::find($id);
+	$novidades = NovidadeEmpresa::where('empresa_id', $id)->orderBy('id','desc')->paginate(1);
+	return view('paginaIndividual.pageNovidades', compact('novidades', 'empresa'));
+	}
+
 }

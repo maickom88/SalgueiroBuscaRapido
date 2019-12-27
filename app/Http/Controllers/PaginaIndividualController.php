@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empresa\Empresa;
+use App\Empresa\Feed\NovidadeEmpresa;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,7 @@ class PaginaIndividualController extends Controller
    public function page($nome, $id){
 		$empresas = Empresa::all()->where('status', 'ativa')->random(4);
 		$empresa = Empresa::find($id);
+		$novidades = NovidadeEmpresa::where('empresa_id', $id)->orderBy('id','desc')->paginate(1);
 		if(!isset($empresa)){
 			return 'Erro';
 		}
@@ -81,9 +83,9 @@ class PaginaIndividualController extends Controller
 		if(Auth::check()){
 			$idUser = Auth::user()->id;
 			$user = User::find($idUser);
-			return view('paginaIndividual.page', compact('empresa', 'tags', 'array', 'user', 'empresas'));
+			return view('paginaIndividual.page', compact('empresa', 'tags', 'array', 'user', 'empresas', 'novidades'));
 		}
 		
-		return view('paginaIndividual.page', compact('empresa', 'tags', 'array','empresas'));
+		return view('paginaIndividual.page', compact('empresa', 'tags', 'array','empresas' ,'novidades'));
 	}
 }

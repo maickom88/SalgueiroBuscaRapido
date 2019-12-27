@@ -165,7 +165,7 @@ $telefone = $user->info->telefone;
 			<ul class="sidebar-menu" id="nav-accordion">
 				<p class="centered"><a href={{route('userPerfil')}}>
 				@if(empty($user->info->avatar))
-								<img src={{asset('storage/avatar/212511201910055d990a37ee653.jpeg')}} class="img-circle" width="80">
+								<img src={{asset('img/profilezim.png')}} class="img-circle" width="80">
 								@else
 								<img id="avatar-menu" src="" class="img-circle" width="80">
 								@endif
@@ -182,7 +182,7 @@ $telefone = $user->info->telefone;
 						<i class="fa fa-user"></i>
 						<span>Meu perfil</span>
 					</a>
-				</li>
+				</li>	
 				<li class="sub-menu">
 					<a class="@yield('empresa')" href={{route('editarEmp')}}>
 						<i class="fa fa-briefcase"></i>

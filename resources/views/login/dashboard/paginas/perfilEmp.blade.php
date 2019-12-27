@@ -28,31 +28,14 @@
 					</div>
 					<div class="col-md-4 profile-text">
 						<h3>{{Auth::user()->name}}</h3>
-						@if(!empty($user->info))
-							@if(!empty($user->info->idade))
-								<h6 id="idadeShow"></h6>
-							@else
-							<h6>Defina sua idade</h6>
-							@endif
-						@else
-						<h6>Defina sua idade</h6>
-						@endif
-						
-						@if($user->permissions->blogueiro=="nao")
 						<p>Permissão de Empresário<i class="fa fa-user"></i></p>
-						@else
-						<p>Permissão de Blogueiro <i class="fa fa-user"></i></p>
-						@endif
-						<br>
-						
-
 					</div>
 					<div class="col-md-4 centered">
 							<div class="profile-pic">
 								@if(empty($user->info->avatar))
-								<p><img src={{asset('storage/avatar/212511201910055d990a37ee653.jpeg')}} class="img-circle"></p>
+								<p><img class="avatarImg" src={{asset('img/profilezim.png')}} class="img-circle"></p>
 								@else
-								<p><img  id="avatarImg" src="" class="img-circle"></p>
+								<p><img  class="avatarImg" src="" class="img-circle"></p>
 								@endif
 							</div>
 						</div>
@@ -137,12 +120,7 @@
 					<input type="file" id="avatar" name="imagem" class="file-pos">
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">IDADE</label>
-				<div class="col-lg-6">
-			<input type="text" placeholder=" " id="idade" name="idade" class="form-control">
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label class="col-lg-2 control-label">INTERESSE</label>
 				<div class="col-lg-6">
@@ -223,13 +201,18 @@
 
 				$.getJSON('../api/painel/info/user/'+idUser , function(data){
 					
-				$('#idade').val(data.idade);
+				
 				$('#interesse').val(data.interesse);
 				$('#endereco').val(data.endereco);
 				$('#telefone').val(data.telefone);
 				$('#email').val(data.email);
-				$('#avatarImg').attr('src', "{!!asset('storage/avatar/"+data.avatar+"')!!}");
-				$('#idadeShow').text(data.idade);
+				if(data.avatar){
+					$('.avatarImg').attr('src', "{!!asset('storage/avatar/"+data.avatar+"')!!}");
+					$('.avatar-menu').attr('src', "{!!asset('storage/avatar/"+data.avatar+"')!!}");
+				}
+				else{
+					$('.avatarImg').attr('src', "{!!asset('img/profilezim.png')!!}");
+				}
 				$('#enderecoShow').html('Endereço: <br/>'+data.endereco);
 				$('#telefoneShow').html('Telefone: '+data.telefone);
 				});				
@@ -253,7 +236,7 @@
 	var modalErroNumber = new jBox('Modal', {
 		attach: '#test',
 		title: '<div width="100%" class="text-center"><i class="fa fa-times-circle fa-3x" style="color: red"></i></div>',
-		content: "Sua idade ou telefone só pode conter numeros!",
+		content: "Seu telefone só pode conter numeros!",
 		animation: 'zoomIn',
 		audio: '../audio/bling2',
 		volume: 80,
@@ -279,10 +262,9 @@
 
 
 		$("#form-data").submit(function(e){	 
-			var valid = $('#idade').val()
 			var validtel = $('#telefone').val();
 
-			if($.isNumeric(valid) && $.isNumeric(validtel)){
+			if($.isNumeric(validtel)){
 				$.ajax({
 				type:"POST",
 				url:'../api/painel/info/alterar',	

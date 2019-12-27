@@ -3,7 +3,7 @@
 
 @section('titulo', 'SALGUEIRO BUSCA RAPIDO: EVENTOS')
 
-@section('eventos', 'active')
+@section('novidade', 'active')
 
 @section('conteudo')
 <section id="main-content">
@@ -14,9 +14,7 @@
 				
 				<form role="form" id="form-data" class="form-horizontal" enctype="multipart/form-data">
 					@csrf
-					<textarea name="editor1" id="editor1" rows="10" cols="80">
-					
-					</textarea>
+					<textarea name="editor1" id="editor1" rows="10" cols="80">Digite suas novidades aqui!</textarea>
 					<input type="hidden" value={{$user->empresas->id}} name="empresa">
 					<label class="btn btn-theme04 btn-lg" id="photosLabel" style="margin-top:20px;" for="photos">Enviar fotos</label>
 					<label class="btn btn-theme02 btn-lg"style="margin-top:20px;display:none;" id="cancelImg" for=""  data-toggle="tooltip" title="Cancelar"><i class="fa fa-times"></i></label>
@@ -31,6 +29,11 @@
 @section('scripts')
 <script src="//cdn.ckeditor.com/4.13.0/basic/ckeditor.js"></script>
 <script>
+
+	$(function(){
+		
+		
+	});
 	$('#photos').change(function(){
 		var arquivos = $('#photos')[0].files;
 		var quantArquivos = arquivos.length;
@@ -51,7 +54,48 @@
 	});
 
 	CKEDITOR.replace('editor1');
+
+	var modalNovidadeError = new jBox('Modal', {
+		attach: '#test',
+		title: '<div width="100%" class="text-center"><i class="fa fa-times fa-3x" style="color: red"></i></div>',
+		content: "Error ao publicar novidade, tente novamente!",
+		animation: 'zoomIn',
+		audio: '../audio/bling2',
+		volume: 80,
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+		}); 
+
+	var modalNovidade = new jBox('Modal', {
+		attach: '#test',
+		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+		content: "Novidade publicada com sucesso!",
+		animation: 'zoomIn',
+		audio: '../audio/bling2',
+		volume: 80,
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+		}); 
 	
+
+	function load(action){
+			var load_div = $(".loader");
+			if(action==="open"){
+			load_div.addClass("is-active");
+			}
+			else{
+			load_div.removeClass("is-active");
+			}
+		}
+	function limparInput(){
+			$('#photos').val();
+			$('#photosLabel').text('Enviar fotos');
+			$('#cancelImg').hide();
+			$('#editor1').text('');
+		};
+
 
 	$.ajaxSetup({
 		headers: {"X-CSRF-TOKEN":"{{csrf_token()}}"}
@@ -67,17 +111,24 @@
 			contentType: false,
 			cache: false,
 			processData: false,
+			async: true,
+			beforeSend: function(){
+				load('open');
+			},
 			success: function(Response) {
 				console.log(Response);
 			},
-			error: function(error){
-				console.log(error);
+			error: function(){
+				modalNovidadeError.open();
 			},
 			complete: function(){
-				alert('enviado');
+				load('close')
+				modalNovidade.open();
+				limparInput();
 			}
 		});
 		e.preventDefault();
+		
 	});
 </script>
 @endsection

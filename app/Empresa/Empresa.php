@@ -17,11 +17,16 @@ use App\Empresa\Feed\Post;
 use App\pageView\View;
 use App\Empresa\Novidade;
 use App\Empresa\Album\PhotosFeed;
+use App\Empresa\Contrato\Contrato;
+
 class Empresa extends Model
 {
-	
+
 	public function likes(){
 		return $this->hasMany(Like::class , 'empresa_id');
+	}
+    public function contratos(){
+		return $this->hasMany(Contrato::class);
 	}
 	public function novidades(){
 		return $this->hasMany(NovidadeEmpresa::class);
@@ -33,7 +38,7 @@ class Empresa extends Model
 	public function comments(){
 		return $this->hasMany(Comment::class, 'empresa_id');
 	}
-	
+
 	public function album(){
 		return $this->hasMany(Album::class);
 	}
@@ -50,5 +55,5 @@ class Empresa extends Model
 	public function views(){
 	return $this->hasOne(View::class);
 	}
-	
+
 }

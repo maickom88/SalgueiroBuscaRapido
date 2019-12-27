@@ -139,6 +139,7 @@
                     <textarea required id="content" name="content" placeholder="Digite sua mensagem que entraremos em contato..."></textarea>
                 </div>
             </div>
+				
             <div class="btn-enviar-comentario">
                 <label for="enviar"  id="enviarBTN">Enviar<i class="fas fa-paper-plane"></i></label>
                 <div class="checado" id="checado" style="display:none;">

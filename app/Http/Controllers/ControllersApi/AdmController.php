@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\ControllersApi;
-
 use App\pageView\View;
 use App\Empresa\facilities\Facilite;
 use App\User;
@@ -12,30 +11,79 @@ use App\Http\Controllers\Controller;
 use App\Empresa\Open\Open;
 use App\Empresa\Album\Album;
 use App\Contact\Contact;
+use App\Empresa\Contrato\Contrato;
 use App\Parceiro;
+use \Datetime;
+use \DateInterval;
 class AdmController extends Controller
 {
-  public function adicionarEmpresa(Request $req)
+    public function __construct(){
+        $this->insertedAt = new DateTime();
+    }
+
+    public function adicionarEmpresa(Request $req)
 	{
+        $contrato = new Contrato();
 		$view = new View();
 		$open = new Open();
 		$facilite = new Facilite();
 		$empresa = new Empresa();
-		$name = $req->input('name');
-      $email = $req->input('emailEmp');
-      $pass = $req->input('password');
-		$album = new Album();
-		$validation = $this->adicionaUser($name, $email, $pass);
-
-		if($validation == 'emailExiste'){
-			return response()->json("emailExist");
+		if($req->input('emailVincule')){
+			$email = $req->input('emailVincule');
 		}
-		
-		if($validation != 'true'){
-			return response()->json('ErroLogin');
+		else{
+			$name = $req->input('name');
+			$email = $req->input('emailEmp');
+			$pass = $req->input('password');
+			$album = new Album();
+			$validation = $this->adicionaUser($name, $email, $pass);
+			if($validation == 'emailExiste'){
+				return response()->json("emailExist");
+			}
+			if($validation != 'true'){
+				return response()->json('ErroLogin');
+			}
 		}
 
 		$user = User::where('email', $email)->get();
+		if($user->count() <= 0){
+			return response()->json('emailNotExist');
+		}
+		$user[0]->permissions->empresario ='sim';
+		$user[0]->permissions->user ='nao';
+		$user[0]->permissions->adm = 'nao';
+		$user[0]->permissions->blogueiro = 'nao';
+		$user[0]->permissions->save();
+
+        $contrato->tipo = $req->input('tipoContrato');
+        $contrato->valor = $req->input('valorContrato');
+        date_default_timezone_set("Brazil/East");
+        $inicio = date("Y/m/d");
+		$inicioDate = date("Y/m/d", strtotime($inicio));;
+        $tipo =  $req->input('tipoContrato');
+        if($tipo == 'mensal'){
+            $data = $inicio;
+            $data = DateTime::createFromFormat('Y/m/d', $data);
+            $data->add(new DateInterval('P30D')); // 30 dias
+            $fim = $data->format('Y/m/d');
+            $fimDate = date("Y/m/d", strtotime($fim));
+        }
+		   if($tipo == 'trimensal'){
+            $data = $inicio;
+            $data = DateTime::createFromFormat('Y/m/d', $data);
+            $data->add(new DateInterval('P90D')); // 90 dias
+            $fim = $data->format('Y/m/d');
+            $fimDate = date("Y/m/d", strtotime($fim));
+        }
+		   if($tipo == 'semestral'){
+            $data = $inicio;
+            $data = DateTime::createFromFormat('Y/m/d', $data);
+            $data->add(new DateInterval('P180D')); //180 dias
+				$fim = $data->format('Y/m/d');
+				$fimDate = date("Y/m/d", strtotime($fim));
+        }
+        $contrato->inicio_contrato = $inicioDate;
+        $contrato->fim_contrato = $fim;
 
 		if(!empty($req->input('nameEmp'))){
 			$empresa->name = $req->input('nameEmp');
@@ -140,10 +188,10 @@ class AdmController extends Controller
 		}else{
 			$open->domingo = 'Fechado';
 		}
-	
-				
+
+
 		if($req->hasFile('imagem') && $req->file('imagem')->isValid()){
-				
+
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->imagem->extension();
 			$nameFile = "{$name}.{$extension}";
@@ -159,7 +207,7 @@ class AdmController extends Controller
 			$validViews = $user[0]->permissions->empresas->views()->save($view);
 		}
 		if($req->hasFile('banner') && $req->file('banner')->isValid()){
-				
+
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->banner->extension();
 			$nameFile = "{$name}.{$extension}";
@@ -172,14 +220,14 @@ class AdmController extends Controller
 			$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 			$validOpen = $user[0]->permissions->empresas->open()->save($open);
 			$validViews = $user[0]->permissions->empresas->views()->save($view);
-			
+
 		}
 
 		$valid = $valid = $user[0]->permissions->empresas()->save($empresa);
 		$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 		$validOpen = $user[0]->permissions->empresas->open()->save($open);
 		$validViews = $user[0]->permissions->empresas->views()->save($view);
-
+		$validContrato =  $user[0]->permissions->empresas->contratos()->save($contrato);
 		if($req->hasFile('album')){
 			$len = count($req->album);
 			$id = $user[0]->id;
@@ -190,8 +238,8 @@ class AdmController extends Controller
 				$nameFile = "{$name}.{$extension}";
 				$upload = $req->album[$i]->storeAs('album-empresa/'.$email, $nameFile);
 				$valid = $this->savePhotos($id, $nameFile);
-			}				
-			
+			}
+
 		}
 
 		if($valid){
@@ -200,7 +248,7 @@ class AdmController extends Controller
 			return response()->json('Error');
 	}
 
-	public function adicionaUser($name, $email, $pass){	
+	public function adicionaUser($name, $email, $pass){
 		$user = new User();
       $per = new Permission();
 		$ifExist = $user->where('email',$email)->count();
@@ -223,12 +271,12 @@ class AdmController extends Controller
 			}
 			else{
 				return 'false';
-			}	
+			}
 	}
 
-	
+
 	public function listarEmpresas(Request $request){
-	
+
 	$empresas = Empresa::orderBy('id','desc')->paginate(5);
 
 	if ($request->ajax()) {
@@ -237,9 +285,9 @@ class AdmController extends Controller
 
 	return view('login.dashboardManenger.empresas',compact('empresas'));
 	}
-	
+
 	public function listarTodasEmpresas(Request $request){
-	
+
 	$todas = "MostrarTodas";
 	$empresas = Empresa::all();
 
@@ -250,9 +298,9 @@ class AdmController extends Controller
 	return view('login.dashboardManenger.empresas',compact('empresas', 'todas'));
 	}
 
-	
+
 	public function excluirEmpresas(Request $id){
-		
+
 		$idEmp = $id->keys()[0];
 		$empresa = Empresa::find($idEmp);
 		$valid = $empresa->delete();
@@ -267,7 +315,7 @@ class AdmController extends Controller
 			return view('login.dashboardManenger.empresasAll', compact('empresas', 'desativadas'));
 		}
 	}
-	
+
 	public function listarEmpresasAtivas(Request $request){
 		$desativadas = "dasativada";
 		$empresas = Empresa::where('status', 'ativa')->orderBy('id', 'desc')->get();
@@ -278,8 +326,8 @@ class AdmController extends Controller
 	}
 	public function buscarEmp($id){
 		$empresa = Empresa::where('id',$id)->with('facilities', 'open')->get();
-		
-		
+
+
 		return response()->json($empresa);
 	}
 
@@ -391,7 +439,7 @@ class AdmController extends Controller
 	return view('login.dashboardManenger.contato',compact('contact','parceiro'));
 	}
 	public function listarTodasMensagens(Request $request){
-	
+
 	$todas = "MostrarTodas";
 	$contact = Contact::all();
 
@@ -409,7 +457,7 @@ class AdmController extends Controller
 		return response()->json($valid);;
 	}
 	public function parceriaAprovar(Request $id){
-		
+
 		$idParceria = $id->keys()[0];
 		$parceria = Parceiro::find($idParceria);
 		$parceria->pedidos = 'Ativo';
@@ -440,7 +488,7 @@ class AdmController extends Controller
 	public function listarTodasParceriasPendentes(){
 		$todas = "MostrarTodas";
 		$parceiro = Parceiro::all()->where('pedidos', 'Desejo ser Parceiro do site!');
-		
+
 		return view('login.dashboardManenger.parceriaTabela', compact('parceiro', 'todas'));
 	}
 	public function parceriaNegar(Request $id){
@@ -450,4 +498,96 @@ class AdmController extends Controller
 		$valid = $parceria->save();
 		return response()->json($valid);
 	}
+
+	public function listarUsuarios(Request $request){
+
+	$todas = "MostrarTodas";
+	$users = User::all();
+		return view('login.dashboardManenger.usuariosAll', compact('users', 'todas'));
+	}
+
+	public function usuariosPaginate(Request $request){
+		$users = User::orderBy('id', 'desc')->paginate(5);
+
+		return view('login.dashboardManenger.usuariosAll', compact('users'));
+	}
+	public function updateUser(Request $request){
+		$idUser = $request->input('idUser');
+		$permission = $request->input('permissionUser');
+		$user = User::find($idUser);
+		if($permission == 'Administrador'){
+			$user->permissions->adm = 'sim';
+			$user->permissions->empresario = 'nao';
+			$user->permissions->user = 'nao';
+			$user->permissions->blogueiro = 'nao';
+			$valid = $user->permissions->save();
+		}
+		else if($permission == 'Blogueiro'){
+			$user->permissions->blogueiro = 'sim';
+			$user->permissions->empresario = 'nao';
+			$user->permissions->user = 'sim';
+			$user->permissions->adm = 'nao';
+			$valid = $user->permissions->save();
+		}
+		else if($permission == 'Empresarial'){
+			$user->permissions->empresario = 'sim';
+			$user->permissions->user = 'nao';
+			$user->permissions->adm = 'nao';
+			$user->permissions->blogueiro = 'nao';
+			$valid = $user->permissions->save();
+		}
+		else if($permission == 'Usúario'){
+			$user->permissions->user= 'sim';
+			$user->permissions->empresario = 'nao';
+			$user->permissions->blogueiro = 'nao';
+			$valid = $user->permissions->save();
+		}
+
+		return response()->json($valid);
+	}
+	public function deleteUser(Request $request){
+		$idUser = $request->input('idUser');
+		$permission = $request->input('idPermission');
+		$user = User::find($idUser);
+		if($permission == 'Empresarial'){
+			$user->permissions->empresas->delete();
+			$user->
+			$user->permissions->delete();
+			$valid = $user->delete();
+		}
+		if($permission == 'Blogueiro'){
+			$user->permissions->delete();
+			$valid = $user->delete();
+		}
+		if($permission == 'Administrador'){
+			$user->permissions->delete();
+			$valid = $user->delete();
+		}
+		if($permission == 'Usúario'){
+			if(!empty($user->infos)){
+				$user->infos->delete();
+			}
+			$user->permissions->delete();
+			$valid = $user->delete();
+		}
+		return response()->json($valid);
+	}
+    public function listarTodosContratos(Request $request){
+
+	$todas = "MostrarTodas";
+	$contratos = Contrato::all();
+		return view('login.dashboardManenger.pagamentosTabela', compact('contratos', 'todas'));
+	}
+
+    public function listarContratos(Request $request){
+		$contratos = Contrato::orderBy('id', 'desc')->paginate(5);
+
+		return view('login.dashboardManenger.pagamentosTabela', compact('contratos'));
+	}
+    public function listarContratosExpirados(Request $request){
+		$contratos = Contrato::where('status','expirado')->get();
+        $desativadas = "dasativada";
+		return view('login.dashboardManenger.pagamentosTabela', compact('contratos','desativadas'));
+	}
+
 }

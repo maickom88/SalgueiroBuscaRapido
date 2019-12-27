@@ -165,9 +165,9 @@ $telefone = $user->info->telefone;
 			<ul class="sidebar-menu" id="nav-accordion">
 				<p class="centered"><a href={{route('userPerfil')}}>
 				@if(empty($user->info->avatar))
-					<img src={{asset('img/profilezim.png')}} class="img-circle" width="80">
+					<img src={{asset('img/profilezim.png')}} class="img-circle avatarImg" width="80">
 				@else
-				<img id="avatar-menu" src="" class="img-circle" width="80">
+				<img id="avatar-menu" src="" class="img-circle avatarImg" width="80">
 				@endif
 				</a><img>
 				<h5 class="centered">{{Auth::user()->name}}</h5>
