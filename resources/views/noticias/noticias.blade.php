@@ -11,36 +11,36 @@
 @include('templetes.top-menu')
 <section class="blog">
     <div class="container-blog text-center">
-        
+
             <h1>ÚLTIMOS POSTs</h1>
-        <div class="lis">  
+        <div class="lis">
             <a href="#" style="color:#d1d1d1">Home</a>
             <a class="ponto">.</a>
             <a href="#">Blog</a>
         </div>
-        
+
     <div class="lestget">
             <a href="#posts">Ler Postagens</a>
     </div>
-    
+
     </div>
 </section>
 
 
 <section id="posts" class="posts">
         <div class="container">
-            <div class="row mb-4"> 
+            <div class="row mb-4">
     @foreach ($dados as $dado)
     <?php
 
-       
+
         $str = $dado->titulo;
 
         $str2 = str_replace(' ', '-', $str);
-                
-        
+
+
     ?>
-  
+
     <div class="col-md-4 card-content">
     <div class="card" style="width: 19rem;">
         <div class="img-card">
@@ -53,20 +53,20 @@
         </div>
         <div class="card-body">
         <h5 class="card-title"><a href={{route('blog.page' ,[$dado->titulo])}} > {{$dado->titulo}}</a></h5>
-        <p class="card-text">{{substr($dado->artigo, 0, 200)}}...</p> 
+        <p class="card-text">{{substr($dado->artigo, 0, 200)}}...</p>
             <a class="lermais" href={{route('blog.page' ,[$str2, $dado->id ]) }}>Ler mais <i class="fas fa-eye"></i></a>
         </div>
         <div class="dropdown-divider"></div>
         <div class="local">
             <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
         </div>
-    </div>    
+    </div>
 </div>
 
     @endforeach
     </div>
     </div>
-            
+
         <div class="pagination text-center">
             <div class="voltar">
                 <a href="#"><i class="fas fa-chevron-left"></i></a>
@@ -80,7 +80,7 @@
             <div class="numeracao">
                 <a href="#">3</a>
             </div>
-            
+
             <div class="next">
                 <a href="#"><i class="fas fa-chevron-right"></i></a>
             </div>

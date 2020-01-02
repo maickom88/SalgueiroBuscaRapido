@@ -7,7 +7,7 @@
 @section('conteudo')
 <section id="main-content">
 	<section class="wrapper site-min-height">
-	
+
 		<div class="row mt">
 			<div class="container">
 				<div class="table-wrapper" >
@@ -16,15 +16,15 @@
 						<div class="col-sm-6">
 						<h2 style="float: left;padding-right: 20px;">LISTAR <b>MENSAGENS DE CONTATO</b></h2>
 						<div class="escolhaop" style=" width: 100%; height: 100%;" >
-						
+
 					</div>
 					</div>
 					<div class="col-sm-6">
 						<a  href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
 						<div class="form-search" style="display:flex; margin-left: 70px">
-						
+
 						<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
-						</div>						
+						</div>
 					</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 						</div>
 																</div>
 
-				
+
 		</div>
 	</div>
 				</div>
@@ -63,7 +63,7 @@
 					</div>
 					<div class="col-sm-6">
 						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
-												
+
 					</div>
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 					@include('login.dashboardManenger.parceriaTabela')
 				</div>
 
-				
+
 		</div>
 	</div>
 			</div>
@@ -83,7 +83,12 @@
 
 @section('scripts')
 <script>
-
+    function pegaId(id){
+		var myModal = new jBox('Modal', {
+		content: $('#modalDescricao'+id).data('description'),
+		});
+		myModal.open();
+	  }
 	$("#myInput").on("keyup", function() {
 			var value = $(this).val().toLowerCase();
 			if(value){
@@ -97,17 +102,17 @@
 					$("#myTable tr").filter(function() {
 				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
-					
+
 				}).fail(function(jqXHR, ajaxOptions, thrownError){
 						alert('No response from server');
 				});
-				
+
 			}
 			else{
 				getData(1)
 			}
 		});
-		
+
 
 
 	var successDeleteContato = new jBox('Modal', {
@@ -120,7 +125,7 @@
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-			}); 
+			});
 	var parceriaAtivada = new jBox('Modal', {
 		attach: '#test',
 		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
@@ -131,7 +136,7 @@
 		closeButton: true,
 		delayOnHover: true,
 		showCountdown: true
-		}); 
+		});
 
 	function load(action){
 			var load_div = $(".loader");
@@ -144,15 +149,15 @@
 		}
 
 	function excluirMensagens(id){
-		 
+
 		$.ajaxSetup({
 			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 		});
 
-		if(confirm('Deseja excluir?')){		
+		if(confirm('Deseja excluir?')){
 		$.ajax({
 				type:"POST",
-				url:'../api/administrativo/lista-contato/exlcuir',	
+				url:'../api/administrativo/lista-contato/exlcuir',
 				data: id,
 				processData : false,
 				beforeSend: function(){
@@ -160,7 +165,7 @@
 				},
 				success: function(Response) {
 					console.log(Response);
-					
+
 				},
 				error: function(error){
 					console.log(error);
@@ -174,15 +179,15 @@
 	}
 	}
 
-	function parceria(id){	 
+	function parceria(id){
 		$.ajaxSetup({
 			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 		});
 
-		if(confirm('Deseja Aprovar?')){		
+		if(confirm('Deseja Aprovar?')){
 		$.ajax({
 				type:"POST",
-				url:'../api/administrativo/parceria/aprovar',	
+				url:'../api/administrativo/parceria/aprovar',
 				data: id,
 				processData : false,
 				beforeSend: function(){
@@ -190,26 +195,26 @@
 				},
 				success: function(Response) {
 					console.log(Response);
-					
+
 				},
 				complete: function(){
 					load('close');
 					parceriaAtivada.open();
-					
+
 					getPartner();
 				}
 		});
 	}
 	}
-	function negarParceria(id){	 
+	function negarParceria(id){
 		$.ajaxSetup({
 			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 		});
 
-		if(confirm('Deseja negar o pedido?')){		
+		if(confirm('Deseja negar o pedido?')){
 		$.ajax({
 				type:"POST",
-				url:'../api/administrativo/parceria/negar',	
+				url:'../api/administrativo/parceria/negar',
 				data: id,
 				processData : false,
 				beforeSend: function(){
@@ -217,18 +222,18 @@
 				},
 				success: function(Response) {
 					console.log(Response);
-					
+
 				},
 				complete: function(){
 					load('close');
 					parceriaAtivada.open();
-					
+
 					getPartner();
 				}
 		});
 	}
 	}
-	
+
 $(window).on('hashchange', function() {
 		if (window.location.hash) {
 			var page = window.location.hash.replace('#', '');
@@ -239,7 +244,7 @@ $(window).on('hashchange', function() {
 			}
 		}
 	});
-	
+
 	$(document).ready(function()
 	{
 		$(document).on('click', '.pagination a',function(event)

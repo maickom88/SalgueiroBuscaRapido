@@ -2,7 +2,7 @@
 
 @section('links')
 
-    
+
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
     <link href={{asset('css/style-contato.css')}} rel="stylesheet">
 	 <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
@@ -124,22 +124,22 @@
             @csrf
             <div class="mensagem-empresa">
                 <div class="tex-input">
-                    <label for="nome"><i class="fas fa-user-alt"></i></label>
+                    <label for="name"><i class="fas fa-user-alt"></i></label>
                     <input type="text"placeholder="Digite seu nome" id="name" name="name" required>
             </div>
             <div class="mensagem-empresa">
                 <label for="email"><i class="fas fa-envelope"></i></label>
-                <input type="email" placeholder="Digite seu email" id="email" name="email" required>
+                <input type="email" placeholder="Digite seu email" id="email" name="email" >
             </div>
             <div class="mensagem-empresa">
-                <label for="email"><i class="fas fa-phone"></i></label>
+                <label for="tel"><i class="fas fa-phone"></i></label>
                 <input type="text" placeholder="Digite seu telefone" id="tel" name="tel" required>
             </div>
                 <div class="text-area">
                     <textarea required id="content" name="content" placeholder="Digite sua mensagem que entraremos em contato..."></textarea>
                 </div>
             </div>
-				
+
             <div class="btn-enviar-comentario">
                 <label for="enviar"  id="enviarBTN">Enviar<i class="fas fa-paper-plane"></i></label>
                 <div class="checado" id="checado" style="display:none;">
@@ -149,7 +149,7 @@
                 <div class="loader" style="display:none;" id="loader">
                     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
-                <input type="submit" id="enviar" name="enviar">    
+                <input type="submit" id="enviar" name="enviar">
             </div>
         </form>
     </div>
@@ -175,11 +175,25 @@
 	headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
 	});
 
-	
-		
+
+
 	$(function(){
-		
-		
+    var numberTelError = new jBox("Tooltip",{
+	target:"#enviarBTN",
+	theme:"TooltipBorder",
+	trigger:"click",adjustTracker:!0,
+	closeOnClick:"body",
+	closeButton:"box",
+	animation:"move",
+	position:{x:"left",y:"top"},
+	outside:"y",
+	pointer:"left:20",
+	offset:{x:25},
+	content:"Digite apenas números!",
+	adjustDistance:{top:55,right:5,bottom:5,left:5},
+	zIndex:4e3
+	});
+
 	var ModalErrorNumber = new jBox('Modal', {
 			attach: '#test',
 			title: '<div width="100%" class="text-center"><i class="fa fa-times fa-3x" style="color: red"></i></div>',
@@ -190,8 +204,8 @@
 			closeButton: true,
 			delayOnHover: true,
 			showCountdown: true
-		}); 
-		
+		});
+
 
 
 	function load(action){
@@ -204,11 +218,11 @@
 	}
 	}
 
-	$("#form").submit(function(e){	 
+	$("#form").submit(function(e){
 	e.preventDefault();
 
 	var form = $(this);
-	var tel
+	var tel = $('#tel').val();
 
 	dados = {
 	nome: $('#name').val(),
@@ -217,31 +231,38 @@
 	content: $('#content').val()
 	};
 
+    if($.isNumeric(tel)){
+        $.ajax({
+        url: 'api/contato/mensagem',
+        data:dados,
+        type:"POST",
+        dataType: "json",
 
-	$.ajax({
-	url: 'api/contato/mensagem',
-	data:dados,
-	type:"POST",
-	dataType: "json",
+        beforeSend: function(){
+        load("open");
+        $('#enviarBTN').fadeOut();
+        },
+        success: function(callback){
+        console.log(callback);
+        },
+        error: function(error){
+            console.log(error);
+        },
+        complete: function(){
+        $('#name').val('');
+        $('#email').val('');
+        $('#tel').val('');
+        $('#content').val('');
+        load("close");
+        $( "#checado" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
+        $('#enviarBTN').delay( 1500 ).fadeIn( 450 );
+        }
+        });
+    }
+    else{
+        numberTelError.open();
+    }
 
-	beforeSend: function(){
-	load("open");
-	$('#enviarBTN').fadeOut();
-	},
-	success: function(callback){
-	console.log(callback);
-	},
-	complete: function(){
-	$('#name').val('');
-	$('#email').val('');
-	$('#tel').val('');
-	$('#content').val('');
-	load("close");
-	$( "#checado" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-	$('#enviarBTN').delay( 1500 ).fadeIn( 450 );
-	}
-	});
-	
 
 	});
 

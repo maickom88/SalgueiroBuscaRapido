@@ -832,8 +832,9 @@
 							</div>
 						</div>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer" style="display:flex">
 							<input type="button" id="modalClose" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                            <a type="button" id="visualizar" href="" class="btn btn-warning" target="_blank">Visualizar</a>
 							<input type="submit" class="btn btn-success" id ="submitEmp" value="Salvar alterações">
 						</div>
 					</form>
@@ -999,6 +1000,9 @@ function carregarEmpresa(id){
 	idEmpresa = id
 	$.getJSON('../api/administrativo/empresas/buscar/'+id , function(data){
 		$('#nameEmpEdit').val(data[0].name);
+        var nome = data[0].name;
+        var nomeUrl = nome.replace(" ", '-');
+        $('#visualizar').attr('href', '../empresa/'+nomeUrl+'/'+idEmpresa);
 		$('#descriptionEmpEdit').val(data[0].description);
 		$('#tagsEmpEdit').val(data[0].tags);
 		$('#selectNinchoEdit').val(data[0].nincho);

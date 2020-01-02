@@ -48,7 +48,7 @@
                                     <option value="">&#xf236  Hotéis</option>
                                     <option value="">&#xf1fb  Farmáçias</option>
                                     <option value="">&#xf0ad  Oficinas</option>
-                                    <option value="">&#xf21e  Academias</option> 
+                                    <option value="">&#xf21e  Academias</option>
                                 </select>
                                 <label for="btn-enviar"class="btn-label-enviar"><i class="fas fa-search-location"></i>Buscar</label>
                                 <input type="submit" name="btn-enviar" id="btn-enviar" >
@@ -62,9 +62,9 @@
                 <!--************************************
                         Home Slider End
                 *************************************-->
-        
+
     <!--Exit header-->
-    
+
     <!--Chamada-usuario-->
     <section class="intro-area white" id="intro">
         <div class="container">
@@ -100,7 +100,7 @@
                 <div class="intro-block">
                     <span class="intro-icon"><i class="fas far fa-handshake"></i></span>
                     <h3>Compras e vendas</h3>
-                    <p> 
+                    <p>
                     Anucie na aba de compras e vendas salgueiro, venda ou alugue imovéis, carros e qualqueis outros objeto.
                     </p>
                 </div>
@@ -111,7 +111,7 @@
                 <a href="cadastro.html">Cadastre-se!</a>
             </div>
         </div>
-    
+
     </div>
     </section>
     <!--Fim Chamada-->
@@ -147,12 +147,12 @@
                                 <h6 style="text-transform:capitalize">{{$emp->nincho}}</h6>
                             </div>
                             <div class="card-body">
-										 @php
-											$str = $emp->name;
-											$str2 = str_replace(' ', '-', $str);
-										 @endphp	
+                                @php
+                                    $str = $emp->name;
+                                    $str2 = str_replace(' ', '-', $str);
+                                @endphp
                                 <h5 class="card-title"><a href="/empresa/{{$str2}}/{{$emp->id}}" >{{$emp->name}}</a></h5>
-                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="#" style="color:blue;">Ler mais</a></p> 
+                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="#" style="color:blue;">Ler mais</a></p>
                             </div>
                             <div class="star">
                                 <i class="fas fa-star"></i>
@@ -165,16 +165,16 @@
                             <div class="local">
                                 <span><i class="fas fa-map-marker-alt"></i></span><p>{{$emp->location}}</p>
                             </div>
-                        </div>    
+                        </div>
                     </div>
 						  @endforeach
-					
+
                 </div>
             </div>
     </section>
     <!--End contedo cards slide-->
-    
-    
+
+
     <section class="chamada-app">
         <div class="container text-center">
             <div class="row">
@@ -186,7 +186,7 @@
                         </p>
                         <span class="android"><i class="fab fa-android"></i></span>
                         <span class="ios"><i class="fab fa-apple"></i></span>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -204,14 +204,14 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
 				</div>
 				<div class="modal-body text-center">
-					<h4>Inscreva-se</h4>	
+					<h4>Inscreva-se</h4>
 					<p>Inscreva-se para receber as novidades das empresas, descontos, noticias da cidade e eventos</p>
 					<div class="form-group">
 						<input type="email" class="form-control" placeholder="Digite seu email..." required>
 						<input type="submit" class="btn btn-primary" value="Subscribe">
 					</div>
 				</div>
-			</form>	
+			</form>
                      </div>
                   </div>
                     </div>
@@ -233,14 +233,14 @@
             </div>
         </div>
         <div class="container">
-               
+
             <div class="row card-promo">
                 <div class="col-md-4 card-conteudo">
                         <div class="promo-atual">
                                 <a href="#">%50</a>
                             </div>
                         <div class="card" style="width: 18rem;">
-                            
+
                             <img class="card-img-top" src={{asset('img/img-promo.png')}} alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Carne Assada</h5>
@@ -291,7 +291,7 @@
             </div>
         </div>
     </section>
-    
+
     <!--Fim de promoções-->
     <section class="noticias">
         <div class="container">
@@ -304,7 +304,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="container">
             <div class="row">
                 <div class="col-md-4 card-content">
@@ -319,13 +319,13 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="#">Notícias 1</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="local">
                             <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-md-4 card-content">
                     <div class="card" style="width: 19rem;">
@@ -339,13 +339,13 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="#">Notícias 2</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="local">
                             <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-md-4 card-content">
                     <div class="card" style="width: 19rem;">
@@ -359,13 +359,13 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="#">Notícias 3</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> 
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="local">
                             <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
@@ -374,14 +374,14 @@
                 <div class="col-md-12 text-center">
                     <button class="btn btn-primary"><a href={{route('blog.noticias')}}  style="color:white;text-decoration:none;">Ler mais <i class="fas fa-eye"></i></a></button>
                 </div>
-            </div> 
+            </div>
         </div>
-    
+
     </section>
     <!--End News-->
     <!--buy and sell-->
-    
-    <section class="compras">      
+
+    <section class="compras">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -401,9 +401,9 @@
                     </div>
                 </div>
             <div>
-        </div>    
+        </div>
     </section>
-    
+
     <!--end Buy and sell-->
 
 
@@ -422,8 +422,8 @@
 <!--Slid card-->
 <script>
 
-	
-	
+
+
     $('.card-slide').slick({
         dots: true,
         infinite: false,
@@ -505,7 +505,7 @@
             }
             ]
             });
-            </script> 
+            </script>
 
 <script>
 var typed = new Typed(".type", {

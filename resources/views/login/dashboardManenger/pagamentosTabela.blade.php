@@ -48,7 +48,7 @@
                 <td><span class="btn btn-danger">Expirado</span></td>
             @endif
             <td>
-                <button onclick='updatePermission()' class="btn btn-warning bt-sm" ><i class="fa fa-gears" data-toggle="tooltip" title="Editar"></i></button>
+                <button onclick='updatePermission({{$contrato->id}})' class="btn btn-warning bt-sm" ><i class="fa fa-gears" data-toggle="tooltip" title="Renovar"></i></button>
             </td>
 		</tr>
         @endforeach

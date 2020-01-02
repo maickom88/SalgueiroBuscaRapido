@@ -15,6 +15,7 @@ use App\Empresa\Contrato\Contrato;
 use App\Parceiro;
 use \Datetime;
 use \DateInterval;
+
 class AdmController extends Controller
 {
     public function __construct(){
@@ -540,6 +541,7 @@ class AdmController extends Controller
 			$user->permissions->user= 'sim';
 			$user->permissions->empresario = 'nao';
 			$user->permissions->blogueiro = 'nao';
+            $user->permissions->adm = 'nao';
 			$valid = $user->permissions->save();
 		}
 
@@ -589,5 +591,73 @@ class AdmController extends Controller
         $desativadas = "dasativada";
 		return view('login.dashboardManenger.pagamentosTabela', compact('contratos','desativadas'));
 	}
+    public function contratoUpdate(Request $req){
+		$id = $req->input('idContrato');
+        $tipo = $req->input('contrato');
+        $valor = $req->input('valorContrato');
+
+        $contrato = Contrato::find($id);
+
+
+        $contrato->tipo = $req->input('contrato');
+        $contrato->valor = $req->input('valorContrato');
+        date_default_timezone_set("Brazil/East");
+        $inicio = date("Y/m/d");
+		$inicioDate = date("Y/m/d", strtotime($inicio));
+        if($tipo == 'mensal'){
+            $data = $inicio;
+            $data = DateTime::createFromFormat('Y/m/d', $data);
+            $data->add(new DateInterval('P30D')); // 30 dias
+            $fim = $data->format('Y/m/d');
+            $fimDate = date("Y/m/d", strtotime($fim));
+        }
+		   if($tipo == 'trimensal'){
+            $data = $inicio;
+            $data = DateTime::createFromFormat('Y/m/d', $data);
+            $data->add(new DateInterval('P90D')); // 90 dias
+            $fim = $data->format('Y/m/d');
+            $fimDate = date("Y/m/d", strtotime($fim));
+        }
+		if($tipo == 'semestral'){
+            $data = $inicio;
+            $data = DateTime::createFromFormat('Y/m/d', $data);
+            $data->add(new DateInterval('P180D')); //180 dias
+				$fim = $data->format('Y/m/d');
+				$fimDate = date("Y/m/d", strtotime($fim));
+        }
+        $contrato->inicio_contrato = $inicioDate;
+        $contrato->fim_contrato = $fim;
+        $contrato->status = 'ativa';
+        $saved = $contrato->save();
+        $contrato->empresas->status = 'ativa';
+        $contrato->empresas->save();
+        if($saved){
+            return response()->json('true');
+        }
+    }
+    public function mensagemUser(Request $dados){
+        $id = $dados->input('idUser');
+        $message = $dados->input('message');
+
+        $user = User::find($id);
+        $contact = new Contact;
+
+        $contact->name = $user->name;
+        $contact->email = $user->email;
+        if(!empty($user->info)){
+            if(!empty($user->info->telefone)){
+                $contact->tel = $user->info->telefone;
+            }
+            else{
+                $contact->tel = 'Sem numero!';
+            }
+        }
+        else{
+            $contact->tel = 'Sem numero!';
+        }
+        $contact->content = $message;
+        $saved = $contact->save();
+        return response()->json($saved);
+    }
 
 }

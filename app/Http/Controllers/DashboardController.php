@@ -39,11 +39,11 @@ class DashboardController extends Controller
 		$chave='385bc83d';
 		$cid = '457982';
 
-		
+
 
 		try{
 			$instagram = new Instagram('2089363990.1677ed0.96d466364c2d4f4fbf55e7097920f69d');
-			$insta = $instagram->media(['count'=>2	]);	
+			$insta = $instagram->media(['count'=>2	]);
 		}
 		catch(Exception $e){
 			$j = '{
@@ -52,7 +52,7 @@ class DashboardController extends Controller
 						"username": "srfrank__",
 						"profile_picture":"https://scontent.cdninstagram.com/vp/a89b9961ba543c9e0ad50668df298fb9/5E2B1EB4/t51.2885-19/s150x150/41994235_273303863291015_8073893064499789824_n.jpg?_nc_ht=scontent.cdninstagram.com"
 					},
-					"images" : { 
+					"images" : {
 						"low_resolution" :{
 							"url": "https://scontent.cdninstagram.com/vp/1f21c4419622421ee407be1d90a58933/5E24DD9B/t51.2885-15/e35/p320x320/47689688_287224058651439_5941001623868708459_n.jpg?_nc_ht=scontent.cdninstagram.com"
 						}
@@ -65,13 +65,29 @@ class DashboardController extends Controller
 				];
 			$insta = $json;
 		};
-		$empresa = Empresa::all()->where('status', 'ativa')->random(1);
 
+        $idUser = Auth::id();
+        $idEmpresa = [];
+        $user = User::find($idUser);
+        $empresas = $user->likes;
+        foreach ($empresas as $empresa) {
+            array_push($idEmpresa, $empresa->empresa_id);
+        }
+        $empresasAtv = Empresa::whereIn('id', $idEmpresa)->get();
+        $empresasPostAtv = [];
+        foreach ($empresasAtv as $empresa){
+            $count = $empresa->novidades->count();
+            if($count >= 1){
+               array_push($empresasPostAtv, $empresa);
+            }
+        }
+
+        $empresa = Empresa::all()->where('status', 'ativa')->random(1);
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
-			
-			return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa', 'dados']));
-		
+
+			return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa', 'dados','empresasPostAtv']));
+
 		}
 		catch(Exception $e){
 		$dados = ([
@@ -79,17 +95,18 @@ class DashboardController extends Controller
 				"temp"=>25
 			]
 		]);
-		return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa', 'dados']));
+
+		return view('login.dashboardUser.paginas.painel', compact(['user', 'empresasPostAtv', 'insta', 'empresa', 'dados']));
 		}
 
-		
+
    }
 	public function perfil(){
 
-		
+
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->user;
 		if($verificacao=="sim"){
 			return view('login.dashboardUser.paginas.perfil', compact('user'));
@@ -105,14 +122,14 @@ class DashboardController extends Controller
 		return view('login.dashboardUser.paginas.listaEmp', compact('user'));
 		}
 		return redirect()->back();
-	
+
 	}
 	public function noticia(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
 
 		$verificacao = $user->permissions->user;
-	
+
 		if($verificacao=="sim"){
 		return view('login.dashboardUser.paginas.noticiasUser', compact('user'));
 		}
@@ -122,9 +139,9 @@ class DashboardController extends Controller
 
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->user;
-	
+
 		if($verificacao=="sim"){
 		return view('login.dashboardUser.paginas.eventos', compact('user'));
 		}
@@ -137,7 +154,7 @@ class DashboardController extends Controller
 		$user = User::find($idUser);
 
 		$verificacao = $user->permissions->user;
-	
+
 		if($verificacao=="sim"){
 		return view('login.dashboardUser.paginas.parceiroUser', compact(['isParceiro','user']));
 		}
@@ -146,6 +163,6 @@ class DashboardController extends Controller
 	public function logout(){
 		Auth::logout();
 		return redirect()->route('home');
-		
+
 	}
 }

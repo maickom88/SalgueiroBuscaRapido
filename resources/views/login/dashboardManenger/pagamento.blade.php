@@ -5,6 +5,7 @@
 @section('pag', 'active')
 
 @section('conteudo')
+<div class="loader loader-bouncing "></div>
 <section id="main-content">
 	<section class="wrapper site-min-height">
 		<div class="row mt">
@@ -48,33 +49,88 @@
         </button>
       </div>
       <div class="modal-body">
-        <select name="permission" id="permission" class="form-control"  style="width: 80% !important; display:inline-block; text-transform:uppercase" required>
+          <form id="form-data">
+        <select name="contrato" id="contrato" class="form-control" style="width: 80% !important; display:inline-block; text-transform:uppercase" required>
 			  <option value="mensal">Mensal</option>
-			  <option value="Blogueiro" >Trimensal</option>
-			  <option value="Empresarial">Semestral</option>
-		  </select>
+			  <option value="trimensal" >Trimensal</option>
+			  <option value="semestral">Semestral</option>
+		</select>
+        <input type="hidden" name="idContrato" id="idContrato" value="">
           <div class="form-group" style="margin-top:5px">
-							<label><b>R$</b></label>
-								<input type="text" name="valorContrato" id="valorContrato" class="dinheiro" style="">
-							</div>
+            <label><b>R$</b></label>
+                <input style="border-radius:3px; border:1px solid rgba(0,0,0,0.1); padding:5px; " class="dinheiro" type="text" name="valorContrato" id="valorContrato" required >
+            </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cb</button>
-        <button onclick="" id="saved" type="button" class="btn btn-success">Renovar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" id="saved" class="btn btn-success">Renovar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
 
 
 @section('scripts')
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 <script>
 $('.dinheiro').mask('#.##0,00', {reverse: true}).append('R$');
-function updatePermission(id, permission){
+
+function updatePermission(id){
     $('#ExemploModalCentralizado').modal('toggle');
     $('#permission').val();
-    $('#saved').attr('onclick', 'savedUpdate('+id+', "'+permission+'")');
+    $('#idContrato').attr('value', id);
 }
+
+var successContrato = new jBox('Modal', {
+    attach: '#test',
+    title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+    content: "Contrato renovado com sucesso!",
+    animation: 'zoomIn',
+    audio: '../audio/bling2',
+    volume: 80,
+    closeButton: true,
+    delayOnHover: true,
+    showCountdown: true
+});
+
+function load(action){
+    var load_div = $(".loader");
+    if(action==="open"){
+    load_div.addClass("is-active");
+    }
+    else{
+    load_div.removeClass("is-active");
+    }
+}
+
+$('#form-data').submit(function(e){
+$('#ExemploModalCentralizado').modal('toggle');
+$.ajax({
+    type:"POST",
+    url:'../api/administrativo/empresas/contrato/update',
+    data: new FormData(this),
+    contentType: false,
+    cache: false,
+    processData: false,
+    beforeSend: function(){
+        load('open');
+    },
+    success: function(Response) {
+        console.log(Response);
+    },
+    error: function(error){
+        console.log(error);
+    },
+    complete: function(){
+        getData(1);
+        load('close');
+        successContrato.open();
+    }
+});
+    e.preventDefault();
+
+});
 
 
 $('#filtro').change(function(){
@@ -114,6 +170,7 @@ $(window).on('hashchange', function() {
 
 $(document).ready(function()
 {
+
     $(document).on('click', '.pagination a',function(event)
     {
         event.preventDefault();

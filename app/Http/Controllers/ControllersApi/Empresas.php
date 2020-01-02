@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Empresa\Empresa;
+use App\Empresa\Feed\NovidadeEmpresa;
 
 class Empresas extends Controller
 {
 
-	
+
 
 
    public function edit($id){
 			$user = User::find($id);
-			if(isset($user)){		
+			if(isset($user)){
 				$userEmp = $user->empresas;
 				if(isset($userEmp)){
 					$usersJson = json_decode($userEmp);
@@ -23,14 +24,14 @@ class Empresas extends Controller
 				}
 			}
 
-			
+
 		}
 
 	public function update(Request $request){
-		$idUser = $request->input('idUser');	
-		
-		
-		
+		$idUser = $request->input('idUser');
+
+
+
 		$user = User::find($idUser);
 		if(!empty($request->input('name'))){
 			$user->empresas->name = $request->input('name');
@@ -60,9 +61,9 @@ class Empresas extends Controller
 		if(!empty($request->input('instagram'))){
 			$user->empresas->instagram =$request->input('instagram');
 		}
-		
+
 		if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
-				
+
 			$name = uniqid(date('HisYmd'));
 			$extension = $request->imagem->extension();
 			$nameFile = "{$name}.{$extension}";
@@ -77,5 +78,12 @@ class Empresas extends Controller
 		$valid = $user->empresas->save();
 		return response()->json($valid);
 	}
+    public function deleteNovidades(Request $dados){
+        $id = $dados->input('idNovidade');
+        $novidade =  NovidadeEmpresa::find($id);
+        $valid = $novidade->delete();
+        return response()->json($valid);
+    }
+
 
 }

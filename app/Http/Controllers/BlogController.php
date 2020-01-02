@@ -14,7 +14,7 @@ class BlogController extends Controller
 
 		if(Auth::check()){
 			$idUser = Auth::user()->id;
-			$user = User::find($idUser);	
+			$user = User::find($idUser);
 			return view('noticias.noticias',compact('dados', 'user'));
 		}
 		$dados = Noticia::all();

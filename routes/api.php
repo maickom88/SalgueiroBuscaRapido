@@ -120,4 +120,15 @@ Route::get('administrativo/empresas/listar-contratos', 'ControllersApi\AdmContro
 Route::get('administrativo/empresas/contratos', 'ControllersApi\AdmController@listarContratos');
 
 
+Route::post('administrativo/empresas/contrato/update', 'ControllersApi\AdmController@contratoUpdate');
+
+
+Route::post('painel/novidade/deletar', 'ControllersApi\Empresas@deleteNovidades');
+
+
+
+Route::post('mensagem', 'ControllersApi\AdmController@mensagemUser');
+
+
+
 Route::get('administrativo/empresas/contratos-expirados', 'ControllersApi\AdmController@listarContratosExpirados');

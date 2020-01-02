@@ -14,12 +14,12 @@ use PhpParser\JsonDecoder;
 
 class PainelEmpresarialController extends Controller
 {
-	
+
 	public function __construct()
 	{
 		$this->middleware('auth');
 	}
-	
+
 	public function index(){
 		if (Auth::check()) {
 			$user = new User();
@@ -43,9 +43,9 @@ class PainelEmpresarialController extends Controller
 		]);
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
-			
+
 			return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts'));
-		
+
 		}
 		catch(Exception $e){
 		$dados = ([
@@ -57,24 +57,24 @@ class PainelEmpresarialController extends Controller
 		}
 	}
 	public function perfil(){
-		
+
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->empresario;
-	
+
 		if($verificacao=="sim"){
 			return view('login.dashboard.paginas.perfilEmp', compact('user'));
 		}
 		return redirect()->back();
 	}
 	public function editEmp(){
-		
+
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->empresario;
-	
+
 		if($verificacao=="sim"){
 			return view('login.dashboard.paginas.editarEmp', compact('user'));
 		}
@@ -106,21 +106,21 @@ class PainelEmpresarialController extends Controller
 
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->empresario;
-	
+
 		if($verificacao=="sim"){
 			return view('login.dashboard.paginas.pagamento', compact('user'));
 		}
 		return redirect()->back();
-		
+
 	}
 	public function noticias(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
 
 		$verificacao = $user->permissions->empresario;
-	
+
 		if($verificacao=="sim"){
 		return view('login.dashboard.paginas.noticiasEmp', compact('user'));
 		}
@@ -130,9 +130,9 @@ class PainelEmpresarialController extends Controller
 
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+
 		$verificacao = $user->permissions->empresario;
-	
+
 		if($verificacao=="sim"){
 		return view('login.dashboard.paginas.eventEmp', compact('user'));
 		}
@@ -141,10 +141,15 @@ class PainelEmpresarialController extends Controller
 	public function postagens(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		
+		$empresa = $user->empresas;
+
 		$verificacao = $user->permissions->empresario;
-	
+
 		if($verificacao=="sim"){
+        if(!empty($empresa->novidades)){
+            $novidades = $empresa->novidades;
+            return view('login.dashboard.paginas.feed.postagens', compact('user', 'novidades'));
+        }
 		return view('login.dashboard.paginas.feed.postagens', compact('user'));
 		}
 		return redirect()->back();
@@ -156,5 +161,5 @@ class PainelEmpresarialController extends Controller
 		}
 
 
-		
+
 }

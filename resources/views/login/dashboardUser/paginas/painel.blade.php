@@ -6,6 +6,7 @@
 @section('menuPrincipal', 'active')
 
 @section('conteudo')
+<div class="loader loader-bouncing "></div>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -18,7 +19,7 @@
 		<div class="col-lg-4 col-md-4 col-sm-4 mb">
 			<div class="content-panel pn">
 			<div id="blog-bg">
-			
+
 			<div class="badge badge-popular">POPULAR</div>
 			<div class="blog-title">Titulo da noticia</div>
 			</div>
@@ -50,10 +51,10 @@
 			<div id="profile-01">
 			<h3>Possui alguma micro empresa ou vende algum produto?</h3>
 			<h6 style="padding-bottom:4px; text-transform:uppercase ">QUER AUMENTAR SUAS VENDAS? <br> Se torne nosso parceiro e anuncie na plataforma</h6>
-			
+
 			</div>
 			<div class="profile-01 centered">
-			<p>ANUNCIAR MEU NEGOCIO</p>
+			<a href="/contato#contato"><p>ANUNCIAR MEU NEGOCIO</p></a>
 			</div>
 			<div class="centered">
 			<h6 style="color:white;"><i class="fa fa-envelope"></i><br/>SALGUEIROBUSCARAPIDO@GMAIL.COM</h6>
@@ -65,7 +66,7 @@
 			<!-- INSTAGRAM PANEL -->
 			<div class="instagram-panel pn">
 			<i class="fa fa-calendar fa-4x"></i>
-			<p>EVENTO<br/> 
+			<p>EVENTO<br/>
 			</p>
 			<p>No momento não há eventos na cidade!</p>
 			</div>
@@ -87,11 +88,13 @@
 			Envie alguma mensagem.
 			</p>
 			<p class="message">Digite alguma sugestão, melhorias para a plataforma ou crítica construtivas, duvidas iremos te responder por email, depois verifique sua caixa de mensagens</p>
-			<form class="form-inline" role="form">
-			<div class="form-group">
-			<input type="text" class="form-control" id="exampleInputText" placeholder="Digite sua mensagem...">
-			</div>
-			<button type="submit" class="btn btn-default">Enviar</button>
+			<form id="form-data" class="form-inline" role="form">
+                @csrf
+                <div class="form-group">
+                    <input type="hidden" name="idUser" value="{{Auth::id()}}">
+                    <input type="text" name="message" class="form-control" id="message" placeholder="Digite sua mensagem..." required>
+                </div>
+                    <button type="submit" class="btn btn-default">Enviar</button>
 			</form>
 			</div>
 			</div>
@@ -115,7 +118,7 @@
 			<div class="badge badge-hot">10%</div>
 			<img src={{asset("img/product.png")}} width="100" style="margin-top:20px;" alt="">
 			<h5 class="mt" style="color: #fff;">Roupas em promoções até 40% OFF</h5>
-			
+
 			<a href="#" class="btn btn-small btn-theme04">Visitar ofertas!</a>
 			</div>
 			</div>
@@ -179,57 +182,9 @@
 		<!-- RECENT ACTIVITIES SECTION -->
 		<h4 class="centered mt">ATIVIDADES RECENTES</h4>
 		<!-- First Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>Agora a pouco</muted>
-			<br/>
-			<a href="#">Salão Beleza</a> Postou no feed<br/>
-			</p>
-		</div>
-		</div>
-		<!-- Second Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>2 minutos agosto</muted>
-			<br/>
-			<a href="#">Sobreira net</a> Postou no feed<br/>
-			</p>
-		</div>
-		</div>
-		<!-- Third Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>3 horas Agosto</muted>
-			<br/>
-			<a href="#">Santana movéis</a> Adicionou uma nova promoção<br/>
-			</p>
-		</div>
-		</div>
-		<!-- Fourth Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>7 horas Agosto</muted>
-			<br/>
-			<a href="#">Eduardo Siqueira</a>Publicou um evento<br/>
-			</p>
-		</div>
-		</div>
+		<div id="atvRecentes">
+            @include('atividades.recentes')
+        </div>
 		<!-- USERS ONLINE SECTION -->
 		<h4 class="centered mt">NOSSA EQUIPE DE APOIO</h4>
 		<!-- First Member -->
@@ -240,7 +195,7 @@
 		<div class="details">
 			<p>
 			<a href="#">MICHAEL FRANK</a><br/>
-			
+
 			</p>
 		</div>
 		</div>
@@ -252,7 +207,7 @@
 		<div class="details">
 			<p>
 			<a href="#">HANDREYSON FERNANDES</a><br/>
-			
+
 			</p>
 		</div>
 		</div>
@@ -264,10 +219,10 @@
 		<div class="details">
 			<p>
 			<a href="#" >Iago Benício</a><br/>
-			
+
 			</p>
 		</div>
-		
+
 		</div>
 		<div class="text-center">
 			<h4>NOSSO INSTAGRAM</h4>
@@ -287,21 +242,78 @@
 				<img id="igm-insta-zoom" src={{$insta[1]->images->low_resolution->url}} alt="" >
 			</div>
 			</div>
-			
+
 		</div>
 		</div>
-		
+
 		</div>
-		
+
 		<div>
 
 		</div>
 	</section>
-</section> 
+</section>
 @endsection
 
 @section('scripts')
+
+
+
 <script type="text/javascript">
+function limparInput(){
+    $('#message').val('');
+}
+function load(action){
+    var load_div = $(".loader");
+    if(action==="open"){
+    load_div.addClass("is-active");
+    }
+    else{
+    load_div.removeClass("is-active");
+    }
+}
+var successMessage = new jBox('Modal', {
+			attach: '#test',
+			title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+			content: "Mesagam enviada com sucesso, agradeçemos seu feedback!",
+			animation: 'zoomIn',
+			audio: '../audio/bling2',
+			volume: 80,
+			closeButton: true,
+			delayOnHover: true,
+			showCountdown: true
+			});
+
+$.ajaxSetup({
+			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+		});
+    $('#form-data').submit(function(e){
+        $.ajax({
+            type:"POST",
+            url:'../api/mensagem',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function(){
+                load('open');
+            },
+            success: function(Response){
+                console.log(Response);
+            },
+            error: function(error){
+                console.log(error);
+            },
+            complete: function(){
+                load('close');
+                limparInput();
+                successMessage.open();
+            }
+        });
+        e.preventDefault();
+    });
+
+
 	$(document).ready(function() {
 	var unique_id = $.gritter.add({
 	// (string | mandatory) the heading of the notification
