@@ -81,6 +81,9 @@ class Empresas extends Controller
     public function deleteNovidades(Request $dados){
         $id = $dados->input('idNovidade');
         $novidade =  NovidadeEmpresa::find($id);
+        if(!$novidade->photos->isEmpty()){
+            $validPhoto = $novidade->photos[0]->where('novidade_empresa_id', $id)->delete();
+        }
         $valid = $novidade->delete();
         return response()->json($valid);
     }

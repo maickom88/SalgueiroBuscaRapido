@@ -24,7 +24,7 @@
                       <p>Quantidade<br/>de likes:</p>
                     </div>
                     <div class="col-sm-6 col-xs-6">
-                      <h2 style="color:#00AFEF">40</h2>
+                      <h2 style="color:#00AFEF">{{$user->empresas->likes->count()}}</h2>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                     <h5>PLANO ATUAL</h5>
                   </div>
                   <img src={{asset('img/money.png')}} width="70px" alt="">
-                  <p style="font-size: 20px;" class="text-center mt"><b>R$ 120,00</b><br/>Verificado! <i style="color:#00a3ee"class="fa  fa-check"></i></p>
+                  <p style="font-size: 20px;" class="text-center mt"><b>R$ {{$user->empresas->contratos[0]->valor}}</b><br/>@if($user->empresas->contratos[0]->status == 'ativa')Verificado! <i style="color:#00a3ee"class="fa  fa-check"></i>@else Expirado! <i style="color:red"class="fa fa-ban"></i>@endif</p>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -127,7 +127,7 @@
              <div class="col-lg-4 col-md-4 col-sm-4 mb">
 			<div class="content-panel pn">
 			<div id="blog-bg">
-			
+
 			<div class="badge badge-popular">POPULAR</div>
 			<div class="blog-title">Titulo da noticia</div>
 			</div>
@@ -135,7 +135,7 @@
 			<p>Uma descrição para a noticia aqui exibida, contendo somente alguns caracteres. Assim sendo redirec... <a href="#">Leia mais</a></p>
 			</div>
 			</div>
-		</div>	
+		</div>
               <!-- /col-md-4 -->
               <div class="col-lg-4 col-md-4 col-sm-4 mb">
                     <div class="product-panel-2 pn" data-jbox-content="Content 1">
@@ -150,7 +150,7 @@
             </div>
             <!-- /row -->
             <div class="row">
-              
+
               <!-- /col-md-4 -->
               <!--  PROFILE 02 PANEL -->
 		<div class="col-lg-4 col-md-4 col-sm-4 mb">
@@ -166,14 +166,14 @@
 			<!-- /panel -->
               </div>
               <!--/ col-md-4 -->
-             
+
 					<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			
+
 		</div>
               <!-- /col-md-4 -->
             </div>
             <!-- /row -->
-				
+
           </div>
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
@@ -181,7 +181,7 @@
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
             <!--COMPLETED ACTIONS DONUTS CHART-->
-            
+
             <!--new earning end-->
             <!-- RECENT ACTIVITIES SECTION -->
             <h4 class="centered mt">ATIVIDADES RECENTES</h4>
@@ -247,7 +247,7 @@
 		<div class="details">
 			<p>
 			<a href="#">MICHAEL FRANK</a><br/>
-			
+
 			</p>
 		</div>
 		</div>
@@ -259,7 +259,7 @@
 		<div class="details">
 			<p>
 			<a href="#">HANDREYSON FERNANDES</a><br/>
-			
+
 			</p>
 		</div>
 		</div>
@@ -271,10 +271,10 @@
 		<div class="details">
 			<p>
 			<a href="#" >Iago Benício</a><br/>
-			
+
 			</p>
 		</div>
-		
+
 		</div>
 		<div class="text-center">
 			<h4>NOSSO INSTAGRAM</h4>
@@ -294,19 +294,19 @@
 				<img id="igm-insta-zoom" src=https://scontent.cdninstagram.com/vp/b9e996c9e4f534ae5494430995da69ee/5E2CA01F/t51.2885-15/e35/p320x320/40658088_263064664346958_268131613545433157_n.jpg?_nc_ht=scontent.cdninstagram.com alt="" >
 			</div>
 			</div>
-			
+
 		</div>
-		
+
 		<div class="text-center">
 			<h4>EVENTOS DA CIDADE</h4>
 		<div class="instagram-panel pn">
 			<i class="fa fa-calendar fa-4x"></i>
-			<p>EVENTO<br/> 
+			<p>EVENTO<br/>
 			</p>
 			<p>No momento não há eventos na cidade!</p>
 			</div>
 		</div>
-		
+
                 <div class="stock card">
                   <div class="stock-chart">
                     <div id="chart"></div>
@@ -326,18 +326,18 @@
                     <strong></strong> <span>QUANTAS BUSCAS SEU NEGOCIO TEVE</span>
                   </div>
                 </div>
-              
-             
+
+
 		</div>
 		</div>
-		
+
 		</div>
-		
+
 		<div>
 
 		</div>
 	</section>
-</section> 
+</section>
 
 @endsection
 
