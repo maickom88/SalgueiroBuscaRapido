@@ -5,13 +5,9 @@
 @section('empresas', 'active')
 
 @section('links')
-<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-datepicker/css/datepicker.css")}}/>
-<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-daterangepicker/daterangepicker.css")}} />
-<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-timepicker/compiled/timepicker.css")}} />
-<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-datetimepicker/datertimepicker.css")}} />
 @endsection
 
-@section('conteudo')x
+@section('conteudo')
 <div class="loader loader-bouncing "></div>
 <section id="main-content">
 

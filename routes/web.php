@@ -141,6 +141,14 @@ Route::get('administrativo/parceria', ['uses'=>'PainelManengerController@parceri
 //-----------------------Rota de pagamento do perfil adm--------------//
 Route::get('administrativo/pagamento', ['uses'=>'PainelManengerController@pagamento'])->name('pagamentoManenger');
 
+Route::get('/eventos/{nome}_{id}', 'eventos\EventosController@evento')->name('eventoIndividual');
+
+Route::get('/eventos', 'eventos\EventosController@index')->name('eventos');
+
+
+Route::get('/eventosadm', function(){
+    return view('login.dashboardManenger.eventos');
+} );
 
 
 

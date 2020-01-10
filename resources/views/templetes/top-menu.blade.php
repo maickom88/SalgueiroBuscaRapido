@@ -13,7 +13,7 @@
 				<a href={{route('login.home')}} ><i class="fas fa-sign-in-alt"></i>Entrar</a>
 			</div>
 		  @endauth
-		  
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
         <li class="nav-item active">
@@ -23,13 +23,13 @@
         <a class="nav-link" href={{route('blog.noticias')}}>Notícias</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">Eventos</a>
+        <a class="nav-link" href={{route('eventos')}}>Eventos</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href={{route('contato.home')}}>Contato</a>
         </li>
         </ul>
-      
+
 		  @auth
 		  @php
 				$name = $user->name;
@@ -42,15 +42,15 @@
 		  <div class="balao10">
 			<div ><i id="fecharMenu" style="cursor:pointer;" class="fas fa-times fa-2x"></i></div>
 			<div class="row" style="padding:30px;">
-				
+
 				<div class="col-md-6 text-center" style="border-right:1px solid rgba(255,255,255,0.7); ">
 					<div class="img-avatar" style="margin-top:18px;">
 						@isset($user->info->avatar)
 							<img src={{asset('storage/avatar/'.$user->info->avatar)}} class="img-center" alt="" style="width:80px ; border-radius:50%;">
-						@else 
+						@else
 							<img src={{asset('img/profilezim.png')}} class="img-center" alt="" style="width:80px ; border-radius:50%;">
 						@endisset
-						
+
 					</div>
 					<p class="mt-4" style="font-size: 24px; margin-bottom:20px; font-weight:bold; ">{{$name[0]}}</p>
 					<a style="padding:10px;border-radius:5px; background:#24324F; color:cornsilk; text-decoration:none;" href="/iniciar-sessao">Acessar Conta</a>
@@ -76,7 +76,7 @@
 							<li class="mb-2"><a href={{route('noticia')}} style="text-transform:none">Notícias da Cidade</a></li>
 							<li class="mb-2"><a href={{route('eventosUser')}} style="text-transform:none">Eventos da Cidade</a></li>
 							<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
-						@elseif($user->permissions->adm == 'sim')	
+						@elseif($user->permissions->adm == 'sim')
 							<li class="mb-2"><a  href={{route('perfilUserManenger')}} style="text-transform:none">Perfil</a></li>
 							<li class="mb-2"><a href={{route('empManenger')}} style="text-transform:none">Empresas</a></li>
 							<li class="mb-2"><a href={{route('userManenger')}} style="text-transform:none">Usúarios</a></li>
@@ -85,7 +85,7 @@
 							<li class="mb-2"><a href="" style="text-transform:none">Publicar Poste</a></li>
 							<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
 						@endif
-						
+
 						<div class="dropdown-divider mt-1 mb-2"></div>
 						<li class="mb-2"><a href="" style="text-transform:none"> <i class="fas fa-user-plus"></i>  Indique um Amigo</a></li>
 					</ul>
@@ -111,12 +111,12 @@
 <div class="balao10" id="balaoMob">
 <div style="padding-left:15px;"><i id="fecharMenuMenu" style="cursor:pointer; "  class="fas fa-times fa-2x"></i></div>
 <div class="row" style="padding: 20px;">
-	
+
 	<div class="col-md-6 mb-4 text-center" style="width: 100%;  border-bottom:1px solid rgba(255,255,255,0.7); padding:30px; ">
 		<div class="img-avatar">
 		@isset($user->info->avatar)
 			<img src={{asset('storage/avatar/'.$user->info->avatar)}} class="img-center" alt="" style="width:80px ; border-radius:50%;">
-		@else 
+		@else
 			<img src={{asset('img/profilezim.png')}} class="img-center" alt="" style="width:80px ; border-radius:50%;">
 		@endisset
 		</div>
@@ -144,7 +144,7 @@
 				<li class="mb-2"><a href={{route('noticia')}} style="text-transform:none">Notícias da Cidade</a></li>
 				<li class="mb-2"><a href={{route('eventosUser')}} style="text-transform:none">Eventos da Cidade</a></li>
 				<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
-			@elseif($user->permissions->adm == 'sim')	
+			@elseif($user->permissions->adm == 'sim')
 				<li class="mb-2"><a  href={{route('perfilUserManenger')}} style="text-transform:none">Perfil</a></li>
 				<li class="mb-2"><a href={{route('empManenger')}} style="text-transform:none">Empresas</a></li>
 				<li class="mb-2"><a href={{route('userManenger')}} style="text-transform:none">Usúarios</a></li>
