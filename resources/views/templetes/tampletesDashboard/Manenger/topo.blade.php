@@ -50,7 +50,7 @@ $telefone = $user->info->telefone;
 	<link rel="stylesheet" href={{asset('css/jquery.tagsinput.min.css')}}>
 	<script src={{asset("lib/chart-master/Chart.js")}}></script>
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
-	
+
 	@yield('links')
 </head>
 
@@ -78,7 +78,7 @@ $telefone = $user->info->telefone;
 								<p class="green">Pontue e obtenha descontos exclusivos a qualquer momento</p>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -98,7 +98,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -113,7 +113,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -213,22 +213,25 @@ $telefone = $user->info->telefone;
 						<span>Tabela de Pagamentos</span>
 					</a>
 				</li>
-				
+                <li class="sub-menu">
+                    <a class="@yield('eventos')" href="javascript:;">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Eventos</span>
+                    </a>
+                    <ul class="sub" style="background:#D4D4D4 !important;">
+                    <li><a href={{route('eventoManenger')}}>Publicar Evento</a></li>
+                    <li><a href={{route('eventosPublicados')}}>Eventos publicados</a></li>
+                    </ul>
+                </li>
 				<li class="sub-menu">
-					<a class="@yield('eventos')" href={{route('painel')}}>
-						<i class="fa fa-thumb-tack"></i>
-						<span>Eventos</span>
-					</a>
-				</li>
-				<li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-plus-square"></i>
-              <span>Promoções</span>
-            </a>
-            <ul class="sub" style="background:#D4D4D4 !important;">
-              <li><a href="#">Lista de promoções</a></li>
-            </ul>
-          </li>
+                    <a href="javascript:;">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Promoções</span>
+                    </a>
+                    <ul class="sub" style="background:#D4D4D4 !important;">
+                    <li><a href="#">Lista de promoções</a></li>
+                    </ul>
+                </li>
 			</ul>
 		</div>
 	</aside>

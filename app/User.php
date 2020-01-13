@@ -5,6 +5,7 @@ namespace App;
 use App\Avatar;
 use App\Comment\Comment;
 use App\Empresa\Empresa;
+use App\Evento\Evento;
 use App\Permission\Permission;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -58,7 +59,7 @@ class User extends Authenticatable
    }
    public function posts(){
       return $this->hasManyThrough(Post::class,Permission::class);
-   }    
+   }
    public function avatar(){
 
       return $this->hasOne(Avatar::class);
@@ -71,6 +72,9 @@ class User extends Authenticatable
 	}
 	public function likes(){
 	return $this->hasMany(Like::class);
+	}
+    public function eventos(){
+	return $this->hasMany(Evento::class);
 	}
 
 }

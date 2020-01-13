@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Contact\Contact;
 use App\Empresa\Contrato\Contrato;
+use App\Evento\Evento;
 use App\Parceiro;
 use App\Permission\Permission;
 
@@ -29,6 +30,8 @@ class PainelManengerController extends Controller
 		}
 		return redirect()->back();
 	}
+
+
 
 	public function empresas(){
 		$idUser = Auth::id();
@@ -109,6 +112,29 @@ class PainelManengerController extends Controller
             }
         }
 			return view('login.dashboardManenger.pagamento', compact('user', 'contratos'));
+		}
+		return redirect()->back();
+	}
+    public function evento(){
+		$idUser = Auth::id();
+		$user = User::find($idUser);
+		$verificacao = $user->permissions->adm;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardManenger.eventos', compact('user'));
+		}
+		return redirect()->back();
+	}
+     public function eventosPublicados(){
+		$idUser = Auth::id();
+		$user = User::find($idUser);
+        $eventos = Evento::orderBy('id','desc')->paginate(5);
+		$verificacao = $user->permissions->adm;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardManenger.eventosPublicados', compact('user', 'eventos'));
 		}
 		return redirect()->back();
 	}

@@ -32,7 +32,7 @@
 
 	<div style="width:750px; height:412px;border-radius:5px; overflow:hidden" >
 
-		<div class="owl-carousel owl-theme owl-loaded">
+		<div class="owl-carousel owl-theme owl-loaded" style="padding:10px;">
 		<div class="owl-stage-outer">
 			<div class="owl-stage">
 				<div class="owl-item"><img class="img-fluid" src={{'img/bg-not-2.jpg'}} alt=""></div>
@@ -52,30 +52,8 @@
 	</div>
 
     </div>
-    <div class="container">
-        <div class="row mb-4">
-
-        @foreach ($var as $dado)
-            <div class="col-md-4 card-content">
-                <div class="card" style="width: 19rem;">
-                    <div class="img-card">
-                        <div class="gradient">
-                            <img class="card-img-top" src={{asset('img/bg-not-2.jpg')}} alt="Card image cap">
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title"><a href={{route('eventos').'/nome_Do_Evento_1'}} >Titulo do evento</a></h5>
-								<h5 class="card-text" style="color:#33414E; font-weight:bold">Instituto do if sertão, 2912, salgueiro-PE</h5>
-                        <h4 class="card-text" style="color:#33414E; font-weight:bold"><i class="fa fa-clock-o"></i> 20:00</h4>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <div class="local">
-                        <span><i class="fas fa-calendar-alt"></i></span><p style="font-size:16px;">7 Janeiro</p><br><span> <span><i class="fa fa-money"></i></span><p style="font-size:16px;">Gratuito</p><br><span><span><i class="fas fa-tags"></i></span><p>Evento</p>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-        </div>
+    <div  id="eventoPaginate" class="container">
+        @include('eventos.eventoPaginate')
     </div>
 </section>
 
@@ -91,8 +69,49 @@
 	<script src={{asset('js/owl.carousel.min.js')}}></script>
 	<script src={{asset('js/owl.animate.js')}}></script>
 	<script src={{asset('js/menu-fixo.js')}}></script>
-    <script>
-		 var owl = $('.owl-carousel');
+<script>
+$(window).on('hashchange', function() {
+		if (window.location.hash) {
+			var page = window.location.hash.replace('#', '');
+			if (page == Number.NaN || page <= 0) {
+					return false;
+			}else{
+					getData(page);
+			}
+		}
+	});
+
+	$(document).ready(function()
+	{
+		$(document).on('click', '.pagination a',function(event)
+		{
+			event.preventDefault();
+
+			$('li').removeClass('active');
+			$(this).parent('li').addClass('active');
+
+			var myurl = $(this).attr('href');
+			var page=$(this).attr('href').split('page=')[1];
+
+			getData(page);
+		});
+
+	});
+
+	function getData(page){
+		$.ajax(
+		{
+			url: '../api/evento/eventos?page=' + page,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$("#eventoPaginate").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+				alert('No response from server');
+		});
+	}
+var owl = $('.owl-carousel');
 owl.owlCarousel({
     items:1,
     loop:true,
@@ -106,7 +125,8 @@ $('.play').on('click',function(){
 })
 $('.stop').on('click',function(){
     owl.trigger('stop.owl.autoplay')
-})
-    </script>
+});
+
+</script>
 @endsection
 

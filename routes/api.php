@@ -132,3 +132,16 @@ Route::post('mensagem', 'ControllersApi\AdmController@mensagemUser');
 
 
 Route::get('administrativo/empresas/contratos-expirados', 'ControllersApi\AdmController@listarContratosExpirados');
+
+
+
+Route::get('administrativo/eventos/publicados', 'ControllersApi\EventoController@listarEventosPublicados');
+
+
+Route::get('administrativo/eventos/buscar', 'ControllersApi\EventoController@buscarEventos');
+
+
+Route::post('administrativo/eventos/excluir', 'ControllersApi\EventoController@excluirEventos');
+
+
+Route::get('evento/eventos', 'ControllersApi\EventoController@eventos');

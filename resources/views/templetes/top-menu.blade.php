@@ -67,7 +67,7 @@
 								<li class="mb-2"><a  href={{route('perfilEmp')}} style="text-transform:none">Perfil</a></li>
 								<li class="mb-2"><a href="" style="text-transform:none">Pagina da Empresa</a></li>
 								<li class="mb-2"><a href={{route('noticiasEmp')}} style="text-transform:none">Notícias da Cidade</a></li>
-								<li class="mb-2"><a href={{route('eventEmp')}} style="text-transform:none">Eventos da Cidade</a></li>
+								<li class="mb-2"><a href={{route('eventoManenger')}} style="text-transform:none">Eventos da Cidade</a></li>
 								<li class="mb-2"><a href={{route('logoutEmp')}} style="text-transform:none">Sair da Conta</a></li>
 						@elseif($user->permissions->blogueiro == 'sim')
 							<li class="mb-2"><a  href={{route('userPerfil')}} style="text-transform:none">Perfil</a></li>
@@ -81,7 +81,7 @@
 							<li class="mb-2"><a href={{route('empManenger')}} style="text-transform:none">Empresas</a></li>
 							<li class="mb-2"><a href={{route('userManenger')}} style="text-transform:none">Usúarios</a></li>
 							<li class="mb-2"><a href={{route('contatoManenger')}} style="text-transform:none">Mensagens</a></li>
-							<li class="mb-2"><a href="" style="text-transform:none">Publicar Evento</a></li>
+							<li class="mb-2"><a href={{route('eventoManenger')}} style="text-transform:none">Publicar Evento</a></li>
 							<li class="mb-2"><a href="" style="text-transform:none">Publicar Poste</a></li>
 							<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
 						@endif

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Empresa\Empresa;
+use App\Evento\Evento;
 use App\pageView\View;
 
 class IndexController extends Controller
@@ -13,12 +14,12 @@ class IndexController extends Controller
    {
 		$empresa = Empresa::where('status', 'ativa')->get();
 		$view = new View;
-		
+
 		foreach($empresa as $emp){
-			
+
 			$emp->views->views++;
 			$emp->views->save();
-			
+
 		}
 
 		if (Auth::check()) {
@@ -27,7 +28,7 @@ class IndexController extends Controller
 		return view('home.index', compact('empresa', 'user'));
 		}
 		return view('home.index', compact('empresa'));
-		
+
 	}
 	public function login(){
 		if(Auth::check())
@@ -48,15 +49,34 @@ class IndexController extends Controller
 		if(Auth::check())
 		{
 			return redirect()->route('dashboard');
-		}   
+		}
 		return view('cadastro.logar');
 	}
 	public function contato(){
 		if(Auth::check()){
 			$idUser = Auth::user()->id;$user = User::find($idUser);
-		
+
 		return view('contato.contato', compact('user'));
 		}
 		return view('contato.contato');
 	}
+    public function eventos(){
+        $eventos = Evento::orderBy('id', 'desc')->paginate(6);
+        if(Auth::check()){
+			$idUser = Auth::user()->id;$user = User::find($idUser);
+
+		return view('eventos.eventos', compact('user','eventos'));
+		}
+		return view('eventos.eventos', compact('eventos'));
+    }
+    public function noticias(){
+
+        if(Auth::check()){
+			$idUser = Auth::user()->id;$user = User::find($idUser);
+
+		return view('noticias.noticias', compact('user' ));
+		}
+		return view('noticias.noticias',);
+    }
+
 }

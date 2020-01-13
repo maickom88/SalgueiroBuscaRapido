@@ -1,6 +1,9 @@
 *{
     font-family: 'Open Sans Condensed', sans-serif;
 }
+p{
+    color:rgb(22, 22, 22) !important;
+}
 .cabecalho{
     height:431px;
     width: 100%;
@@ -37,7 +40,7 @@
     height: 442px;
     width: 847px;
     position: relative;
-    z-index: 1000;
+    z-index: 998;
 
 }
 .banner-center{
