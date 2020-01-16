@@ -69,14 +69,14 @@ class AdmController extends Controller
             $fim = $data->format('Y/m/d');
             $fimDate = date("Y/m/d", strtotime($fim));
         }
-		   if($tipo == 'trimensal'){
+		if($tipo == 'trimensal'){
             $data = $inicio;
             $data = DateTime::createFromFormat('Y/m/d', $data);
             $data->add(new DateInterval('P90D')); // 90 dias
             $fim = $data->format('Y/m/d');
             $fimDate = date("Y/m/d", strtotime($fim));
         }
-		   if($tipo == 'semestral'){
+		if($tipo == 'semestral'){
             $data = $inicio;
             $data = DateTime::createFromFormat('Y/m/d', $data);
             $data->add(new DateInterval('P180D')); //180 dias

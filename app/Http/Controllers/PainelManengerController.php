@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Contact\Contact;
 use App\Empresa\Contrato\Contrato;
+use App\Empresa\Promotion\Promotion;
 use App\Evento\Evento;
 use App\Parceiro;
 use App\Permission\Permission;
@@ -135,6 +136,18 @@ class PainelManengerController extends Controller
 		if($verificacao=="sim")
 		{
 			return view('login.dashboardManenger.eventosPublicados', compact('user', 'eventos'));
+		}
+		return redirect()->back();
+	}
+    public function promocoes(){
+		$idUser = Auth::id();
+        $promotions = Promotion::orderBy('id', 'desc')->paginate(5);
+		$user = User::find($idUser);
+		$verificacao = $user->permissions->adm;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardManenger.promocao', compact('user', 'promotions'));
 		}
 		return redirect()->back();
 	}

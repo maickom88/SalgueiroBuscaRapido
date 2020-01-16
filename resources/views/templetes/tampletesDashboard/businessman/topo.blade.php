@@ -50,7 +50,7 @@ $telefone = $user->info->telefone;
 	<script src={{asset("lib/chart-master/Chart.js")}}></script>
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
-	
+
 	@yield('links')
 </head>
 
@@ -78,7 +78,7 @@ $telefone = $user->info->telefone;
 								<p class="green">Pontue e obtenha descontos exclusivos a qualquer momento</p>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -98,7 +98,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -113,7 +113,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -165,10 +165,10 @@ $telefone = $user->info->telefone;
 			<ul class="sidebar-menu" id="nav-accordion">
 				<p class="centered"><a href={{route('userPerfil')}}>
 				@if(empty($user->info->avatar))
-								<img src={{asset('img/profilezim.png')}} class="img-circle" width="80">
-								@else
-								<img id="avatar-menu" src="" class="img-circle" width="80">
-								@endif
+                <img src={{asset('img/profilezim.png')}} class="img-circle avatar-menu" width="80">
+                @else
+                <img id="avatar-menu" src="" class="img-circle avatar-menu" width="80">
+                @endif
 				</a><img>
 				<h5 class="centered">{{Auth::user()->name}}</h5>
 				<li class="mt">
@@ -182,7 +182,7 @@ $telefone = $user->info->telefone;
 						<i class="fa fa-user"></i>
 						<span>Meu perfil</span>
 					</a>
-				</li>	
+				</li>
 				<li class="sub-menu">
 					<a class="@yield('empresa')" href={{route('editarEmp')}}>
 						<i class="fa fa-briefcase"></i>

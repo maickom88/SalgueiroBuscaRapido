@@ -14,7 +14,7 @@
             <th>data do evento</th>
             <th>data de término</th>
             <th>data de expiração</th>
-            <th>Excluir</th>
+            <th>Ação</th>
         </tr>
 	</thead>
 	<tbody id="myTable">
@@ -30,7 +30,7 @@
             $fim = $data->format('Y/m/d');
             $fimDate = date("Y/m/d", strtotime($fim));
             $dataBr = explode('/',$fimDate);
-            $dateExpirade = $dataAtual == $fimDate ? true : false;
+            $dateExpirade = strtotime($dataAtual) >= strtotime($fimDate) ? true : false;
         @endphp
             <tr>
 		<td>
@@ -39,6 +39,10 @@
 				<label for="checkbox1"></label>
 			</span>
 		</td>
+        @php
+            $str = $evento->nome_evento;
+            $str2 = str_replace(' ', '-', $str);
+        @endphp
             <td>{{$evento->id}}</td>
             <td>{{$evento->user->name}}</td>
             <td>{{$evento->nome_evento}}</td>
@@ -46,8 +50,9 @@
             <td>{{$evento->inicio_data_evento}}</td>
             <td>{{$evento->fim_data_evento}}</td>
             <td>{{end($dataBr).'/'.$dataBr[1].'/'.$dataBr[0] }} @if ($dateExpirade) <span style="padding:5px; background:#DF0101; color:white"> Expirado</span></td> @endif
-            <td>
+            <td style="display:flex">
                 <button onclick='excluirEvento({{$evento->id}})' class="btn btn-danger"><i class="fa fa-trash-o" data-toggle="tooltip" title="Excluir"></i></button>
+                <a target="_blank" href={{route('eventos').'/'.$str2.'_'.$evento->id}} style="margin-left:5px; color:white" class="btn btn-info">Visualizar</a>
             </td>
 		</tr>
         @endforeach

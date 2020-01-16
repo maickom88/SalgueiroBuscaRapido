@@ -43,6 +43,8 @@
         $mes2 = $data2[1];
         $mes2 = $dataMes[$mes2];
     }
+    $str = $evento->nome_evento;
+$str2 = str_replace(' ', '-', $str);
 @endphp
 
 
@@ -104,12 +106,11 @@
 <section id="comments">
     <div class="container">
         <h4>COMENTÁRIOS</h4>
-<div class="fb-comments" data-href="http://127.0.0.1:8000/eventosIndividuais" data-width="" data-numposts="5"></div>
+        <div class="fb-comments" data-href="http://127.0.0.1:8000/eventos/{{$str2}}_{{$evento->id}}" data-width="" data-numposts="5"></div>
     </div>
 </section>
 
 @section('script')
-
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0"></script>
 @endsection
 @endsection

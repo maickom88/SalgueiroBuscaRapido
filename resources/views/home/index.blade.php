@@ -232,62 +232,35 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-
+        <div class="container" style="outline:none;">
             <div class="row card-promo">
-                <div class="col-md-4 card-conteudo">
+                @foreach ($empresa as $emp)
+                    @if(!empty($emp->promotion))
+                    @php
+                        $dataMes = array('01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março', '04'=> 'Abril', '05' => 'Maio', '06' => 'Junho', '07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro', '10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro');
+                        $data1 = $emp->promotion->data_fim_promocao;
+                        $data1 = explode('-', $data1);
+                        $mes = $data1[1];
+                        $mes = $dataMes[$mes];
+                    @endphp
+                    <div class="col-md-4 card-conteudo" style="outline:none">
                         <div class="promo-atual">
-                                <a href="#">%50</a>
+                                <a style="outline:none">{{$emp->promotion->desconto}}%</a>
                             </div>
                         <div class="card" style="width: 18rem;">
-
-                            <img class="card-img-top" src={{asset('img/img-promo.png')}} alt="Card image cap">
+                            <img class="card-img-top" src={{asset('storage/promocoes/'.$emp->promotion->photo)}} alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">Carne Assada</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Adquirir cupom!</a>
+                            <h5 class="card-title">{{$emp->promotion->title}}</h5>
+                            <p class="card-text">{{$emp->promotion->description}}</p>
+                            @if (!empty($emp->promotion->valor))
+                                <p>{{$emp->promotion->valor}}R$</p>
+                            @endif
+                            <p style="padding:5px;text-align:center; background:#00A3EE; border-radius:5px; color:white; box-shadow: 0px 0px 4px rgba(0,0,0,0.4)">Até<b> {{$data1[2]}} de {{$mes}} de {{$data1[0]}}</b></p>
+                        </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 card-content">
-                        <div class="promo-atual">
-                                <a href="#">%70</a>
-                            </div>
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src={{asset('img/img-promo-1.png')}} alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Adquirir cupom</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 card-content">
-                        <div class="promo-atual">
-                                <a href="#">%30</a>
-                            </div>
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src={{asset('img/img-promo-3.png')}} alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Adquirir cupom!</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 card-content">
-                        <div class="promo-atual">
-                                <a href="#">%10</a>
-                            </div>
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src={{asset('img/img-promo-3.png')}} alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Adquirir cupom</a>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
     </section>

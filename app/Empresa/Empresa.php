@@ -18,9 +18,13 @@ use App\pageView\View;
 use App\Empresa\Novidade;
 use App\Empresa\Album\PhotosFeed;
 use App\Empresa\Contrato\Contrato;
+use App\Empresa\Promotion\Promotion;
 
 class Empresa extends Model
 {
+    public function promotion(){
+		return $this->hasOne(Promotion::class, 'empresa_id');
+	}
 
 	public function likes(){
 		return $this->hasMany(Like::class , 'empresa_id');

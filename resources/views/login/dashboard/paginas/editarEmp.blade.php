@@ -57,7 +57,7 @@
 			<div class="col-lg-12 mt">
 				<div class="row content-panel">
 					<div class="panel-heading">
-						<ul class="nav nav-tabs nav-justified">			
+						<ul class="nav nav-tabs nav-justified">
 							<li>
 							<a data-toggle="tab" href="#contact" class="contact-map">Contato geral da empresa</a>
 							</li>
@@ -79,7 +79,7 @@
 			<div class="col-md-6 detailed">
 		<h4>Localização</h4>
 		<div class="col-md-8 col-md-offset-2 mt">
-		
+
 		@if(!empty($user->info))
 			@if(!empty($user->info->endereco))
 							<p>
@@ -93,10 +93,10 @@
 		<p>Defina seu endereço</p>
 		@endif
 		<br>
-		
+
 		</div>
-			
-			
+
+
 		<div class="col-md-8 col-md-offset-2 mt">
 			<h4>Contato</h4>
 		@if(!empty($user->info))
@@ -110,10 +110,10 @@
 		@else
 		<p>Defina seu telefone de contato</p>
 		@endif
-		
+
 		<br>
-		
-		
+
+
 		<p>
 			Email: {{Auth::user()->email}}<br/>
 		</p>
@@ -126,7 +126,7 @@
 		<div id="album" class="tab-pane">
 			<div class="container galeria-empresa">
 
-				
+
 			<div class="img-unploud mb ">
 				<form id="album" enctype="multipart/form-data">
 					<label for="carregar-img" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i><span> Adicionar fotos</span></label>
@@ -139,88 +139,88 @@
 						<i class="glyphicon glyphicon-ban-circle"></i>
 						<span>Cancel upload</span>
 						</button>
-					
+
 			</div>
-			
+
 			<div id="previewAlbum" style="display:none;border: 2px dotted #999 ;background:#D4D4D4; padding:10px; margin-bottom:15px;">
-				
+
 				<div class="previaImg" >
 					<div id="carregando" style="display:none">
 							<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 						</div>
 					<label for="carregar-img"><i class="fa fa-plus fa-2x" style="cursor:pointer"></i></label>
-					
+
 				</div>
-				
+
 			</div>
 	</form>
         <!-- Grid row -->
         <!-- Grid row -->
         <div class="gallery" id="gallery">
 			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem"> 
+				<div class="fundo-imagem">
 					<div class="targets-wrapper">
    					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
 					</div>
 				</div>
 					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
 					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>	
+			</div>
 
 
 			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem"> 
+				<div class="fundo-imagem">
 					<div class="targets-wrapper">
    					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
 					</div>
 				</div>
 					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
 					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>	
+			</div>
 
 
 			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem"> 
+				<div class="fundo-imagem">
 					<div class="targets-wrapper">
    					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
 					</div>
 				</div>
 					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
 					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>	
+			</div>
 
 
 			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem"> 
+				<div class="fundo-imagem">
 					<div class="targets-wrapper">
    					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
 					</div>
 				</div>
 					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
 					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>	
+			</div>
 
 
 			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem"> 
+				<div class="fundo-imagem">
 					<div class="targets-wrapper">
    					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
 					</div>
 				</div>
 					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
 					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>	
+			</div>
 
 
 			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem"> 
+				<div class="fundo-imagem">
 					<div class="targets-wrapper">
    					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
 					</div>
 				</div>
 					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
 					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>	
+			</div>
 
 
 
@@ -238,10 +238,12 @@
 		<h4 class="mb">Informações  da empresa</h4>
 		<form role="form" id="form-data" class="form-horizontal" enctype="multipart/form-data">
 			@csrf
-			
+
 			<input type="hidden" name="idUser" id="idUser" value={{Auth::id()}}>
-		<div class="form-group">
+            <div class="form-group">
+
 			<label class="col-lg-2 control-label">LOGO MARCA</label>
+
 				<div class="col-lg-6">
 					<input type="file" id="imagem" name="imagem" class="file-pos">
 				</div>
@@ -258,7 +260,7 @@
 		<textarea type="text"  " id="descricao" name="description" class="form-control"></textarea>
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<label class="col-lg-2 control-label">CATEGORIA</label>
 			<div class="col-lg-6">
@@ -271,11 +273,11 @@
 			<option value="varejos">VAREJOS</option>
 			<option value="comidas">COMIDA</option>
 			<option value="lazer">LAZER</option>
-			<option value="distrubuidoras">DISTRIBUIDORAS</option>  
+			<option value="distrubuidoras">DISTRIBUIDORAS</option>
 		</select>
 			</div>
 		</div>
-		
+
 			</div>
 			<div class="col-lg-8 col-lg-offset-2 detailed mt">
 		<h4 class="mb">Informações pra contato</h4>
@@ -316,7 +318,7 @@
 		<input type="text" placeholder=" " id="instagram" name="instagram" class="form-control">
 			</div>
 		</div>
-		
+
 		<div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
 		<button class="btn btn-theme" type="submit">Salvar</button>
@@ -372,7 +374,7 @@ function excluir() {
 			var idUser = {{Auth::id()}};
 
 			$.getJSON('../api/painel/empresa/editar/'+idUser , function(data){
-				
+
 			$('#name').val(data.name);
 			$('#descricao').val(data.description);
 			$('#tags').val(data.nincho);
@@ -385,13 +387,13 @@ function excluir() {
 			$('#avatarImg').attr('src', "{!!asset('storage/logo-empresas/"+data.logoMarca+"')!!}");
 			$('#descricaoEmp').append(data.description);
 			});
-		
-				
+
+
 		}
 
 	$(function(){
-		
-		
+
+
 		$('#carregar-img').change(function() {
 			$('#previewAlbum').show();
 			const file = $(this)[0].files;
@@ -400,10 +402,10 @@ function excluir() {
 			if(vali == 1 ){
 				var files = [];
 			}
-			
+
 			for(i= 0; i<= array; i++){
 				var fileImg = $(this)[0].files[i];
-				
+
 				files.push(fileImg);
 				console.log(files);
 				const fileReader = new FileReader();
@@ -412,8 +414,8 @@ function excluir() {
 					'<div class="previaImg" id="prevImg" style="background:black !important; border:none;"><div id="prev"><img class="previa" src="'+fileReader.result+'"></div><div class="cancelarOp"><i class="fa fa-times fa-2x" style="cursor:pointer"></i></div></div>'
 				);
 				}
-				fileReader.readAsDataURL(fileImg);	
-			
+				fileReader.readAsDataURL(fileImg);
+
 			}
 		});
 
@@ -427,11 +429,11 @@ function excluir() {
 		closeButton: true,
 		delayOnHover: true,
 		showCountdown: true
-		}); 
-		
+		});
+
 
 		carregarEmpresa();
-		
+
 
 		function load(action){
 			var load_div = $(".loader");
@@ -449,11 +451,11 @@ function excluir() {
 		});
 
 
-		$("#form-data").submit(function(e){	 
-			
+		$("#form-data").submit(function(e){
+
 			$.ajax({
 				type:"POST",
-				url:'../api/painel/empresa/editar/alterar',	
+				url:'../api/painel/empresa/editar/alterar',
 				data: new FormData(this),
 				contentType: false,
 				cache: false,
@@ -463,7 +465,7 @@ function excluir() {
 				},
 				success: function(Response) {
 					console.log(Response);
-					
+
 				},
 				complete: function(){
 					load("close");
@@ -479,8 +481,8 @@ function excluir() {
 
 	});
 
-		
-	
+
+
 
 
 

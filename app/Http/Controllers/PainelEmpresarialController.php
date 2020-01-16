@@ -10,6 +10,8 @@ use App\Charts\SampleChart;
 use Faker\Provider\Color;
 use Illuminate\Mail\Message;
 use App\Empresa\Empresa;
+use App\Empresa\Promotion\Promotion;
+use App\Evento\Evento;
 use PhpParser\JsonDecoder;
 
 class PainelEmpresarialController extends Controller
@@ -21,6 +23,7 @@ class PainelEmpresarialController extends Controller
 	}
 
 	public function index(){
+
 		if (Auth::check()) {
 			$user = new User();
 			$userID = Auth::user()->id;
@@ -32,7 +35,8 @@ class PainelEmpresarialController extends Controller
 		$user = Auth::User();
 		$chave='385bc83d';
 		$cid = '457982'; // CID da sua cidade, encontre a sua em http://hgbrasil.com/weather
-
+        $promotion = $user->permissions->empresas->promotion;
+        $evento = Evento::orderBy('id','desc')->first();
 		$charts = new SampleChart;
 		$charts->labels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto', 'Setembro','Outubro','Novembro','Dezembro']);
 		$charts->dataset('Visitas Mensais', 'bar', [1,2,3,4,5,44,7,8,9,10,76,12])->options([
@@ -44,7 +48,7 @@ class PainelEmpresarialController extends Controller
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
-			return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts'));
+			return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts','promotion','evento'));
 
 		}
 		catch(Exception $e){
@@ -53,7 +57,7 @@ class PainelEmpresarialController extends Controller
 				"temp"=>25
 			]
 		]);
-		return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts'));
+		return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts', 'promotion','evento'));
 		}
 	}
 	public function perfil(){
@@ -130,11 +134,11 @@ class PainelEmpresarialController extends Controller
 
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-
+        $eventos = Evento::orderBy('id', 'desc')->take(3)->get();
 		$verificacao = $user->permissions->empresario;
 
 		if($verificacao=="sim"){
-		return view('login.dashboard.paginas.eventEmp', compact('user'));
+		return view('login.dashboard.paginas.eventEmp', compact('user', 'eventos'));
 		}
 		return redirect()->back();
 	}

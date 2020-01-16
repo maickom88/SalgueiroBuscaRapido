@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Empresa\Empresa;
 use App\Empresa\Feed\NovidadeEmpresa;
+use App\Empresa\Promotion\Promotion;
 
 class Empresas extends Controller
 {
@@ -88,5 +89,61 @@ class Empresas extends Controller
         return response()->json($valid);
     }
 
+    public function adicionarPromocao(Request $req){
+        $empresa = Empresa::find($req->input('idEmpresa'));
+        $promotion = new Promotion();
 
+        if(empty($empresa->promotion)){
+            $promotion->title = $req->input('nomeProduto');
+            $promotion->description = $req->input('descricaoProduto');
+            $promotion->valor = $req->input('valorProduto');
+            $promotion->desconto = $req->input('descontoProduto');
+            $promotion->title = $req->input('nomeProduto');
+            $promotion->data_fim_promocao = $req->input('fimPromocao');
+            if($req->hasFile('banner') && $req->file('banner')->isValid()){
+
+                $name = uniqid(date('HisYmd'));
+                $extension = $req->banner->extension();
+                $nameFile = "{$name}.{$extension}";
+                $upload = $req->banner->storeAs('promocoes', $nameFile);
+                if ( !$upload ){
+                    return response()->json("ErrorSavedImg");
+                }
+                $promotion->photo = $nameFile;
+            }
+            $valid = $empresa->promotion()->save($promotion);
+            return response()->json($valid);
+        }
+
+        $empresa->promotion->title = $req->input('nomeProduto');
+        $empresa->promotion->description = $req->input('descricaoProduto');
+        $empresa->promotion->valor = $req->input('valorProduto');
+        $empresa->promotion->desconto = $req->input('descontoProduto');
+        $empresa->promotion->title = $req->input('nomeProduto');
+        $empresa->promotion->data_fim_promocao = $req->input('fimPromocao');
+        if($req->hasFile('banner') && $req->file('banner')->isValid()){
+
+            $name = uniqid(date('HisYmd'));
+            $extension = $req->banner->extension();
+            $nameFile = "{$name}.{$extension}";
+            $upload = $req->banner->storeAs('promocoes', $nameFile);
+            if ( !$upload ){
+                return response()->json("ErrorSavedImg");
+            }
+            $empresa->promotion->photo = $nameFile;
+        }
+        $valid = $empresa->promotion->save();
+
+        return response()->json($valid);
+    }
+    public function verificaPromocao(Request $request, $id)
+	{
+        $user = User::find($id);
+        $promotion = $user->permissions->empresas->promotion;
+        if ($request->ajax()) {
+			return view('login.dashboard.paginas.cardPromotion', compact('promotion'));
+		}
+		return view('login.dashboard.paginas.cardPromotion',compact('promotion'));
+
+	}
 }

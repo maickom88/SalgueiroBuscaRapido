@@ -18,12 +18,16 @@ class CreatePromotionsTable extends Migration
             $table->string('photo');
             $table->string('title');
             $table->string('description');
+            $table->string('valor');
+            $table->string('desconto');
+            $table->string('status');
+            $table->string('data_fim_promocao');
             $table->integer('empresa_id')->unsigned();
             $table->timestamps();
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
         });
 
-       
+
     }
 
     /**
@@ -34,5 +38,6 @@ class CreatePromotionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('promotions');
+
     }
 }

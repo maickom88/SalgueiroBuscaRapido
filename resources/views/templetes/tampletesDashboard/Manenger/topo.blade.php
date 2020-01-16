@@ -224,12 +224,12 @@ $telefone = $user->info->telefone;
                     </ul>
                 </li>
 				<li class="sub-menu">
-                    <a href="javascript:;">
+                    <a class="@yield('promocoes')"   href="javascript:;">
                     <i class="fa fa-plus-square"></i>
                     <span>Promoções</span>
                     </a>
                     <ul class="sub" style="background:#D4D4D4 !important;">
-                    <li><a href="#">Lista de promoções</a></li>
+                    <li><a href={{route('promocaoManenger')}}>Lista de promoções</a></li>
                     </ul>
                 </li>
 			</ul>

@@ -144,4 +144,13 @@ Route::get('administrativo/eventos/buscar', 'ControllersApi\EventoController@bus
 Route::post('administrativo/eventos/excluir', 'ControllersApi\EventoController@excluirEventos');
 
 
+Route::post('empresario/promocao/add', 'ControllersApi\Empresas@adicionarPromocao');
+
+
+
+Route::get('empresario/verifica-promocao/{id}', 'ControllersApi\Empresas@verificaPromocao');
+
+
+
+
 Route::get('evento/eventos', 'ControllersApi\EventoController@eventos');

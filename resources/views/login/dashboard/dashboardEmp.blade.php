@@ -5,6 +5,7 @@
 @section('menuPrincipal', 'active')
 
 @section('conteudo')
+    <div class="loader loader-bouncing "></div>
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
@@ -80,8 +81,7 @@
                 <div class="twitter-panel pn">
                   <i class="fa fa-bullhorn fa-4x"></i>
                   <p class="user">DESEJA CRIAR ALGUMA PROMOÇÃO?</p>
-                  <p >Crie promoções e divulgue no nosso site, aumente suas vendas/demanda atigindo milhares de pessoas</p>
-                    <a href="#" class="btn btn-primary ">POSTAR PROMOÇÃO</a>
+                  <p>Crie promoções e divulgue no nosso site, aumente suas vendas/demanda atigindo milhares de pessoas. Clique em anunciar no card mais abaixo!</p>
                 </div>
               </div>
               <!-- /col-md-4-->
@@ -136,18 +136,11 @@
 			</div>
 			</div>
 		</div>
-              <!-- /col-md-4 -->
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                    <div class="product-panel-2 pn" data-jbox-content="Content 1">
-                      <div class="badge badge-hot">0%</div>
-                      <img src="img/product.png" width="100" style="margin-top:20px;" alt="">
-                      <h5 class="mt">Nenhuma Promoção Pendente</h5>
-                      <h6>TOTAL Visitas: 0</h6>
-                      <button class="btn btn-small btn-theme04">ANUNCIAR</button>
-                    </div>
-                  </div>
-              <!-- /col-md-4 -->
-            </div>
+				<!-- /col-md-4 -->
+				<div id="card-promotion" class="col-lg-4 col-md-4 col-sm-4 mb">
+                    @include('login.dashboard.paginas.cardPromotion')
+                </div>
+        </div>
             <!-- /row -->
             <div class="row">
 
@@ -298,14 +291,30 @@
 		</div>
 
 		<div class="text-center">
+            @if(!empty($evento))
+                @php
+                $str = $evento->nome_evento;
+                $str2 = str_replace(' ', '-', $str);
+            @endphp
 			<h4>EVENTOS DA CIDADE</h4>
-		<div class="instagram-panel pn">
+		<div class="instagram-panel pn" style="background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.6)), url({{asset('storage/eventos/'.$evento->banner)}}); background-size:cover; background-repeat:no-repeat">
 			<i class="fa fa-calendar fa-4x"></i>
-			<p>EVENTO<br/>
-			</p>
-			<p>No momento não há eventos na cidade!</p>
+			<h3 style="color:white; font-weight:900">EVENTO</h3>
+            <h4 style="color:white">{{$evento->nome_evento}}</h4>
+			<h4 style="color:white">{{$evento->inicio_data_evento}} as {{$evento->inicio_hora_evento}}</h4>
+            <a style="color:white" href={{route('eventos').'/'.$str2.'_'.$evento->id}} class="mt btn btn-info">Mais informações</a>
+            </div>
+		</div>
+        @else
+
+			<h4>EVENTOS DA CIDADE</h4>
+		<div class="instagram-panel pn" style="background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6)), url('img/img-15.jpg'); background-size:cover; background-repeat:no-repeat">
+			<i class="fa fa-calendar fa-4x"></i>
+			<h3 style="color:white">EVENTO</h3>
+            <h4 style="color:white; letter-spacing:2px">Não há eventos na cidade! Caso tenha alguma evento contate nosso <a href={{route('contato.home').'#contato'}}>Atedimento!</a></h4>
 			</div>
 		</div>
+        @endif
 
                 <div class="stock card">
                   <div class="stock-chart">
@@ -339,15 +348,219 @@
 	</section>
 </section>
 
+
+<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="TituloModalCentralizado">Cadastro de promoção</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <form id="form-data" enctype="multipart/form-data">
+    @csrf
+    <input type="hidden" name="idEmpresa" value={{$user->empresas->id}}>
+        <div class="form-group">
+            <label>Nome do produto</label>
+            <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" required>
+        </div>
+         <div class="form-group">
+            <label>Descrição do produto</label>
+            <textarea placeholder="No maximo 100 caracteres!" maxlength="100" class="form-control" name="descricaoProduto" id="descricaoProduto" cols="30" rows="6"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Valor do produto</label>
+            <input placeholder="Opcional" e="text" id="valorProduto" name="valorProduto" class="dinheiro form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Desconto da promoção</label>
+            <input  maxlength="2" placeholder="Valor de desconto, exemplo: 50(%)"  id="promotion" type="text" id="descontoProduto" name="descontoProduto" class="form-control"  required>
+        </div>
+        <div class="form-group">
+            <label>Data do fim da promoção</label>
+            <input   id="data"  type="date" id="fimPromocao" name="fimPromocao" class="form-control" min="2020-02-01" max="2020-12-31" required>
+        </div>
+        <div class="form-group">
+            <label for="bannerEmp" class="btn btn-warning">Adicionar imagem do produto</label>
+            <input type="file" style="display:none;" id="bannerEmp" onchange="previewBanner()" name="banner" class="form-control"  required>
+        </div>
+
+        <div class="form-group" id="previaBanner">
+            <div class="previaImg" id="prevImg" style="left: 10px !important; width: 287px !important;height:183px !important; background:black !important; border:none;"><div id="prev"><img class="previa" id="prevBanner" src={{asset('img/img-red.png')}}  ></div><div class="cancelarOp" id="excluirBanner"><i class="fa fa-times fa-2x" style="cursor:pointer; margin-left: 40px !important; margin-top:60px;"></i></div></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="submit" id="saved" class="btn btn-success">Renovar</button>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+
+
 @endsection
 
 @section('scripts')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 {!! $charts->script() !!}
 
+
 <script type="text/javascript">
+
+
+var modalConfirmPromotion = new jBox('Modal', {
+    attach: '#test',
+    title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+    content: "Promoção publicada com sucesso! <h4>OBS: Você só poderar publicar outra promoção quando expirar a data a qual você digitou!</h4>",
+    animation: 'zoomIn',
+    audio: '../audio/bling2',
+    volume: 80,
+    closeButton: true,
+    delayOnHover: true,
+    showCountdown: true
+});
+
+function limparInputs(){
+    $('#nomeProduto').val('');
+    $('#descricaoProduto').val('');
+    $('#valorProduto').val('');
+    $('#banner').val('');
+    $('#descontoProduto').val('');
+    $('#fimPromocao').val('');
+}
+
+function load(action){
+    var load_div = $(".loader");
+    if(action==="open"){
+    load_div.addClass("is-active");
+    }
+    else{
+    load_div.removeClass("is-active");
+    }
+}
+
+
+
+
+
+
+
+$.ajaxSetup({
+    headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+});
+
+$("#form-data").submit(function(e){
+    var id = {{Auth::user()->id}}
+    $.ajax({
+        type:"POST",
+        url:'../api/empresario/promocao/add',
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function(){
+            load("open");
+        },
+        success: function(Response) {
+            console.log(Response);
+        },
+        error: function(error){
+            console.log(error);
+        },
+        complete: function(){
+            load("close");
+            $('#ExemploModalCentralizado').modal('hide');
+            modalConfirmPromotion.open();
+            getData(id);
+        }
+    });
+    e.preventDefault();
+});
+
+$('#promotion').keyup(function(){
+    var number = $(this).val();
+    if($.isNumeric(number)){
+    }
+    else{
+        $(this).val('');
+    }
+});
+
+function getData(id){
+    $.ajax(
+    {
+        url: '../api/empresario/verifica-promocao/'+id,
+        type: "get",
+        datatype: "html"
+    }).done(function(data){
+        $("#card-promotion").empty().html(data);
+    }).fail(function(jqXHR, ajaxOptions, thrownError){
+        alert('No response from server');
+    });
+}
+
+
+$('#prevBanner').hover(function(){
+	$(this).css('opacity', '1');
+	$('#excluirBanner').hide();
+});
+
+
+$('#excluirBanner').click(function(){
+	$('#prevBanner').attr('src', "{!!asset('img/img-red.png')!!}");
+	$('#bannerEmp').val('');
+	$('#prevBanner').hover(function(){
+	$(this).css('opacity', '1');
+	$('#excluirBanner').hide();
+});
+});
+
+
+$('#bannerEmp').change(function(){
+
+	$('#prevBanner').hover(function(){
+		$(this).css('opacity', '0.6');
+		$('#excluirBanner').show();
+	},
+	function(){
+		$(this).css('opacity', '1');
+	});
+	$('#excluirBanner').hover(function(){
+		$('#prevbanner').css('opacity', '0.6');
+		$('#excluirBanner').show();
+	},
+	function(){
+		$('#prevBanner').css('opacity', '1');
+	});
+
+	var imagem = document.querySelector('input[name=banner]').files[0];
+	var preview = document.getElementById('prevBanner');
+	var reader = new FileReader();
+
+	reader.onload = function(){
+		preview.src = reader.result;
+	}
+
+	if(preview){
+		reader.readAsDataURL(imagem);
+	}else{
+		preview.src = '';
+	}
+});
+
+
+$('.dinheiro').mask('#.##0,00', {reverse: true}).append('R$');
+
+
+$('#clickModel').click(function(){
+    $('#ExemploModalCentralizado').modal('show')
+});
+
 $(document).ready(function() {
 	var unique_id = $.gritter.add({
 	// (string | mandatory) the heading of the notification
@@ -366,6 +579,8 @@ $(document).ready(function() {
 
 	return false;
 });
+
+
 
 </script>
 @endsection
