@@ -11,7 +11,7 @@
 @section('conteudo')
 @include('templetes.top-menu')
 
-	
+
 <div class="loader loader-bouncing "></div>
 <section class="header-empresa" style="background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url({{asset("../storage/logo-empresas/".$empresa->banner)}}); background-size:cover; background-position:center; background-repeat:no-repeat">
 <div class="container ">
@@ -32,7 +32,7 @@
             <div class="content-empresa-icone">
                 <div class="haert">
                     <div class="bloco">
-                    <i class="fas fa-eye"></i> 
+                    <i class="fas fa-eye"></i>
                     <span>{{$empresa->views->views}}</span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                     <i class="fab fa-gratipay"></i>
                         <span id="likesCount">{{$empresa->likes->count()}}</span>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -104,19 +104,19 @@
 			@endphp
 			@if(count($empresa->album) > 0)
 				@foreach ($empresa->album as $fotos)
-				
+
 				<div class="mb-2 pics animation all 2">
 					<img class="img-fluid" src={{asset("storage/album-empresa/".$email."/".$fotos->photo)}} alt="{{$empresa->name}}">
 				</div>
-				@endforeach		
+				@endforeach
 				<div>
 			@else
 			<h1 style="color:darkgray;">Não há fotos dessa empresa!</h1>
 			@endif
-			
 
 
-			
+
+
     </div>
 </section>
 <section id="detalhes">
@@ -131,52 +131,52 @@
 				@elseif(!empty($empresa->facebook))
 				<a href={{$empresa->facebook}} target="blank">Entrar em contato</a>
 				@else
-				
+
 				@endempty
-            
+
         </div>
         <div class="facilidades">
             <h4>Facilidades</h4>
-            <div class="row">       
+            <div class="row">
                 <div class="col-md-6">
-						 	@if($empresa->facilities->climatizado == 'sim')
+						@if($empresa->facilities->climatizado == 'sim')
                     <div class="conteudo-facilidades">
                         <i class="fas fa-snowflake"></i>
                         <p>Área climatizada</p>
                     </div>
-						  @endif
-						  @if($empresa->facilities->wifi == 'sim')
+						@endif
+						@if($empresa->facilities->wifi == 'sim')
 							<div class="conteudo-facilidades">
                         <i class="fas fa-wifi"></i>
                         <p>Wifi grátis</p>
                     </div>
-						  @endif
-						  @if($empresa->facilities->estacionamento == 'sim')
+						@endif
+						@if($empresa->facilities->estacionamento == 'sim')
                     <div class="conteudo-facilidades">
                         <i class="fas fa-car"></i>
                         <p>Espaço para estacionemnto</p>
                     </div>
-						  @endif
+						@endif
                 </div>
                 <div class="col-md-6">
-						 @if($empresa->facilities->cartao == 'sim')
+						@if($empresa->facilities->cartao == 'sim')
                     <div class="conteudo-facilidades">
                         <i class="fas fa-credit-card"></i>
                         <p>Aceita todos tipos de cartões de credito</p>
                     </div>
-						  @endif
-						  @if($empresa->facilities->delivery == 'sim')
+						@endif
+						@if($empresa->facilities->delivery == 'sim')
                     <div class="conteudo-facilidades">
                         <i class="fas fa-truck"></i>
                         <p>Serviço de entrega</p>
                     </div>
-						  @endif
-						  @if($empresa->facilities->orcamento == 'sim')
+						@endif
+						@if($empresa->facilities->orcamento == 'sim')
                     <div class="conteudo-facilidades">
                         <i class="fas fa-comments-dollar"></i>
                         <p>Orçamento grátis</p>
                     </div>
-						  @endif
+						@endif
                 </div>
             </div>
         </div>
@@ -188,7 +188,7 @@
 							<a href="#">{{$tag}}</a>
 						@endforeach
 					@endempty
-					
+
 				</div>
         </div>
     </div>
@@ -217,7 +217,7 @@
                 <input type="radio" id="estrela_cinco" name="estrela"value="5">
             </div><div class="mensagem-empresa">
 				@if(!Auth::check())
-				
+
                 <div class="tex-input">
                     <label for="nome"><i class="fas fa-user-alt"></i></label>
                     <input type="text"placeholder="Digite seu nome" id="nome" name="nome">
@@ -225,17 +225,17 @@
             	<div class="mensagem-empresa">
                 <label for="email"><i class="fas fa-envelope"></i></label>
                 <input type="email" placeholder="Digite seu email" id="email" name="email">
-                </div>	 
+                </div>
 				@endif
                 <div class="text-area">
                     <textarea id="message" style="font-size:23px; color:#6d6d6dFf" name="message" placeholder="Digite seu comentario..."></textarea>
                 </div>
 					 <input type="hidden" name="idEmp" value={{$empresa->id}}>
-					 <input type="hidden" name="idUser" value={{Auth::id()}}> 
+					 <input type="hidden" name="idUser" value={{Auth::id()}}>
             </div>
             <div class="btn-enviar-comentario">
                 <label for="enviar">Enviar comentário<i class="fas fa-paper-plane"></i></label>
-                <input type="submit" id="enviar" name="enviar">    
+                <input type="submit" id="enviar" name="enviar">
             </div>
         </form>
     </div>
@@ -244,7 +244,7 @@
 @if($empresa->novidades->count() > 0)
 <section id="novidades" style="background:#F9F9F9">
 @include('paginaIndividual.pageNovidades')
-</section>	
+</section>
 @endif
 
 <section id="horario-endereco">
@@ -354,14 +354,15 @@
     </div>
 </section>
 
+
 <section id="vejamais">
 	<div class="container">
 			<div class="row card-empresas" >
 				@foreach ($empresas as $emp)
 					 <div class="col-md-4" style="outline:none !important">
-                    <div class="empresa-content">    
+                    <div class="empresa-content">
                         <img src={{asset("storage/logo-empresas/$emp->banner")}} class="img-fluid">
-                        
+
                         <div class="name-empresa">
                             <h4>{{$emp->name}}</h4>
                                 <span><i class="fas fa-star"></i></span>
@@ -385,11 +386,11 @@
                     </div>
                 </div>
 				@endforeach
-					
-					
-					
-					
-					
+
+
+
+
+
 			</div>
 	</div>
 </section>
@@ -420,7 +421,7 @@
 			}
 		}
 	});
-	
+
 		$(document).on('click', '.pagination a',function(event)
 		{
 			event.preventDefault();
@@ -449,19 +450,19 @@
 		});
 	}
 
-	
-	
+
+
 $(function(){
 	getData(1);
 	IsLike();
 @if(Auth::check())
-	$("#form-data").submit(function(e){	
+	$("#form-data").submit(function(e){
 		var idEmp = {{$empresa->id}}
 		var mens = $('#message').val();
 		if(mens){
 		$.ajax({
 			type:"POST",
-			url:'../../api/empresa/comentar',	
+			url:'../../api/empresa/comentar',
 			data: new FormData(this),
 			contentType: false,
 			cache: false,
@@ -534,7 +535,7 @@ $('.card-empresas').slick({
 	}
 	]
 	});
-	
+
 </script>
 <script>
 var modalCommentInfo = new jBox('Modal', {
@@ -545,7 +546,7 @@ var modalCommentInfo = new jBox('Modal', {
 	closeButton: true,
 	delayOnHover: true,
 	showCountdown: true
-}); 
+});
 function load(action){
 	var load_div = $(".loader");
 	if(action==="open"){
@@ -567,12 +568,12 @@ var likeIsLogin = new jBox('Modal', {
 	closeButton: true,
 	delayOnHover: true,
 	showCountdown: true
-}); 
+});
 
 
 @endif
 function IsLike(){
-	
+
 	@if(Auth::check())
 	var idUser = {{Auth::user()->id}}
 	var idEmp = {{$empresa->id}}
@@ -590,11 +591,11 @@ function IsLike(){
 
 	}
 	@endif
-	
+
 }
 
 @if(!Auth::check())
-	$("#form-data").submit(function(e){	
+	$("#form-data").submit(function(e){
 	modalCommentInfo.open();
 	e.preventDefault();
 });
@@ -603,8 +604,8 @@ function IsLike(){
 var controller = 0;
 var aux = 0;
 
-function likepage(idEmp){		
-	@if(Auth::check())	
+function likepage(idEmp){
+	@if(Auth::check())
 	var idUser = {{Auth::user()->id}}
 		$.get('../../api/empresa/like/'+idEmp+'/'+idUser+'').done(function(data){
 			IsLike();

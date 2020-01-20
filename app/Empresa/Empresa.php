@@ -30,7 +30,7 @@ class Empresa extends Model
 		return $this->hasMany(Like::class , 'empresa_id');
 	}
     public function contratos(){
-		return $this->hasMany(Contrato::class);
+		return $this->hasOne(Contrato::class, 'empresa_id');
 	}
 	public function novidades(){
 		return $this->hasMany(NovidadeEmpresa::class);

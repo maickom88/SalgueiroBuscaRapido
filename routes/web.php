@@ -152,6 +152,10 @@ Route::get('administrador/eventos', ['uses'=>'PainelManengerController@evento'])
 //-----------------------Rota de Evento do perfil adm--------------//
 Route::get('administrador/eventos-publicados', ['uses'=>'PainelManengerController@eventosPublicados'])->name('eventosPublicados');
 
+//-----------------------Rota de Evento do perfil adm--------------//
+Route::get('administrador/publicar/noticia', ['uses'=>'PainelManengerController@publicarNoticia'])->name('blogManenger');
+
+
 
 //-----------------------Rota de Publicar Evento do perfil adm--------------//
 Route::post('administrador/eventos/publicar', 'eventos\EventosController@publicar')->name('publicarEventos');

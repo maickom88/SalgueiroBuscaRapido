@@ -141,10 +141,21 @@ Route::get('administrativo/eventos/publicados', 'ControllersApi\EventoController
 Route::get('administrativo/eventos/buscar', 'ControllersApi\EventoController@buscarEventos');
 
 
+Route::get('administrativo/promocoes', 'ControllersApi\AdmController@promocoes');
+
+Route::get('administrativo/promocoes/listar-promocoes', 'ControllersApi\AdmController@listarPromocoes');
+
+
+Route::post('administrativo/promocoes/excluir', 'ControllersApi\AdmController@excluirPromocao');
+
+
 Route::post('administrativo/eventos/excluir', 'ControllersApi\EventoController@excluirEventos');
 
 
 Route::post('empresario/promocao/add', 'ControllersApi\Empresas@adicionarPromocao');
+
+
+Route::post('post/upload', 'ControllersApi\Post@uploadAction');
 
 
 

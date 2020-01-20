@@ -147,7 +147,28 @@ class PainelManengerController extends Controller
 
 		if($verificacao=="sim")
 		{
+            $allPromotion = Promotion::all();
+            foreach($allPromotion as $promotion){
+                date_default_timezone_set("Brazil/East");
+                $dataAtual = date("Y-m-d");
+                $dataExpirada = $promotion->data_fim_promocao;
+                $ifExpirade = strtotime($dataAtual) > strtotime($dataExpirada) ? true : false;
+                if($ifExpirade){
+                    $promotion->delete();
+                }
+            }
 			return view('login.dashboardManenger.promocao', compact('user', 'promotions'));
+		}
+		return redirect()->back();
+	}
+     public function publicarNoticia(){
+		$idUser = Auth::id();
+		$user = User::find($idUser);
+		$verificacao = $user->permissions->adm;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardManenger.noticia', compact('user'));
 		}
 		return redirect()->back();
 	}

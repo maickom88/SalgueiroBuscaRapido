@@ -21,5 +21,9 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
+    },
+    "dependencies": {
+        "ckeditor5-build-laravel-image": "^1.0.1",
+        "ckeditor5-simple-upload": "^1.0.7"
     }
 }

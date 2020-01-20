@@ -1232,6 +1232,9 @@ $(window).on('hashchange', function() {
 					console.log(Response);
 
 				},
+                error: function(error){
+                    console.log(error);
+                },
 				complete: function(){
 					load('close');
 					successDelete.open();

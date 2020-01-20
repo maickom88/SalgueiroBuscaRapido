@@ -82,7 +82,7 @@
 							<li class="mb-2"><a href={{route('userManenger')}} style="text-transform:none">Usúarios</a></li>
 							<li class="mb-2"><a href={{route('contatoManenger')}} style="text-transform:none">Mensagens</a></li>
 							<li class="mb-2"><a href={{route('eventoManenger')}} style="text-transform:none">Publicar Evento</a></li>
-							<li class="mb-2"><a href="" style="text-transform:none">Publicar Poste</a></li>
+							<li class="mb-2"><a href={{route('blogManenger')}} style="text-transform:none">Publicar Post</a></li>
 							<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
 						@endif
 

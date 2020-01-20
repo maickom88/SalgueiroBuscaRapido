@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Post\Post;
 use App\Avatar;
 use App\Comment\Comment;
 use App\Empresa\Empresa;
@@ -43,27 +44,26 @@ class User extends Authenticatable
      * @var array
      */
 	protected $casts = [
-      'email_verified_at' => 'datetime',
-   ];
+        'email_verified_at' => 'datetime',
+    ];
 
-   public function permissions(){
+    public function permissions(){
 
-      return $this->hasOne(Permission::class);
-   }
-   public function comments(){
+        return $this->hasOne(Permission::class);
+    }
+    public function comments(){
 
-      return $this->hasMany(Comment::class);
-   }
-   public function empresas(){
-      return $this->hasOneThrough(Empresa::class,Permission::class);
-   }
-   public function posts(){
-      return $this->hasManyThrough(Post::class,Permission::class);
-   }
-   public function avatar(){
-
-      return $this->hasOne(Avatar::class);
-   }
+        return $this->hasMany(Comment::class);
+    }
+    public function empresas(){
+        return $this->hasOneThrough(Empresa::class,Permission::class);
+    }
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
+    public function avatar(){
+    return $this->hasOne(Avatar::class);
+    }
 	public function info(){
 		return $this->hasOne(info::class);
 	}

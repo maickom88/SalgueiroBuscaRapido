@@ -18,12 +18,9 @@ class CreateCommentsTable extends Migration
             $table->integer('empresa_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('post_id')->unsigned()->nullable();
-            $table->integer('feed_id')->unsigned()->nullable();
             $table->text('content');
-				$table->integer('avaliacao')->nullable();
+			$table->integer('avaliacao')->nullable();
             $table->timestamps();
-
-            $table->foreign('feed_id')->references('id')->on('feeds')->onDelete('cascade');
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');

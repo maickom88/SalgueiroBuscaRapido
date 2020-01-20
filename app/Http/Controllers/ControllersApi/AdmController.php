@@ -15,6 +15,7 @@ use App\Empresa\Contrato\Contrato;
 use App\Parceiro;
 use \Datetime;
 use \DateInterval;
+use App\Empresa\Promotion\Promotion;
 
 class AdmController extends Controller
 {
@@ -223,12 +224,13 @@ class AdmController extends Controller
 			$validViews = $user[0]->permissions->empresas->views()->save($view);
 
 		}
-
+        $view->views = 0;
 		$valid = $valid = $user[0]->permissions->empresas()->save($empresa);
 		$validFacilite = $user[0]->permissions->empresas->facilities()->save($facilite);
 		$validOpen = $user[0]->permissions->empresas->open()->save($open);
 		$validViews = $user[0]->permissions->empresas->views()->save($view);
 		$validContrato =  $user[0]->permissions->empresas->contratos()->save($contrato);
+
 		if($req->hasFile('album')){
 			$len = count($req->album);
 			$id = $user[0]->id;
@@ -304,6 +306,19 @@ class AdmController extends Controller
 
 		$idEmp = $id->keys()[0];
 		$empresa = Empresa::find($idEmp);
+        $empresa->permissions->user = 'sim';
+        $empresa->permissions->empresario ='nao';
+        $empresa->permissions->save();
+        $empresa->contratos()->delete();
+        $empresa->promotion()->delete();
+        $empresa->views()->delete();
+        $empresa->feeds()->delete();
+        $empresa->likes()->delete();
+        $empresa->novidades()->delete();
+        $empresa->comments()->delete();
+        $empresa->open()->delete();
+        $empresa->facilities()->delete();
+        $empresa->album()->delete();
 		$valid = $empresa->delete();
 		return response()->json($valid);;
 	}
@@ -552,9 +567,19 @@ class AdmController extends Controller
 		$permission = $request->input('idPermission');
 		$user = User::find($idUser);
 		if($permission == 'Empresarial'){
-			$user->permissions->empresas->delete();
-			$user->
-			$user->permissions->delete();
+			$user->empresas->contratos()->delete();
+            $user->empresas->promotion()->delete();
+            $user->empresas->views()->delete();
+            $user->empresas->feeds()->delete();
+            $user->empresas->likes()->delete();
+            $user->empresas->novidades()->delete();
+            $user->empresas->comments()->delete();
+            $user->empresas->open()->delete();
+            $user->empresas->facilities()->delete();
+            $user->empresas->album()->delete();
+            $user->info()->delete();
+            $user->comments()->delete();
+            $user->permissions()->delete();
 			$valid = $user->delete();
 		}
 		if($permission == 'Blogueiro'){
@@ -660,4 +685,21 @@ class AdmController extends Controller
         return response()->json($saved);
     }
 
+    public function promocoes(Request $request){
+		$promotions = Promotion::orderBy('id', 'desc')->paginate(5);
+
+		return view('login.dashboardManenger.promocoesTabela', compact('promotions'));
+	}
+
+    public function listarPromocoes(Request $request){
+		$promotions = Promotion::all();
+        $todas = "MostrarTodas";
+		return view('login.dashboardManenger.promocoesTabela', compact('promotions', 'todas'));
+	}
+    public function excluirPromocao(Request $request){
+        $id = $request->input('idPromotion');
+		$promotion = Promotion::find($id);
+        $valid = $promotion->delete();
+        return response()->json($valid);
+	}
 }

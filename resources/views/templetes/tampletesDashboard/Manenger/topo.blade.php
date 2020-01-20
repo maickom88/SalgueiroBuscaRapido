@@ -223,6 +223,15 @@ $telefone = $user->info->telefone;
                     <li><a href={{route('eventosPublicados')}}>Eventos publicados</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a class="@yield('blog')" href="javascript:;">
+                    <i class="fa fa-plus-square"></i>
+                    <span>Blog</span>
+                    </a>
+                    <ul class="sub" style="background:#D4D4D4 !important;">
+                    <li><a href={{route('blogManenger')}}>Publicar post</a></li>
+                    </ul>
+                </li>
 				<li class="sub-menu">
                     <a class="@yield('promocoes')"   href="javascript:;">
                     <i class="fa fa-plus-square"></i>

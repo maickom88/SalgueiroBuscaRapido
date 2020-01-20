@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class PaginaIndividualController extends Controller
 {
    public function page($nome, $id){
-		$empresas = Empresa::all()->where('status', 'ativa')->random(4);
+		$empresas = Empresa::all()->where('status', 'ativa');
 		$empresa = Empresa::find($id);
 		$novidades = NovidadeEmpresa::where('empresa_id', $id)->orderBy('id','desc')->paginate(1);
 		if(!isset($empresa)){
@@ -19,8 +19,8 @@ class PaginaIndividualController extends Controller
 		}
 		$tag = $empresa->tags;
 		$tags = explode(',', $tag);
-		
-		
+
+
 		$segunda = "".$empresa->open->segunda."";
 		$terca = $empresa->open->terca;
 		$quarta = $empresa->open->quarta;
@@ -71,7 +71,7 @@ class PaginaIndividualController extends Controller
 		else{
 			$domingotoJson = json_decode($domingo);
 		}
-		
+
 		$array = ['segunda' => $segundatoJson,
 						'terca'   => $tercatoJson,
 						'quarta'  => $quartatoJson,
@@ -85,7 +85,7 @@ class PaginaIndividualController extends Controller
 			$user = User::find($idUser);
 			return view('paginaIndividual.page', compact('empresa', 'tags', 'array', 'user', 'empresas', 'novidades'));
 		}
-		
+
 		return view('paginaIndividual.page', compact('empresa', 'tags', 'array','empresas' ,'novidades'));
 	}
 }

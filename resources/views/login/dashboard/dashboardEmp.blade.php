@@ -70,7 +70,7 @@
                     <h5>PLANO ATUAL</h5>
                   </div>
                   <img src={{asset('img/money.png')}} width="70px" alt="">
-                  <p style="font-size: 20px;" class="text-center mt"><b>R$ {{$user->empresas->contratos[0]->valor}}</b><br/>@if($user->empresas->contratos[0]->status == 'ativa')Verificado! <i style="color:#00a3ee"class="fa  fa-check"></i>@else Expirado! <i style="color:red"class="fa fa-ban"></i>@endif</p>
+                  <p style="font-size: 20px;" class="text-center mt"><b>R$ {{$user->permissions->empresas->contratos->valor}}</b><br/>@if($user->permissions->empresas->contratos->status == 'ativa')Verificado! <i style="color:#00a3ee"class="fa  fa-check"></i>@else Expirado! <i style="color:red"class="fa fa-ban"></i>@endif</p>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -393,7 +393,7 @@
     </div>
     <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-    <button type="submit" id="saved" class="btn btn-success">Renovar</button>
+    <button type="submit" id="saved" class="btn btn-success">Publicar</button>
     </div>
     </form>
 </div>

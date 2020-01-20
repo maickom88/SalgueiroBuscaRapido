@@ -15,9 +15,6 @@ class Comment extends Model
 	public function empresas(){
 	return $this->belongsTo(Empresa::class);
 	}
-	public function Feed(){
-		return $this->belongsTo(Feed::class,'id');
-	}
 	public function user(){
 		return $this->belongsTo(User::class);
 	}
