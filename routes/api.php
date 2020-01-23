@@ -174,6 +174,10 @@ Route::get('empresario/verifica-promocao/{id}', 'ControllersApi\Empresas@verific
 
 Route::get('dashboard/post/{id}', 'ControllersApi\Post@postsUserPublicados');
 
+Route::post('blog/comentar', 'ControllersApi\CommentController@adicionarCommentPost');
 
 
 Route::get('evento/eventos', 'ControllersApi\EventoController@eventos');
+
+
+Route::get('blog/lista-comments-page/{id}', 'ControllersApi\CommentController@listarCommentPost');

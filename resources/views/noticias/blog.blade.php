@@ -12,6 +12,7 @@
 
 @section('conteudo')
 @include('templetes.top-menu')
+<div class="loader loader-bouncing "></div>
 <section class="blog" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url({{asset('storage/posts-header/'.$post->banner)}}) no-repeat">
     <div class="container-blog text-center">
             <h1>{{$post->title}}</h1>
@@ -94,103 +95,44 @@
         </div>
     </div>
 </section>
-
 <section id="reviwes">
-    <div class="container comentarios-empresa">
-    <h4>Comentarios</h4>
-    <div class="block">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="img-comentarios">
-                    <img src={{asset('img/1.jpg')}} class="img-fluid">
-                </div>
-            </div>
-                <div class="col-md-7">
-                    <h5>Jessica Martins<h5>
-                </div>
-            <div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
-                    <div class="calendario-post">
-                        <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
-                    </div>
-                </blockquote>
-            </div>
-        </div>
-        </div>
-        </div>
-        <div class="block">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="img-comentarios">
-                    <img src={{'img/1.jpg'}} class="img-fluid">
-                </div>
-            </div>
-                <div class="col-md-7">
-                    <h5>Jessica Martins<h5>
-                </div>
-            <div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
-                    <div class="calendario-post">
-                        <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
-                    </div>
-                </blockquote>
-            </div>
-        </div>
-        </div>
-        </div>
-        <div class="block">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="img-comentarios">
-                    <img src={{asset('img/1.jpg')}} class="img-fluid">
-                </div>
-            </div>
-                <div class="col-md-7">
-                    <h5>Jessica Martins<h5>
-                </div>
-            <div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
-                    <div class="calendario-post">
-                        <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
-                    </div>
-                </blockquote>
-            </div>
-        </div>
-        </div>
-
-        </div>
-    </div>
+   @include('noticias.pageComments')
 </section>
-
 <section id="contato">
     <div class="container contato-empresa">
-        <h4>Adicionar comentário</h4>
-        <form action="" method="GET" enctype="multipart/form-data">
+        <h4>Deixe seu comentario ou sugestão</h4>
+        <form role="form" id="form-data" class="form-horizontal" enctype="multipart/form-data">
+			@csrf
+				<div class="star-contato">
+                <p>Sua classificação para esta listagem:</p>
+                <input type="radio" id="vazio" name="estrela"value="" checked>
+                <label for="estrela_um"><i class="fas"></i></label>
+                <input type="radio" id="estrela_um" name="estrela"value="1">
+                <label for="estrela_dois"><i class="fas"></i></label>
+                <input type="radio" id="estrela_dois" name="estrela"value="2">
+                <label for="estrela_tres"><i class="fas"></i></label>
+                <input type="radio" id="estrela_tres" name="estrela"value="3">
+                <label for="estrela_quatro"><i class="fas"></i></label>
+                <input type="radio" id="estrela_quatro" name="estrela"value="4">
+                <label for="estrela_cinco"><i class="fas"></i></label>
+                <input type="radio" id="estrela_cinco" name="estrela"value="5">
+            </div><div class="mensagem-empresa">
+				@if(!Auth::check())
 
-            <div class="mensagem-empresa">
                 <div class="tex-input">
                     <label for="nome"><i class="fas fa-user-alt"></i></label>
                     <input type="text"placeholder="Digite seu nome" id="nome" name="nome">
-                </div>
-                <div class="mensagem-empresa">
+            	</div>
+            	<div class="mensagem-empresa">
                 <label for="email"><i class="fas fa-envelope"></i></label>
                 <input type="email" placeholder="Digite seu email" id="email" name="email">
                 </div>
+				@endif
                 <div class="text-area">
-                    <textarea id="message" name="message" placeholder="Digite seu comentario..."></textarea>
+                    <textarea id="message" style="font-size:23px; color:#6d6d6dFf" name="message" placeholder="Digite seu comentario..."></textarea>
                 </div>
+					 <input type="hidden" name="idPost" value={{$post->id}}>
+					 <input type="hidden" name="idUser" value={{Auth::id()}}>
             </div>
             <div class="btn-enviar-comentario">
                 <label for="enviar">Enviar comentário<i class="fas fa-paper-plane"></i></label>
@@ -214,6 +156,70 @@
 @section('script')
 <script src={{asset('js/menu-fixo.js')}}></script>
 <script>
+
+
+$(function(){
+function load(action){
+	var load_div = $(".loader");
+	if(action==="open"){
+	load_div.addClass("is-active");
+	}
+	else{
+	load_div.removeClass("is-active");
+	}
+}
+@if(Auth::check())
+	$("#form-data").submit(function(e){
+		var mens = $('#message').val();
+        var idPost = {{$post->id}}
+        if(mens){
+		$.ajax({
+			type:"POST",
+			url:'../../api/blog/comentar',
+			data: new FormData(this),
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function(){
+			load("open");
+			},
+			success: function(Response) {
+				console.log(Response);
+			},
+			error: function(error){
+				console.log(error);
+			},
+			complete: function(){
+				$('#vazio').attr('checked', 'checked');
+				$('#message').val('');
+				load("close");
+				getCommentsPage(idPost);
+			}
+		});
+		}
+		else{
+			alert('digite uma mensagem');
+		}
+	e.preventDefault();
+});
+@endif
+
+function getCommentsPage(idPost){
+$.ajax(
+{
+    url: '../../api/blog/lista-comments-page/'+idPost,
+    type: "get",
+    datatype: "html"
+}).done(function(data){
+    $("#reviwes").empty().html(data);
+    location.hash = page;
+}).fail(function(jqXHR, ajaxOptions, thrownError){
+        alert('No response from server');
+});
+}
+
+});
+
 document.querySelectorAll( 'oembed[url]' ).forEach( element => {
 // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
 // to discover the media.

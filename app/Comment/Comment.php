@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 	public function posts(){
-		return $this->belongsTo(Post::class, 'id');
+		return $this->belongsTo(Post::class);
 	}
 	public function empresas(){
 	return $this->belongsTo(Empresa::class);
