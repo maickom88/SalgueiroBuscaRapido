@@ -6,6 +6,7 @@
     background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(../img/lendo3.jpg);
     background-size: cover! important;
     background-position: center;
+    background-repeat: no-repeat;
     height:100vh;
     width:100% !important;
     font-family:'Open Sans Condensed', sans-serif;
@@ -43,7 +44,7 @@
     color:deepskyblue !important;
     text-shadow:0px 0px 0px 10px deepskyblue;
     font-weight:bold;
-    
+
 }
 .blog a:hover{
     color:#fff !important;
@@ -63,16 +64,16 @@
     display:flex;
     align-items:top;
     align-content:justify;
-    z-index:1;   
+    z-index:1;
     transition:0.4s;
 }
 .lestget:hover{
     background:white;
-   
+
 }
-.lestget a:hover{ 
+.lestget a:hover{
     color:rgb(87, 87, 87) !important;
-}   
+}
 .posts{
     padding:100px 0px;
     background: #f6f6f6;
@@ -104,7 +105,7 @@
     transition: all 0.4s ease-in;
 }
 .card-img-top:hover{
-    transform: scale(1.3);   
+    transform: scale(1.3);
 }
 .pagination{
     display:flex;
@@ -176,13 +177,13 @@
     padding-bottom:10px;
 }
 @media(max-width:400px){
-    
+
     .search-blog label i{
         padding:15px 14px !important;
     }
 }
 .search-blog input[id="procurar"]{
-    width:80%; 
+    width:80%;
     margin-left:20px;
     height:50px;
     padding-left:10px;
@@ -234,7 +235,7 @@
 }
 .container-cadastro{
     border-left:1px solid rgba(255,255,255,0.2);
-    padding:30px 
+    padding:30px
 }
 .chamada-usuario-cadastro a{
     padding:15px 55px;

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\ControllersApi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Post\Post as PostModal;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Controller
 {
@@ -33,5 +35,35 @@ class Post extends Controller
         return $echo;
 
         }
-}
+    }
+    public function postsPublicados(Request $request){
+        $posts = PostModal::orderBy('id', 'desc')->paginate(5);
+		if(Auth::check()){
+			$idUser = Auth::user()->id;$user = User::find($idUser);
+
+		return view('login.dashboardManenger.postsPublicadosTable', compact('user','posts'));
+		}
+		return view('login.dashboardManenger.postsPublicadosTable', compact('posts'));
+	}
+    public function postsUserPublicados($id){
+        $posts = PostModal::where('user_id', $id)->orderBy('id', 'desc')->paginate(5);
+
+        return view('login.dashboardUser.paginas.tableUserPosts', compact( 'posts'));
+	}
+    public function postsBuscar(Request $request){
+        $posts = PostModal::all();
+        $todas = "MostrarTodas";
+		if(Auth::check()){
+			$idUser = Auth::user()->id;$user = User::find($idUser);
+
+		return view('login.dashboardManenger.postsPublicadosTable', compact('user','posts','todas'));
+		}
+		return view('login.dashboardManenger.postsPublicadosTable', compact('posts', 'todas'));
+	}
+    public function excluirPost(Request $dados){
+        $id = $dados->input('IdUser');
+        $post = PostModal::find($id);
+        $valid = $post->delete();
+        return response()->json($valid);
+    }
 }

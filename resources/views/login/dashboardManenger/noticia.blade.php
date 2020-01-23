@@ -45,13 +45,16 @@ endif;
 			<div class="container">
 				<h2>1. Titulo da postagem</h2>
 				<p style="margin-left:20px">Defina um titulo para seu post</p>
-				<form id="form-data" method="POST" action={{route('publicarEventos')}} style="margin-bottom:29px;" enctype="multipart/form-data">
+				<form id="form-data" method="POST" @if(!empty($postEdit))action={{route('publicarPostEditado')}} @else action={{route('publicarPost')}} @endif  style="margin-bottom:29px;" enctype="multipart/form-data">
                 @csrf
+                @if (!empty($postEdit))
+                    <input type="hidden" value={{$postEdit->id}} name="idPost">
+                @endif
 					<div class="form-group" style="width:60%;">
 							<label>Titulo</label>
-						<input type="text" id="nomeEvento" name="nomeEvento" class="form-control" required>
+						<input type="text" id="titlePost" name="titlePost" class="form-control" required @if(!empty($postEdit->title))value="{{$postEdit->title}}" @endif>
 					</div>
-					<div class="form-group">
+                        <div class="form-group">
 						<label for="banner" class="btn btn-info">Adicionar foto principal</label>
 						<input type="file" style="display:none;" id="banner" onchange="previewBanner()" name="banner" class="form-control" >
 					</div>
@@ -62,20 +65,22 @@ endif;
 								</p>
 						</div>
 					<div class="form-group" id="previaBanner">
-						<div class="previaImg" id="prevImg" style="left: 10px !important; width: 300px !important;height:120px !important; background:black !important; border:none;"><div id="prev" ><img class="previa" id="prevBanner" src={{asset('img/bannerDefault.png')}}  ></div><div class="cancelarOp" id="excluirBanner"><i class="fa fa-times fa-2x" style="cursor:pointer; margin-left: 40px !important;"></i></div></div>
+						<div class="previaImg" id="prevImg" style="left: 10px !important; width: 300px !important;height:120px !important; background:black !important; border:none;"><div id="prev" ><img class="previa" id="prevBanner" @if(!empty($postEdit->title)) src={{asset('storage/posts-header/'.$postEdit->banner)}} @else src={{asset('img/bannerDefault.png')}} @endif ></div><div class="cancelarOp" id="excluirBanner"><i class="fa fa-times fa-2x" style="cursor:pointer; margin-left: 40px !important;"></i></div></div>
 					</div>
+
+
 
 					<h2>2. Informe as tags</h2>
                     <p style="margin-left:20px">Escreva as tags(palavras-chave) separadas por virgula, é por essas palavras que seu post será encontrado nas buscas</p>
 					        <div id="form-locale" class="form-group" style="width:60%;">
 							<label>Tags</label>
-							<input type="text" name="opEndereco" id="opEndereco" class="form-control" >
+							<input type="text" name="tagsPost" id="tagsPost" class="form-control" @if(!empty($postEdit->tags))value="{{$postEdit->tags}}" @endif >
 					</div>
 					<h2>3. Post</h2>
 					<p style="margin-left:20px">Escreva o conteudo do post, obedecendo as regras do site dita nos termos de uso.</p>
 					<div class="container" style="width:100%; margin-bottom:50px;">
 							<textarea name="content" id="editor">
-                                &lt;p&gt;Seu post.&lt;/p&gt;
+                                &lt;p&gt; @if(!empty($postEdit->title)) {!!$postEdit->conteudo!!}" @else Seu post. @endif&lt;/p&gt;
                             </textarea>
 
 					</div>
@@ -86,16 +91,16 @@ endif;
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="">Assunto</label>
-									<select  name="categoria" id="categoria" class="form-control"  style="margin-bottom: 5px;;width: 80% !important; text-transform:uppercase" id="ninchoEmp" required>
-											<option disabled selected value="">Selecione uma assunto</option>
-											<option value="Congresso, seminário">Política</option>
-											<option value="Esportivo">Tutorial, Vlog, lazer</option>
-											<option value="Encontro, network">Curso, workshop</option>
-											<option value="Filme, cinema e teatro">Acidente, denûncia</option>
-											<option value="Religioso, espiritual">Religião</option>
+									<select  name="assunto" id="assunto" class="form-control"  style="margin-bottom: 5px;;width: 80% !important; text-transform:uppercase" id="ninchoEmp" @if(!empty($postEdit)) data-assunto='{{$postEdit->assunto}}' @else data-assunto="" @endif required >
+                                            <option disabled selected value="">Selecione uma assunto</option>
+                                            <option value="Política">Política</option>
+											<option value="Tutorial, Vlog, lazer e esporte">Tutorial, Vlog, lazer e esporte</option>
+											<option value="Filme, cinema e teatro">Filme, cinema e teatro</option>
+											<option value="Acidente, denûncia">Acidente, denûncia</option>
+											<option value="Religioso">Religião</option>
 											<option value="Show, música e festa">Show, música e festa</option>
-                                            <option value="Show, música e festa">Artigo, Revista, Coluna</option>
-                                            <option value="Show, música e festa">Educação, saúde, segurança</option>
+                                            <option value="Artigo, Revista, livros e Coluna">Artigo, Revista, livros e Coluna</option>
+                                            <option value="Educação, saúde e segurança">Educação, saúde e segurança</option>
 									</select>
 								</div>
 					</div>
@@ -116,7 +121,6 @@ endif;
 <script type="text/javascript" src={{asset("lib/bootstrap-daterangepicker/daterangepicker.js")}}></script>
 <script type="text/javascript" src={{asset("lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js")}}></script>
 <script type="text/javascript" src={{asset("lib/bootstrap-daterangepicker/moment.min.js")}}></script>
-<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 <script type="text/javascript" src={{asset("lib/bootstrap-timepicker/js/bootstrap-timepicker.js")}}></script>
 <script src={{asset("lib/advanced-form-components.js")}}></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
@@ -127,7 +131,7 @@ endif;
 var modalEvent = new jBox('Modal', {
     attach: '#test',
     title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
-    content: "Evento publicado com sucesso!",
+    content: "Post publicado com sucesso!",
     animation: 'zoomIn',
     audio: '../audio/bling2',
     volume: 80,
@@ -140,6 +144,10 @@ if( $( "#status" ).length ) {
     modalEvent.open();
 }
 
+var assunto = $('#assunto').data('assunto');
+if(assunto.length > 0){
+    $('#assunto').val(assunto);
+}
 
 ClassicEditor.create( document.querySelector( '#editor' ), {
         language: 'pt',
@@ -154,52 +162,9 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
     console.error( err.stack );
 } );
 
-$('#form-data').submit(function(){
-
-    $('#descEvento').val()
-});
-
-$('#resetEvento').click(function(){
-    location.reload();
-});
 
 
-$('#opEvento').change(function(){
-    var op = $('#opEvento').val();
-    if(op == 'online'){
-        $('#form-locale').slideUp();
-    }
-    else{
-        $('#form-locale').slideDown();
-    }
-});
-$('.dinheiro').mask('#.##0,00', {reverse: true}).append('R$');
 
-
-$('#ingressoGratuito').click(function(){
-    $('#ingressoPago').text('Ingresso pago');
-    $('#ingressoGratuito').attr('class', 'btn btn-success');
-    $('#ingressoGratuito').html('Ingresso gratuito <i class="fa fa-check"></i>');
-    $('#ingressoPago').attr('class', 'btn btn-info');
-	 $('#dinheiroIngresso').slideUp();
-});
-
-$('#ingressoPago').click(function(){
-    $('#ingressoGratuito').text('Ingresso gratuito');
-    $('#ingressoPago').html('Ingresso pago <i class="fa fa-check"></i>');
-	$('#ingressoGratuito').attr('class', 'btn btn-info');
-	$('#ingressoPago').attr('class', 'btn btn-success');
-	$('#dinheiroIngresso').slideDown();
-});
-
-    $(".dpd1").datepicker({
-    format: 'dd/mm/yyyy',
-    language: 'pt'
-});
-    $(".dpd2").datepicker({
-    format: 'dd/mm/yyyy',
-    language: 'pt'
-});
 $('#excluirBanner').click(function(){
 	$('#prevBanner').attr('src', "{!!asset('img/bannerDefault.png')!!}");
 	$('#banner').val('');

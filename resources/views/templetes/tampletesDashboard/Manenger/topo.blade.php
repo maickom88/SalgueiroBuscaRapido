@@ -230,6 +230,7 @@ $telefone = $user->info->telefone;
                     </a>
                     <ul class="sub" style="background:#D4D4D4 !important;">
                     <li><a href={{route('blogManenger')}}>Publicar post</a></li>
+                    <li><a href={{route('blogTableManenger')}}>Posts publicados</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">

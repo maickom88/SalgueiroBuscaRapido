@@ -1,9 +1,15 @@
 *{
     scroll-behavior: smooth
 }
-
+.artigo img, figcaption{
+    width:300px !important;
+}
+@media (max-width: 340px) {
+    .artigo img, figcaption{
+    width:240px !important;
+}
+}
 .blog{
-    background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(../img/lendo1.jpg)!important; 
     background-size: cover! important;
     background-position: center;
     height:100vh;
@@ -48,7 +54,7 @@
     color:deepskyblue !important;
     text-shadow:0px 0px 0px 10px deepskyblue;
     font-weight:bold;
-    
+
 }
 .blog a:hover{
     color:#fff !important;
@@ -68,20 +74,20 @@
     display:flex;
     align-items:top;
     align-content:justify;
-    z-index:1;   
+    z-index:1;
     transition:0.4s;
 }
 .lestget:hover{
     background:white;
-   
+
 }
-.lestget a:hover{ 
+.lestget a:hover{
     color:rgb(87, 87, 87) !important;
-}   
+}
 .avatar-blog img{
     border-radius:50%;
     width:55px;
-    box-shadow:0px 0px 0px 5px rgba(255,255,255,0.4); 
+    box-shadow:0px 0px 0px 5px rgba(255,255,255,0.4);
 }
 .horario{
     background:none !important;
@@ -120,7 +126,7 @@
     .post-detalhes{
         font-weight:400;
         width:100%;
-        
+
         margin-top:70px;
         display: flex;
         align-items:center;
@@ -157,7 +163,7 @@
     background: #fff;
     width:100%;
     height:auto;
-    font-family:'Open Sans', serif;  
+    font-family:'Open Sans', serif;
 }
 .dropdown-menu a:hover{
     background:#00A3EE;
@@ -178,7 +184,7 @@
     padding:10px 30px;
     border-left:7px solid #00A3EE;
     color:#5a5a5a;
-    margin-bottom:30px; 
+    margin-bottom:30px;
 }
 .artigo .img-blog{
     width: 90%;
@@ -200,7 +206,7 @@
 }
 .btn-seta{
     width:100%;
-    
+
 }
 .artigo .next {
     float:right;
@@ -238,7 +244,7 @@
 .artigo .prev i{
     padding-right:20px;
     color:#00A3EE;
-    
+
 }
 .artigo .next i:hover,
 .artigo .prev i:hover{

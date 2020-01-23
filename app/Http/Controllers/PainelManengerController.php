@@ -12,6 +12,7 @@ use App\Empresa\Promotion\Promotion;
 use App\Evento\Evento;
 use App\Parceiro;
 use App\Permission\Permission;
+use App\Post\Post;
 
 class PainelManengerController extends Controller
 {
@@ -169,6 +170,18 @@ class PainelManengerController extends Controller
 		if($verificacao=="sim")
 		{
 			return view('login.dashboardManenger.noticia', compact('user'));
+		}
+		return redirect()->back();
+	}
+    public function noticias(){
+		$idUser = Auth::id();
+		$user = User::find($idUser);
+        $posts = Post::orderBy('id', 'desc')->paginate(5);
+		$verificacao = $user->permissions->adm;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardManenger.noticiaTable', compact('user', 'posts'));
 		}
 		return redirect()->back();
 	}

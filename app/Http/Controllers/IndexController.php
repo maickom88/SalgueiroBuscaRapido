@@ -22,9 +22,9 @@ class IndexController extends Controller
 
 		}
 
-		if (Auth::check()) {
-    		$userId = Auth::user()->id;
-			 $user = User::find($userId);
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $user = User::find($userId);
 		return view('home.index', compact('empresa', 'user'));
 		}
 		return view('home.index', compact('empresa'));

@@ -567,34 +567,33 @@ class AdmController extends Controller
 		$permission = $request->input('idPermission');
 		$user = User::find($idUser);
 		if($permission == 'Empresarial'){
-			$user->empresas->contratos()->delete();
-            $user->empresas->promotion()->delete();
-            $user->empresas->views()->delete();
-            $user->empresas->feeds()->delete();
-            $user->empresas->likes()->delete();
-            $user->empresas->novidades()->delete();
-            $user->empresas->comments()->delete();
-            $user->empresas->open()->delete();
-            $user->empresas->facilities()->delete();
-            $user->empresas->album()->delete();
-            $user->info()->delete();
-            $user->comments()->delete();
-            $user->permissions()->delete();
+			if(!empty($user->empresas))
+			{
+				if(!empty($user->empresas->facilities)){
+					$user->empresas->facilities->delete();
+				}
+				if(!empty($user->empresas->open)){
+					$user->empresas->open->delete();
+				}
+				$user->empresas->contratos->delete();
+				$user->empresas->delete();
+			}
+         $user->permissions->delete();
 			$valid = $user->delete();
 		}
 		if($permission == 'Blogueiro'){
 			$user->permissions->delete();
+            $user->info->delete();
 			$valid = $user->delete();
 		}
 		if($permission == 'Administrador'){
 			$user->permissions->delete();
+            $user->info->delete();
 			$valid = $user->delete();
 		}
 		if($permission == 'Usúario'){
-			if(!empty($user->infos)){
-				$user->infos->delete();
-			}
 			$user->permissions->delete();
+            $user->info->delete();
 			$valid = $user->delete();
 		}
 		return response()->json($valid);

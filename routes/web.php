@@ -153,17 +153,40 @@ Route::get('administrador/eventos', ['uses'=>'PainelManengerController@evento'])
 Route::get('administrador/eventos-publicados', ['uses'=>'PainelManengerController@eventosPublicados'])->name('eventosPublicados');
 
 //-----------------------Rota de Evento do perfil adm--------------//
-Route::get('administrador/publicar/noticia', ['uses'=>'PainelManengerController@publicarNoticia'])->name('blogManenger');
+Route::get('administrador/publicar/post', ['uses'=>'PainelManengerController@publicarNoticia'])->name('blogManenger');
 
+
+//-----------------------Rota de Evento do perfil adm--------------//
+Route::get('administrador/posts', ['uses'=>'PainelManengerController@noticias'])->name('blogTableManenger');
+
+
+//-----------------------Rota de Evento do perfil adm--------------//
+Route::post('publicar/post', ['uses'=>'BlogController@publicarPost'])->name('publicarPost');
+
+//-----------------------Rota de Evento do perfil adm--------------//
+Route::post('publicar/atualizar/post', ['uses'=>'BlogController@publicarPostEditado'])->name('publicarPostEditado');
+
+
+//-----------------------Noticias individual------------------------//
+Route::get('administrativo/noticias/editar/{id?}',['uses'=>'BlogController@editarPost'])->name('blogEdit');
 
 
 //-----------------------Rota de Publicar Evento do perfil adm--------------//
 Route::post('administrador/eventos/publicar', 'eventos\EventosController@publicar')->name('publicarEventos');
 
 
+
 //-----------------------Rota de Publicar Evento do perfil adm--------------//
 Route::get('administrador/promocoes', 'PainelManengerController@promocoes')->name('promocaoManenger');
 
+//-----------------------blog do usuario parceiro------------------------//
+Route::get('dashboard/blog/post',['uses'=>'DashboardController@blogUser'])->name('blogUser');
+
+//-----------------------blog do usuario parceiro------------------------//
+Route::get('dashboard/blog/estatisticas',['uses'=>'DashboardController@blogAnalytics'])->name('blogUserAnalytics');
+
+//-----------------------Noticias individual------------------------//
+Route::get('dashboard/blog/editar/{id?}',['uses'=>'BlogController@editarUserPost'])->name('blogUserEdit');
 
 
 

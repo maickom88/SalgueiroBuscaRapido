@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Empresa\Empresa;
 use App\User;
 use App\Parceiro;
+use App\Post\Post;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -165,4 +166,27 @@ class DashboardController extends Controller
 		return redirect()->route('home');
 
 	}
+    public function blogUser(){
+        $idUser = Auth::id();
+		$user = User::find($idUser);
+		$verificacao = $user->permissions->blogueiro;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardUser.paginas.noticiasUser', compact('user'));
+		}
+		return redirect()->back();
+    }
+    public function blogAnalytics(){
+        $idUser = Auth::id();
+        $posts = Post::where('user_id', $idUser)->orderBy('id', 'desc')->paginate(5);
+		$user = User::find($idUser);
+		$verificacao = $user->permissions->blogueiro;
+
+		if($verificacao=="sim")
+		{
+			return view('login.dashboardUser.paginas.blogAnalytics', compact('user', 'posts'));
+		}
+		return redirect()->back();
+    }
 }

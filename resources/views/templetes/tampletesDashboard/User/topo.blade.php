@@ -3,7 +3,6 @@
 <?php
 $perc = 50;
 if(!empty($user->info)){
-
 $avatar = $user->info->avatar;
 $interesse = $user->info->interesse;
 $endereco = $user->info->endereco;
@@ -23,7 +22,7 @@ $telefone = $user->info->telefone;
 }
 ?>
 <head>
-	
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -43,13 +42,15 @@ $telefone = $user->info->telefone;
 	<link rel="stylesheet" href={{asset('css/painel.css')}}>
 	<link rel="stylesheet" href={{asset('css/loader-bouncing.css')}}>
 	<link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
-	
+	<link rel="stylesheet" href={{asset('css/style-empresa.css')}}>
+	<link rel="stylesheet" href={{asset('css/jquery.tagsinput.min.css')}}>
+	<script src={{asset("lib/chart-master/Chart.js")}}></script>
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 	@yield('links')
 </head>
 
 <body>
-	
+
 <div id="loader" class="loader loader-bouncing"></div>
 <section id="container">
 	<header class="header black-bg">
@@ -73,7 +74,7 @@ $telefone = $user->info->telefone;
 								<p class="green">Pontue e obtenha descontos exclusivos a qualquer momento</p>
 							</li>
 							<li>
-								
+
 								<a href="dashboard#">
 									<div class="task-info">
 
@@ -98,9 +99,9 @@ $telefone = $user->info->telefone;
 										@if($user->comments->count() >= 5)
 											<div class="desc">Você concluiu essa tarefa</div>
 										@else
-											<div class="desc">Faça cinco comentários</div>	 
+											<div class="desc">Faça cinco comentários</div>
 										@endif
-										
+
 										@if (!empty($user->comments))
 											@php
 											$count = $user->comments->count();
@@ -121,7 +122,7 @@ $telefone = $user->info->telefone;
 										<div class="progress-bar progress-bar-{{$color}}" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: {{$count*20}}%">
 											<span class="sr-only">{{$count*20}}% Complete (Important)</span>
 										</div>
-									</div>	
+									</div>
 										@endif
 								</a>
 							</li>
@@ -131,9 +132,9 @@ $telefone = $user->info->telefone;
 										@if($user->comments->count() >= 5)
 											<div class="desc">Você concluiu essa tarefa</div>
 										@else
-										<div class="desc">Avalie três empresas</div>	 
+										<div class="desc">Avalie três empresas</div>
 										@endif
-										
+
 										@if (!empty($user->comments))
 
 										@php
@@ -165,10 +166,10 @@ $telefone = $user->info->telefone;
 										@if($user->likes->count()>= 5)
 											<div class="desc">Você concluiu essa tarefa</div>
 										@else
-										<div class="desc">Curta cinco empresas</div> 
+										<div class="desc">Curta cinco empresas</div>
 										@endif
-										
-										
+
+
 										@if (!empty($user->likes))
 											@php
 											$count = $user->likes->count();
@@ -201,9 +202,9 @@ $telefone = $user->info->telefone;
 					<li id="header_notification_bar" class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="dashboard#">
 							<i class="fa fa-bell-o"></i>
-							
+
 								@if(!empty($user->parceiro))
-									
+
 									@if($user->parceiro->pedidos == 'negado')
 									<span class="badge bg-warning">
 									1
@@ -215,9 +216,9 @@ $telefone = $user->info->telefone;
 									@else
 
 									@endif
-									
-								@endif 
-							
+
+								@endif
+
 						</a>
 						<ul class="dropdown-menu extended notification">
 							<div class="notify-arrow notify-arrow-yellow"></div>
@@ -242,15 +243,15 @@ $telefone = $user->info->telefone;
 									</a>
 								</li>
 								@else
-								
+
 								@endif
-								
+
 							@else
 							<li style="padding:5px;">
 								<span>Não há Notificações!</span>
-							</li>	
+							</li>
 							@endempty
-							
+
 						</ul>
 					</li>
 					<!-- notification dropdown end -->
@@ -312,14 +313,13 @@ $telefone = $user->info->telefone;
 				</li>
 				@if ($user->permissions->blogueiro == 'sim')
 				<li class="sub-menu">
-            <a href="javascript:;">
+            <a class="@yield('blog')" href="javascript:;">
               <i class="fa fa-plus-square"></i>
               <span>Blog</span>
             </a>
             <ul class="sub" style="background:#D4D4D4 !important;">
-              <li><a href="#">Postagens</a></li>
-              <li><a href="#">Comentários</a></li>
-				  <li><a href="#">Estatísticas</a></li>
+                <li><a href={{route('blogUser')}}>Postar</a></li>
+                <li><a href={{route('blogUserAnalytics')}}>Estatísticas</a></li>
             </ul>
           </li>
 				@endif

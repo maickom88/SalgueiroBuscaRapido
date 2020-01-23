@@ -2,60 +2,71 @@
 
 @section('links')
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
-
+    <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
 @endsection
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIA ')
 
 @section('conteudo')
 @include('templetes.top-menu')
-<section class="blog">
+<section class="blog" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url({{asset('storage/posts-header/'.$post->banner)}}) no-repeat">
     <div class="container-blog text-center">
-            <h1>Titulo do Post</h1>
-        <div class="lis">  
+            <h1>{{$post->title}}</h1>
+        <div class="lis">
             <a href="#" style="color:#d1d1d1">Home</a>
             <a class="ponto">.</a>
             <a href="#" style="color:#d1d1d1">Blog</a>
             <a class="ponto">.</a>
             <a href="#">Blog-pagina</a>
         </div>
-        
+
         <div class="lestget">
             <a href="#postagem">Ler Postagem</a>
         </div>
         <div class="row">
             <div class="post-detalhes">
                 <div class="avatar-blog">
-                    <img src={{asset('img/ui-sam.jpg')}}>
-                    <p>Joao Farias</p>
+                @if(!empty($post->user->info))
+                    @if(!empty($post->user->info->avatar))
+                        <img src={{asset('storage/avatar/'.$post->user->info->avatar)}} alt="">
+                    @else
+                        <img src={{asset('img/profilezim.png')}} alt="">
+                    @endif
+                @else
+                    <img src={{asset('img/profilezim.png')}} alt="">
+                @endif
+                    <p>{{$post->user->name}}</p>
                 </div>
                 <div class="horario">
-                    <i class="fas fa-clock"></i><p>22 Abril 2019</p>
+                    @php
+                    $dataMes = array('01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março', '04'=> 'Abril', '05' => 'Maio', '06' => 'Junho', '07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro', '10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro');
+                    $dataReplace = explode(' ',$post->created_at);
+                    $data = explode('-', $dataReplace[0]);
+                    $mes = $data[1];
+                    $mes = $dataMes[$mes];
+                    @endphp
+                    <i class="fas fa-clock"></i><p>{{end($data)}} {{$mes}} {{$data[0]}}</p>
                 </div>
                 <div class="coment">
                     <i class="fas fa-comments"></i><p>3 Comentarios</p>
                 </div>
                 <div class="share-blog">
                     <div class="dropdown">
-                        
+
                         <button style="background-color:transparent; border:none;"class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-share-alt"></i>
                         </button>
-                        
+
                         <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#"><i class="fab fa-facebook-square"style="color:black;"></i></a>
                             <a class="dropdown-item" href="#"><i style="color:black;" class="fab fa-whatsapp-square"></i></a>
                         </div>
                         </div>
                 </div>
-            </div>   
+            </div>
         </div>
     </div>
 </section>
@@ -64,56 +75,18 @@
     <div class="container">
         <div class="artigo">
             <article>
-                
+                {!!$post->conteudo!!}
                 <div class="dropdown-divider"></div><br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus elementum nunc, non efficitur risus tempus non. Nunc et augue ac ante maximus vulputate et non erat. Praesent tristique convallis mollis. Integer at blandit massa. Curabitur vehicula nibh a erat porttitor varius at auctor orci. Sed commodo pretium ligula at pretium. Vestibulum dui ligula, blandit vel tincidunt ut, aliquet et erat. Proin id pharetra orci. Nulla viverra lectus elit, sed ultricies sem sagittis quis. Nam congue in augue porta accumsan. Vestibulum sapien nibh, convallis ut sagittis vitae, pellentesque elementum ipsum. Praesent ornare auctor accumsan. Donec ac fringilla metus.
-
-                Curabitur vitae aliquam nisl. Praesent tincidunt est sed risus fringilla ornare. Pellentesque sapien velit, accumsan sed ipsum eu, vehicula condimentum tortor. Cras iaculis, justo id bibendum sollicitudin, nisl magna molestie massa, a commodo elit quam lacinia lectus. Maecenas bibendum nisl in enim mollis malesuada. Mauris blandit eros eget commodo euismod. Curabitur vel odio sit amet tortor feugiat consequat. Aenean et tempor lorem. Nunc sagittis tristique mauris non tristique. Proin condimentum arcu nec justo placerat tincidunt. Nam dictum odio ullamcorper, tincidunt massa blandit, gravida risus. Quisque blandit consectetur augue a malesuada. Curabitur euismod pellentesque purus, eu pharetra orci elementum ac. Proin gravida ligula a purus tempor, in pellentesque lectus auctor.
-
-                Ut quis eleifend urna, in lacinia lorem. Phasellus volutpat interdum tellus eget tristique. Aliquam nec pretium ante. Pellentesque leo arcu, auctor nec blandit at, finibus vel mauris. Proin ac tortor a velit varius imperdiet tempus a purus. Nam luctus, est eget vestibulum faucibus, mi libero euismod lectus, quis hendrerit ipsum enim sit amet ex. Proin non risus varius velit dignissim maximus id nec ipsum.</p>
-                <h4>All Stunning Places</h4>
-                
-                <ol>
-                    <li>It is a long established fact that a reader will be distracted by the readable content.</li>
-                    <li>Lorem Ipsum their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have many web sites still in their infancy.</li>
-                    <li>It is a long established fact that a reader will be distracted by the readable content.</li>
-                </ol>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution ofevolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                    
-                <div class="citacao">
-                    <blockquote>
-                        
-                        <h5><em>"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vivamus sagittis lacus vel augue laoreet."</em></h5>
-                    </blockquote>
-                </div>
-                <div class="dropdown-divider"></div><br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="img-blog">
-                            <img src="img/header 2.jpg" class="img-fluid">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="img-blog">
-                            <img src="img/negocio.jpg" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-                <h4>Text That Where It Came From It</h4>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution ofevolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                <div class="dropdown-divider"></div><br>
-
                 <div class="row">
                     <div class="btn-seta">
                         <div class="prev">
                             <i class="fas fa-chevron-left"></i>
-                            <a href="#" color="#f9f9f9">Prev</a>
-                            <p>Meu negocio minha vida<p>
+                            <a href="#" style="color:#00A3EE; text-decoration:underline">Meu negocio minha vida</a>
                         </div>
                         <div class="next">
-                            <a href="#" color="#f9f9f9">Next</a>
+                            <a href="#" style="color:#00A3EE; text-decoration:underline">Meu negocio minha vida</a>
                             <i class="fas fa-chevron-right"></i>
-                            <p>As oportunidades do empreendorismo<p>
+
                         </div>
                     </div>
                 </div>
@@ -140,7 +113,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>    
+                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
                     <div class="calendario-post">
                         <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
                     </div>
@@ -164,7 +137,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>    
+                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
                     <div class="calendario-post">
                         <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
                     </div>
@@ -188,7 +161,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <blockquote>
-                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>    
+                    <p>" Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris. "</p>
                     <div class="calendario-post">
                         <span><i class="fas fa-calendar-alt"></i></span><p>12 Junho 2019</p>
                     </div>
@@ -221,7 +194,7 @@
             </div>
             <div class="btn-enviar-comentario">
                 <label for="enviar">Enviar comentário<i class="fas fa-paper-plane"></i></label>
-                <input type="submit" id="enviar" name="enviar">    
+                <input type="submit" id="enviar" name="enviar">
             </div>
         </form>
     </div>
@@ -239,8 +212,17 @@
 @endsection
 
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	 <script src={{asset('js/menu-fixo.js')}}></script>
+<script src={{asset('js/menu-fixo.js')}}></script>
+<script>
+document.querySelectorAll( 'oembed[url]' ).forEach( element => {
+// Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+// to discover the media.
+const anchor = document.createElement( 'a' );
+
+anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+anchor.className = 'embedly-card';
+
+element.appendChild( anchor );
+} );
+</script>
 @endsection

@@ -27,7 +27,7 @@
 			?>
 			@foreach ($empresas as $empresa)
 
-					<tr>
+			<tr>
 			<td>
 				<span class="custom-checkbox">
 					<input type="checkbox" class="checkDelete" name="check" value={{$empresa->id}}>

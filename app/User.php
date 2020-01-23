@@ -15,6 +15,7 @@ use App\info;
 use App\Parceiro;
 use function Psy\info;
 use App\Like;
+use App\Post\PostView\PostView;
 
 class User extends Authenticatable
 {
@@ -58,9 +59,10 @@ class User extends Authenticatable
     public function empresas(){
         return $this->hasOneThrough(Empresa::class,Permission::class);
     }
-    public function posts(){
-        return $this->hasMany(Post::class);
+	 public function posts(){
+		return $this->hasMany(Post::class);
     }
+
     public function avatar(){
     return $this->hasOne(Avatar::class);
     }

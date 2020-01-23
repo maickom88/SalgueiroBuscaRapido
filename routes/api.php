@@ -159,8 +159,20 @@ Route::post('post/upload', 'ControllersApi\Post@uploadAction');
 
 
 
+Route::post('administrativo/post/excluir', 'ControllersApi\Post@excluirPost');
+
+
+
+Route::get('administrativo/posts/buscar', 'ControllersApi\Post@postsBuscar');
+
+
+Route::get('administrativo/post/publicados', 'ControllersApi\Post@postsPublicados');
+
+
+
 Route::get('empresario/verifica-promocao/{id}', 'ControllersApi\Empresas@verificaPromocao');
 
+Route::get('dashboard/post/{id}', 'ControllersApi\Post@postsUserPublicados');
 
 
 
