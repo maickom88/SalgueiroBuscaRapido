@@ -37,18 +37,19 @@
                             <p>Encontre tudo o que precisa aqui com apenas poucos cliques!</p>
                             </div>
                             <form method="POST" action={{route('resultSearch')}} class="listar-formtheme listar-formsearchlisting">
+                                @csrf
                                 <span><i class="fas fa-street-view"></i></span>
                                 <input type="text" name="search-item" placeholder="Digite o que precisa encontrar aqui!" name="" id="">
                                 <select name="select-option">
-                                    <option value="">&#xf0ac  Buscar por</option>
-                                    <option value="" >&#xf290  Lojas</option>
-                                    <option value="">&#xf07a  Mercados</option>
-                                    <option value="">&#xf0f0  Clínicas</option>
-                                    <option value="">&#xf0e3  Advogados</option>
-                                    <option value="">&#xf236  Hotéis</option>
-                                    <option value="">&#xf1fb  Farmáçias</option>
-                                    <option value="">&#xf0ad  Oficinas</option>
-                                    <option value="">&#xf21e  Academias</option>
+                                    <option value="todos">&#xf0ac  Buscar por</option>
+                                    <option value="Lojas" >&#xf290  Lojas</option>
+                                    <option value="Mercados">&#xf07a  Mercados</option>
+                                    <option value="Clinicas">&#xf0f0  Clínicas</option>
+                                    <option value="Advogados">&#xf0e3  Advogados</option>
+                                    <option value="Hoteis">&#xf236  Hotéis</option>
+                                    <option value="Farmacias">&#xf1fb  Farmáçias</option>
+                                    <option value="Oficinas">&#xf0ad  Oficinas</option>
+                                    <option value="Academias">&#xf21e  Academias</option>
                                 </select>
                                 <label for="btn-enviar"class="btn-label-enviar"><i class="fas fa-search-location"></i>Buscar</label>
                                 <input type="submit" name="btn-enviar" id="btn-enviar" >
@@ -266,6 +267,7 @@
     </section>
 
     <!--Fim de promoções-->
+    @if($posts->isNotEmpty())
     <section class="noticias">
         <div class="container">
             <div class="row">
@@ -280,66 +282,52 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-4 card-content">
-                    <div class="card" style="width: 19rem;">
-                        <div class="img-card">
-                            <div class="gradient">
-                                <img class="card-img-top" src={{asset('img/bg-not-3.jpg')}} alt="Card image cap">
-                            </div>
-                        </div>
-                        <div class="avatar">
-                            <img src={{asset('img/1.jpg')}} alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Notícias 1</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="local">
-                            <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 card-content">
-                    <div class="card" style="width: 19rem;">
-                        <div class="img-card">
-                            <div class="gradient">
-                                <img class="card-img-top" src={{asset('img/bg-not-1.jpg')}} alt="Card image cap">
-                            </div>
-                        </div>
-                        <div class="avatar">
-                            <img src={{asset('img/2.jpg')}} alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Notícias 2</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="local">
-                            <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 card-content">
-                    <div class="card" style="width: 19rem;">
-                        <div class="img-card">
-                            <div class="gradient">
-                                <img class="card-img-top" src={{asset('img/bg-not-2.jpg')}} alt="Card image cap">
-                            </div>
-                        </div>
-                        <div class="avatar">
-                            <img src={{asset('img/3.jpg')}} alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="#">Notícias 3</a></h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <div class="local">
-                            <span><i class="fas fa-calendar-alt"></i></span><p>23 Abril 2019</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
-                        </div>
-                    </div>
-                </div>
+                @foreach ($posts as $post)
+    <?php
+    $str = $post->title;
+    $str2 = str_replace(' ', '-', $str);
+    ?>
+
+    <div class="col-md-4 card-content">
+    <div class="card" style="width: 19rem;">
+        <div class="img-card">
+            <div class="gradient">
+            <img class="card-img-top" height="182px" src={{asset('storage/posts-header/'.$post->banner)}} alt="Card image cap">
+            </div>
+        </div>
+        <div class="avatar">
+            @if(!empty($post->user->info))
+                @if(!empty($post->user->info->avatar))
+                    <img src={{asset('storage/avatar/'.$post->user->info->avatar)}} alt="">
+                @else
+                    <img src={{asset('img/profilezim.png')}} alt="">
+                @endif
+            @else
+                <img src={{asset('img/profilezim.png')}} alt="">
+            @endif
+        </div>
+        <div class="card-body">
+        <h5 class="card-title"><a href={{route('blog.page').'/'.$str2.'/'.$post->id}} > {{$post->title}}</a></h5>
+        @php
+            $description = substr($post->conteudo, 0, 200);
+            $description =  strip_tags($description);
+            $dataMes = array('01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março', '04'=> 'Abril', '05' => 'Maio', '06' => 'Junho', '07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro', '10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro');
+            $dataReplace = explode(' ',$post->created_at);
+            $data = explode('-', $dataReplace[0]);
+            $mes = $data[1];
+            $mes = $dataMes[$mes];
+        @endphp
+        <p class="card-text">{!!$description!!}...</p>
+            <a class="lermais" style="padding:5px; border:1px solid #007BFF; border-radius:5px; color:#3e3e3e; outline:none; " href={{route('blog.page').'/'.$str2.'/'.$post->id}}> Ler mais <i class="fas fa-eye"></i></a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="local">
+            <span><i class="fas fa-calendar-alt"></i></span> <p>{{end($data)}} de {{$mes}} de {{$data[0]}}</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
+        </div>
+    </div>
+</div>
+
+    @endforeach
             </div>
         </div>
         <div class="container">
@@ -351,6 +339,7 @@
         </div>
 
     </section>
+    @endif
     <!--End News-->
     <!--buy and sell-->
 

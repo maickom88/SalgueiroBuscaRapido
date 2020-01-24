@@ -7,12 +7,14 @@ use App\User;
 use App\Empresa\Empresa;
 use App\Evento\Evento;
 use App\pageView\View;
+use App\Post\Post;
 
 class IndexController extends Controller
 {
    public function index()
    {
 		$empresa = Empresa::where('status', 'ativa')->get();
+        $posts = Post::orderBy('id','desc')->limit(3)->get();
 		$view = new View;
 
 		foreach($empresa as $emp){
@@ -25,9 +27,9 @@ class IndexController extends Controller
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = User::find($userId);
-		return view('home.index', compact('empresa', 'user'));
+		return view('home.index', compact('empresa', 'user','posts'));
 		}
-		return view('home.index', compact('empresa'));
+		return view('home.index', compact('empresa', 'posts'));
 
 	}
 	public function login(){

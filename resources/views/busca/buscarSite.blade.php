@@ -11,10 +11,22 @@
 @section('conteudo')
 @include('templetes.top-menu')
 
-<section id="resultSearch" class="result">
-    <div class="container">
-        <div class="row card-slide">
-                    @foreach ($empresa as $emp)
+ <section class="content-services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-center "  style="margin-top:38px;">
+                        <h2>Resultado</h2>
+                        <div class="sub-header">
+                            <p>
+                                Esses são os nossos parceiros que oferecem o serviço ideal para o que busca!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <div class="container">
+                    <div class="row card-slide">
+                @if($empresas->isNotEmpty())
+                    @foreach ($empresas as $emp)
 								<div class="col-md-4 card-content " style="outline:none !important;">
                         <div class="likes">
                             <span>{{$emp->likes->count()}} <i class="fas fa-heart"></i></span>
@@ -53,9 +65,12 @@
                         </div>
                     </div>
 					@endforeach
+                @else
+                    <h1>Ops não encontramos sua busca!</h1>
+                @endif
                 </div>
-    </div>
-</section>
+            </div>
+    </section>
 
 <section class="chamada-usuario-cadastro">
     <div class="container-cadastro">

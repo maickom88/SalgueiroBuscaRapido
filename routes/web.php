@@ -21,7 +21,7 @@ Route::get('/noticias',['uses'=>'BlogController@index'])->name('blog.noticias');
 
 
 //------------------------Noticias---------------------------//
-Route::get('/resultado-pesquisa', 'ResultSearchController@result')->name('resultSearch');
+Route::post('/resultado-pesquisa', 'ResultSearchController@result')->name('resultSearch');
 
 
 //------------------------Pagina da empresa---------------------------//
