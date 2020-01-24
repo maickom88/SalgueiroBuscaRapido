@@ -20,6 +20,10 @@ Route::get('/', ['uses'=>'IndexController@index'])->name('home');
 Route::get('/noticias',['uses'=>'BlogController@index'])->name('blog.noticias');
 
 
+//------------------------Noticias---------------------------//
+Route::get('/resultado-pesquisa', 'ResultSearchController@result')->name('resultSearch');
+
+
 //------------------------Pagina da empresa---------------------------//
 Route::get('/empresa/{nomeEmpresa}/{id}',['uses'=>'PaginaIndividualController@page'])->name('pagina.empresa');
 

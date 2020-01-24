@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-9">
             <span>© Salgueiro Busca Rapido 2018 . Todos os direitos resevados.</span>
-            
+
             </div>
             <div class="col-md-3">
                     <a href=""><i class="fab fa-facebook-square"></i></a>
@@ -27,7 +27,7 @@
       integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"
       crossorigin="anonymous"
     ></script>
-	 <script src={{asset('js/typed.js')}}></script>
+<script src={{asset('js/typed.js')}}></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -35,7 +35,7 @@
 <script src={{asset('js/jquery-migrate-1.2.1.min.js')}}></script>
 <script src={{asset('js/slick.min.js')}}></script>
 <script src={{asset('js/menu-fixo.js')}}></script>
-
+<script type="text/javascript" src={{asset('js/jBox.all.js')}}></script>
 
 @yield('script')
 
@@ -43,7 +43,7 @@
 	$(function(){
 		$('#dropdownUser').click(function(){
 			$('#balao').slideToggle(200);
-			
+
 		});
 
 
@@ -53,9 +53,9 @@
 
 		$('#dropdownMobile').click(function(){
 			$('#balaoMobile').slideToggle(200);
-			
+
 		});
-			
+
 
 		$('#fecharMenuMenu').click(function(){
 			$('#balaoMobile').slideUp(200);

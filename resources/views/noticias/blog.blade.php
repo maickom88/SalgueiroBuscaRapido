@@ -5,6 +5,7 @@
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
+    <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
     <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
 @endsection
 
@@ -52,7 +53,7 @@
                     <i class="fas fa-clock"></i><p>{{end($data)}} {{$mes}} {{$data[0]}}</p>
                 </div>
                 <div class="coment">
-                    <i class="fas fa-comments"></i><p>3 Comentarios</p>
+                    <i class="fas fa-comments"></i><p>{{$post->comments->count()}} Comentarios</p>
                 </div>
                 <div class="share-blog">
                     <div class="dropdown">
@@ -155,19 +156,9 @@
 
 @section('script')
 <script src={{asset('js/menu-fixo.js')}}></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 <script>
 
-
-$(function(){
-function load(action){
-	var load_div = $(".loader");
-	if(action==="open"){
-	load_div.addClass("is-active");
-	}
-	else{
-	load_div.removeClass("is-active");
-	}
-}
 @if(Auth::check())
 	$("#form-data").submit(function(e){
 		var mens = $('#message').val();
@@ -204,21 +195,6 @@ function load(action){
 });
 @endif
 
-function getCommentsPage(idPost){
-$.ajax(
-{
-    url: '../../api/blog/lista-comments-page/'+idPost,
-    type: "get",
-    datatype: "html"
-}).done(function(data){
-    $("#reviwes").empty().html(data);
-    location.hash = page;
-}).fail(function(jqXHR, ajaxOptions, thrownError){
-        alert('No response from server');
-});
-}
-
-});
 
 document.querySelectorAll( 'oembed[url]' ).forEach( element => {
 // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
@@ -230,5 +206,56 @@ anchor.className = 'embedly-card';
 
 element.appendChild( anchor );
 } );
+</script>
+<script>
+
+
+var modalCommentInfo = new jBox('Modal', {
+	attach: '#test',
+	title: '<div width="100%" class="text-center"><i class="fa fa-ban fa-3x" style="color: red"></i></div>',
+	content: "Para comentar é necessário estar logado na plataforma, caso não possua uma conta <a href='/cadastro'>Clique aqui</a> e cadastre-se, é grátis! ",
+	animation: 'zoomIn',
+	closeButton: true,
+	delayOnHover: true,
+	showCountdown: true
+});
+
+
+function load(action){
+	var load_div = $(".loader");
+	if(action==="open"){
+	load_div.addClass("is-active");
+	}
+	else{
+	load_div.removeClass("is-active");
+	}
+}
+
+
+
+@if(!Auth::check())
+	$("#form-data").submit(function(e){
+    modalCommentInfo.open();
+	e.preventDefault();
+});
+@endif
+
+
+
+
+
+function getCommentsPage(idPost){
+    $.ajax(
+    {
+        url: '../../api/blog/lista-comments-page/'+idPost,
+        type: "get",
+        datatype: "html"
+    }).done(function(data){
+        $("#reviwes").empty().html(data);
+        location.hash = page;
+    }).fail(function(jqXHR, ajaxOptions, thrownError){
+            alert('No response from server');
+    });
+    }
 </script>
 @endsection

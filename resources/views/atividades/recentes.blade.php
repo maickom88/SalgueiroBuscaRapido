@@ -2,7 +2,7 @@
 
 @php
     $data1 = new DateTime();
-    $data2 = $empresa->novidades[1]->created_at;
+    $data2 = $empresa->novidades[0]->created_at;
 
 
     $minuto = $data1->diff($data2)->format('%i');

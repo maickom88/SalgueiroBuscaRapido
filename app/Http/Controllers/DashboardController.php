@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Empresa\Empresa;
+use App\Empresa\Promotion\Promotion;
 use App\User;
 use App\Parceiro;
 use App\Post\Post;
@@ -71,9 +72,12 @@ class DashboardController extends Controller
         $idEmpresa = [];
         $user = User::find($idUser);
         $empresas = $user->likes;
+        $promotions = Promotion::orderBy('id','desc')->limit(3)->get();
+        $post = Post::orderBy('views','desc')->first();
         foreach ($empresas as $empresa) {
             array_push($idEmpresa, $empresa->empresa_id);
         }
+
         $empresasAtv = Empresa::whereIn('id', $idEmpresa)->get();
         $empresasPostAtv = [];
         foreach ($empresasAtv as $empresa){
@@ -82,12 +86,11 @@ class DashboardController extends Controller
                array_push($empresasPostAtv, $empresa);
             }
         }
-
         $empresa = Empresa::all()->where('status', 'ativa')->random(1);
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
-			return view('login.dashboardUser.paginas.painel', compact(['user', 'insta', 'empresa', 'dados','empresasPostAtv']));
+			return view('login.dashboardUser.paginas.painel', compact(['user','promotions','post', 'insta', 'empresa', 'dados','empresasPostAtv']));
 
 		}
 		catch(Exception $e){
@@ -97,7 +100,7 @@ class DashboardController extends Controller
 			]
 		]);
 
-		return view('login.dashboardUser.paginas.painel', compact(['user', 'empresasPostAtv', 'insta', 'empresa', 'dados']));
+		return view('login.dashboardUser.paginas.painel', compact(['user','promotions','post', 'empresasPostAtv', 'insta', 'empresa', 'dados']));
 		}
 
 

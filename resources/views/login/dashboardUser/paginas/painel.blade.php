@@ -15,16 +15,22 @@
 
 
 		<div class="row mt">
-		<!--  Blog Panel -->
-		<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="content-panel pn">
-			<div id="blog-bg">
+		  <!-- /col-md-4 -->
+             <div class="col-lg-4 col-md-4 col-sm-4 mb">
+			<div class="content-panel pn" >
+			<div id="blog-bg" style="background:url({{asset('storage/posts-header/'.$post->banner)}}); background-size:cover;">
 
 			<div class="badge badge-popular">POPULAR</div>
-			<div class="blog-title">Titulo da noticia</div>
+			<div class="blog-title">{{$post->title}}</div>
 			</div>
 			<div class="blog-text">
-			<p>Uma descrição para a noticia aqui exibida, contendo somente alguns caracteres. Assim sendo redirec... <a href="#">Leia mais</a></p>
+                @php
+                    $description = substr($post->conteudo, 0, 110);
+                    $description =  strip_tags($description);
+                     $str = $post->title;
+    $str2 = str_replace(' ', '-', $str);
+                @endphp
+			    <p>{!!$description!!}...<a href={{route('blog.page').'/'.$str2.'/'.$post->id}}>Leia mais</a></p>
 			</div>
 			</div>
 		</div>
@@ -35,13 +41,18 @@
 			<button class="btn btn-sm btn-clear-g"><i class="fa fa-heart"></i></button>
 			</div>
 			<div class="sp-title">
-			<a href="#" style="color:white"><h3>{{$empresa[0]->name}}</h3></a>
+                @php
+                $id = $empresa[0]->id;
+                $str = $empresa[0]->name;
+                $str2 = str_replace(' ', '-', $str);
+                @endphp
+			<a href="/empresa/{{$str2}}/{{$id}}"  style="color:white"><h3>{{$empresa[0]->name}}</h3></a>
 			</div>
 			<div class="play">
 			<i class="fa fa-play-circle"></i>
 			</div>
 			</div>
-			<p class="followers" style="color:white; font-weight:bold; "><i class="fa fa-user"></i> 12 PESSOAS GOSTARAM</p>
+			<p class="followers" style="color:white; font-weight:bold; "><i class="fa fa-user"></i> {{$empresa[0]->likes->count()}}</p>
 			</div>
 			<!-- /grey-panel -->
 		</div>
@@ -63,13 +74,28 @@
 		</div>
 
 		<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<!-- INSTAGRAM PANEL -->
-			<div class="instagram-panel pn">
+			<div class="text-center">
+            @if(!empty($evento))
+                @php
+                $str = $evento->nome_evento;
+                $str2 = str_replace(' ', '-', $str);
+            @endphp
+		<div class="instagram-panel pn" style="background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.6)), url({{asset('storage/eventos/'.$evento->banner)}}); background-size:cover; background-repeat:no-repeat">
 			<i class="fa fa-calendar fa-4x"></i>
-			<p>EVENTO<br/>
-			</p>
-			<p>No momento não há eventos na cidade!</p>
+			<h3 style="color:white; font-weight:900">EVENTO</h3>
+            <h4 style="color:white">{{$evento->nome_evento}}</h4>
+			<h4 style="color:white">{{$evento->inicio_data_evento}} as {{$evento->inicio_hora_evento}}</h4>
+            <a style="color:white" href={{route('eventos').'/'.$str2.'_'.$evento->id}} class="mt btn btn-info">Mais informações</a>
+            </div>
+		</div>
+        @else
+<div class="instagram-panel pn" style="background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6)), url('img/img-15.jpg'); background-size:cover; background-repeat:no-repeat">
+			<i class="fa fa-calendar fa-4x"></i>
+			<h3 style="color:white">EVENTO</h3>
+            <h4 style="color:white; letter-spacing:2px">Não há eventos na cidade! Caso tenha alguma evento contate nosso <a href={{route('contato.home').'#contato'}}>Atedimento!</a></h4>
 			</div>
+		</div>
+        @endif
 		</div>
 
 		<!-- DIRECT MESSAGE PANEL -->
@@ -111,37 +137,7 @@
 		</div>
 		<!-- /col-md-8  -->
 		</div>
-		<div class="row">
 
-		<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="product-panel-1 pn">
-			<div class="badge badge-hot">10%</div>
-			<img src={{asset("img/product.png")}} width="100" style="margin-top:20px;" alt="">
-			<h5 class="mt" style="color: #fff;">Roupas em promoções até 40% OFF</h5>
-
-			<a href="#" class="btn btn-small btn-theme04">Visitar ofertas!</a>
-			</div>
-			</div>
-		<!-- /col-md-4 -->
-		<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="product-panel-2 pn">
-			<div class="badge badge-hot">10%</div>
-			<img src={{asset("img/product.png")}} width="100" style="margin-top:20px;" alt="">
-			<h5 class="mt" style="color: #fff;">Materiais em até 10% OFF</h5>
-			<a href="#" class="btn btn-small btn-theme04">Visitar ofertas!</a>
-			</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="product-panel-3 pn">
-			<div class="badge badge-hot">10%</div>
-			<img src={{asset("img/product.png")}} width="100" style="margin-top:20px;" alt="">
-			<h5 class="mt" style="color: #fff;">Movéis em até 50% OFF</h5>
-			<a href="#" class="btn btn-small btn-theme04">Visitar ofertas!</a>
-			</div>
-			</div>
-		<!-- /col-md-4 -->
-		</div>
-		<!-- /row -->
 		<div class="row">
 
 		<!-- /col-md-4 -->
@@ -169,6 +165,28 @@
 		</div>
 		<!-- /col-md-4 -->
 		</div>
+        <div class="row">
+
+        @foreach ($promotions as $promotion)
+            @php
+                $id = $promotion->empresa->id;
+                $str = $promotion->empresa->name;
+                $str2 = str_replace(' ', '-', $str);
+            @endphp
+		<div class="col-lg-4 col-md-4 col-sm-4 mb">
+			<div class="product-panel-1 pn" style="background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url({{asset('storage/promocoes/'.$promotion->photo)}}); background-size:cover;">
+			<div class="badge badge-hot">{{$promotion->desconto}}</div>
+			<img src={{asset("img/product.png")}} width="100" style="margin-top:20px;" alt="">
+			<h5 class="mt" style="color: #fff;">{{$promotion->title}}</h5>
+
+			<a href="/empresa/{{$str2}}/{{$id}}" class="btn btn-small btn-theme04">Visitar pagina!</a>
+			</div>
+		</div>
+        @endforeach
+
+
+        </div>
+		<!-- /row -->
 		<!-- /row -->
 		</div>
 		<!-- /col-lg-9 END SECTION MIDDLE -->
@@ -185,45 +203,7 @@
 		<div id="atvRecentes">
             @include('atividades.recentes')
         </div>
-		<!-- USERS ONLINE SECTION -->
-		<h4 class="centered mt">NOSSA EQUIPE DE APOIO</h4>
-		<!-- First Member -->
-		<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src={{asset("img/ui-danro.jpg")}} width="35px" height="35px" align="">
-		</div>
-		<div class="details">
-			<p>
-			<a href="#">MICHAEL FRANK</a><br/>
 
-			</p>
-		</div>
-		</div>
-		<!-- Second Member -->
-		<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src={{asset("img/handreyson.jpg")}} width="35px" height="35px" align="">
-		</div>
-		<div class="details">
-			<p>
-			<a href="#">HANDREYSON FERNANDES</a><br/>
-
-			</p>
-		</div>
-		</div>
-		<!-- Third Member -->
-		<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src={{asset("img/iago-2.jpg")}} width="35px" height="35px">
-		</div>
-		<div class="details">
-			<p>
-			<a href="#" >Iago Benício</a><br/>
-
-			</p>
-		</div>
-
-		</div>
 		<div class="text-center">
 			<h4>NOSSO INSTAGRAM</h4>
 			<div class="insta-photos mb" >

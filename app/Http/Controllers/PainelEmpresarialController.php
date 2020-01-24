@@ -12,6 +12,7 @@ use Illuminate\Mail\Message;
 use App\Empresa\Empresa;
 use App\Empresa\Promotion\Promotion;
 use App\Evento\Evento;
+use App\Post\Post;
 use PhpParser\JsonDecoder;
 
 class PainelEmpresarialController extends Controller
@@ -36,6 +37,7 @@ class PainelEmpresarialController extends Controller
 		$chave='385bc83d';
 		$cid = '457982'; // CID da sua cidade, encontre a sua em http://hgbrasil.com/weather
         $promotion = $user->permissions->empresas->promotion;
+        $post = Post::orderBy('views','desc')->first();
         $evento = Evento::orderBy('id','desc')->first();
 		$charts = new SampleChart;
 		$charts->labels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto', 'Setembro','Outubro','Novembro','Dezembro']);
@@ -48,7 +50,7 @@ class PainelEmpresarialController extends Controller
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
-			return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts','promotion','evento'));
+			return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts','promotion','evento', 'post'));
 
 		}
 		catch(Exception $e){
@@ -122,11 +124,11 @@ class PainelEmpresarialController extends Controller
 	public function noticias(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-
+        $post = Post::orderBy('id','desc')->first();
 		$verificacao = $user->permissions->empresario;
 
 		if($verificacao=="sim"){
-		return view('login.dashboard.paginas.noticiasEmp', compact('user'));
+		return view('login.dashboard.paginas.noticiasEmp', compact('user', 'post'));
 		}
 		return redirect()->back();
 	}

@@ -13,8 +13,9 @@
             <th>Tags</th>
             <th>Assunto</th>
             <th>Visualizações</th>
+            <th>Comentários</th>
             <th>Data do post</th>
-            <th>Ação</th>
+            <th class="text-center">Ação</th>
         </tr>
 	</thead>
 	<tbody id="myTable">
@@ -44,6 +45,7 @@
             <td>{{$post->tags}}</td>
             <td>{{$post->assunto}}</td>
             <td>{{$post->views}}</td>
+            <td>{{$post->comments->count()}}</td>
             <td>{{end($data)}} de {{$mes}} de {{$data[0]}}</td>
             <td style="display:flex">
                 <button onclick='excluirPost({{$post->id}})' class="btn btn-danger"><i class="fa fa-trash-o" data-toggle="tooltip" title="Excluir"></i></button>

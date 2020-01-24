@@ -36,7 +36,7 @@
                             <div class="listar-description">
                             <p>Encontre tudo o que precisa aqui com apenas poucos cliques!</p>
                             </div>
-                            <form class="listar-formtheme listar-formsearchlisting">
+                            <form method="POST" action={{route('resultSearch')}} class="listar-formtheme listar-formsearchlisting">
                                 <span><i class="fas fa-street-view"></i></span>
                                 <input type="text" name="search-item" placeholder="Digite o que precisa encontrar aqui!" name="" id="">
                                 <select name="select-option">

@@ -29,6 +29,7 @@
                     </div>
                   </div>
                 </div>
+
                 <!-- /grey-panel -->
               </div>
               <!-- /col-md-4-->
@@ -77,22 +78,30 @@
             </div>
             <!-- /row -->
             <div class="row">
-              <div class="col-md-4 mb">
-                <div class="twitter-panel pn">
-                  <i class="fa fa-bullhorn fa-4x"></i>
-                  <p class="user">DESEJA CRIAR ALGUMA PROMOÇÃO?</p>
-                  <p>Crie promoções e divulgue no nosso site, aumente suas vendas/demanda atigindo milhares de pessoas. Clique em anunciar no card mais abaixo!</p>
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="grey-panel pn donut-chart">
+                  <div class="grey-header">
+                    <h5>QUANTAS PESSOAS COMENTARAM</h5>
+                  </div>
+                  <img src={{asset('img/commentIcon.png')}} style="width:90px;"alt="">
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-6 goleft">
+                      <p>Quantidade<br/>de comentários:</p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                      <h2 style="color:#00AFEF">{{$user->empresas->comments->count()}}</h2>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- /col-md-4-->
-              <div class="col-md-8 mb">
+           <div class="col-md-8 mb">
 			<div class="message-p pn">
 			<div class="message-header">
 			<h5>ALGUMA DÚVIDA?</h5>
 			</div>
 			<div class="row">
 			<div class="col-md-3 centered hidden-sm hidden-xs">
-			<img src=http://127.0.0.1:8000/img/logofinal1icon.png class="" width="60">
+			<img src={{asset("img/logofinal1icon.png")}} class="" width="60">
 			</div>
 			<div class="col-md-9">
 			<p>
@@ -100,16 +109,18 @@
 			Envie alguma mensagem.
 			</p>
 			<p class="message">Digite alguma sugestão, melhorias para a plataforma ou crítica construtivas, duvidas iremos te responder por email, depois verifique sua caixa de mensagens</p>
-			<form class="form-inline" role="form">
-			<div class="form-group">
-			<input type="text" class="form-control" id="exampleInputText" placeholder="Digite sua mensagem...">
-			</div>
-			<button type="submit" class="btn btn-default">Enviar</button>
+			<form id="form-data-message" class="form-inline" role="form">
+                @csrf
+                <div class="form-group">
+                    <input type="hidden" name="idUser" value="{{Auth::id()}}">
+                    <input type="text" name="message" class="form-control" id="message" placeholder="Digite sua mensagem..." required>
+                </div>
+                    <button type="submit" class="btn btn-default">Enviar</button>
 			</form>
 			</div>
 			</div>
 			</div>
-              </div>
+           </div>
               <!-- /col-md-8  -->
             </div>
             <div class="row">
@@ -125,14 +136,20 @@
 
               <!-- /col-md-4 -->
              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="content-panel pn">
-			<div id="blog-bg">
+			<div class="content-panel pn" >
+			<div id="blog-bg" style="background:url({{asset('storage/posts-header/'.$post->banner)}}); background-size:cover;">
 
 			<div class="badge badge-popular">POPULAR</div>
-			<div class="blog-title">Titulo da noticia</div>
+			<div class="blog-title">{{$post->title}}</div>
 			</div>
 			<div class="blog-text">
-			<p>Uma descrição para a noticia aqui exibida, contendo somente alguns caracteres. Assim sendo redirec... <a href="#">Leia mais</a></p>
+                @php
+                    $description = substr($post->conteudo, 0, 110);
+                    $description =  strip_tags($description);
+                     $str = $post->title;
+    $str2 = str_replace(' ', '-', $str);
+                @endphp
+			    <p>{!!$description!!}...<a href={{route('blog.page').'/'.$str2.'/'.$post->id}}>Leia mais</a></p>
 			</div>
 			</div>
 		</div>
@@ -160,9 +177,13 @@
               </div>
               <!--/ col-md-4 -->
 
-					<div class="col-lg-4 col-md-4 col-sm-4 mb">
-
-		</div>
+		<div class="col-md-4 mb">
+                <div class="twitter-panel pn">
+                  <i class="fa fa-bullhorn fa-4x"></i>
+                  <p class="user">DESEJA CRIAR ALGUMA PROMOÇÃO?</p>
+                  <p>Crie promoções e divulgue no nosso site, aumente suas vendas/demanda atigindo milhares de pessoas. Clique em anunciar no card mais abaixo!</p>
+                </div>
+              </div>
               <!-- /col-md-4 -->
             </div>
             <!-- /row -->
@@ -229,45 +250,6 @@
 			<a href="#">Eduardo Siqueira</a>Publicou um evento<br/>
 			</p>
 		</div>
-		</div>
-		<!-- USERS ONLINE SECTION -->
-		<h4 class="centered mt">NOSSA EQUIPE DE APOIO</h4>
-		<!-- First Member -->
-		<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src=http://127.0.0.1:8000/img/ui-danro.jpg width="35px" height="35px" align="">
-		</div>
-		<div class="details">
-			<p>
-			<a href="#">MICHAEL FRANK</a><br/>
-
-			</p>
-		</div>
-		</div>
-		<!-- Second Member -->
-		<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src=http://127.0.0.1:8000/img/handreyson.jpg width="35px" height="35px" align="">
-		</div>
-		<div class="details">
-			<p>
-			<a href="#">HANDREYSON FERNANDES</a><br/>
-
-			</p>
-		</div>
-		</div>
-		<!-- Third Member -->
-		<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src=http://127.0.0.1:8000/img/iago-2.jpg width="35px" height="35px">
-		</div>
-		<div class="details">
-			<p>
-			<a href="#" >Iago Benício</a><br/>
-
-			</p>
-		</div>
-
 		</div>
 		<div class="text-center">
 			<h4>NOSSO INSTAGRAM</h4>
@@ -412,6 +394,50 @@
 
 <script type="text/javascript">
 
+function limparInput(){
+    $('#message').val('');
+}
+
+var successMessage = new jBox('Modal', {
+    attach: '#test',
+    title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+    content: "Mesagam enviada com sucesso, agradeçemos seu feedback!",
+    animation: 'zoomIn',
+    audio: '../audio/bling2',
+    volume: 80,
+    closeButton: true,
+    delayOnHover: true,
+    showCountdown: true
+});
+
+$.ajaxSetup({
+    headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+    });
+$('#form-data-message').submit(function(e){
+    $.ajax({
+        type:"POST",
+        url:'../api/mensagem',
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function(){
+            load('open');
+        },
+        success: function(Response){
+            console.log(Response);
+        },
+        error: function(error){
+            console.log(error);
+        },
+        complete: function(){
+            load('close');
+            limparInput();
+            successMessage.open();
+        }
+    });
+    e.preventDefault();
+});
 
 var modalConfirmPromotion = new jBox('Modal', {
     attach: '#test',

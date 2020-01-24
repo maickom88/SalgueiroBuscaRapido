@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-4" style="display:flex; align-items:center">
         <div style="display:flex; align-items:center; margin-right:20px;">
-            <h4>10</h4>
+            <h4>{{$post->comments->count()}}</h4>
             <i style="margin-top:0px;margin-left:10px;font-size:20px;" class="fa fa-comments"></i>
         </div>
         <div style="display:flex; align-items:center; margin-right:20px;">

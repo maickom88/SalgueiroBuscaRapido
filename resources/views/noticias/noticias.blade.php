@@ -70,7 +70,7 @@
         </div>
         <div class="dropdown-divider"></div>
         <div class="local">
-            <span><i class="fas fa-calendar-alt"></i></span><p>{{end($data)}} de {{$mes}} de {{$data[0]}}</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
+            <span><i class="fas fa-calendar-alt"></i></span> <p>{{end($data)}} de {{$mes}} de {{$data[0]}}</p><br><span><i class="fas fa-comments"></i></span><p>Comentarios</p><br><span><i class="fas fa-tags"></i></span><p>Blog</p>
         </div>
     </div>
 </div>
