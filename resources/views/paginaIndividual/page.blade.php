@@ -4,7 +4,12 @@
 	<link href={{asset('css/style-empresa.css')}} rel="stylesheet">
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
-<link href={{asset('css/style-painel.css')}} rel="stylesheet">
+    <link href={{asset('css/style-painel.css')}} rel="stylesheet">
+    <style>
+    body{
+        background: #353124; !important;
+    }
+    </style>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 

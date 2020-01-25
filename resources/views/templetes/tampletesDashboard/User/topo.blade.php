@@ -231,7 +231,6 @@ $telefone = $user->info->telefone;
 									<a href="/dashboard/parceiro">
 										<span class="label label-danger"><i class="fa fa-ban"></i></span>
 										Seu pedido de parceria foi negado!
-										<span class="small italic" style="margin-top:4px;">4 mins.</span>
 									</a>
 								</li>
 								@elseif($user->parceiro->pedidos == 'Ativo')
@@ -239,7 +238,6 @@ $telefone = $user->info->telefone;
 									<a href="/dashboard/parceiro">
 										<span class="label label-info"><i class="fa fa-check"></i></span>
 										Seu pedido de parceria foi aprovado!
-										<span class="small italic" style="margin-top:4px;">4 mins.</span>
 									</a>
 								</li>
 								@else

@@ -30,7 +30,7 @@
 						</div>
 						<div class="col-sm-6">
 							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fa fa-plus"></i> <span>Adicionar Empresa</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
+							<button onclick="excluirEmpCheck()" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></button>
 							<div class="form-search" style="display:flex; margin-left: 70px">
 
 							<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
@@ -41,8 +41,6 @@
 					<div class="table-responsive" id="table_data">
 						@include('login.dashboardManenger.empresasAll')
 					</div>
-
-
 			</div>
 		</div>
 		<!-- Edit Modal HTML -->
@@ -854,6 +852,54 @@
 <script src={{asset("lib/advanced-form-components.js")}}></script>
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 <script>
+
+function checkAll(){
+var listaemp = document.querySelectorAll("[name=check]");
+if(document.getElementById("selectAll").checked){
+    for(var i = 0;i<listaemp.length;i++){
+        listaemp[i].checked = true;
+    }
+}else{
+    for(var i=0;i<listaemp.length;i++){
+        listaemp[i].checked = false;
+    }
+}
+}
+function excluirEmpCheck(){
+var listaemp = document.querySelectorAll("[name=check]");
+var valores = [];
+for(var i = 0; i < listaemp.length; i++){
+    if(listaemp[i].checked){
+        valores.push(listaemp[i].value);
+    }
+}
+$.ajaxSetup({
+    headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+});
+if(confirm("Deseja excluir todas as empresas selecionadas ?")){
+    for(var i=0; i<valores.length;i++){
+        var id =  valores[i];
+                $.ajax({
+                    type:"POST",
+                    url:'../api/administrativo/empresas/excluir',
+                    data: id,
+                    processData : false,
+                    beforeSend: function(){
+                        load('open');
+                    },
+                    success: function(Response) {
+                        console.log(Response);
+                    },
+                    complete: function(){
+                        load('close');
+                        successDelete.open();
+                        getData(1);
+                    }
+            });
+    }
+}
+}
+
 $('.dinheiro').mask('#.##0,00', {reverse: true}).append('R$');
 
 $('#vincular').click(function(){

@@ -15,26 +15,27 @@
 
 
 		<div class="row mt">
-		  <!-- /col-md-4 -->
-             <div class="col-lg-4 col-md-4 col-sm-4 mb">
-			<div class="content-panel pn" >
-			<div id="blog-bg" style="background:url({{asset('storage/posts-header/'.$post->banner)}}); background-size:cover;">
-
-			<div class="badge badge-popular">POPULAR</div>
-			<div class="blog-title">{{$post->title}}</div>
+        @if(!empty($post))
+        <div class="col-lg-4 col-md-4 col-sm-4 mb">
+		    <div class="content-panel pn" >
+			    <div id="blog-bg" style="background:url({{asset('storage/posts-header/'.$post->banner)}}); background-size:cover;">
+			    <div class="badge badge-popular">POPULAR</div>
+			    <div class="blog-title">{{$post->title}}</div>
 			</div>
 			<div class="blog-text">
                 @php
                     $description = substr($post->conteudo, 0, 110);
                     $description =  strip_tags($description);
-                     $str = $post->title;
-    $str2 = str_replace(' ', '-', $str);
+                    $str = $post->title;
+                    $str2 = str_replace(' ', '-', $str);
                 @endphp
 			    <p>{!!$description!!}...<a href={{route('blog.page').'/'.$str2.'/'.$post->id}}>Leia mais</a></p>
 			</div>
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 mb">
+        @endif
+            @if(!empty($empresa))
+            <div class="col-lg-4 col-md-4 col-sm-4 mb">
 			<div class="content-panel pn" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../storage/logo-empresas/{{$empresa[0]->banner}}'); background-size:cover;">
 			<div id="spotify">
 			<div class="col-xs-4 col-xs-offset-8">
@@ -54,8 +55,10 @@
 			</div>
 			<p class="followers" style="color:white; font-weight:bold; "><i class="fa fa-user"></i> {{$empresa[0]->likes->count()}}</p>
 			</div>
+            </div>
+            @endif
 			<!-- /grey-panel -->
-		</div>
+
 		<!-- /col-md-4-->
 		<div class="col-md-4 col-sm-4 mb">
 			<div class="content-panel pn" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../img/negocio.jpg'); background-size:cover;">
@@ -166,8 +169,8 @@
 		<!-- /col-md-4 -->
 		</div>
         <div class="row">
-
-        @foreach ($promotions as $promotion)
+        @if ($promotions->isNotEmpty())
+            @foreach ($promotions as $promotion)
             @php
                 $id = $promotion->empresa->id;
                 $str = $promotion->empresa->name;
@@ -183,6 +186,7 @@
 			</div>
 		</div>
         @endforeach
+        @endif
 
 
         </div>

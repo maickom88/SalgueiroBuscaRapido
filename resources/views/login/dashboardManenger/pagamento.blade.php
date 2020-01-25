@@ -21,7 +21,6 @@
 							</select>
                             </div>
 							<div class="col-sm-6">
-								<a  href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
 							<div class="form-search" style="display:flex; margin-left: 70px">
 								<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
 							</div>

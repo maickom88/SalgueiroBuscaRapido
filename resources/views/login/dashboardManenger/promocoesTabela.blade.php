@@ -4,7 +4,7 @@
             <tr>
                 <th>
                     <span class="custom-checkbox">
-                        <input type="checkbox" id="selectAll">
+                        <input type="checkbox" id="selectAll" onclick="checkAll()">
                         <label for="selectAll"></label>
                     </span>
                 </th>
@@ -23,7 +23,7 @@
                 <tr>
                 <td>
                     <span class="custom-checkbox">
-                        <input type="checkbox" class="checkDelete" name="check" value=1>
+                        <input type="checkbox" class="checkDelete" name="check" value={{$promotion->id}}>
                         <label for="checkbox1"></label>
                     </span>
                 </td>

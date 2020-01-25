@@ -19,7 +19,7 @@
 					</div>
 					</div>
 					<div class="col-sm-6">
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
+						<button onclick="excluirEmpCheck()" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></button>
 						<div class="form-search" style="display:flex; margin-left: 70px">
 						<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
 						</div>
@@ -60,6 +60,56 @@
 
 @section('scripts')
 <script>
+    function checkAll(){
+		var listaemp = document.querySelectorAll("[name=check]");
+		if(document.getElementById("selectAll").checked){
+			for(var i = 0;i<listaemp.length;i++){
+				listaemp[i].checked = true;
+			}
+		}else{
+			for(var i=0;i<listaemp.length;i++){
+				listaemp[i].checked = false;
+			}
+		}
+	}
+	function excluirEmpCheck(){
+		var listaemp = document.querySelectorAll("[name=check]");
+		var valores = [];
+		for(var i = 0; i < listaemp.length; i++){
+			if(listaemp[i].checked){
+				valores.push(listaemp[i].value);
+			}
+		}
+		$.ajaxSetup({
+			headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+		});
+		if(confirm("Deseja excluir todas as empresas selecionadas ?")){
+			for(var i=0; i<valores.length;i++){
+				var id =  valores[i];
+						$.ajax({
+							type:"POST",
+							url:'../api/usuario/excluirAll',
+							data: id,
+							processData : false,
+							beforeSend: function(){
+								load('open');
+							},
+							success: function(Response) {
+								console.log(Response);
+							},
+                            error: function(error){
+                                console.log(error);
+                            },
+							complete: function(){
+								load('close');
+								modalDelete.open();
+								getData(1);
+							}
+					});
+			}
+		}
+	}
+
 	var modalUpdate = new jBox('Modal', {
 		attach: '#test',
 		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',

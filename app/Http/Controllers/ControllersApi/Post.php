@@ -66,4 +66,14 @@ class Post extends Controller
         $valid = $post->delete();
         return response()->json($valid);
     }
+
+    public function postsView(Request $request){
+        $posts = PostModal::orderBy('id', 'desc')->paginate(6);
+		if(Auth::check()){
+			$idUser = Auth::user()->id;$user = User::find($idUser);
+
+		return view('noticias.noticiasPaginate', compact('user','posts'));
+		}
+		return view('noticias.noticiasPaginate', compact('posts'));
+	}
 }

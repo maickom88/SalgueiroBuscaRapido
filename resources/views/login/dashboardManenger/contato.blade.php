@@ -20,7 +20,7 @@
 					</div>
 					</div>
 					<div class="col-sm-6">
-						<a  href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
+						<button onclick="excluirEmpCheck()" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></button>
 						<div class="form-search" style="display:flex; margin-left: 70px">
 
 						<input type="text" id="myInput" class="form-control" style="border: 1px solid rgb(139, 139, 139);color: rgb(139, 139, 139); border-radius:50px; width: 180px;" placeholder="Buscar...">
@@ -62,8 +62,6 @@
 					</div>
 					</div>
 					<div class="col-sm-6">
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa fa-trash-o"></i> <span>Deletar</span></a>
-
 					</div>
 					</div>
 				</div>
@@ -83,6 +81,33 @@
 
 @section('scripts')
 <script>
+
+    function checkAll(){
+		var listaemp = document.querySelectorAll("[name=check]");
+		if(document.getElementById("selectAll").checked){
+			for(var i = 0;i<listaemp.length;i++){
+				listaemp[i].checked = true;
+			}
+		}else{
+			for(var i=0;i<listaemp.length;i++){
+				listaemp[i].checked = false;
+			}
+		}
+	}
+	function excluirEmpCheck(){
+		var listaemp = document.querySelectorAll("[name=check]");
+		var valores = [];
+		for(var i = 0; i < listaemp.length; i++){
+			if(listaemp[i].checked){
+				valores.push(listaemp[i].value);
+			}
+		}
+			for(var i=0; i<valores.length;i++){
+				var id =  valores[i];
+                excluirMensagens(id);
+		}
+	}
+
     function pegaId(id){
 		var myModal = new jBox('Modal', {
 		content: $('#modalDescricao'+id).data('description'),

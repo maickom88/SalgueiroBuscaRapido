@@ -153,7 +153,7 @@
                                     $str2 = str_replace(' ', '-', $str);
                                 @endphp
                                 <h5 class="card-title"><a href="/empresa/{{$str2}}/{{$emp->id}}" >{{$emp->name}}</a></h5>
-                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="#" style="color:blue;">Ler mais</a></p>
+                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="/empresa/{{$str2}}/{{$emp->id}}" style="color:blue;">Ler mais</a></p>
                             </div>
                             <div class="star">
                                 <i class="fas fa-star"></i>
@@ -168,8 +168,7 @@
                             </div>
                         </div>
                     </div>
-						  @endforeach
-
+					@endforeach
                 </div>
             </div>
     </section>

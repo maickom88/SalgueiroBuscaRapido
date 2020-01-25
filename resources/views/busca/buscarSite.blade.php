@@ -11,7 +11,8 @@
 @section('conteudo')
 @include('templetes.top-menu')
 
- <section class="content-services">
+ <section class="content-services" >
+            @if($empresas->isNotEmpty())
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 text-center "  style="margin-top:38px;">
@@ -25,7 +26,6 @@
                 </div>
             <div class="container">
                     <div class="row card-slide">
-                @if($empresas->isNotEmpty())
                     @foreach ($empresas as $emp)
 								<div class="col-md-4 card-content " style="outline:none !important;">
                         <div class="likes">
@@ -49,7 +49,7 @@
                                     $str2 = str_replace(' ', '-', $str);
                                 @endphp
                                 <h5 class="card-title"><a href="/empresa/{{$str2}}/{{$emp->id}}" >{{$emp->name}}</a></h5>
-                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="#" style="color:blue;">Ler mais</a></p>
+                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="/empresa/{{$str2}}/{{$emp->id}}" style="color:blue;">Ler mais</a></p>
                             </div>
                             <div class="star">
                                 <i class="fas fa-star"></i>
@@ -66,7 +66,14 @@
                     </div>
 					@endforeach
                 @else
-                    <h1>Ops não encontramos sua busca!</h1>
+                    <div class="container text-center" style="margin-top:60px;">
+                        <a href="http://www.freepik.com">
+                        <img  width="700px" class="img-fluid" src={{asset('img/404.png')}} alt="">
+                        </a>
+                        <div>
+                            <a class="btn btn-info" href="">Voltar para home</a>
+                        </div>
+                    </div>
                 @endif
                 </div>
             </div>

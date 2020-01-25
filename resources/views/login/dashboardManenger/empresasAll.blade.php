@@ -4,7 +4,7 @@
 			<tr>
 			<th>
 				<span class="custom-checkbox">
-					<input type="checkbox" id="selectAll">
+					<input type="checkbox" id="selectAll" onclick="checkAll()">
 					<label for="selectAll"></label>
 				</span>
 			</th>

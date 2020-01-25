@@ -701,4 +701,40 @@ class AdmController extends Controller
         $valid = $promotion->delete();
         return response()->json($valid);
 	}
+    public function excluirUserAll(Request $id){
+        $idUser = $id->keys()[0];
+		$user = User::find($idUser);
+		if($user->permissions->empresario == 'sim'){
+			if(!empty($user->empresas))
+			{
+				if(!empty($user->empresas->facilities)){
+					$user->empresas->facilities->delete();
+				}
+				if(!empty($user->empresas->open)){
+					$user->empresas->open->delete();
+				}
+				$user->empresas->contratos->delete();
+				$user->empresas->delete();
+			}
+         $user->permissions->delete();
+			$valid = $user->delete();
+		}
+		if($user->permissions->blogueiro == 'sim'){
+			$user->permissions->delete();
+            $user->info->delete();
+			$valid = $user->delete();
+		}
+		if($user->permissions->adm == 'sim'){
+			$user->permissions->delete();
+            $user->info->delete();
+			$valid = $user->delete();
+		}
+		if($user->permissions->user == 'sim'){
+			$user->permissions->delete();
+            $user->info->delete();
+			$valid = $user->delete();
+		}
+		return response()->json($valid);
+
+    }
 }

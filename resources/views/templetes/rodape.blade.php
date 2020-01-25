@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <img src="img/logofinal1.png">
+                <img src={{asset('img/logofinal1.png')}}>
             </div>
             <div class="col-md-9">
             <span>© Salgueiro Busca Rapido 2018 . Todos os direitos resevados.</span>

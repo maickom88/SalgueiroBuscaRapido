@@ -179,5 +179,10 @@ Route::post('blog/comentar', 'ControllersApi\CommentController@adicionarCommentP
 
 Route::get('evento/eventos', 'ControllersApi\EventoController@eventos');
 
+Route::post('usuario/excluirAll', 'ControllersApi\AdmController@excluirUserAll');
+
+
+Route::get('/posts', 'ControllersApi\Post@postsView');
+
 
 Route::get('blog/lista-comments-page/{id}', 'ControllersApi\CommentController@listarCommentPost');

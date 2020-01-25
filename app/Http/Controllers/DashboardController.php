@@ -86,7 +86,10 @@ class DashboardController extends Controller
                array_push($empresasPostAtv, $empresa);
             }
         }
-        $empresa = Empresa::all()->where('status', 'ativa')->random(1);
+        $empresa = Empresa::all()->count();
+        if($empresa > 0){
+            $empresa = Empresa::all()->where('status', 'ativa')->random(1);
+        }
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
