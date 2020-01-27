@@ -10,6 +10,8 @@
 <section class="wrapper site-min-height">
 <div class="row mt">
 <div class="container" >
+@if(!empty($post))
+
 <div class="card mb-3">
 <div class="imagem text-center">
 
@@ -50,6 +52,10 @@
 <p class="card-text"><i class="fa fa-eye"></i><small class="text-muted"> <a href="/noticias"> Ver mais notícias</a></small></p>
 
 </div>
+@else
+Ainda Não há posts
+@endif
+
 </div>
 </div>
 </section>

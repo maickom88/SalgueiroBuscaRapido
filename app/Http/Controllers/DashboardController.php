@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Empresa\Empresa;
+use App\Empresa\Feed\NovidadeEmpresa;
 use App\Empresa\Promotion\Promotion;
 use App\User;
 use App\Parceiro;
@@ -124,8 +125,14 @@ class DashboardController extends Controller
 		$idUser = Auth::id();
 		$user = User::find($idUser);
 		$verificacao = $user->permissions->user;
+        $likes = $user->likes;
+        $idEmps = [];
+        foreach($likes as $like){
+            array_push($idEmps, $like->empresa_id);
+        }
+        $novidades = NovidadeEmpresa::whereIn('empresa_id', $idEmps)->orderBy('id','desc')->paginate(3);
 		if($verificacao=="sim"){
-		return view('login.dashboardUser.paginas.listaEmp', compact('user'));
+		return view('login.dashboardUser.paginas.listaEmp', compact('user','novidades'));
 		}
 		return redirect()->back();
 

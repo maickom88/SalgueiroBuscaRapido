@@ -20,10 +20,13 @@
 					<div class="row content-panel">
 					<div class="col-md-4 profile-text mt mb centered">
 						<div class="right-divider hidden-sm hidden-xs">
-							<h4>13</h4>
+							<h4>{{$user->comments->count()}}</h4>
 							<h6>COMENTÁRIOS NA PLATAFORMA</h6>
-							<h4>30</h4>
-							<h6>BUSCAS NA PLATAFORMA</h6>
+							<h4>{{$user->likes->count()}}</h4>
+							<h6>LIKES NA PLATAFORMA</h6>
+                            <h4>{{$user->empresas->novidades->count()}}</h4>
+							<h6>NOVIDADES PUBLICADAS</h6>
+
 						</div>
 					</div>
 					<div class="col-md-4 profile-text">

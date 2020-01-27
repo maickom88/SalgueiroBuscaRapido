@@ -1572,8 +1572,8 @@ $(window).on('hashchange', function() {
 			$('#statusEmp').val('ativa');
 			$('#emailContato').val('');
 			$('#selectNincho').val('');
-
-
+            $('#contratoEmp').val('mensal');
+            $('.dinheiro').val('');
 		}
 
 		$.ajaxSetup({

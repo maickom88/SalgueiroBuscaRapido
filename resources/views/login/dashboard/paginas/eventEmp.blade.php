@@ -10,6 +10,7 @@
 <section class="wrapper site-min-height">
 <div class="row mt">
 <div class="container" >
+    @if(!empty($evento))
     @foreach ($eventos as $evento)
         <div class="card mb-3">
         <div class="imagem text-center">
@@ -40,7 +41,9 @@
         </div>
         </div>
     @endforeach
-
+    @else
+    <h1>Ainda não há eventos por aqui!</h1>
+    @endif
 </div>
 </section>
 
