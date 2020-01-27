@@ -124,7 +124,6 @@ class DashboardController extends Controller
 		$idUser = Auth::id();
 		$user = User::find($idUser);
 		$verificacao = $user->permissions->user;
-
 		if($verificacao=="sim"){
 		return view('login.dashboardUser.paginas.listaEmp', compact('user'));
 		}

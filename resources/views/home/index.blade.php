@@ -221,6 +221,7 @@
     </section>
     <!-----------start news------->
     <!--Promoçoes-->
+    @if (!empty($empresas->promotion))
     <section class="promo">
         <div class="container">
             <div class="row">
@@ -264,7 +265,7 @@
             </div>
         </div>
     </section>
-
+    @endif
     <!--Fim de promoções-->
     @if($posts->isNotEmpty())
     <section class="noticias">

@@ -75,7 +75,7 @@ $telefone = $user->info->telefone;
 							</li>
 							<li>
 
-								<a href="dashboard#">
+								<a href="../dashboard">
 									<div class="task-info">
 
 										@if($perc==100)
@@ -94,7 +94,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								<a href="dashboard#">
+								<a href="../dashboard">
 									<div class="task-info">
 										@if($user->comments->count() >= 5)
 											<div class="desc">Você concluiu essa tarefa</div>
@@ -127,7 +127,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								<a href="dashboard#">
+								<a href="../dashboard">
 									<div class="task-info">
 										@if($user->comments->count() >= 5)
 											<div class="desc">Você concluiu essa tarefa</div>
@@ -161,7 +161,7 @@ $telefone = $user->info->telefone;
 								</a>
 							</li>
 							<li>
-								<a href="dashboard#">
+								<a href="../dashboard">
 									<div class="task-info">
 										@if($user->likes->count()>= 5)
 											<div class="desc">Você concluiu essa tarefa</div>
@@ -195,6 +195,7 @@ $telefone = $user->info->telefone;
 										@endif
 								</a>
 							</li>
+
 						</ul>
 					</li>
 					<!-- settings end -->

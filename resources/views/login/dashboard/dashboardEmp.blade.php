@@ -135,6 +135,7 @@
               </div>
 
               <!-- /col-md-4 -->
+              @if(!empty($post))
              <div class="col-lg-4 col-md-4 col-sm-4 mb">
 			<div class="content-panel pn" >
 			<div id="blog-bg" style="background:url({{asset('storage/posts-header/'.$post->banner)}}); background-size:cover;">
@@ -146,18 +147,19 @@
                 @php
                     $description = substr($post->conteudo, 0, 110);
                     $description =  strip_tags($description);
-                     $str = $post->title;
-    $str2 = str_replace(' ', '-', $str);
+                    $str = $post->title;
+                    $str2 = str_replace(' ', '-', $str);
                 @endphp
 			    <p>{!!$description!!}...<a href={{route('blog.page').'/'.$str2.'/'.$post->id}}>Leia mais</a></p>
 			</div>
 			</div>
-		</div>
+		</div> @endif
 				<!-- /col-md-4 -->
 				<div id="card-promotion" class="col-lg-4 col-md-4 col-sm-4 mb">
                     @include('login.dashboard.paginas.cardPromotion')
                 </div>
         </div>
+
             <!-- /row -->
             <div class="row">
 

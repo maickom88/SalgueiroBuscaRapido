@@ -1,7 +1,7 @@
 
-@extends('templetes.tampletesDashboard.User.site')	 
+@extends('templetes.tampletesDashboard.User.site')
 
-	
+
 @section('titulo', 'SALGUEIRO BUSCA RAPIDO: PERFIL')
 
 
@@ -12,30 +12,32 @@
 
 <section id="main-content">
 
-	
+
 	<section class="wrapper site-min-height">
 			<div class="row mt">
 				<div class="col-lg-12">
 					<div class="row content-panel">
 					<div class="col-md-4 profile-text mt mb centered">
 						<div class="right-divider hidden-sm hidden-xs">
-							<h4>13</h4>
+							<h4>{{$user->comments->count()}}</h4>
 							<h6>COMENTÁRIOS NA PLATAFORMA</h6>
-							<h4>30</h4>
-							<h6>BUSCAS NA PLATAFORMA</h6>
+							<h4>{{$user->likes->count()}}</h4>
+							<h6>LIKES NA PLATAFORMA</h6>
+                            @if($user->permissions->blogueiro == 'sim')
+                            <h4>{{$user->posts->count()}}</h4>
+							<h6>PUBLICAÇÕES NO BLOG</h6>
+                            @endif
 						</div>
 					</div>
 					<div class="col-md-4 profile-text">
 						<h3>{{Auth::user()->name}}</h3>
-					
-						
 						@if($user->permissions->blogueiro=="nao")
 						<p>Permissão de usúario <i class="fa fa-user"></i></p>
 						@else
 						<p>Permissão de Blogueiro <i class="fa fa-user"></i></p>
 						@endif
 						<br>
-						
+
 
 					</div>
 					<div class="col-md-4 centered">
@@ -52,7 +54,7 @@
 				<div class="col-lg-12 mt">
 					<div class="row content-panel">
 						<div class="panel-heading">
-							<ul class="nav nav-tabs nav-justified">			
+							<ul class="nav nav-tabs nav-justified">
 								<li>
 								<a data-toggle="tab" href="#contact" class="contact-map">Contato</a>
 								</li>
@@ -71,11 +73,11 @@
 				<div class="col-md-6 detailed">
 			<h4>Localização</h4>
 			<div class="col-md-8 col-md-offset-2 mt">
-			
+
 			@if(!empty($user->info))
 				@if(!empty($user->info->endereco))
-								<p>
-						Endereço: <br/> {{$user->info->endereco}}
+						<p>
+						    Endereço: <br/> {{$user->info->endereco}}
 						</p>
 
 				@else
@@ -85,10 +87,10 @@
 			<p class="endereco enderecotx">Defina seu endereço</p>
 			@endif
 			<br>
-			
+
 			</div>
-				
-				
+
+
 			<div class="col-md-8 col-md-offset-2 mt">
 				<h4>Contato</h4>
 			@if(!empty($user->info))
@@ -102,10 +104,10 @@
 			@else
 			<p class="tel telefonetx">Defina seu telefone de contato</p>
 			@endif
-			
+
 			<br>
-			
-			
+
+
 			<p>
 				Email: {{Auth::user()->email}}<br/>
 			</p>
@@ -128,27 +130,25 @@
 					<input type="file" id="exampleInputFile" name="imagem" class="file-pos">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
-				<label class="col-lg-2 control-label">INTERESSE</label>
+				<label class="col-lg-2 control-label">INTERESSES</label>
 				<div class="col-lg-6">
 			<select name="interesse" class="form-control interesse" id="inter">
-				<option value="roupas">ROUPAS</option>
-				<option value="suplementos">SUPLEMENTOS</option>
-				<option value="construção">CONSTRUÇÃO</option>
-				<option value="saúde">SAÚDE</option>
-				<option value="academias">ACADEMIAS</option>
-				<option value="varejos">VAREJOS</option>
-				<option value="comidas">COMIDA</option>
-				<option value="lazer">LAZER</option>
-				<option value="distrubuidoras">DISTRIBUIDORAS</option>  
+				<option value="roupas, lojas, atacados e varejos">ROUPAS, LOJAS, ATACADOS E VAREJOS</option>
+				<option value="suplementos e academias">SUPLEMENTOS E ACADEMIAS</option>
+				<option value="construções, corretorias e emprestimos">CONSTRUÇÕES, CORRETORIAS E EMPRESTIMOS</option>
+				<option value="saúde, clínicas e consultorios médicos">SAÚDE, CLÍNICAS E CONSULTORIOS MÉDICOS</option>
+				<option value="comidas, restaurantes e pizzarias">COMIDAS, RESTAURANTES E PIZZARIAS</option>
+				<option value="lazer, festas, ornamentações e organizações">LAZER, FESTAS, ORNAMENTAÇÕES E ORGANIZAÇÕES</option>
+				<option value="distrubuidoras, fretes e transportadoras">DISTRIBUIDORAS, FRETES E TRANSPORTADORAS</option>
 			</select>
 				</div>
 			</div>
-			
+
 				</div>
 				<div class="col-lg-8 col-lg-offset-2 detailed mt">
-			<h4 class="mb">Informações pra contato</h4>
+			<h4 class="mb">Informações para contato</h4>
 			<div class="form-horizontal">
 			<div class="form-group">
 				<label class="col-lg-2 control-label">ENDEREÇO</label>
@@ -168,13 +168,13 @@
 			<input type="text" placeholder=" " id="email" name="email" class="email form-control">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 			<button class="btn btn-theme" type="submit">Salvar</button>
 			<button class="btn btn-theme04" type="reset">Cancelar</button>
 			</form>
-	<?php 
+	<?php
 		$camp = session('info_send');
 		if($camp=="ok"):
 	?>
@@ -215,7 +215,7 @@ function carregarPerfil(){
 		var idUser = {{Auth::id()}};
 
 		$.getJSON('../api/painel/info/user/'+idUser , function(data){
-			
+
 		$('.idade').val(data.idade);
 		$('#inter').val(data.interesse);
 		$('.endereco').val(data.endereco);
@@ -227,7 +227,7 @@ function carregarPerfil(){
 		$('.idadetx').text(data.idade);
 		$('.enderecotx').html('Endereço: <br/>'+data.endereco);
 		$('.telefonetx').html('Telefone: '+data.telefone);
-		});				
+		});
 }
 
 $( function(){
@@ -245,7 +245,7 @@ volume: 80,
 closeButton: true,
 delayOnHover: true,
 showCountdown: true
-}); 
+});
 var modalErroNumber = new jBox('Modal', {
 attach: '#test',
 title: '<div width="100%" class="text-center"><i class="fa fa-times-circle fa-3x" style="color: red"></i></div>',
@@ -256,7 +256,7 @@ volume: 80,
 closeButton: true,
 delayOnHover: true,
 showCountdown: true
-}); 
+});
 
 function load(action){
 	var load_div = $(".loader");
@@ -274,14 +274,14 @@ $.ajaxSetup({
 });
 
 
-$("#form-data").submit(function(e){	 
+$("#form-data").submit(function(e){
 	var valid = $('#idade').val()
 	var validtel = $('#telefone').val();
 
 	if($.isNumeric(valid) && $.isNumeric(validtel)){
 		$.ajax({
 		type:"POST",
-		url:'../api/painel/info/alterar',	
+		url:'../api/painel/info/alterar',
 		data: new FormData(this),
 		contentType: false,
 		cache: false,
@@ -291,7 +291,7 @@ $("#form-data").submit(function(e){
 		},
 		success: function(Response) {
 			console.log(Response);
-			
+
 		},
 		complete: function(){
 			load("close");
@@ -304,7 +304,7 @@ $("#form-data").submit(function(e){
 	else{
 		modalErroNumber.open();
 	}
-	
+
 
 	e.preventDefault();
 

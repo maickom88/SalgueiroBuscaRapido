@@ -39,7 +39,6 @@
 			<div class="content-panel pn" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../storage/logo-empresas/{{$empresa[0]->banner}}'); background-size:cover;">
 			<div id="spotify">
 			<div class="col-xs-4 col-xs-offset-8">
-			<button class="btn btn-sm btn-clear-g"><i class="fa fa-heart"></i></button>
 			</div>
 			<div class="sp-title">
                 @php
