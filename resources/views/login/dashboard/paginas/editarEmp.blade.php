@@ -30,16 +30,16 @@
 				<div class="row content-panel">
 				<div class="col-md-4 profile-text mt mb centered">
 					<div class="right-divider hidden-sm hidden-xs">
-						<h4>13</h4>
+						<h4>{{$user->empresas->comments->count()}}</h4>
 						<h6>TOTAL DE COMENTÁRIOS</h6>
 						<h4>30</h4>
 						<h6>TOTAL DE BUSCAS NA PLATAFORMA</h6>
-						<h4>234</h4>
+						<h4>{{$user->empresas->views->views}}</h4>
 						<h6>TOTAL DE VISUALIZAÇÃO GERAIS</h6>
 					</div>
 				</div>
 				<div class="col-md-4 profile-text">
-					<h3>Nome da Empresa</h3>
+					<h3>{{$user->empresas->name}}</h3>
 					<h6 id="descricaoEmp"></h6>
 				</div>
 				<div class="col-md-4 centered">
@@ -385,7 +385,7 @@ function excluir() {
 			$('#facebook').val(data.facebook);
 			$('#instagram').val(data.instagram);
 			$('#avatarImg').attr('src', "{!!asset('storage/logo-empresas/"+data.logoMarca+"')!!}");
-			$('#descricaoEmp').append(data.description);
+			$('#descricaoEmp').text(data.description);
 			});
 
 

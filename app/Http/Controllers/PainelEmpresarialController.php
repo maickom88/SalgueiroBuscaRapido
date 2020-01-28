@@ -10,6 +10,7 @@ use App\Charts\SampleChart;
 use Faker\Provider\Color;
 use Illuminate\Mail\Message;
 use App\Empresa\Empresa;
+use App\Empresa\Feed\NovidadeEmpresa;
 use App\Empresa\Promotion\Promotion;
 use App\Evento\Evento;
 use App\Post\Post;
@@ -147,16 +148,12 @@ class PainelEmpresarialController extends Controller
 	public function postagens(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-		$empresa = $user->empresas;
 
 		$verificacao = $user->permissions->empresario;
 
 		if($verificacao=="sim"){
-        if(!empty($empresa->novidades)){
-            $novidades = $empresa->novidades;
+            $novidades = NovidadeEmpresa::find($user->empresas->id)->orderBy('id','desc')->paginate(5);
             return view('login.dashboard.paginas.feed.postagens', compact('user', 'novidades'));
-        }
-		return view('login.dashboard.paginas.feed.postagens', compact('user'));
 		}
 		return redirect()->back();
 	}

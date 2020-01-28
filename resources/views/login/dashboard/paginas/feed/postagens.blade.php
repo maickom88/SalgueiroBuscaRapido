@@ -23,16 +23,12 @@
 				</div>
 		</div>
         @if(!$novidades->isEmpty())
-
-
         <div class="row mt">
             <div style="background-color:; padding:20px;">
-
                 <h2 style="color:#A3A3A3 ; font-weight:bold">Novidades publicadas</h2>
-
                 @foreach ($novidades as $novidade)
-
                 @php
+
                     $str = $novidade->empresa->name;
                     $str2 = str_replace(' ', '-', $str);
                     $data = $novidade->created_at;
@@ -45,7 +41,10 @@
                 </div>
                 @endforeach
             </div>
-        @endif
+            <div class="row" style="display:flex; align-items:center;justify-content:center">
+                {{$novidades->links()}}
+            </div>
+            @endif
         </div>
     </section>
 
