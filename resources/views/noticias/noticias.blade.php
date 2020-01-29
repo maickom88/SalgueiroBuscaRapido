@@ -3,6 +3,14 @@
 @section('links')
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-157182219-1');
+</script>
 @endsection
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIAS')

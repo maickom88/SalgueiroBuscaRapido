@@ -5,8 +5,16 @@
 
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
     <link href={{asset('css/style-contato.css')}} rel="stylesheet">
-	 <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
-	 <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
+    <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
+    <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-157182219-1');
+</script>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 

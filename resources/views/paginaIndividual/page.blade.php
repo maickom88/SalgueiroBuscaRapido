@@ -5,13 +5,23 @@
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
     <link href={{asset('css/style-painel.css')}} rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-157182219-1');
+</script>
+
     <style>
     body{
         background: #353124; !important;
     }
     </style>
 @endsection
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO:'.$empresa->name.'_'.$empresa->id);
 
 @section('conteudo')
 @include('templetes.top-menu')

@@ -307,10 +307,10 @@
                   <div class="stock current-price">
                     <div class="row">
                       <div class="info col-sm-6 col-xs-6"><abbr>TOTAL</abbr>
-                        <time>Mês</time>
+                        <time>Total de pesquisas relacionadas</time>
                       </div>
                       <div class="changes col-sm-6 col-xs-6">
-                        <div class="value up"><i class="fa fa-caret-up hidden-sm hidden-xs"></i> 220</div>
+                        <div class="value up"><i class="fa fa-caret-up hidden-sm hidden-xs"></i>{{$buscas}}</div>
                         <div class="change hidden-sm hidden-xs"></div>
                       </div>
                     </div>

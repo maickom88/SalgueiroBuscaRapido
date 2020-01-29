@@ -3,7 +3,18 @@
 
 
 @section('titulo','SALGUEIRO BUSCA RAPIDO: HOME')
+@section('links')
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-157182219-1');
+</script>
+
+@endsection
 @section('conteudo')
 <!--Start header-->
 @include('templetes.top-menu')

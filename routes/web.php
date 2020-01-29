@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use Illuminate\Support\Facades\Route;
-
+use Spatie\Analytics\AnalyticsFacade;
+use Spatie\Analytics\Period;
+use Illuminate\Support\Carbon;
 //-----------------------Pagina Inicial---------------------//
 Route::get('/', ['uses'=>'IndexController@index'])->name('home');
 
@@ -198,3 +199,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('homeLara');
 
+Route::get('/google', function(){
+    $startDate =  Carbon::create(2020,1, 01);
+    $endDate  =  Carbon::create(2020, 1, 30);
+    $p = Period::create ($startDate , $endDate);
+    $analyticsData = Analytics::fetchVisitorsAndPageViews($p);
+    dd($analyticsData);
+});

@@ -161,8 +161,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-		  yasmuru\LaravelTinify\LaravelTinifyServiceProvider::class,
-		  ConsoleTVs\Charts\ChartsServiceProvider::class,
+        yasmuru\LaravelTinify\LaravelTinifyServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -226,8 +228,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		  'Tinify' => yasmuru\LaravelTinify\Facades\Tinify::class,
-		   'Charts' => ConsoleTVs\Charts\Charts::class,
+        'Tinify' => yasmuru\LaravelTinify\Facades\Tinify::class,
+        'Charts' => ConsoleTVs\Charts\Charts::class,
+        'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+
     ],
 
 ];

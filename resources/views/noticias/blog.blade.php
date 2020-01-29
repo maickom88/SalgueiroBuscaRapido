@@ -7,6 +7,8 @@
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
     <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
     <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+
 @endsection
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIA ')
