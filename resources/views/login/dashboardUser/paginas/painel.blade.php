@@ -165,6 +165,9 @@
 			<h4>SALGUEIRO</h4>
 			</div>
 		</div>
+        <div class="col-md-4 mb">
+			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <!-- Anuncio para painel --> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1803332419619783" data-ad-slot="5463619402" data-ad-format="auto" data-full-width-responsive="true"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+		</div>
 		<!-- /col-md-4 -->
 		</div>
         <div class="row">

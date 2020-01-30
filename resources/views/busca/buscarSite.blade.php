@@ -15,6 +15,17 @@
             @if($empresas->isNotEmpty())
             <div class="container">
                 <div class="row">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anuncio busca -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1803332419619783"
+     data-ad-slot="7706639363"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
                     <div class="col-sm-12 text-center "  style="margin-top:38px;">
                         <h2>Resultado</h2>
                         <div class="sub-header">
@@ -67,6 +78,17 @@
 					@endforeach
                 @else
                     <div class="container text-center" style="margin-top:60px;">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Anuncio busca -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1803332419619783"
+     data-ad-slot="7706639363"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
                         <a href="http://www.freepik.com">
                         <img  width="700px" class="img-fluid" src={{asset('img/404.png')}} alt="">
                         </a>

@@ -4,6 +4,8 @@
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+    <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}

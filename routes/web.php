@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use Illuminate\Support\Facades\Route;
 use Spatie\Analytics\AnalyticsFacade;
 use Spatie\Analytics\Period;
@@ -200,9 +201,15 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('homeLara');
 
 Route::get('/google', function(){
-    $startDate =  Carbon::create(2020,1, 01);
-    $endDate  =  Carbon::create(2020, 1, 30);
-    $p = Period::create ($startDate , $endDate);
-    $analyticsData = Analytics::fetchVisitorsAndPageViews($p);
-    dd($analyticsData);
+
+    $config['center'] = 'Air Canada Centre, Toronto';
+    $config['zoom'] = '14';
+    $config['map_height'] = '580px';
+    $config['scrollwhell'] = false;
+
+    GMaps::initialize($config);
+    $map = GMaps::create_map();
+     echo $map['js'];
+    echo $map['html'];
 });
+

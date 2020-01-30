@@ -6,6 +6,7 @@
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
     <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
     <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
+	 <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script async charset="utf-8" src="//cdn.embedly.com/widgets/platform.js"></script>
       <!-- Global site tag (gtag.js) - Google Analytics -->
 
@@ -79,6 +80,16 @@
     <div class="container">
         <div class="artigo">
             <article>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                style="display:block; text-align:center;"
+                data-ad-layout="in-article"
+                data-ad-format="fluid"
+                data-ad-client="ca-pub-1803332419619783"
+                data-ad-slot="7439046052"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
                 {!!$post->conteudo!!}
                 <div class="dropdown-divider"></div><br>
                 <div class="row">
