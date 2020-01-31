@@ -18,7 +18,8 @@
         "php-http/message": "^1.8",
         "vinkla/instagram": "^9.3",
         "yasmuru/ys-tinify-laravel": "^1.0",
-        "spatie/laravel-analytics" : "3.7.0"
+        "spatie/laravel-analytics" : "3.7.0",
+        "cornford/googlmapper": "2.*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -18,7 +18,7 @@ class CreatePromotionsTable extends Migration
             $table->string('photo');
             $table->string('title');
             $table->string('description');
-            $table->string('valor');
+            $table->string('valor')->nullable();
             $table->string('desconto');
             $table->enum('status',['sim', 'nao' ])->default('sim');
             $table->string('data_fim_promocao');

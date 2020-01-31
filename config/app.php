@@ -165,6 +165,7 @@ return [
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
         Spatie\Analytics\AnalyticsServiceProvider::class,
+        Cornford\Googlmapper\MapperServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -232,6 +233,7 @@ return [
         'Charts' => ConsoleTVs\Charts\Charts::class,
         'GMaps' => FarhanWazir\GoogleMaps\Facades\GMapsFacade::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
 
     ],
 

@@ -137,7 +137,7 @@
 <section id="detalhes">
     <div class="container sobre-empresa">
         <div class="sobre">
-            <h4>Sobre a Churrascaria</h4>
+            <h4>Sobre {{$empresa->name}}</h4>
             <p>{{$empresa->description}}</p>
 				@if(!empty($empresa->whatsapp))
 				<a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{$empresa->whatsapp}}" target="blank">Entrar em contato</a>
@@ -325,8 +325,11 @@
             </div>
             <div class="col-md-7">
                 <div class="mapa-empresa">
-                    <div class="mapa">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.317439943632!2d-39.13086058682755!3d-8.06906879419024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a0918c2225e1b9%3A0x6475b4e4b50d38ce!2sAv.+Elisa+Patriota%2C+102-142+-+Nossa+Sra.+de+Gracas%2C+Salgueiro+-+PE%2C+56000-000!5e0!3m2!1spt-BR!2sbr!4v1563834380526!5m2!1spt-BR!2sbr" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <div class="mapa" >
+
+                        <div style="width: 100%; height: 500px;">
+	                        {!! $map->render() !!}
+                        </div>
                     </div>
                     <div class="endereco">
                         <div class="localizacao-empresa">

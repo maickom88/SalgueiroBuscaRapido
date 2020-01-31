@@ -10,7 +10,7 @@
 }
 .title, p{
     color:white !important;
-    
+
 }
 .paragrafo{
     color:#f3f3f3 !important ;
@@ -85,9 +85,15 @@
     border-bottom:none;
 }
 .feature-mockup{
-    bottom:-100px;
     position: relative;
 
+}
+@media (max-width: 767px) {
+
+
+.feature-mockup{
+    left:-315px;
+}
 }
 #intro{
     overflow:hidden !important;

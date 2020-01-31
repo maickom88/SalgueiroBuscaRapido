@@ -120,7 +120,12 @@ class AdmController extends Controller
 		if(!empty($req->input('status'))){
 			$empresa->status = $req->input('status');
 		}
-
+        if(!empty($req->input('latitudeEmp'))){
+			$empresa->latitude = $req->input('latitudeEmp');
+		}
+        if(!empty($req->input('longitudeEmp'))){
+			$empresa->longitude = $req->input('longitudeEmp');
+		}
 		$facilite->climatizado = $req->input('climatizado');
 		$facilite->wifi = $req->input('wifi');
 		$facilite->estacionamento = $req->input('estacionamento');
@@ -384,6 +389,12 @@ class AdmController extends Controller
 		}
 		if(!empty($req->input('status'))){
 			$empresa->status = $req->input('status');
+		}
+        if(!empty($req->input('latitudeEmp'))){
+			$empresa->latitude = $req->input('latitudeEmp');
+		}
+        if(!empty($req->input('longitudeEmp'))){
+			$empresa->longitude = $req->input('longitudeEmp');
 		}
 
 		$empresa->facilities->wifi = $req->input('wifi');

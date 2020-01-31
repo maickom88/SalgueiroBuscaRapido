@@ -7,10 +7,12 @@ use App\Empresa\Empresa;
 use App\Empresa\Feed\NovidadeEmpresa;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
+use Mapper;
+use Exception;
 class PaginaIndividualController extends Controller
 {
    public function page($nome, $id){
+
 		$empresas = Empresa::all()->where('status', 'ativa');
 		$empresa = Empresa::find($id);
 		$novidades = NovidadeEmpresa::where('empresa_id', $id)->orderBy('id','desc')->paginate(1);
@@ -20,7 +22,9 @@ class PaginaIndividualController extends Controller
 		$tag = $empresa->tags;
 		$tags = explode(',', $tag);
 
-
+        $latitude = $empresa->latitude;
+        $longitude = $empresa->longitude;
+        $map = Mapper::map($latitude, $longitude);
 		$segunda = "".$empresa->open->segunda."";
 		$terca = $empresa->open->terca;
 		$quarta = $empresa->open->quarta;
@@ -83,9 +87,9 @@ class PaginaIndividualController extends Controller
 		if(Auth::check()){
 			$idUser = Auth::user()->id;
 			$user = User::find($idUser);
-			return view('paginaIndividual.page', compact('empresa', 'tags', 'array', 'user', 'empresas', 'novidades'));
+			return view('paginaIndividual.page', compact('map','empresa', 'tags', 'array', 'user', 'empresas', 'novidades'));
 		}
 
-		return view('paginaIndividual.page', compact('empresa', 'tags', 'array','empresas' ,'novidades'));
+		return view('paginaIndividual.page', compact('map','empresa', 'tags', 'array','empresas' ,'novidades'));
 	}
 }

@@ -32,8 +32,6 @@
 					<div class="right-divider hidden-sm hidden-xs">
 						<h4>{{$user->empresas->comments->count()}}</h4>
 						<h6>TOTAL DE COMENTÁRIOS</h6>
-						<h4>30</h4>
-						<h6>TOTAL DE BUSCAS NA PLATAFORMA</h6>
 						<h4>{{$user->empresas->views->views}}</h4>
 						<h6>TOTAL DE VISUALIZAÇÃO GERAIS</h6>
 					</div>
@@ -58,9 +56,7 @@
 				<div class="row content-panel">
 					<div class="panel-heading">
 						<ul class="nav nav-tabs nav-justified">
-							<li>
-							<a data-toggle="tab" href="#contact" class="contact-map">Contato geral da empresa</a>
-							</li>
+
 							<li>
 							<a data-toggle="tab" href="#album" class="album-map">Album de fotos</a>
 							</li>
@@ -73,54 +69,7 @@
 					<div class="tab-content">
 						<div id="contact" class="tab-pane active">
 		<div class="row">
-			<div class="col-md-6">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7900.564772948206!2d-39.12842366967682!3d-8.072654217625908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a09192ada1492f%3A0xeb36df8a71bcc9bf!2sPosto%20Ipiranga!5e0!3m2!1spt-BR!2sbr!4v1569011505394!5m2!1spt-BR!2sbr" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-			</div>
-			<div class="col-md-6 detailed">
-		<h4>Localização</h4>
-		<div class="col-md-8 col-md-offset-2 mt">
-
-		@if(!empty($user->info))
-			@if(!empty($user->info->endereco))
-							<p>
-					Endereço: <br/> {{$user->info->endereco}}
-					</p>
-
-			@else
-			<p>Defina seu endereço</p>
-			@endif
-		@else
-		<p>Defina seu endereço</p>
-		@endif
-		<br>
-
-		</div>
-
-
-		<div class="col-md-8 col-md-offset-2 mt">
-			<h4>Contato</h4>
-		@if(!empty($user->info))
-			@if(!empty($user->info->telefone))
-				<p>
-					Telefone: {{$user->info->telefone}}
-				</p>
-			@else
-			<p>Defina seu telefone de contato</p>
-			@endif
-		@else
-		<p>Defina seu telefone de contato</p>
-		@endif
-
-		<br>
-
-
-		<p>
-			Email: {{Auth::user()->email}}<br/>
-		</p>
-		</div>
-			</div>
-			<!-- /col-md-6 -->
-		</div>
+					</div>
 		<!-- /row -->
 		</div>
 		<div id="album" class="tab-pane">

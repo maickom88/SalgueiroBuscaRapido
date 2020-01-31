@@ -5,6 +5,10 @@
 @section('empresas', 'active')
 
 @section('links')
+<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-datepicker/css/datepicker.css")}}/>
+<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-daterangepicker/daterangepicker.css")}} />
+<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-timepicker/compiled/timepicker.css")}} />
+<link rel="stylesheet" type="text/css" href={{asset("lib/bootstrap-datetimepicker/datertimepicker.css")}} />
 @endsection
 
 @section('conteudo')
@@ -109,7 +113,7 @@
 							</div>
 							<div class="form-group">
 								<label>Descrição</label>
-								<textarea class="form-control" id="descriptionEmp" name="descriptionEmp" maxlength="800"></textarea>
+								<textarea class="form-control" id="descriptionEmp" name="descriptionEmp" maxlength="300"></textarea>
 							</div>
 							<div class="form-group">
 								<label style="display:block;">Tags</label>
@@ -159,6 +163,14 @@
 								<div class="form-group">
 									<label>Email para contato</label>
 									<input type="email" name="emailContato" id="emailContato" class="form-control" >
+								</div>
+                                <div class="form-group">
+									<label>Latitude</label>
+									<input type="text" name="latitudeEmp" id="latitudeEmp" class="form-control" >
+								</div>
+                                <div class="form-group">
+									<label>Longitude</label>
+									<input type="text" name="longitudeEmp" id="longitudeEmp" class="form-control" >
 								</div>
 
 							<div class="form-group">
@@ -543,6 +555,14 @@
 								<div class="form-group">
 									<label>Email para contato</label>
 									<input type="email" name="emailContato" id="emailContatoEdit" class="form-control" >
+								</div>
+                                <div class="form-group">
+									<label>Editar Latitude</label>
+									<input type="text" name="latitudeEmp" id="latitudeEdit" class="form-control" >
+								</div>
+                                <div class="form-group">
+									<label>Editar Longitude</label>
+									<input type="text" name="longitudeEmp" id="longitudeEdit" class="form-control" >
 								</div>
 								<div class="form-group">
 									<span  id="addCaracteristicasEdit" class="btn btn-info" ><i class="fa fa-plus"></i> Editar caracteristicas</span>
@@ -1061,6 +1081,8 @@ function carregarEmpresa(id){
 		$('#cartaoEmpEdit').val(data[0].facilities.cartao);
 		$('#deliveryEmpEdit').val(data[0].facilities.delivery);
 		$('#orcamentoEmpEdit').val(data[0].facilities.orcamento);
+        $('#latitudeEdit').val(data[0].latitude);
+        $('#longitudeEdit').val(data[0].longitude);
 	});
 }
 
@@ -1574,6 +1596,8 @@ $(window).on('hashchange', function() {
 			$('#selectNincho').val('');
             $('#contratoEmp').val('mensal');
             $('.dinheiro').val('');
+            $('#latitudeEmp').val('');
+            $('#longitudeEmp').val('');
 		}
 
 		$.ajaxSetup({

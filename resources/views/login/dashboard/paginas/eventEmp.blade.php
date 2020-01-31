@@ -42,7 +42,9 @@
         </div>
     @endforeach
     @else
-    <h1>Ainda não há eventos por aqui!</h1>
+    <div class="container" style="text-align:center">
+        <h1>Ainda não há eventos por aqui!</h1>
+    </div>
     @endif
 </div>
 </section>

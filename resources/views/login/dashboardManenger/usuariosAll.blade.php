@@ -54,7 +54,15 @@
 			<td>{{$user->email}}</td>
 			<td><button class="btn" style="background:{{$color}}; color:white">{{$permission}}</button></td>
 			<td>{{$dateCreat}}</td>
-			<td>12/02/2019 - as 18:20</td>
+            @php
+                if(!empty($user->ultima_sessao)){
+                    $explode = explode(' ', $user->ultima_sessao);
+                }
+                else {
+                    $explode = ['', ''];
+                }
+            @endphp
+			<td>{{$explode[0].' as '.$explode[1]}}</td>
 			@empty(!$user->info)
 				@empty(!$user->info->endereco)
 					<td>{{$user->info->endereco}}</td>

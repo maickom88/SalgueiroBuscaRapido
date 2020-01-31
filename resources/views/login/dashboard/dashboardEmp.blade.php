@@ -50,11 +50,15 @@
                       }
                     ];
                     var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-                  </script>
-                  <p>Abril, 2019</p>
+                </script>
+                @php
+                    $data = date('d/m/Y')
+                @endphp
+
+                  <p>{{$data}}</p>
                   <footer>
                     <div class="pull-left">
-                      <h5><i class="fas fa-clock"></i>8h</h5>
+                      <h5><i class="fas fa-clock"></i>4min</h5>
                     </div>
                     <div class="pull-right">
                       <h5>40% em media</h5>

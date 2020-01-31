@@ -32,9 +32,9 @@ class DashboardController extends Controller
             if($validEmp=='sim'){
                return  redirect()->back();
             }
-				else if($vlaidAdmin == 'sim'){
-					return redirect()->route('empManenger');
-				}
+            else if($vlaidAdmin == 'sim'){
+                return redirect()->route('empManenger');
+            }
       }
 
 		$idUser = Auth::id();
@@ -78,7 +78,10 @@ class DashboardController extends Controller
         foreach ($empresas as $empresa) {
             array_push($idEmpresa, $empresa->empresa_id);
         }
-
+        date_default_timezone_set('America/Recife');
+        $dataTime = date('d/m/Y H:i');
+        $user->ultima_sessao = $dataTime;
+        $user->save();
         $empresasAtv = Empresa::whereIn('id', $idEmpresa)->get();
         $empresasPostAtv = [];
         foreach ($empresasAtv as $empresa){
@@ -122,6 +125,7 @@ class DashboardController extends Controller
 		return redirect()->back();
 	}
 	public function listaEmpresas(){
+
 		$idUser = Auth::id();
 		$user = User::find($idUser);
 		$verificacao = $user->permissions->user;

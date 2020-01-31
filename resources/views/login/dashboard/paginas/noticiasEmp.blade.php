@@ -53,7 +53,10 @@
 
 </div>
 @else
-Ainda Não há posts
+<div class="row" style="text-align:center">
+<h1>
+Ainda não há notícias por aqui!</h1>
+</div>
 @endif
 
 </div>

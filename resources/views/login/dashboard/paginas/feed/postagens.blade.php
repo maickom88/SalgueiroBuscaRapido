@@ -22,7 +22,7 @@
 				</form>
 				</div>
 		</div>
-        @if(!$novidades->isEmpty())
+        @if($novidades->isNotEmpty())
         <div class="row mt">
             <div style="background-color:; padding:20px;">
                 <h2 style="color:#A3A3A3 ; font-weight:bold">Novidades publicadas</h2>

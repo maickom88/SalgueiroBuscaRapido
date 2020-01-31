@@ -1,16 +1,22 @@
-	<footer class="site-footer">
-		<div class="text-center">
-			<p>
-				&copy; Copyrights <strong>Salgueiro Busca Rápido</strong>. Todos os direitos reservados!
-			</p>
-			<div class="credits">
-				Criado com Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
-			</div>
-			<a href="paineluser.html#" class="go-top">
-				<i class="fa fa-angle-up"></i>
-			</a>
-		</div>
-	</footer>
+<section class="footer-empresa"  style="position:relative; z-index:1">
+    <div class="container">
+        <div class="row" style="z-index:-1 !important;">
+            <div class="col-md-12"  >
+                <img src={{asset('img/logofinal1.png')}}>
+            </div>
+            <div class="col-md-9">
+            <span>© Salgueiro Busca Rapido 2018 . Todos os direitos resevados.</span> <br>
+				<p>Templete Empresarial criado por  <a href="https://templatemag.com/">TemplateMag</a></p>
+
+            </div>
+            <div class="col-md-3">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></i></a>
+                    <a href=""><i class="fa fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
 </section>
 <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
@@ -34,9 +40,9 @@
 
 
 <script>
-  
+
 	var decisao = $('#grabMe').attr('aria-details')
-	
+
 	if(decisao == "ok"){
 		var modal = new jBox('Modal', {
 		attach: '#test',
@@ -57,7 +63,7 @@
 		window.onload = function() {
 			var segundos = 4;
 			setTimeout(function () {
-				
+
 		var n = new jBox('Notice', {
 		content: 'Você completou suas informações!',
 		color: 'green',
@@ -70,7 +76,7 @@
 		delayOnHover: true,
 		showCountdown: true
 		});
-			
+
 			}, segundos * 1000);
 			};
 		}

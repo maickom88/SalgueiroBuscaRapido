@@ -11,6 +11,7 @@
 |
 */
 
+use FarhanWazir\GoogleMaps\GMaps;
 use Illuminate\Support\Facades\Route;
 use Spatie\Analytics\AnalyticsFacade;
 use Spatie\Analytics\Period;
@@ -199,17 +200,4 @@ Route::get('dashboard/blog/editar/{id?}',['uses'=>'BlogController@editarUserPost
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('homeLara');
-
-Route::get('/google', function(){
-
-    $config['center'] = 'Air Canada Centre, Toronto';
-    $config['zoom'] = '14';
-    $config['map_height'] = '580px';
-    $config['scrollwhell'] = false;
-
-    GMaps::initialize($config);
-    $map = GMaps::create_map();
-     echo $map['js'];
-    echo $map['html'];
-});
 

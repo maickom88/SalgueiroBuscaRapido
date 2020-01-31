@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-   
+
     public function login(Request $dados)
     {
-        
+
         $user = new User();
         $valider = $user->where('email',$dados->email)->count();
 
@@ -19,7 +19,7 @@ class LoginController extends Controller
                 'email'=> $dados->email,
                 'password'=> $dados->password
             ];
-    
+
             $authOK = Auth::guard()->attempt($credenciais);
             if($authOK)
             {

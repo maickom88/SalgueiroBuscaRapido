@@ -273,7 +273,10 @@ class PainelEmpresarialController extends Controller
 		$verificacao = $user->permissions->empresario;
 
 		if($verificacao=="sim"){
-            $novidades = NovidadeEmpresa::find($user->empresas->id)->orderBy('id','desc')->paginate(5);
+            $novidades = NovidadeEmpresa::where('empresa_id', $user->empresas->id)->get();
+            if($novidades->isNotEmpty()){
+                $novidades = NovidadeEmpresa::where('empresa_id', $user->empresas->id)->orderBy('id','desc')->paginate(5);
+            }
             return view('login.dashboard.paginas.feed.postagens', compact('user', 'novidades'));
 		}
 		return redirect()->back();

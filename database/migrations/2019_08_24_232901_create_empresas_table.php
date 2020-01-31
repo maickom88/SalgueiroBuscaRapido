@@ -16,18 +16,20 @@ class CreateEmpresasTable extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('permission_id')->unsigned();
-				$table->string('logoMarca')->nullable();
-				$table->string('banner')->nullable();
+            $table->string('logoMarca')->nullable();
+            $table->string('banner')->nullable();
             $table->string('name');
             $table->string('description', 800)->nullable();
             $table->string('tags');
             $table->string('nincho');
             $table->string('location');
-				$table->string('tel');
-				$table->string('whatsapp')->nullable();
-				$table->string('email')->nullable();
+            $table->string('tel');
+            $table->string('whatsapp')->nullable();
+            $table->string('email')->nullable();
             $table->string('facebook')->nullable();
-				$table->string('instagram')->nullable();
+			$table->string('instagram')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->enum('status',['ativa','desativada'])->default('ativa');
             $table->timestamps();
 

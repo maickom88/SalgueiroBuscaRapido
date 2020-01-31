@@ -61,7 +61,7 @@
 							<div id="contact" class="tab-pane active">
 			<div class="row">
 				<div class="col-md-6">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7900.564772948206!2d-39.12842366967682!3d-8.072654217625908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a09192ada1492f%3A0xeb36df8a71bcc9bf!2sPosto%20Ipiranga!5e0!3m2!1spt-BR!2sbr!4v1569011505394!5m2!1spt-BR!2sbr" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
 				</div>
 				<div class="col-md-6 detailed">
 			<h4>Localização</h4>
@@ -127,16 +127,14 @@
 			<div class="form-group">
 				<label class="col-lg-2 control-label">INTERESSE</label>
 				<div class="col-lg-6">
-			<select name="interesse" class="form-control" id="interesse">
-				<option value="roupas">ROUPAS</option>
-				<option value="suplementos">SUPLEMENTOS</option>
-				<option value="construção">CONSTRUÇÃO</option>
-				<option value="saúde">SAÚDE</option>
-				<option value="academias">ACADEMIAS</option>
-				<option value="varejos">VAREJOS</option>
-				<option value="comidas">COMIDA</option>
-				<option value="lazer">LAZER</option>
-				<option value="distrubuidoras">DISTRIBUIDORAS</option>
+			<select name="interesse" class="form-control interesse" id="inter">
+				<option value="roupas, lojas, atacados e varejos">ROUPAS, LOJAS, ATACADOS E VAREJOS</option>
+				<option value="suplementos e academias">SUPLEMENTOS E ACADEMIAS</option>
+				<option value="construções, corretorias e emprestimos">CONSTRUÇÕES, CORRETORIAS E EMPRESTIMOS</option>
+				<option value="saúde, clínicas e consultorios médicos">SAÚDE, CLÍNICAS E CONSULTORIOS MÉDICOS</option>
+				<option value="comidas, restaurantes e pizzarias">COMIDAS, RESTAURANTES E PIZZARIAS</option>
+				<option value="lazer, festas, ornamentações e organizações">LAZER, FESTAS, ORNAMENTAÇÕES E ORGANIZAÇÕES</option>
+				<option value="distrubuidoras, fretes e transportadoras">DISTRIBUIDORAS, FRETES E TRANSPORTADORAS</option>
 			</select>
 				</div>
 			</div>

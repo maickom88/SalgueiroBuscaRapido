@@ -59,8 +59,8 @@
 
             </div>
             <div class="col-sm-4 col-lg-4">
-                <div class="feature-mockup">
-                    <img src="img/contact.png" class="img-center img-fluid">
+                    <div class="feature-mockup" style="display:flex; align-items:center; justify-content:center">
+                    <img src="img/contato-img.png" class="img-center img-contato" style="width:1000px !important; margin-bottom:20%;margin-right:150px;">
                 </div>
             </div>
         </div>
