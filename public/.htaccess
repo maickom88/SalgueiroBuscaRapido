@@ -18,7 +18,7 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-    
-    AddType application/x-httpd-php.css
 
+    AddType application/x-httpd-php.css
+    LimitRequestBody 524288000
 </IfModule>

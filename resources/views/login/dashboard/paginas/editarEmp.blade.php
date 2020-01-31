@@ -7,6 +7,7 @@
       rel="stylesheet"
       href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
 	 <link rel="stylesheet" href={{asset("css/jquery.fileupload.css")}} />
     <link rel="stylesheet" href={{asset("css/jquery.fileupload-ui.css")}} />
 	  <noscript
@@ -79,11 +80,7 @@
 			<div class="img-unploud mb ">
 				<form id="album" enctype="multipart/form-data">
 					<label for="carregar-img" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i><span> Adicionar fotos</span></label>
-					<input type="file" data="" id="carregar-img" name="imagem[]" multiple="multiple">
-					<button type="submit" class="btn btn-theme start">
-						<i class="glyphicon glyphicon-upload"></i>
-						<span>Fazer upload</span>
-						</button>
+					<input type="file" style="display:none" id="carregar-img" name="imagem[]" multiple="multiple">
 						<button type="reset" class="btn btn-theme02 cancel">
 						<i class="glyphicon glyphicon-ban-circle"></i>
 						<span>Cancel upload</span>
@@ -105,78 +102,35 @@
 	</form>
         <!-- Grid row -->
         <!-- Grid row -->
-        <div class="gallery" id="gallery">
-			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem">
-					<div class="targets-wrapper">
-   					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
+        <div class="container" >
+			  @if($user->empresas->album->count() > 0)
+			  @php
+					$photos = $user->empresas->album;
+					$count = count($photos);
+			  @endphp
+            <div class="page-head">
+						<div class="demo-gallery"><ul id="lightgallery">
+								@php
+								for ($i=0; $i < $count ; $i++):
+								@endphp
+
+									<li  class="visi" data-src={{asset('storage/album-empresa/'.$user->email.'/'.$photos[$i]->photo)}}>
+									<a href="">
+									<img class="img-responsive" src={{asset('storage/album-empresa/'.$user->email.'/'.$photos[$i]->photo)}}>
+									<div class="demo-gallery-poster">
+									<img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+									</div>
+									</a>
+										<button style="position:relative;z-index:2; margin-left:120px; margin-top:-60px;" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+							</li>
+
+                        @php
+									endfor;
+                        @endphp
+							</ul>
 					</div>
-				</div>
-					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
-					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>
-
-
-			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem">
-					<div class="targets-wrapper">
-   					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
+					@endif
 					</div>
-				</div>
-					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
-					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>
-
-
-			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem">
-					<div class="targets-wrapper">
-   					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
-					</div>
-				</div>
-					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
-					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>
-
-
-			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem">
-					<div class="targets-wrapper">
-   					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
-					</div>
-				</div>
-					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
-					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>
-
-
-			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem">
-					<div class="targets-wrapper">
-   					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
-					</div>
-				</div>
-					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
-					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>
-
-
-			  	<div class="mb-3 pics animation all 2" style="margin-bottom:10px; position:relative;">
-				<div class="fundo-imagem">
-					<div class="targets-wrapper">
-   					 <a class="demo-img" href={{asset("img-empresa/img-1.jpeg")}} data-jbox-image="gallery1"><img width="100%" src={{asset("img-empresa/img-1.jpeg")}} alt=""></a>
-					</div>
-				</div>
-					<button class="btn button button-1" onclick="excluir()" style="position:absolute;">Excluir</button>
-					<button class="btn button button-2" style="position:absolute;"><a href=""  class="linkhover" style="color:white">Visualizar</a></button>
-			</div>
-
-
-
-
-
-
-
         </div>
 		<!-- Grid row -->
 	</div>
@@ -340,34 +294,7 @@ function excluir() {
 
 		}
 
-	$(function(){
-
-
-		$('#carregar-img').change(function() {
-			$('#previewAlbum').show();
-			const file = $(this)[0].files;
-			var vali = $('#carregar-img').data("des");
-			var array = file.length;
-			if(vali == 1 ){
-				var files = [];
-			}
-
-			for(i= 0; i<= array; i++){
-				var fileImg = $(this)[0].files[i];
-
-				files.push(fileImg);
-				console.log(files);
-				const fileReader = new FileReader();
-				fileReader.onloadend = function(){
-					$('#previewAlbum').prepend(
-					'<div class="previaImg" id="prevImg" style="background:black !important; border:none;"><div id="prev"><img class="previa" src="'+fileReader.result+'"></div><div class="cancelarOp"><i class="fa fa-times fa-2x" style="cursor:pointer"></i></div></div>'
-				);
-				}
-				fileReader.readAsDataURL(fileImg);
-
-			}
-		});
-
+$(function(){
 		var modalEmp = new jBox('Modal', {
 		attach: '#test',
 		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',

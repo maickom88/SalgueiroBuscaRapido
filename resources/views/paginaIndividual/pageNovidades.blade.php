@@ -15,28 +15,29 @@
 							{!!$novidade->content!!}
 						</div>
 					</div>
-					
+
 						<div class="page-head">
 						<div class="demo-gallery">
-						<ul id="lightgallery">					
+						<ul id="lightgallery">
 					@php
 						$email = $empresa->permissions->users->email;
 						$count = $novidade->photos->count();
 					for ($i=0; $i <$count ; $i++):
-					
-					@endphp				
+
+					@endphp
 					<li  class="visi" data-src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
 					<a href="">
 						<img class="img-responsive" src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
 						<div class="demo-gallery-poster">
 						<img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
+
 						</div>
 					</a>
 					</li>
 					@php
 					endfor
 					@endphp
-				
+
 					</ul>
 					</div>
 					</div>
@@ -53,4 +54,3 @@
 	});
 
 	</script>
-	

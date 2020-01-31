@@ -103,8 +103,6 @@ class PainelEmpresarialController extends Controller
     $dezembro = Analytics::fetchVisitorsAndPageViews($pDezembro);
     array_push($arrayDates, $dezembro);
     $arrayAnalytics= [];
-    $arrayTitle=[];
-
     $user = Auth::User();
 
     for ($i=0; $i < 12 ; $i++) {
@@ -112,23 +110,20 @@ class PainelEmpresarialController extends Controller
         if(!empty($count)){
         for ($j=0; $j < $count ; $j++) {
             $title = $arrayDates[$i][$j]['pageTitle'];
-            array_push($arrayTitle, $title);
-
             $title = explode(':',$title);
             $idEmp = explode('_',$title[1]);
             $idCont = count($idEmp);
             if($idCont > 1){
                 if(is_numeric($idEmp[1])){
-                    if($user->empresas->id == $idEmp[1]){
+                    if($user->empresas->id == $idEmp[1] & $user->empresas->name == $idEmp[0]){
                         $views = $arrayDates[$i][$j]['pageViews'];
                         array_push($arrayAnalytics, $views);
                     }
                 }
             }
         }
-    }else{
-    array_push($arrayAnalytics, 0);
     }
+    array_push($arrayAnalytics, 0);
 }
     if (Auth::check()) {
         $user = new User();
@@ -153,7 +148,7 @@ class PainelEmpresarialController extends Controller
     $arrayAnalytics[4],
     $arrayAnalytics[5],
     $arrayAnalytics[6],
-    $arrayAnalytics[9],
+    $arrayAnalytics[7],
     $arrayAnalytics[8],
     $arrayAnalytics[9],
     $arrayAnalytics[10],
