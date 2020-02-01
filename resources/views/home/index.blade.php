@@ -110,10 +110,10 @@
             </div>
             <div class="col-sm-4">
                 <div class="intro-block">
-                    <span class="intro-icon"><i class="fas far fa-handshake"></i></span>
-                    <h3>Compras e vendas</h3>
+                    <span class="intro-icon"><i class="fas far fa-newspaper"></i></span>
+                    <h3>Notícias e eventos</h3>
                     <p>
-                    Anucie na aba de compras e vendas salgueiro, venda ou alugue imovéis, carros e qualqueis outros objeto.
+                    Fique por dentro de todas as notíçias de salgueiro e região, novidades das empresase e serviços e eventuais eventos da região.
                     </p>
                 </div>
             </div>
@@ -196,6 +196,7 @@
                         e ofertas exclusivas, saiba sobre eventos noticias da cidade e vagas de emprego!
                         </p>
                         <span class="android"><i class="fab fa-android"></i></span>
+                        <span class="android"><i class="fab fa-windows"></i></span>
                         <span class="ios"><i class="fab fa-apple"></i></span>
                     </div>
                 </div>

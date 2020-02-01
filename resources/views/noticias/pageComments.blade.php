@@ -36,6 +36,11 @@
 							@endphp
 						@endif
 						</div>
+                         @if( !$idUser == '')
+                            @if($idUser == $comment->user_id)
+                                <button  onclick="deleteComentario({{$comment->id}})" class="btn btn-danger" style="margin-top:10px;" ><i class="fa fa-trash-o"></i> Excluir</button>
+                            @endif
+                        @endif
 					</div>
 			<div>
 		</div>

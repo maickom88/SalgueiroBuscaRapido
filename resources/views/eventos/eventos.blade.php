@@ -29,14 +29,7 @@
 <section id="posts" class="posts">
     <div class="container">
         <div class="row">
-            <div class="search-blog">
-                <h3>Buscar Eventos:</h3>
-                <form action="" method="">
-                    <input type="text"name="search" id="procurar"placeholder="Procurar Evento..." style="outline:none;">
-                    <label for="enviar"><i class="fas fa-search"></i></label>
-                    <input type="submit" id="enviar">
-                </form>
-            </div>
+
 
     <div style="width: 100%; display:flex; justify-content:center; align-items:center; margin-bottom:60px">
 

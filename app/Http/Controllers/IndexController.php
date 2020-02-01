@@ -13,7 +13,14 @@ class IndexController extends Controller
 {
    public function index()
    {
-		$empresa = Empresa::where('status', 'ativa')->get();
+        $empresa = Empresa::where('status', 'ativa')->count();
+        if($empresa > 6){
+            $empresa = Empresa::where('status','ativa')->get()->random(6);
+        }else
+        {
+            $empresa = Empresa::where('status', 'ativa')->get();
+        }
+
         $posts = Post::orderBy('id','desc')->limit(3)->get();
 		$view = new View;
 

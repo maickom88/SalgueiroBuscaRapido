@@ -172,10 +172,69 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 <script>
 
+function getCommentsPage(idPost, idUser){
+        idPost = idPost;
+        idUser = idUser;
+		$.ajax(
+		{
+			url: '../../api/blog/lista-comments-page/'+idPost+'/'+idUser,
+			type: "get",
+			datatype: "html"
+		}).done(function(data){
+			$("#reviwes").empty().html(data);
+			location.hash = page;
+		}).fail(function(jqXHR, ajaxOptions, thrownError){
+				alert('No response from server');
+		});
+	}
+
+
+var successDelete = new jBox('Modal', {
+        attach: '#test',
+        title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+        content: "Comentário deletado com sucesso!",
+        animation: 'zoomIn',
+        audio: '../audio/bling2',
+        volume: 80,
+        closeButton: true,
+        delayOnHover: true,
+        showCountdown: true
+    });
+@if(Auth::check())
+    function deleteComentario(id){
+        var idPost = {{$post->id}}
+        var idUser = {{Auth::user()->id}}
+        var id = {'idComment':id};
+		if(confirm('Deseja excluir esse comentário?')){
+		$.ajax({
+			type:"POST",
+			url:'../../api/empresa/comentario/excluir',
+			data: id,
+			beforeSend: function(){
+			load("open");
+			},
+			success: function(Response) {
+				console.log(Response);
+			},
+			error: function(error){
+				console.log(error);
+			},
+			complete: function(){
+				load("close");
+                successDelete.open();
+				getCommentsPage(idPost, idUser);
+			}
+		});
+    }
+    }
+
+@endif
+
 @if(Auth::check())
 	$("#form-data").submit(function(e){
 		var mens = $('#message').val();
         var idPost = {{$post->id}}
+        var idUser= {{Auth::user()->id}}
         if(mens){
 		$.ajax({
 			type:"POST",
@@ -197,7 +256,7 @@
 				$('#vazio').attr('checked', 'checked');
 				$('#message').val('');
 				load("close");
-				getCommentsPage(idPost);
+				getCommentsPage(idPost,idUser);
 			}
 		});
 		}
@@ -257,18 +316,6 @@ function load(action){
 
 
 
-function getCommentsPage(idPost){
-    $.ajax(
-    {
-        url: '../../api/blog/lista-comments-page/'+idPost,
-        type: "get",
-        datatype: "html"
-    }).done(function(data){
-        $("#reviwes").empty().html(data);
-        location.hash = page;
-    }).fail(function(jqXHR, ajaxOptions, thrownError){
-            alert('No response from server');
-    });
-    }
+
 </script>
 @endsection

@@ -24,7 +24,7 @@
 
             <h1>ÚLTIMOS POSTs</h1>
         <div class="lis">
-            <a href="#" style="color:#d1d1d1">Home</a>
+            <a href="/" style="color:#d1d1d1">Home</a>
             <a class="ponto">.</a>
             <a href="#">Blog</a>
         </div>

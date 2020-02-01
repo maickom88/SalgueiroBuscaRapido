@@ -1,3 +1,13 @@
+@media(max-width:480px){
+    .feature-list{
+        position: relative;
+        left:-30px;
+    }
+    .img-contato{
+        display: none;
+    }
+}
+
 
 .contato{
     background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(../img/smile.jpg);

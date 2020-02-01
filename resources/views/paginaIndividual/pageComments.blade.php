@@ -6,14 +6,14 @@
 			$comments = $empresa->comments;
 		@endphp
 		@foreach($comments as $comment)
-			
+
 		<div class="block">
 		<div class="row">
 			<div class="col-md-2">
 					<div class="img-comentarios">
 						@if(!empty($comment->user->info))
 							@if(!empty($comment->user->info->avatar))
-								<img src={{asset('storage/avatar/'.$comment->user->info->avatar)}} class="img-fluid">	
+								<img src={{asset('storage/avatar/'.$comment->user->info->avatar)}} class="img-fluid">
 							@else
 								<img src={{asset("img/profilezim.png")}} class="img-fluid">
 							@endif
@@ -30,13 +30,19 @@
 						@if(!empty($comment->avaliacao))
 							@php
 								$count = $comment->avaliacao;
-							for ($i=0; $i <$count ; $i++) { 
+							for ($i=0; $i <$count ; $i++) {
 								print('<span><i class="fas fa-star"></i></span>');
 							}
-							@endphp				
+							@endphp
 						@endif
 						</div>
-					</div>  
+                        @if( !$idUser == '')
+                            @if($idUser == $comment->user_id)
+                        <button  onclick="deleteComentario({{$comment->id}})" class="btn btn-danger" style="margin-top:10px;" ><i class="fa fa-trash-o"></i> Excluir</button>
+                            @endif
+                        @endif
+                    </div>
+
 			<div>
 		</div>
 		<div class="row">

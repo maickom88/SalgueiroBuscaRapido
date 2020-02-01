@@ -31,35 +31,34 @@
                 </p>
             </div>
         </div>
-        <div class="row">
+      <div class="row">
             <div class="col-sm-12 col-lg-8 text-center">
                 <div class="feature-block">
                     <div class="single-feature feature-circule">
                         <div class="circule"></div>
-                        <span class="featured-icon"><i class="fa fa-exchange"></i></span>
-                        <h3>CUSTOM BLABLA</h3>
-                        <p>lorem asir sdjmpoqw osdlask fdfjsdf sdjgfshgd fidsjfgsdifjsdkk   </p>
+                        <span class="featured-icon"><i class="fa fa-bolt"></i></span>
+                        <h3>RAPIDEZ</h3>
+                        <p>Sistema com alta performace, velocidade e requisições amigaveis!</p>
                     </div>
                     <div class="single-feature">
-                        <span class="featured-icon"><i class="fa fa-star-half-o"></i></span>
-                        <h3>ROBOTOS TAG</h3>
-                        <p>lorem impousaen aidjm poieutt akjdiq eiwehfn jfhdk kdjdjfdfjd</p>
+                        <span class="featured-icon"><i class="fa fa-newspaper"></i></span>
+                        <h3>NOTÍÇIAS E EVENTOS</h3>
+                        <p>Fique por dentro de todas notíçias, novidades e eventos da região!</p>
                     </div>
                     <div class="single-feature">
-                        <span class="featured-icon"><i class="fa fa-arrows-alt"></i></span>
-                        <h3>HE TO USE</h3>
-                        <p>lorem impousaen aidjm poieutt akjdiq eiwehfn jfhdk kdjdjfdfjd</p>
+                        <span class="featured-icon"><i class="fa fa-mobile"></i></span>
+                        <h3>TECNOLOGIA PWA</h3>
+                        <p>Baixe o nosso aplicativo em qualquer dispositivo que esteja usando!</p>
                     </div>
                     <div class="single-feature">
-                        <span class="featured-icon"><i class="fa fa-cog"></i></span>
-                        <h3>JAMAICA</h3>
-                        <p>lorem impousaen aidjm poieutt akjdiq eiwehfn jfhdk kdjdjfdfjd</p>
+                        <span class="featured-icon"><i class="fa fa-search"></i></span>
+                        <h3>SISTEMA DE BUSCA RÁPIDA</h3>
+                        <p>Tenha acesso a geolocalização, horários e detalhes das empresas e serviços da cidade!</p>
                     </div>
                 </div>
-
             </div>
             <div class="col-sm-4 col-lg-4">
-                    <div class="feature-mockup" style="display:flex; align-items:center; justify-content:center">
+                <div class="feature-mockup" style="display:flex; align-items:center; justify-content:center">
                     <img src="img/contato-img.png" class="img-center img-contato" style="width:1000px !important; margin-bottom:20%;margin-right:150px;">
                 </div>
             </div>
@@ -85,38 +84,38 @@
                     <ul>
                         <li>
                             <div class="feature-icon">
-                                <i class="fa fa-arrows-alt"></i>
+                                <i class="fas fa-tachometer-alt"></i>
                             </div>
                             <div class="feature-details">
-                                <h3>Retina Display</h3>
-                                <p>Lorem inpusem served ocla me for didie</p>
+                                <h3>PAINEL EMPRESARIAL</h3>
+                                <p>Tenha acesso a um lindo painel e gerencie seu negocio!</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>ANALIZES E RELÁTORIOS</h3>
+                                <p>Tenha relatórios mensais de visitas!</p>
                             </div>
                         </li>
                          <li>
                             <div class="feature-icon">
-                                <i class="fa fa-cog"></i>
+                                <i class="fas fa-user-plus"></i>
                             </div>
                             <div class="feature-details">
-                                <h3>Comeck Tirad</h3>
-                                <p>Lorem inpusem served ocla me for didie</p>
+                                <h3>CONQUISTE CLIENTES</h3>
+                                <p>Fidelize clientes atravez de novidades do seu serviço</p>
                             </div>
                         </li>
-                         <li>
+                        <li>
                             <div class="feature-icon">
-                                <i class="fa fa-mobile"></i>
+                                <i class="fas fa-percentage"></i>
                             </div>
                             <div class="feature-details">
-                                <h3>IOS/android</h3>
-                                <p>Lorem inpusem served ocla me for didie</p>
-                            </div>
-                        </li>
-                         <li>
-                            <div class="feature-icon">
-                                <i class="fa fa-undo"></i>
-                            </div>
-                            <div class="feature-details">
-                                <h3>test over</h3>
-                                <p>Lorem inpusem served ocla me for didie</p>
+                                <h3>ALCENCE MAIS VENDAS</h3>
+                                <p>Poste promoções, detalhe seus produtos e serviços e gere mais vendas</p>
                             </div>
                         </li>
                     </ul>

@@ -121,9 +121,8 @@
 									<img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
 									</div>
 									</a>
-										<button style="position:relative;z-index:2; margin-left:120px; margin-top:-60px;" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                                    <button onclick="deletePhoto({{$photos[$i]->id}})" style="position:relative;z-index:2; margin-left:120px; margin-top:-60px;" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
 							</li>
-
                         @php
 									endfor;
                         @endphp
@@ -257,6 +256,10 @@
 
 </script>
 <script>
+
+    function deletePhoto(id){
+        alert(id);
+    }
 var confirm = new jBox('Confirm', {
 	attach: '.button-1',
     content: 'Deseja excluir essa foto?',

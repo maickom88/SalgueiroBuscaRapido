@@ -5,23 +5,15 @@
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
     <link href={{asset('css/style-painel.css')}} rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-157182219-1');
-</script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+    <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
     body{
         background: #353124; !important;
     }
     </style>
 @endsection
-@section('titulo','SALGUEIRO BUSCA RÁPIDO:'.$empresa->name.'_'.$empresa->id);
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 
 @section('conteudo')
 @include('templetes.top-menu')
@@ -137,7 +129,7 @@
 <section id="detalhes">
     <div class="container sobre-empresa">
         <div class="sobre">
-            <h4>Sobre {{$empresa->name}}</h4>
+            <h4>Sobre a Churrascaria</h4>
             <p>{{$empresa->description}}</p>
 				@if(!empty($empresa->whatsapp))
 				<a href="https://api.whatsapp.com/send?1=pt_BR&phone=55{{$empresa->whatsapp}}" target="blank">Entrar em contato</a>
@@ -325,10 +317,9 @@
             </div>
             <div class="col-md-7">
                 <div class="mapa-empresa">
-                    <div class="mapa" >
-
-                        <div style="width: 100%; height: 500px;">
-	                        {!! $map->render() !!}
+                    <div class="mapa">
+                        <div style="width:100%; height:500px;">
+                        {!!$map->render()!!}
                         </div>
                     </div>
                     <div class="endereco">
@@ -425,10 +416,52 @@
 @endif
 
 <script>
+
+
+var successDelete = new jBox('Modal', {
+        attach: '#test',
+        title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+        content: "Comentário deletado com sucesso!",
+        animation: 'zoomIn',
+        audio: '../audio/bling2',
+        volume: 80,
+        closeButton: true,
+        delayOnHover: true,
+        showCountdown: true
+    });
+@if(Auth::check())
+    function deleteComentario(id){
+        var idEmp = {{$empresa->id}}
+        var idUser = {{Auth::user()->id}}
+        var id = {'idComment':id};
+		if(confirm('Deseja excluir esse comentário?')){
+		$.ajax({
+			type:"POST",
+			url:'../../api/empresa/comentario/excluir',
+			data: id,
+			beforeSend: function(){
+			load("open");
+			},
+			success: function(Response) {
+				console.log(Response);
+			},
+			error: function(error){
+				console.log(error);
+			},
+			complete: function(){
+				load("close");
+                successDelete.open();
+				getCommentsPage(idEmp, idUser);
+			}
+		});
+    }
+    }
+
+@endif
+
 	$('#lightgallery').lightGallery({
 	pager: true
 	});
-
 	$(window).on('hashchange', function() {
 		if (window.location.hash) {
 			var page = window.location.hash.replace('#', '');
@@ -439,20 +472,15 @@
 			}
 		}
 	});
-
 		$(document).on('click', '.pagination a',function(event)
 		{
 			event.preventDefault();
-
 			$('li').removeClass('active');
 			$(this).parent('li').addClass('active');
-
 			var myurl = $(this).attr('href');
 			var page=$(this).attr('href').split('page=')[1];
-
 			getData(page);
 		});
-
 	function getData(page){
 		var id = {{$empresa->id}};
 		$.ajax(
@@ -467,15 +495,13 @@
 				alert('No response from server');
 		});
 	}
-
-
-
 $(function(){
 	getData(1);
 	IsLike();
 @if(Auth::check())
 	$("#form-data").submit(function(e){
 		var idEmp = {{$empresa->id}}
+        var idUser = {{Auth::user()->id}}
 		var mens = $('#message').val();
 		if(mens){
 		$.ajax({
@@ -498,7 +524,7 @@ $(function(){
 				$('#vazio').attr('checked', 'checked');
 				$('#message').val('');
 				load("close");
-				getCommentsPage(idEmp);
+				getCommentsPage(idEmp, idUser);
 			}
 		});
 		}
@@ -508,9 +534,6 @@ $(function(){
 	e.preventDefault();
 });
 @endif
-
-
-
 });
 $('.card-empresas').slick({
 	dots: true,
@@ -553,7 +576,6 @@ $('.card-empresas').slick({
 	}
 	]
 	});
-
 </script>
 <script>
 var modalCommentInfo = new jBox('Modal', {
@@ -574,7 +596,6 @@ function load(action){
 	load_div.removeClass("is-active");
 	}
 }
-
 @if(!Auth::check()	)
 var likeIsLogin = new jBox('Modal', {
 	attach: '#test',
@@ -587,11 +608,8 @@ var likeIsLogin = new jBox('Modal', {
 	delayOnHover: true,
 	showCountdown: true
 });
-
-
 @endif
 function IsLike(){
-
 	@if(Auth::check())
 	var idUser = {{Auth::user()->id}}
 	var idEmp = {{$empresa->id}}
@@ -606,22 +624,17 @@ function IsLike(){
 		}
 		$('#likesCount').text(data[1]);
 	});
-
 	}
 	@endif
-
 }
-
 @if(!Auth::check())
 	$("#form-data").submit(function(e){
 	modalCommentInfo.open();
 	e.preventDefault();
 });
 @endif
-
 var controller = 0;
 var aux = 0;
-
 function likepage(idEmp){
 	@if(Auth::check())
 	var idUser = {{Auth::user()->id}}
@@ -633,10 +646,10 @@ function likepage(idEmp){
 	@endif
 	}
 
-	function getCommentsPage(idEmp){
+function getCommentsPage(idEmp, idUser){
 		$.ajax(
 		{
-			url: '../../api/empresa/lista-comments-page/'+idEmp,
+			url: '../../api/empresa/lista-comments-page/'+idEmp+'/'+idUser,
 			type: "get",
 			datatype: "html"
 		}).done(function(data){
@@ -646,8 +659,6 @@ function likepage(idEmp){
 				alert('No response from server');
 		});
 	}
-
-
 </script>
 
 @endsection

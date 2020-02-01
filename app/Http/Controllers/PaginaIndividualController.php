@@ -32,7 +32,12 @@ class PaginaIndividualController extends Controller
 		$sexta = $empresa->open->sexta;
 		$sabado = $empresa->open->sabado;
 		$domingo = $empresa->open->domingo;
-
+        if(Auth::check()){
+            $idUser = Auth::user()->id;
+        }else
+        {
+            $idUser = '';
+        }
 		if($segunda=='Fechado'){
 			$segundatoJson = 'Fechado';
 		}
@@ -87,9 +92,9 @@ class PaginaIndividualController extends Controller
 		if(Auth::check()){
 			$idUser = Auth::user()->id;
 			$user = User::find($idUser);
-			return view('paginaIndividual.page', compact('map','empresa', 'tags', 'array', 'user', 'empresas', 'novidades'));
+			return view('paginaIndividual.page', compact('map','empresa', 'tags', 'array', 'user', 'empresas', 'novidades','idUser'));
 		}
 
-		return view('paginaIndividual.page', compact('map','empresa', 'tags', 'array','empresas' ,'novidades'));
+		return view('paginaIndividual.page', compact('idUser','map','empresa', 'tags', 'array','empresas' ,'novidades'));
 	}
 }

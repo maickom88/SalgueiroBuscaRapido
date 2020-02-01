@@ -18,11 +18,12 @@ class CommentController extends Controller
 		$valid = $comment->save();
 		return response()->json($request->input($valid));
 	}
-	public function listarComment($id){
+	public function listarComment($id, $idUser){
+        $idUser = $idUser;
 		$todas = "MostrarTodas";
 		$empresa = Empresa::find($id);
 
-		return view('paginaIndividual.pageComments', compact('empresa'));
+		return view('paginaIndividual.pageComments', compact('empresa','idUser'));
 	}
     public function adicionarCommentPost(Request $request){
 		$comment = new Comment();
@@ -33,9 +34,16 @@ class CommentController extends Controller
 		$valid = $comment->save();
 		return response()->json($request->input($valid));
 	}
-    public function listarCommentPost($id){
+    public function listarCommentPost($id,$idUser){
+        $idUser = $idUser;
 		$todas = "MostrarTodas";
         $post = Post::find($id);
-		return view('noticias.pageComments', compact('post'));
+		return view('noticias.pageComments', compact('post','idUser'));
 	}
+    public function excluirComment(Request $req){
+        $idComment = $req->input('idComment');
+        $comment = Comment::find($idComment);
+        $valid = $comment->delete();
+        return response()->json($valid);
+    }
 }

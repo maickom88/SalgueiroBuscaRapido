@@ -91,9 +91,9 @@ Route::get('administrativo/lista-parcerias-pendentes', 'ControllersApi\AdmContro
 
 Route::post('administrativo/empresas/parceria/update', 'ControllersApi\AdmController@updatePartner');
 
-Route::get('empresa/lista-comments-page/{id}', 'ControllersApi\CommentController@listarComment');
+Route::get('empresa/lista-comments-page/{id}/{idUser}', 'ControllersApi\CommentController@listarComment');
 
-
+Route::post('empresa/comentario/excluir', 'ControllersApi\CommentController@excluirComment' );
 
 Route::get('empresa/deslike/{empresaId}/{userId}', 'ControllersApi\LikeController@deslike');
 
@@ -124,7 +124,6 @@ Route::post('administrativo/empresas/contrato/update', 'ControllersApi\AdmContro
 
 
 Route::post('painel/novidade/deletar', 'ControllersApi\Empresas@deleteNovidades');
-
 
 
 Route::post('mensagem', 'ControllersApi\AdmController@mensagemUser');
@@ -185,4 +184,4 @@ Route::post('usuario/excluirAll', 'ControllersApi\AdmController@excluirUserAll')
 Route::get('/posts', 'ControllersApi\Post@postsView');
 
 
-Route::get('blog/lista-comments-page/{id}', 'ControllersApi\CommentController@listarCommentPost');
+Route::get('blog/lista-comments-page/{id}/{idUser}', 'ControllersApi\CommentController@listarCommentPost');

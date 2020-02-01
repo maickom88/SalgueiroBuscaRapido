@@ -23,15 +23,21 @@ class BlogController extends Controller
 
     public function artigo($nome, $id)
     {
+        if(Auth::check()){
+            $idUser = Auth::user()->id;
+        }else
+        {
+            $idUser = '';
+        }
         $post = Post::find($id);
         $post->views++;
         $post->save();
         if(Auth::check()){
 			$idUser = Auth::user()->id;
 			$user = User::find($idUser);
-			return view('noticias.blog',compact('post', 'user'));
+			return view('noticias.blog',compact('post', 'user','idUser'));
 		}
-		return view('noticias.blog',compact('post'));
+		return view('noticias.blog',compact('post','idUser'));
     }
 
     public function publicarPost(Request $req){
