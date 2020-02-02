@@ -140,7 +140,7 @@
 			</div>
 
 				</div>
-				<div class="col-lg-8 col-lg-offset-2 detailed mt">
+			<div class="col-lg-8 col-lg-offset-2 detailed mt">
 			<h4 class="mb">Informações pra contato</h4>
 			<div class="form-horizontal">
 			<div class="form-group">
@@ -161,7 +161,18 @@
 			<button class="btn btn-theme" type="submit">Salvar</button>
 			<button class="btn btn-theme04" type="reset">Cancelar</button>
 			</form>
-	<?php
+			<form id="form-data-senha">
+				<div class="col-lg-8 col-lg-offset-2 detailed mt">
+				<div class="form-group">
+					<span id="mudarSenha" class="btn btn-info">Alterar senha</span>
+				</div>
+				<div id="inputMudarSenha" class="form-group" style="display:none">
+						<input id="password" type="password" placeholder="Nova senha" name="senha" class="form-control"><button class="btn btn-success">Alterar</button>
+                        <input type="hidden" name="user" value={{Auth::user()->id}}>
+                </div>
+			</div>
+			</form>
+				<?php
 		$camp = session('info_send');
 		if($camp=="ok"):
 	?>
@@ -197,6 +208,16 @@
 
 @section('scripts')
 	<script>
+		$('#mudarSenha').click(function(){
+			$('#inputMudarSenha').css('display', 'flex');
+		});
+
+        function limparInputSenha(){
+            $('#password').val('');
+            $('#inputMudarSenha').slideUp();
+        }
+
+
 		function carregarEmpresa(){
 				var idUser = {{Auth::id()}};
 
@@ -234,10 +255,33 @@
 		delayOnHover: true,
 		showCountdown: true
 		});
+	var modalSenha = new jBox('Modal', {
+		attach: '#test',
+		title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+		content: "A sua senha foi alterada com sucesso!",
+		animation: 'zoomIn',
+		audio: '../audio/bling2',
+		volume: 80,
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+		});
+
 	var modalErroNumber = new jBox('Modal', {
 		attach: '#test',
 		title: '<div width="100%" class="text-center"><i class="fa fa-times-circle fa-3x" style="color: red"></i></div>',
 		content: "Seu telefone só pode conter numeros!",
+		animation: 'zoomIn',
+		audio: '../audio/bling2',
+		volume: 80,
+		closeButton: true,
+		delayOnHover: true,
+		showCountdown: true
+		});
+var modalErroSenha = new jBox('Modal', {
+		attach: '#test',
+		title: '<div width="100%" class="text-center"><i class="fa fa-times-circle fa-3x" style="color: red"></i></div>',
+		content: "Sua senha precisa ser no mínimo 8 caracteres!",
 		animation: 'zoomIn',
 		audio: '../audio/bling2',
 		volume: 80,
@@ -297,6 +341,42 @@
 
 
 		});
+
+
+		$("#form-data-senha").submit(function(e){
+		var validpass = $('#password').val();
+		if(validpass.length > 7){
+			$.ajax({
+			type:"POST",
+			url:'../api/painel/alterar/senha',
+			data: new FormData(this),
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function(){
+				load("open");
+			},
+			success: function(Response) {
+				console.log(Response);
+
+			},
+            error: function(error){
+                console.log(error);
+            },
+			complete: function(){
+				load("close");
+				modalSenha.open();
+				carregarEmpresa();
+				carregarInfo();
+                limparInputSenha();
+			}
+		});
+		}
+		else{
+			modalErroSenha.open();
+		}
+		e.preventDefault();
+	});
 
 });
 	</script>

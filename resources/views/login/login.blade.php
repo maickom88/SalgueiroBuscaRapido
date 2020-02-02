@@ -12,7 +12,7 @@
     <link rel="stylesheet" href={{asset('css/style.css')}}>
     <link rel="stylesheet" href={{asset('css/login-final.css')}}>
 </head>
-            
+
     <!--font-family: 'Open Sans', sans-serif;
 font-family: 'Open Sans Condensed', sans-serif;-->
 
@@ -38,38 +38,38 @@ font-family: 'Open Sans Condensed', sans-serif;-->
                         <input type="text" name="email" id="email" required>
                         <label for="email" id="email-label">Email</span>
                     </div>
-                    
+
                     <div class="txtb">
                         <input type="password" name="password" class="senha" id="senha" required>
-                        <label id="senha-label" for="senha">Senha</label> 
+                        <label id="senha-label" for="senha">Senha</label>
                     </div>
 
                     <div class="mostrar-senha">
                         <input type="checkbox" onclick="mostrarsenha(1)" id="mostrar"><label>Mostrar senha</label>
                     </div>
                 <?php
-                    if(\Session::has('user_notExist')): 
+                    if(\Session::has('user_notExist')):
                 ?>
                     <a id="linkinfo1" href={{route('cadastro.site')}} class="btn btn-info" style="font-size:13px; text-decoration:none; color:#fff;">Esse email não existe faça o seu cadastro agora!</a>
-                   
+
                 <?php
                     \Session::forget('user_notExist');
                     endif;
                 ?>
                 <?php
-                if(\Session::has('user_isEmp')): 
+                if(\Session::has('user_isEmp')):
             ?>
                 <a id="linkinfo1" href={{route('cadastro.site')}} class="btn btn-info" style="font-size:13px; text-decoration:none; color:#fff;">Você é um usúario empresário, tente acessar clicando no icone logo acima!</a>
-               
+
             <?php
                 \Session::forget('user_isEmp');
                 endif;
             ?>
                 <?php
-                if(\Session::has('user_errorPass')): 
+                if(\Session::has('user_errorPass')):
             ?>
                 <p id="linkinfo2" class="btn btn-danger" style="font-size:13px; text-decoration:none; color:#fff;">A Senha que você digitou esta incorreta!</p>
-               
+
             <?php
                 \Session::forget('user_errorPass');
                 endif;
@@ -83,7 +83,7 @@ font-family: 'Open Sans Condensed', sans-serif;-->
                     <p>Você ainda não possui uma conta?<br><strong>Crie grátis!</strong></p>
                 </a>
                 </button>
-                <a href="#">Esqueceu sua senha?</a>
+                <a href={{route('recupera.senha')}}>Esqueceu sua senha?</a>
             </div>
         </div>
 
@@ -107,7 +107,7 @@ font-family: 'Open Sans Condensed', sans-serif;-->
                         <input type="text" name="email" id="email-2" required>
                         <label for="email-2" id="email-label-2">Email</span>
                     </div>
-                    
+
                     <div class="txtb">
                         <input type="password" name="password" id="senha-2" required>
                         <label id="senha-label-2" for="senha-2">Senha</label>
@@ -117,7 +117,7 @@ font-family: 'Open Sans Condensed', sans-serif;-->
                         <input type="checkbox" id="mostrar-2" onclick="mostrarsenha2(1)"><label>Mostrar senha</label>
                     </div>
                     <?php
-                    if(\Session::has('user_notEmp')): 
+                    if(\Session::has('user_notEmp')):
                 ?>
                     <p class="btn btn-info" style="font-size:13px;">Você não tem permissão pra logar como empresario. Quer ser nosso parceiro?<a style="color:blue;" href={{route('contato.home')}}>Clique aqui!</a></p>
                 <?php
@@ -139,7 +139,7 @@ font-family: 'Open Sans Condensed', sans-serif;-->
         </div>
     </div>
 
-    
+
 </section>
 
 
@@ -157,13 +157,13 @@ font-family: 'Open Sans Condensed', sans-serif;-->
 <script>
     $('#linkinfo1').show();
 
-    setTimeout(function(){ 
+    setTimeout(function(){
         $('#linkinfo1').hide();
         }, 3500);
 
     $('#linkinfo2').show();
 
-    setTimeout(function(){ 
+    setTimeout(function(){
         $('#linkinfo2').hide();
         }, 3500);
 </script>

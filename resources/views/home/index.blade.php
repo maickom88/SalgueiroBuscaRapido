@@ -18,9 +18,8 @@
 @section('conteudo')
 <!--Start header-->
 @include('templetes.top-menu')
-            <!--************************************
-               Home Slider Start
-            *************************************-->
+
+<div class="loader loader-bouncing "></div>
     <div class="listar-homebannerslider">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -52,13 +51,13 @@
                                 <span><i class="fas fa-street-view"></i></span>
                                 <input type="text" name="search-item" placeholder="Digite o que precisa encontrar aqui!" name="" id="">
                                 <select name="select-option">
-                                    <option value="todos">&#xf0ac  Buscar por</option>
+                                    <option value="todos">&#xf0ac  Todos</option>
                                     <option value="Lojas" >&#xf290  Lojas</option>
                                     <option value="Mercados">&#xf07a  Mercados</option>
                                     <option value="Clinicas">&#xf0f0  Clínicas</option>
                                     <option value="Advogados">&#xf0e3  Advogados</option>
                                     <option value="Hoteis">&#xf236  Hotéis</option>
-                                    <option value="Farmacias">&#xf1fb  Farmáçias</option>
+                                    <option value="Farmacias">&#xf1fb  Farmácias</option>
                                     <option value="Oficinas">&#xf0ad  Oficinas</option>
                                     <option value="Academias">&#xf21e  Academias</option>
                                 </select>
@@ -84,8 +83,8 @@
                 <div class="col-sm-12 text-center ">
                     <h2>Encontre Tudo aqui!</h2>
                 <div class="sub-header">
-                    <p>Tenha acesso a um conteudo excluivo, com ofertas promocionais e noticas da cidade<br>
-                    basta se cadastra no site e você encontrarar...
+                    <p>Tenha acesso a um conteúdo exclusivo, com ofertas promocionais e notícias da cidade
+                        basta se cadastra no site e você encontrará...
                     </p>
                 </div>
             </div>
@@ -95,7 +94,7 @@
                 <div class="intro-block">
                     <span class="intro-icon"><i class="fas fa-location-arrow"></i></span>
                     <h3>Melhores empresas</h3>
-                    <p >Encontre as melhores empresas na cidade de salgueiro, veja fotos, localização, contato e comentarios dos usurarios!
+                    <p >Encontre as melhores empresas na cidade de salgueiro, veja fotos, localização, contato e comentários dos usurários!
                     </p>
                 </div>
             </div>
@@ -113,7 +112,7 @@
                     <span class="intro-icon"><i class="fas far fa-newspaper"></i></span>
                     <h3>Notícias e eventos</h3>
                     <p>
-                    Fique por dentro de todas as notíçias de salgueiro e região, novidades das empresase e serviços e eventuais eventos da região.
+                   Fique por dentro de todas as notícias de salgueiro e região, novidades das empresas, serviços e eventuais eventos da cidade.
                     </p>
                 </div>
             </div>
@@ -192,8 +191,8 @@
                 <div class="col-md-12">
                     <div class="content-app">
                         <h3>BAIXE TAMBÉM O NOSSO <span>APLICATIVO!</span></h3>
-                        <p>Tenha vantangens com o nosso aplicativo, receba notificaçoes sobre promoções<br>
-                        e ofertas exclusivas, saiba sobre eventos noticias da cidade e vagas de emprego!
+                        <p>Tenha vantagens com o nosso aplicativo, receba notificações sobre promoções <br>
+                            ofertas exclusivas, saiba sobre eventos noticias da cidade e vagas de emprego!
                         </p>
                         <span class="android"><i class="fab fa-android"></i></span>
                         <span class="android"><i class="fab fa-windows"></i></span>
@@ -201,29 +200,31 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 content-app-2">
-                    <button type="button" class="btn"><a href="#">Download</a></button>
-                    <button type="button" class="btn orange" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Newslatter</button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  	<div class="modal-dialog modal-newsletter" role="document">
-                        <div class="modal-content">
-                        			<form action="/examples/actions/confirmation.php" method="post">
-				<div class="modal-header">
-					<div class="icon-box text-center	">
-						<i class="fa fa-envelope fa-3x"></i>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
-				</div>
-				<div class="modal-body text-center">
-					<h4>Inscreva-se</h4>
-					<p>Inscreva-se para receber as novidades das empresas, descontos, noticias da cidade e eventos</p>
-					<div class="form-group">
-						<input type="email" class="form-control" placeholder="Digite seu email..." required>
-						<input type="submit" class="btn btn-primary" value="Subscribe">
-					</div>
-				</div>
-			</form>
+			<div class="row">
+					<div class="col-md-12 content-app-2">
+						<button type="button" class="btn"><a href="#">Download</a></button>
+						<button id="modalNews" type="button" class="btn orange" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Newslatter</button>
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-newsletter" role="document">
+							<div class="modal-content">
+							<form id="form-data">
+                                @csrf
+								<div class="modal-header">
+									<div class="icon-box text-center	">
+										<i class="fa fa-envelope fa-3x"></i>
+									</div>
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
+								</div>
+								<div class="modal-body text-center">
+									<h4>Inscreva-se</h4>
+									<p>Inscreva-se para receber as novidades das empresas, descontos, noticias da cidade, eventos e vagas de emprego em primeira mão</p>
+									<div class="form-group">
+										<input id="nomeNews" name="name" type="text" class="mb-4 form-control" placeholder="Digite seu nome..." required>
+										<input id="emailNews" name="email" type="email" class="form-control" placeholder="Digite seu email..." required>
+										<input type="submit" class="btn btn-primary" value="SE-INSCREVER">
+									</div>
+							</div>
+							</form>
                      </div>
                   </div>
                     </div>
@@ -233,7 +234,7 @@
     </section>
     <!-----------start news------->
     <!--Promoçoes-->
-    @if (!empty($empresas->promotion))
+    @if (!empty($promotions))
     <section class="promo">
         <div class="container">
             <div class="row">
@@ -245,37 +246,70 @@
                 </div>
             </div>
         </div>
+		  @if($promotions->count() > 2)
         <div class="container" style="outline:none;">
             <div class="row card-promo">
-                @foreach ($empresa as $emp)
-                    @if(!empty($emp->promotion))
+					
+                @foreach ($promotions as $promotion)
                     @php
                         $dataMes = array('01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março', '04'=> 'Abril', '05' => 'Maio', '06' => 'Junho', '07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro', '10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro');
-                        $data1 = $emp->promotion->data_fim_promocao;
+                        $data1 = $promotion->data_fim_promocao;
                         $data1 = explode('-', $data1);
                         $mes = $data1[1];
                         $mes = $dataMes[$mes];
                     @endphp
                     <div class="col-md-4 card-conteudo" style="outline:none">
                         <div class="promo-atual">
-                                <a style="outline:none">{{$emp->promotion->desconto}}%</a>
+                                <a style="outline:none">{{$promotion->desconto}}%</a>
                             </div>
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src={{asset('storage/promocoes/'.$emp->promotion->photo)}} alt="Card image cap">
+                            <img class="card-img-top" src={{asset('storage/promocoes/'.$promotion->photo)}} alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">{{$emp->promotion->title}}</h5>
-                            <p class="card-text">{{$emp->promotion->description}}</p>
-                            @if (!empty($emp->promotion->valor))
-                                <p>{{$emp->promotion->valor}}R$</p>
+                            <h5 class="card-title">{{$promotion->title}}</h5>
+                            <p class="card-text">{{$promotion->description}}</p>
+                            @if (!empty($promotion->valor))
+                                <p>{{$promotion->valor}}R$</p>
                             @endif
                             <p style="padding:5px;text-align:center; background:#00A3EE; border-radius:5px; color:white; box-shadow: 0px 0px 4px rgba(0,0,0,0.4)">Até<b> {{$data1[2]}} de {{$mes}} de {{$data1[0]}}</b></p>
                         </div>
                         </div>
                     </div>
-                    @endif
                 @endforeach
             </div>
         </div>
+		  @else
+		  <div class="container">
+            <div class="row">
+					@foreach ($promotions as $promotion)
+               <div class="col-md-6">
+						 @php
+                        $dataMes = array('01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março', '04'=> 'Abril', '05' => 'Maio', '06' => 'Junho', '07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro', '10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro');
+                        $data1 = $promotion->data_fim_promocao;
+                        $data1 = explode('-', $data1);
+                        $mes = $data1[1];
+                        $mes = $dataMes[$mes];
+                    @endphp
+                    <div class="col-md-4 card-conteudo" style="outline:none">
+                        <div class="promo-atual" style="z-index:1 !important">
+                                <a style="outline:none">{{$promotion->desconto}}%</a>
+                            </div>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src={{asset('storage/promocoes/'.$promotion->photo)}} alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$promotion->title}}</h5>
+                            <p class="card-text">{{$promotion->description}}</p>
+                            @if (!empty($promotion->valor))
+                                <p>{{$promotion->valor}}R$</p>
+                            @endif
+                            <p style="padding:5px;text-align:center; background:#00A3EE; border-radius:5px; color:white; box-shadow: 0px 0px 4px rgba(0,0,0,0.4)">Até<b> {{$data1[2]}} de {{$mes}} de {{$data1[0]}}</b></p>
+                        </div>
+                        </div>
+                    </div>
+					</div>
+					@endforeach
+            </div>
+        </div>
+		  @endif
     </section>
     @endif
     <!--Fim de promoções-->
@@ -286,7 +320,7 @@
                 <div class="col-sm-12 text-center ">
                     <h2>Notícias e Blog</h2>
                 <div class="sub-header">
-                    <p>Veja as ultimas postagens!
+                    <p>Veja as últimas postagens!
                     </p>
                 </div>
             </div>
@@ -360,9 +394,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1>Anuncie no nosso site e obtenha <span class="type"></span></h1>
-                    <p>Tenha uma equipe de markingt gerando seu conteudo<br>
-                    Aumente sua venda investindo em camapanhas, tenha tambem relatorios<br>
-                    Siaba o que as pessoas pensam sobre sua empresa/serviço!.
+                    <p>Tenha uma equipe de marketing gerando seu conteúdo
+                        Aumente suas vendas investindo em campanhas, tenha também relatórios
+                        Saiba o que as pessoas pensam sobre sua empresa/serviço!
                     </p>
                     <div class="btn-empresa">
                         <a href="/contato#contato">Quero anunciar! <i class="fas fa-bullhorn"></i></a>
@@ -408,7 +442,62 @@
 <!--Slid card-->
 <script>
 
+var successNewslatter = new jBox('Modal', {
+    attach: '#test',
+    title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
+    content: "Você está inscrito para receber mais informações!",
+    animation: 'zoomIn',
+    audio: '../audio/bling2',
+    volume: 80,
+    closeButton: true,
+    delayOnHover: true,
+    showCountdown: true
+});
 
+function load(action){
+    var load_div = $(".loader");
+    if(action==="open"){
+    load_div.addClass("is-active");
+    }
+    else{
+    load_div.removeClass("is-active");
+    }
+}
+
+$.ajaxSetup({
+    headers: { "X-CSRF-TOKEN": "{{csrf_token()}}" }
+});
+
+$("#form-data").submit(function(e){
+	$.ajax({
+	type:"POST",
+	url:'../api/newslatter',
+	data: new FormData(this),
+	contentType: false,
+	cache: false,
+	processData: false,
+	beforeSend: function(){
+		load('open');
+	},
+	success: function(Response) {
+		console.log(Response);
+    },
+    error: function(error){
+        console.log(error);
+    },
+	complete: function(){
+		load('close');
+		successNewslatter.open();
+        limparNews();
+	}
+});
+    e.preventDefault();
+});
+
+function limparNews(){
+    $('#nomeNews').val('');
+    $('#emailNews').val('');
+}
 
     $('.card-slide').slick({
         dots: true,

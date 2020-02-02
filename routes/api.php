@@ -185,3 +185,11 @@ Route::get('/posts', 'ControllersApi\Post@postsView');
 
 
 Route::get('blog/lista-comments-page/{id}/{idUser}', 'ControllersApi\CommentController@listarCommentPost');
+
+
+
+Route::post('newslatter', 'ControllersApi\NewslatterController@adicionar');
+
+
+
+Route::post('painel/alterar/senha', 'ControllersApi\UserConfiController@alterarSenha');

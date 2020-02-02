@@ -38,12 +38,12 @@
                         <div class="circule"></div>
                         <span class="featured-icon"><i class="fa fa-bolt"></i></span>
                         <h3>RAPIDEZ</h3>
-                        <p>Sistema com alta performace, velocidade e requisições amigaveis!</p>
+                        <p>Sistema com alta performasse, velocidade e requisições amigáveis!</p>
                     </div>
                     <div class="single-feature">
                         <span class="featured-icon"><i class="fa fa-newspaper"></i></span>
                         <h3>NOTÍÇIAS E EVENTOS</h3>
-                        <p>Fique por dentro de todas notíçias, novidades e eventos da região!</p>
+                        <p>Fique por dentro de todas as notícias, novidades e eventos da região!</p>
                     </div>
                     <div class="single-feature">
                         <span class="featured-icon"><i class="fa fa-mobile"></i></span>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="feature-details">
                                 <h3>PAINEL EMPRESARIAL</h3>
-                                <p>Tenha acesso a um lindo painel e gerencie seu negocio!</p>
+                                <p>Tenha acesso a um lindo painel e gerencie seu negócio!</p>
                             </div>
                         </li>
                         <li>
@@ -96,7 +96,7 @@
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <div class="feature-details">
-                                <h3>ANALIZES E RELÁTORIOS</h3>
+                                <h3>ANALISES E RELATÓRIOS</h3>
                                 <p>Tenha relatórios mensais de visitas!</p>
                             </div>
                         </li>
@@ -106,7 +106,7 @@
                             </div>
                             <div class="feature-details">
                                 <h3>CONQUISTE CLIENTES</h3>
-                                <p>Fidelize clientes atravez de novidades do seu serviço</p>
+                                <p>Fidelize clientes através de novidades do seu serviço</p>
                             </div>
                         </li>
                         <li>

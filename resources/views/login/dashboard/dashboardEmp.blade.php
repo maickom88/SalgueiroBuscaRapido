@@ -359,11 +359,11 @@
         </div>
          <div class="form-group">
             <label>Descrição do produto</label>
-            <textarea placeholder="No maximo 100 caracteres!" maxlength="100" class="form-control" name="descricaoProduto" id="descricaoProduto" cols="30" rows="6"></textarea>
+            <textarea placeholder="No maximo 100 caracteres!" maxlength="100" class="form-control" name="descricaoProduto" id="descricaoProduto" cols="30" rows="6" required></textarea>
         </div>
         <div class="form-group">
             <label>Valor do produto</label>
-            <input placeholder="Opcional" e="text" id="valorProduto" name="valorProduto" class="dinheiro form-control" required>
+            <input placeholder="Opcional" e="text" id="valorProduto" name="valorProduto" class="dinheiro form-control">
         </div>
         <div class="form-group">
             <label>Desconto da promoção</label>

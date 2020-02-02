@@ -19,6 +19,12 @@ use Illuminate\Support\Carbon;
 //-----------------------Pagina Inicial---------------------//
 Route::get('/', ['uses'=>'IndexController@index'])->name('home');
 
+//-----------------------Pagina Inicial---------------------//
+Route::get('/recuperar-senha', function(){
+    return view('auth\passwords\email');
+})->name('recupera.senha');
+
+
 //------------------------Noticias---------------------------//
 Route::get('/noticias',['uses'=>'BlogController@index'])->name('blog.noticias');
 

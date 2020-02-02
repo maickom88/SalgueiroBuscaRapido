@@ -19,6 +19,6 @@
 font-family: 'Open Sans Condensed', sans-serif;-->
 </head>
 
-<body>
+<body id="body-header">
 <!--Start header-->
 @yield('menu-top')

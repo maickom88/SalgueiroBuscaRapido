@@ -8,6 +8,7 @@ use App\Empresa\Empresa;
 use App\Evento\Evento;
 use App\pageView\View;
 use App\Post\Post;
+use App\Empresa\Promotion\Promotion;
 
 class IndexController extends Controller
 {
@@ -22,8 +23,8 @@ class IndexController extends Controller
         }
 
         $posts = Post::orderBy('id','desc')->limit(3)->get();
-		$view = new View;
-
+			$view = new View;
+		$promotions = Promotion::where('status','sim')->orderBy('id','desc')->get();
 		foreach($empresa as $emp){
 
 			$emp->views->views++;
@@ -34,9 +35,9 @@ class IndexController extends Controller
         if (Auth::check()) {
             $userId = Auth::user()->id;
             $user = User::find($userId);
-		return view('home.index', compact('empresa', 'user','posts'));
+		return view('home.index', compact('empresa', 'user','posts','promotions'));
 		}
-		return view('home.index', compact('empresa', 'posts'));
+		return view('home.index', compact('empresa', 'posts','promotions'));
 
 	}
 	public function login(){
