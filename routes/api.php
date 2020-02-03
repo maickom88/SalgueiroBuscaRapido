@@ -193,3 +193,4 @@ Route::post('newslatter', 'ControllersApi\NewslatterController@adicionar');
 
 
 Route::post('painel/alterar/senha', 'ControllersApi\UserConfiController@alterarSenha');
+Route::post('painel/empresa/editar/excluirPhoto', 'ControllersApi\Empresas@deletPhoto')->name('DeletarEmpPhoto');

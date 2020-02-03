@@ -20,6 +20,9 @@ use Spatie\Analytics\Period;
 use Illuminate\Support\Carbon;
 use Analytics;
 use App\BuscasOnSite\Search;
+use App\Comment\Comment;
+use App\Empresa\Album\Album;
+use App\Like;
 
 class PainelEmpresarialController extends Controller
 {
@@ -104,7 +107,6 @@ class PainelEmpresarialController extends Controller
     array_push($arrayDates, $dezembro);
     $arrayAnalytics= [];
     $user = Auth::User();
-
     for ($i=0; $i < 12 ; $i++) {
         $count = count($arrayDates[$i]);
         if(!empty($count)){
@@ -123,6 +125,9 @@ class PainelEmpresarialController extends Controller
             }
         }
     }
+}
+
+while(count($arrayAnalytics) < 12){
     array_push($arrayAnalytics, 0);
 }
     if (Auth::check()) {
@@ -141,8 +146,7 @@ class PainelEmpresarialController extends Controller
     $evento = Evento::orderBy('id','desc')->first();
     $charts = new SampleChart;
     $charts->labels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto', 'Setembro','Outubro','Novembro','Dezembro']);
-    $charts->dataset('Visitas Mensais', 'bar', [$arrayAnalytics[0],
-    $arrayAnalytics[1],
+    $charts->dataset('Visitas Mensais', 'bar', [$arrayAnalytics[0],$arrayAnalytics[1],
     $arrayAnalytics[2],
     $arrayAnalytics[3],
     $arrayAnalytics[4],
@@ -163,10 +167,15 @@ class PainelEmpresarialController extends Controller
     $user = User::find($idUser);
     $filtro = $user->empresas->nincho;
     $buscas = Search::where('busca','LIKE', '%'.$filtro.'%')->count();
+    $idEmpresa = $user->empresas->id;
+
+    $likesUser = Like::where('empresa_id',$idEmpresa)->orderBy('id','desc')->limit(3)->get();
+    $commentsUser = Comment::where('empresa_id', $idEmpresa)->orderBy('id','desc')->limit(3)->get();
+    $userModel = new User();
     try{
         $dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
-        return view('login.dashboard.dashboardEmp',compact('user' ,'dados', 'charts','promotion','evento', 'post','buscas'));
+        return view('login.dashboard.dashboardEmp',compact('userModel','commentsUser','likesUser','user' ,'dados', 'charts','promotion','evento', 'post','buscas'));
 
     }
     catch(Exception $e){
@@ -175,7 +184,7 @@ class PainelEmpresarialController extends Controller
             "temp"=>25
         ]
     ]);
-    return view('login.dashboard.dashboardEmp',compact('user' ,'buscas','dados', 'charts', 'promotion','evento'
+    return view('login.dashboard.dashboardEmp',compact('userModel','commentsUser','likesUser','user' ,'buscas','dados', 'charts', 'promotion','evento'
     ));
     }
 }
@@ -282,6 +291,28 @@ class PainelEmpresarialController extends Controller
 		return redirect()->route('home');
 		}
 
-
-
+    public function addPhoto(Request $req){
+        $idUser = Auth::user()->id;
+        $user = User::find($idUser);
+        if($req->hasFile('album')){
+			$len = count($req->album);
+			$id = $user->id;
+			$email = $user->email;
+			for($i= 0; $i<$len ; $i++){
+				$name = uniqid(date('HisYmd'));
+				$extension = $req->album[$i]->extension();
+				$nameFile = "{$name}.{$extension}";
+				$upload = $req->album[$i]->storeAs('album-empresa/'.$email, $nameFile);
+				$valid = $this->savePhotos($id, $nameFile);
+			}
+		}
+        return redirect()->route('editarEmp');
+    }
+    public function savePhotos($id, $nameFile){
+		$user = User::find($id);
+		$album = new Album();
+		$album->photo = $nameFile;
+		$user->empresas->album()->save($album);
+		return 'ok';
+	}
 }

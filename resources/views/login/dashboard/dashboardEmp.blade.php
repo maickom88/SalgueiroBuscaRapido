@@ -209,57 +209,9 @@
             <!-- RECENT ACTIVITIES SECTION -->
             <h4 class="centered mt">ATIVIDADES RECENTES</h4>
 		<!-- First Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>Agora a pouco</muted>
-			<br/>
-			<a href="#">Salão Beleza</a> Postou no feed<br/>
-			</p>
-		</div>
-		</div>
-		<!-- Second Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>2 minutos agosto</muted>
-			<br/>
-			<a href="#">Sobreira net</a> Postou no feed<br/>
-			</p>
-		</div>
-		</div>
-		<!-- Third Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>3 horas Agosto</muted>
-			<br/>
-			<a href="#">Santana movéis</a> Adicionou uma nova promoção<br/>
-			</p>
-		</div>
-		</div>
-		<!-- Fourth Activity -->
-		<div class="desc">
-		<div class="thumb">
-			<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-		</div>
-		<div class="details">
-			<p>
-			<muted>7 horas Agosto</muted>
-			<br/>
-			<a href="#">Eduardo Siqueira</a>Publicou um evento<br/>
-			</p>
-		</div>
-		</div>
+		<div id="atvRecentes">
+            @include('atividades.recentesEmp')
+        </div>
 		<div class="text-center">
 			<h4>NOSSO INSTAGRAM</h4>
 			<div class="insta-photos mb" >

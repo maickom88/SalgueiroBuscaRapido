@@ -201,6 +201,8 @@ Route::get('dashboard/blog/estatisticas',['uses'=>'DashboardController@blogAnaly
 //-----------------------Noticias individual------------------------//
 Route::get('dashboard/blog/editar/{id?}',['uses'=>'BlogController@editarUserPost'])->name('blogUserEdit');
 
+Route::post('add/photo', 'PainelEmpresarialController@addPhoto' )->name('add.photo');
+
 
 
 Auth::routes();

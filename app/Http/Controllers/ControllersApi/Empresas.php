@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Empresa\Empresa;
 use App\Empresa\Feed\NovidadeEmpresa;
 use App\Empresa\Promotion\Promotion;
-
+use App\Empresa\Album\Album;
 class Empresas extends Controller
 {
 
@@ -145,5 +145,11 @@ class Empresas extends Controller
 		}
 		return view('login.dashboard.paginas.cardPromotion',compact('promotion'));
 
+	}
+    public function deletPhoto(Request $req){
+			$id = $req->input('photo');
+			$photoAlbum = Album::find($id);
+			$valid = $photoAlbum->delete();
+			return response()->json($valid);
 	}
 }

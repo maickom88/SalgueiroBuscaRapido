@@ -3,18 +3,18 @@
 @section('titulo', 'SALGUEIRO BUSCA RAPIDO: PERFIL DA EMPRESA')
 
 @section('links')
-	  <link
-      rel="stylesheet"
-      href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css"
+    <link
+    rel="stylesheet"
+    href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
-	 <link rel="stylesheet" href={{asset("css/jquery.fileupload.css")}} />
+	<link rel="stylesheet" href={{asset("css/jquery.fileupload.css")}} />
     <link rel="stylesheet" href={{asset("css/jquery.fileupload-ui.css")}} />
-	  <noscript
-      ><link rel="stylesheet" href={{asset("css/jquery.fileupload-noscript.css")}}
+    <noscript
+    ><link rel="stylesheet" href={{asset("css/jquery.fileupload-noscript.css")}}
     /></noscript>
     <noscript
-      ><link rel="stylesheet" href={{asset("css/jquery.fileupload-ui-noscript.css")}}
+    ><link rel="stylesheet" href={{asset("css/jquery.fileupload-ui-noscript.css")}}
     /></noscript>
 @endsection
 
@@ -78,30 +78,15 @@
 
 
 			<div class="img-unploud mb ">
-				<form id="album" enctype="multipart/form-data">
-					<label for="carregar-img" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i><span> Adicionar fotos</span></label>
-					<input type="file" style="display:none" id="carregar-img" name="imagem[]" multiple="multiple">
-						<button type="reset" class="btn btn-theme02 cancel">
-						<i class="glyphicon glyphicon-ban-circle"></i>
-						<span>Cancel upload</span>
-						</button>
-
+				<form role="form" action={{route('add.photo')}} method="POST"  class="form-horizontal" enctype="multipart/form-data">
+					@csrf
+					<input type="hidden" value={{$user->empresas->id}} name="empresa">
+					<label class="btn btn-theme04 btn-lg" id="photosLabel" style="margin-top:20px;" for="photos">Enviar fotos</label>
+					<label class="btn btn-theme02 btn-lg"style="margin-top:20px;display:none;" id="cancelImg" for=""  data-toggle="tooltip" title="Cancelar"><i class="fa fa-times"></i></label>
+					<input type="file" name="album[]" multiple id="photos" style="display:none" >
+					<button type="submit" id="enviar" class="btn btn-theme03 btn-lg" style="margin-top:20px;">Publicar Novidades</button><br>
+				</form>
 			</div>
-
-			<div id="previewAlbum" style="display:none;border: 2px dotted #999 ;background:#D4D4D4; padding:10px; margin-bottom:15px;">
-
-				<div class="previaImg" >
-					<div id="carregando" style="display:none">
-							<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-						</div>
-					<label for="carregar-img"><i class="fa fa-plus fa-2x" style="cursor:pointer"></i></label>
-
-				</div>
-
-			</div>
-	</form>
-        <!-- Grid row -->
-        <!-- Grid row -->
         <div class="container" >
 			  @if($user->empresas->album->count() > 0)
 			  @php
@@ -128,6 +113,10 @@
                         @endphp
 							</ul>
 					</div>
+                    @else
+                        <h4>Sua empresa não possui fotos! <br> Clique para adcionar pois é importante para os usúarios <br>
+                        conhecer mais sobre seu serviço/negócio...
+                        </h4>
 					@endif
 					</div>
         </div>
@@ -256,10 +245,15 @@
 
 </script>
 <script>
-
-    function deletePhoto(id){
-        alert(id);
-    }
+	function load(action){
+			var load_div = $(".loader");
+			if(action==="open"){
+			load_div.addClass("is-active");
+			}
+			else{
+			load_div.removeClass("is-active");
+			}
+		}
 var confirm = new jBox('Confirm', {
 	attach: '.button-1',
     content: 'Deseja excluir essa foto?',
@@ -276,6 +270,47 @@ function excluir() {
 
 	<script type="text/javascript">
 
+    function deletePhoto(id){
+	var photoDel = {'photo': id};
+	$.ajax({
+			type:"POST",
+			url:'../api/painel/empresa/editar/excluirPhoto',
+			data: photoDel,
+            async: true,
+			beforeSend: function(){
+                load('open');
+			},
+			success: function(Response) {
+                console.log(Response);
+			},
+			complete: function(teste){
+                refresh();
+			}
+	});
+}
+$('#photos').change(function(){
+		var arquivos = $('#photos')[0].files;
+		var quantArquivos = arquivos.length;
+		if(quantArquivos==1){
+			$('#photosLabel').text(quantArquivos+' Arquivo');
+			$('#cancelImg').show();
+		}
+		else{
+			$('#photosLabel').text(quantArquivos+' Arquivos');
+			$('#cancelImg').show();
+		}
+	});
+
+	$('#cancelImg').click(function(){
+		$('#photos').val();
+		$('#photosLabel').text('Enviar fotos');
+		$('#cancelImg').hide();
+	});
+
+
+    function refresh(){
+        $(location).attr('href', '/painel/empresa');
+    }
 	function carregarEmpresa(){
 			var idUser = {{Auth::id()}};
 
@@ -314,15 +349,6 @@ $(function(){
 		carregarEmpresa();
 
 
-		function load(action){
-			var load_div = $(".loader");
-			if(action==="open"){
-			load_div.addClass("is-active");
-			}
-			else{
-			load_div.removeClass("is-active");
-			}
-		}
 
 
 		$.ajaxSetup({

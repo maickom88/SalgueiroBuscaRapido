@@ -119,7 +119,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center cadastre">
-                <a href="cadastro.html">Cadastre-se!</a>
+                <a href={{route('cadastro.site')}}>Cadastre-se!</a>
             </div>
         </div>
 
@@ -249,7 +249,7 @@
 		  @if($promotions->count() > 2)
         <div class="container" style="outline:none;">
             <div class="row card-promo">
-					
+
                 @foreach ($promotions as $promotion)
                     @php
                         $dataMes = array('01' => 'Janeiro', '02' => 'Fevereiro', '03' => 'Março', '04'=> 'Abril', '05' => 'Maio', '06' => 'Junho', '07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro', '10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro');
