@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="termos">
-                    <input required type="checkbox" name="check_termo" value="sim" onclick="mostrarsenha(1)" id="termos"><label>Estou ciente dos <a href="#">Termos de Uso</a> da SBR.</label>
+                    <input required type="checkbox" name="check_termo" value="sim" onclick="mostrarsenha(1)" id="termos"><label>Estou ciente dos <a href={{route('condicoes')}}>Termos de Uso</a> e as <a href={{route('privacidade')}}>Política de Privacidade</a> da SBR.</label>
                 </div>
                 
                 <label for="enviar">Continuar</label>

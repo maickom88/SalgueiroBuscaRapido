@@ -4,9 +4,10 @@
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
 	<link rel="stylesheet" href={{asset('css/owl.carousel.min.css')}}>
+    <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @endsection
 
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIAS')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: PESQUISA')
 
 @section('conteudo')
 @include('templetes.top-menu')

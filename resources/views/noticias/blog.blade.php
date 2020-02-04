@@ -12,7 +12,7 @@
 
 @endsection
 
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIA ')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: '.$post->title)
 
 @section('conteudo')
 @include('templetes.top-menu')

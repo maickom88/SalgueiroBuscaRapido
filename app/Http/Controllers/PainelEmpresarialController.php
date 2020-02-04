@@ -302,7 +302,7 @@ while(count($arrayAnalytics) < 12){
 				$name = uniqid(date('HisYmd'));
 				$extension = $req->album[$i]->extension();
 				$nameFile = "{$name}.{$extension}";
-				$upload = $req->album[$i]->storeAs('album-empresa/'.$email, $nameFile);
+				$upload = $req->album[$i]->storeAs('storage/album-empresa/'.$email, $nameFile, 'pictures');
 				$valid = $this->savePhotos($id, $nameFile);
 			}
 		}

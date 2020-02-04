@@ -17,8 +17,8 @@
 <div class="service-icon">
 <a class="" href="faq.html#"><i class="dm-icon fa  fa-pencil-square fa-3x"></i></a>
 </div>
-<h4>Post no blog</h4>
-<p>Faça postagens de notícias no blog</p>
+<h4>Faça publicações</h4>
+<p>Post notícias, artigos e idéias!</p>
 </div>
 </div>
 <!-- end dmbox -->
@@ -28,17 +28,17 @@
 <a class="" href="faq.html#"><i class="dm-icon fa fa-eye fa-3x"></i></a>
 </div>
 <h4>Obtenha visualizações</h4>
-<p>Seja bem visualizado com as postagens</p>
+<p>Seja um blogueiro, tenha seus posts lidos pela comunidade!</p>
 </div>
 </div>
 <!-- end dmbox -->
 <div class="col-lg-4 col-md-4 col-sm-12">
 <div class="dmbox">
 <div class="service-icon">
-<a class="" href="faq.html#"><i class="dm-icon fa  fa-usd fa-3x"></i></a>
+<a class="" href="faq.html#"><i class="dm-icon fa  fa-trophy fa-3x"></i></a>
 </div>
-<h4>Ganhe rendimento</h4>
-<p>Seja recompensado com as suas postagens</p>
+<h4>Ganhe reconhecimento</h4>
+<p>Produza conteúdo, fidelize leitores de toda a região</p>
 </div>
 </div>
 <!-- end dmbox -->
@@ -58,8 +58,7 @@
 </div>
 <div id="collapseOne" class="accordion-body collapse">
 <div class="accordion-inner">
-<p>Com a parceria, você obtem o acesso de postagens no blog. As postagens são de notícias 
-válidas, sem conteúdos inapropriados. 
+<p>Com a parceria, você obtêm acesso a criar postagens no “blog”. As publicações vão de notícias, denúncias, relatos embasados com fatos, artigos, dicas e tutoriais. Conteúdos inapropriados, fatos falsos ou consideradas calúnias, serão imediatamente excluídas.
 </p>
 </div>
 </div>
@@ -72,8 +71,8 @@ válidas, sem conteúdos inapropriados.
 </div>
 <div id="collapseTwo" class="accordion-body collapse">
 <div class="accordion-inner">
-<p>De acordo com as postagens que fizer, você obtem as visualizações de quem acessa ao seu conteúdo.
-Os totais de visualizações que obtiver, dirão o seu nível de confiabilidade.
+<p>O parceiro sendo ativo, terá controle de suas postagens através de uma página,
+contendo informações como comentários e quantidade de visualizações assim também podendo gerencias, excluir e editar.
 </p>
 </div>
 </div>
@@ -81,13 +80,13 @@ Os totais de visualizações que obtiver, dirão o seu nível de confiabilidade.
 <div class="accordion-group">
 <div class="accordion-heading">
 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="faq.html#collapseThree">
-<em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>O rendimento
+<em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>O reconhecimento
 </a>
 </div>
 <div id="collapseThree" class="accordion-body collapse">
 <div class="accordion-inner">
-<p>O seu rendimento sera atribuido de acordo com os totatis de visualizações que obter, seu nível 
-de confiabilidade e as quantidades de postagens feitas. 
+<p>Suas postagens será medida e avaliadas, quanto mais valor do conteúda mais chances de obter um número maior de visitas ao seu post.
+Uma publicação com muitas visualizações será recomendada para todos os usuários da plataforma, ficando assim em alta!
 </p>
 </div>
 </div>

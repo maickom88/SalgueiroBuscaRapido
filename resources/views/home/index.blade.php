@@ -4,7 +4,7 @@
 
 @section('titulo','SALGUEIRO BUSCA RAPIDO: HOME')
 @section('links')
- <link rel="import" href="/bower_components/paper-button/paper-button.html"><!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -51,7 +51,7 @@ window.addEventListener('appinstalled', (evt) => {
     console.log("appinstalled fired", evt);
 });
 </script>
-@laravelPWA
+
 
 @endsection
 @section('conteudo')
@@ -450,24 +450,6 @@ window.addEventListener('appinstalled', (evt) => {
             <div>
         </div>
     </section>
-    <section>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Artigo da home -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1803332419619783"
-     data-ad-slot="7159844452"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    </section>
-    <!--end Buy and sell-->
-
-
-
-
 @endsection
 
 

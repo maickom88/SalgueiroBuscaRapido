@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href={{asset('css/owl.carousel.min.css')}}>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -17,7 +18,7 @@
 
 @endsection
 
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIAS')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: EVENTOS')
 
 @section('conteudo')
 @include('templetes.top-menu')
@@ -38,9 +39,8 @@
 		<div class="owl-carousel owl-theme owl-loaded" style="padding:10px;">
 		<div class="owl-stage-outer">
 			<div class="owl-stage">
-				<div class="owl-item"><img class="img-fluid" src={{'img/bg-not-2.jpg'}} alt=""></div>
-				<div class="owl-item"><img class="img-fluid" src={{'img/banner.jpg'}} alt=""></div>
-				<div class="owl-item"><img class="img-fluid" src={{'img/banner2.jpg'}} alt=""></div>
+				<div class="owl-item"><img class="img-fluid"  src={{'img/eventos1.jpg'}} alt=""></div>
+				<div class="owl-item"><img class="img-fluid"  src={{'img/eventos2.jpg'}} alt=""></div>
 			</div>
 		</div>
 		<div class="owl-nav">

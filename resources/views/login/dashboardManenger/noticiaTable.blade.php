@@ -1,6 +1,6 @@
 @extends('templetes.tampletesDashboard.Manenger.site')
 
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: PAINEL ADMINISTRATIVO - EVENTOS PUBLICADOS ')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: PAINEL ADMINISTRATIVO - NOTÍCIAS PUBLICADAS ')
 
 @section('blog', 'active')
 

@@ -31,6 +31,7 @@
         </ul>
 
 		  @auth
+          <div class="login-button">
 		  @php
 				$name = $user->name;
 				$name = explode(' ', $name);
@@ -93,6 +94,7 @@
 			</div>
 			</div>
 			</div>
+        </div>
 		 @else
          <div class="login-button">
 

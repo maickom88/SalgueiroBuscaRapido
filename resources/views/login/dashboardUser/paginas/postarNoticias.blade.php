@@ -1,6 +1,6 @@
-@extends('templetes.tampletesDashboard.Manenger.site')
+@extends('templetes.tampletesDashboard.User.site')
 
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: PAINEL ADMINISTRATIVO - NOTÍCIAS')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: PAINEL ADMINISTRATIVO - PUBLICAR EVENTO')
 
 @section('links')
 <meta  name = "csrf-token"  content = "{{csrf_token ()}}">
@@ -127,28 +127,24 @@ endif;
 <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/translations/pt.js"></script>
 
 <script>
-
 var modalEvent = new jBox('Modal', {
     attach: '#test',
     title: '<div width="100%" class="text-center"><i class="fa fa-check fa-3x" style="color: green"></i></div>',
     content: "Post publicado com sucesso!",
     animation: 'zoomIn',
-    audio: '../audio/bling2',
+    audio: '/../audio/bling2',
     volume: 80,
     closeButton: true,
     delayOnHover: true,
     showCountdown: true
 });
-
 if( $( "#status" ).length ) {
     modalEvent.open();
 }
-
 var assunto = $('#assunto').data('assunto');
 if(assunto.length > 0){
     $('#assunto').val(assunto);
 }
-
 ClassicEditor.create( document.querySelector( '#editor' ), {
         language: 'pt',
         ckfinder: {
@@ -161,10 +157,6 @@ ClassicEditor.create( document.querySelector( '#editor' ), {
 .catch( err => {
     console.error( err.stack );
 } );
-
-
-
-
 $('#excluirBanner').click(function(){
 	$('#prevBanner').attr('src', "{!!asset('img/bannerDefault.png')!!}");
 	$('#banner').val('');
@@ -177,9 +169,6 @@ $('#prevBanner').hover(function(){
 	$(this).css('opacity', '1');
 	$('#excluirBanner').hide();
 });
-
-
-
 $('#banner').change(function(){
 ;
 	$('#prevBanner').hover(function(){
@@ -194,26 +183,20 @@ $('#banner').change(function(){
 		$('#excluirBanner').show();
 	},
 	function(){
-
 		$('#prevBanner').css('opacity', '1');
 	});
-
 	var imagem = document.querySelector('input[name=banner]').files[0];
 	var preview = document.getElementById('prevBanner');
 	var reader = new FileReader();
-
 	reader.onload = function(){
 		preview.src = reader.result;
 	}
-
 	if(preview){
 		reader.readAsDataURL(imagem);
 	}else{
 		preview.src = '';
 	}
 });
-
 </script>
 @endsection
 @endsection
-

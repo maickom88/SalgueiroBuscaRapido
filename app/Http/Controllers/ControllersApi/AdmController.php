@@ -202,7 +202,7 @@ class AdmController extends Controller
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->imagem->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $req->imagem->storeAs('logo-empresas', $nameFile);
+			$upload = $req->imagem->storeAs('storage/logo-empresas', $nameFile, 'pictures');
 			if ( !$upload ){
 				return response()->json("ErrorSavedImg");
 			}
@@ -218,7 +218,7 @@ class AdmController extends Controller
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->banner->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $req->banner->storeAs('logo-empresas', $nameFile);
+			$upload = $req->banner->storeAs('storage/logo-empresas', $nameFile, 'pictures');
 			if ( !$upload ){
 				return response()->json("ErrorSavedImg");
 			}
@@ -244,7 +244,7 @@ class AdmController extends Controller
 				$name = uniqid(date('HisYmd'));
 				$extension = $req->album[$i]->extension();
 				$nameFile = "{$name}.{$extension}";
-				$upload = $req->album[$i]->storeAs('album-empresa/'.$email, $nameFile);
+				$upload = $req->album[$i]->storeAs('storage/album-empresa/'.$email, $nameFile, 'pictures');
 				$valid = $this->savePhotos($id, $nameFile);
 			}
 

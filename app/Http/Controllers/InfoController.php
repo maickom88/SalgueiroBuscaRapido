@@ -52,7 +52,7 @@ class InfoController extends Controller
 				$extension = $request->imagem->extension();
 				$nameFile = "{$name}.{$extension}";
 				$info->avatar = $nameFile;
-				$upload = $request->imagem->storeAs('avatar', $nameFile);
+				$upload = $request->imagem->storeAs('storage/avatar', $nameFile, 'pictures');
 				if ( !$upload ){
 					return redirect()
 						->back()
@@ -63,11 +63,11 @@ class InfoController extends Controller
 			$saved = $info->save();
 			if($saved){
 				session()->put('info_send','ok');
-					return redirect()->back();	
+					return redirect()->back();
 			}
-			
+
 			session()->put('info_send_fail','falha');
-			return redirect()->back();	
+			return redirect()->back();
 		}
 		else{
 			if(!empty($request->input('idade'))){
@@ -90,7 +90,7 @@ class InfoController extends Controller
 				$extension = $request->imagem->extension();
 				$nameFile = "{$name}.{$extension}";
 				$user->info->avatar = $nameFile;
-				$upload = $request->imagem->storeAs('avatar', $nameFile);
+				$upload = $request->imagem->storeAs('storage/avatar', $nameFile, 'pictures');
 				if ( !$upload ){
 					return redirect()
 						->back()
@@ -99,13 +99,13 @@ class InfoController extends Controller
 					}
 			}
 			$saved = $user->info->save();
-		
+
 			if($saved){
 				session()->put('info_send','ok');
-					return redirect()->back();	
+					return redirect()->back();
 			}
 			session()->put('info_send_fail','falha');
-			return redirect()->back();	
+			return redirect()->back();
 		}
 	}
 

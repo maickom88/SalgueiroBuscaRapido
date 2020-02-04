@@ -82,7 +82,7 @@ class DashboardController extends Controller
         $dataTime = date('d/m/Y H:i');
         $user->ultima_sessao = $dataTime;
         $user->save();
-        $empresasAtv = Empresa::whereIn('id', $idEmpresa)->get();
+        $empresasAtv = Empresa::whereIn('id', $idEmpresa)->orderBy('id','desc')->limit(3)->get();
         $empresasPostAtv = [];
         foreach ($empresasAtv as $empresa){
             $count = $empresa->novidades->count();
@@ -189,7 +189,7 @@ class DashboardController extends Controller
 
 		if($verificacao=="sim")
 		{
-			return view('login.dashboardUser.paginas.noticiasUser', compact('user'));
+			return view('login.dashboardUser.paginas.postarNoticias', compact('user'));
 		}
 		return redirect()->back();
     }

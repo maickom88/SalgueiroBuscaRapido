@@ -18,7 +18,7 @@ class Post extends Controller
             $name = uniqid(date('HisYmd'));
 			$extension = $req->upload->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $req->upload->storeAs('AlbumPost/'.$email, $nameFile);
+			$upload = $req->upload->storeAs('storage/AlbumPost/'.$email, $nameFile, 'pictures');
 			if ( !$upload ){
 				return response()->json("ErrorSavedImg");
 			}

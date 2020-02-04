@@ -55,7 +55,7 @@ class BlogController extends Controller
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->banner->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $req->banner->storeAs('posts-header', $nameFile);
+			$upload = $req->banner->storeAs('storage/posts-header', $nameFile, 'pictures');
 			if(!$upload){
 				return response()->json("errorUpload");
 			}
@@ -97,7 +97,7 @@ class BlogController extends Controller
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->banner->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $req->banner->storeAs('posts-header', $nameFile);
+			$upload = $req->banner->storeAs('storage/posts-header', $nameFile, 'pictures');
 			if ( !$upload ){
 				return response()->json("errorUpload");
 			}

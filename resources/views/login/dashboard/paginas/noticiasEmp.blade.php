@@ -1,7 +1,7 @@
 @extends('templetes.tampletesDashboard.businessman.site')
 
 
-@section('titulo', 'SALGUEIRO BUSCA RAPIDO: NOTICIAS')
+@section('titulo', 'SALGUEIRO BUSCA RAPIDO: NOTÍCIAS')
 
 @section('noticias', 'active')
 

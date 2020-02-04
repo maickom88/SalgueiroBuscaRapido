@@ -45,7 +45,7 @@ class EventosController extends Controller
 			$name = uniqid(date('HisYmd'));
 			$extension = $req->banner->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $req->banner->storeAs('eventos', $nameFile);
+			$upload = $req->banner->storeAs('storage/eventos', $nameFile, 'pictures');
 			if ( !$upload ){
 				return "error";
 			}

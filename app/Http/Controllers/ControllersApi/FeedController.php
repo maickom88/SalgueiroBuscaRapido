@@ -30,7 +30,7 @@ class FeedController extends Controller
 				$name = uniqid(date('HisYmd'));
 				$extension = $req->photos[$i]->extension();
 				$nameFile = "{$name}.{$extension}";
-				$upload = $req->photos[$i]->storeAs('album-novidades/'.$email, $nameFile);
+				$upload = $req->photos[$i]->storeAs('storage/album-novidades/'.$email, $nameFile, 'pictures');
 				$valid = $this->savePhotos($id, $nameFile);
 			}
 			return response()->json('Publicado com foto');

@@ -25,7 +25,7 @@
 	<script src={{asset("lib/chart-master/Chart.js")}}></script>
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
-
+    @laravelPWA
 	@yield('links')
 </head>
 

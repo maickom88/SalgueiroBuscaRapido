@@ -6,13 +6,14 @@
     <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
     <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
     <link rel="stylesheet" href={{asset('css/eventos.css')}}>
+    <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
     /*.cabecalho::after{
         background:url({{asset('img/img-04.jpg')}})
     }*/
     </style>
 @endsection
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: '.$evento->nome_evento)
 
 @section('conteudo')
 

@@ -46,6 +46,7 @@ $telefone = $user->info->telefone;
 	<link rel="stylesheet" href={{asset('css/jquery.tagsinput.min.css')}}>
 	<script src={{asset("lib/chart-master/Chart.js")}}></script>
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    @laravelPWA
 	@yield('links')
 </head>
 

@@ -6,9 +6,9 @@
                 <img src={{asset('img/logofinal1.png')}}>
             </div>
             <div class="col-md-9">
-            <span>© Salgueiro Busca Rapido 2018 . Todos os direitos resevados.</span> <br>
+            <span>© Salgueiro Busca Rapido 2020 . Todos os direitos resevados.</span> <br>
 				<p>Templete Empresarial criado por  <a href="https://templatemag.com/">TemplateMag</a></p>
-            
+            <a href={{route('privacidade')}}>Política de Privacidade</a> / <a href={{route('condicoes')}}>Termos e condições</a>
             </div>
             <div class="col-md-3">
                     <a href=""><i class="fa fa-facebook"></i></a>

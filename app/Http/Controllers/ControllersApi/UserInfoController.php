@@ -13,12 +13,12 @@ class UserInfoController extends Controller
 		$user = User::find($id);
 
 		$info = $user->info;
-		
+
 		return response()->json($info);
 	}
 
 	public function update(Request $request){
-		$idUser = $request->input('idUser');	
+		$idUser = $request->input('idUser');
 		$user = User::find($idUser);
 
 		if(empty($user->info)){
@@ -33,16 +33,16 @@ class UserInfoController extends Controller
 				$extension = $request->imagem->extension();
 				$nameFile = "{$name}.{$extension}";
 				$info->avatar = $nameFile;
-				$upload = $request->imagem->storeAs('avatar', $nameFile);
+				$upload = $request->imagem->storeAs('storage/avatar', $nameFile, 'pictures');
 				if ( !$upload ){
 					return response()->json('error');
 					}
 			}
 			$saved = $info->save();
 			if($saved){
-				return response()->json($saved);	
+				return response()->json($saved);
 			}
-			
+
 			return response()->json('error');
 		}
 
@@ -61,11 +61,11 @@ class UserInfoController extends Controller
 		}
 
 		if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
-				
+
 			$name = uniqid(date('HisYmd'));
 			$extension = $request->imagem->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $request->imagem->storeAs('avatar', $nameFile);
+			$upload = $request->imagem->storeAs('storage/avatar', $nameFile, 'pictures');
 			if ( !$upload ){
 				return "error";
 			}
