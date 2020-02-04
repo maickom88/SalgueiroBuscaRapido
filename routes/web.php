@@ -24,6 +24,11 @@ Route::get('/recuperar-senha', function(){
     return view('auth\passwords\email');
 })->name('recupera.senha');
 
+Route::get('/offline', function(){
+    return view('modules.laravelpwa.offline');
+})->name('offline');
+
+
 
 //------------------------Noticias---------------------------//
 Route::get('/noticias',['uses'=>'BlogController@index'])->name('blog.noticias');

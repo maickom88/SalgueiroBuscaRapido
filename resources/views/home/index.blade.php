@@ -4,7 +4,7 @@
 
 @section('titulo','SALGUEIRO BUSCA RAPIDO: HOME')
 @section('links')
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+ <link rel="import" href="/bower_components/paper-button/paper-button.html"><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,6 +13,45 @@
 
   gtag('config', 'UA-157182219-1');
 </script>
+<script>
+let deferredPrompt; // Allows to show the install prompt
+let setupButton;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    console.log("beforeinstallprompt fired");
+    if (setupButton == undefined) {
+        setupButton = document.getElementById("setup_button");
+    }
+    // Show the setup button
+    setupButton.style.display = "inline";
+    setupButton.disabled = false;
+});
+function installApp() {
+    // Show the prompt
+    deferredPrompt.prompt();
+    setupButton.disabled = true;
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice
+        .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('PWA setup accepted');
+                // hide our user interface that shows our A2HS button
+                setupButton.style.display = 'none';
+            } else {
+                console.log('PWA setup rejected');
+            }
+            deferredPrompt = null;
+        });
+}
+window.addEventListener('appinstalled', (evt) => {
+    console.log("appinstalled fired", evt);
+});
+</script>
+@laravelPWA
 
 @endsection
 @section('conteudo')
@@ -202,7 +241,7 @@
             </div>
 			<div class="row">
 					<div class="col-md-12 content-app-2">
-						<button type="button" class="btn"><a href="#">Download</a></button>
+						<button type="button" class="btn" onclick="installApp()"><a>Download</a></button>
 						<button id="modalNews" type="button" class="btn orange" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Newslatter</button>
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-newsletter" role="document">
@@ -437,10 +476,74 @@
 
 @section('script')
 
-<!--efeito no mouse scroll-->
-
-<!--Slid card-->
 <script>
+
+
+var staticCacheName = "pwa-v" + new Date().getTime();
+var filesToCache = [
+    '/offline',
+    '/css/offline.css',
+    '/js/app.js',
+    '/images/icons/offlines.png'
+    '/images/icons/icon-72x72.png',
+    '/images/icons/icon-96x96.png',
+    '/images/icons/icon-128x128.png',
+    '/images/icons/icon-144x144.png',
+    '/images/icons/icon-152x152.png',
+    '/images/icons/icon-192x192.png',
+    '/images/icons/icon-384x384.png',
+    '/images/icons/icon-512x512.png',
+    '/images/icons/splash-640x1136.png',
+    '/images/icons/splash-750x1334.png',
+    '/images/icons/splash-1242x2208.png',
+    '/images/icons/splash-1125x2436.png',
+    '/images/icons/splash-828x1792.png',
+    '/images/icons/splash-1242x2688.png',
+    '/images/icons/splash-1536x2048.png',
+    '/images/icons/splash-1668x2224.png',
+    '/images/icons/splash-1668x2388.png',
+    '/images/icons/splash-2048x2732.png'
+];
+
+// Cache on install
+self.addEventListener("install", event => {
+    this.skipWaiting();
+    event.waitUntil(
+        caches.open(staticCacheName)
+            .then(cache => {
+                return cache.addAll(filesToCache);
+            })
+    )
+});
+
+// Clear cache on activate
+self.addEventListener('activate', event => {
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames
+                    .filter(cacheName => (cacheName.startsWith("pwa-")))
+                    .filter(cacheName => (cacheName !== staticCacheName))
+                    .map(cacheName => caches.delete(cacheName))
+            );
+        })
+    );
+});
+
+// Serve from Cache
+self.addEventListener("fetch", event => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => {
+                return response || fetch(event.request);
+            })
+            .catch(() => {
+                return caches.match('offline');
+            })
+    )
+});
+
+
 
 var successNewslatter = new jBox('Modal', {
     attach: '#test',

@@ -94,9 +94,12 @@
 			</div>
 			</div>
 		 @else
+         <div class="login-button">
+
 		  <div class="login">
         <a href={{route('login.home')}}><i class="fas fa-sign-in-alt"></i>Entrar</a>
 		  </div>
+         </div>
 		  @endauth
         </div>
     </nav>

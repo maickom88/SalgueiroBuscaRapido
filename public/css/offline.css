@@ -1,0 +1,25 @@
+body{
+    padding:0;
+    margin: 0;
+    overflow: hidden;
+}
+.container{
+    color: aliceblue;
+    padding:20px;
+    width:100%;
+    height:100vh;
+    background: #026feb;
+    display: flexbox;
+    overflow: hidden;
+}
+
+h2{
+    font-size: 40px;
+}
+img{
+    width:600px;
+    float: right;
+}
+p{
+    font-size: 20px;
+}
