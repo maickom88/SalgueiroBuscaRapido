@@ -6,7 +6,7 @@ return [
         'name' => env('APP_NAME', 'Salgueiro Busca Rápido'),
         'short_name' => 'SBR',
         'start_url' => '/',
-        'background_color' => '#0000000',
+        'background_color' => '#00A7DD',
         'theme_color' => '#00A3EE',
         'display' => 'standalone',
         'orientation'=> 'any',

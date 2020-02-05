@@ -28,13 +28,9 @@ Route::get('/offline', function(){
     return view('modules.laravelpwa.offline');
 })->name('offline');
 
-Route::get('/politica-e-privacidade', function(){
-    return view('termos.privacidade');
-})->name('privacidade');
+Route::get('/politica-e-privacidade', 'TermosController@privacidade')->name('privacidade');
 
-Route::get('/termos-e-condições', function(){
-    return view('termos.uso');
-})->name('condicoes');
+Route::get('/termos-e-condições', 'TermosController@condicoes')->name('condicoes');
 
 //------------------------Noticias---------------------------//
 Route::get('/noticias',['uses'=>'BlogController@index'])->name('blog.noticias');
