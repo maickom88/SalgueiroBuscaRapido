@@ -19,6 +19,8 @@
 @endsection
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: EVENTOS')
+@section('descricao',"Encotre os melhores eventos da cidade aqui!")
+@section('tags', "eventos, salgueiro, 2020, 2021, região, melhores, novos, salgueiro busca rapido")
 
 @section('conteudo')
 @include('templetes.top-menu')

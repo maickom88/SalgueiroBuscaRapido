@@ -1,12 +1,23 @@
 @extends('templetes.site')
 
 @section('links')
+<meta property="og:locale" content="pt_BR">
 
-    <link href={{asset('css/style-empresa.css')}} rel="stylesheet">
-    <link href={{asset('css/style-contato.css')}} rel="stylesheet">
-    <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
-    <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<meta property="og:url" content="https://www.salgueirobuscarapido.com/contato">
+<meta property="og:title" content="Contato">
+<meta property="og:site_name" content="Salgueiro Busca Rápido">
+<meta property="og:description" content="Entre em contato com nossa equipe para saber mais!.">
+<meta property="og:image" content={{asset('img/LOGOSITE.png')}}>
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="600">
+<meta property="og:type" content="website">
+
+<link href={{asset('css/style-empresa.css')}} rel="stylesheet">
+<link href={{asset('css/style-contato.css')}} rel="stylesheet">
+<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
+<link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -49,6 +60,8 @@ window.addEventListener('appinstalled', (evt) => {
 </script>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
+@section('descricao',"Saiba mais detalhes de como ser nosso parceiro!")
+@section('tags', "guia comercial, empresas de salgueiro, parceria, contrato, aumentar vendas, crescer negócios, internet")
 
 @section('conteudo')
 @include('templetes.top-menu')

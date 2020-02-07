@@ -1,6 +1,30 @@
 @extends('templetes.site')
 
 @section('links')
+@php
+    $str = $post->title;
+    $str2 = str_replace(' ', '-', $str);
+@endphp
+<meta property="og:locale" content="pt_BR">
+
+<meta property="og:url" content="{{route('blog.page').'/'.$str2.'/'.$post->id}}">
+
+<meta property="og:title" content="{{$post->title}}">
+<meta property="og:site_name" content="{{$post->title}}">
+
+<meta property="og:description" content={{$post->assunto}}>
+
+<meta property="og:image" content="{{asset('storage/posts-header/'.$post->banner)}}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="600">
+
+<meta property="og:type" content="article">
+<meta property="article:author" content={{$post->user->name}}>
+<meta property="article:section" content="postagem">
+<meta property="article:tag" content="{{$post->tags}}">
+<meta property="article:published_time" content="{{$post->created_at}}">
+
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
@@ -13,6 +37,8 @@
 @endsection
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: '.$post->title)
+@section('descricao',"{{$post->title}}")
+@section('tags', "{{$post->tags}}")
 
 @section('conteudo')
 @include('templetes.top-menu')
@@ -21,10 +47,10 @@
     <div class="container-blog text-center">
             <h1>{{$post->title}}</h1>
         <div class="lis">
-            <a href="#" style="color:#d1d1d1">Home</a>
-            <a class="ponto">.</a>
-            <a href="#" style="color:#d1d1d1">Blog</a>
-            <a class="ponto">.</a>
+            <a href={{route('home')}} style="color:#d1d1d1">Home</a>
+            <a class="#">.</a>
+            <a href={{route('blog.noticias')}} style="color:#d1d1d1">Blog</a>
+            <a class="#">.</a>
             <a href="#">Blog-pagina</a>
         </div>
 
@@ -92,19 +118,27 @@
                 </script>
                 {!!$post->conteudo!!}
                 <div class="dropdown-divider"></div><br>
+                @if(($postRecommend->count() > 1))
+                <?php
+                $str = $postRecommend[0]->title;
+                $str2 = str_replace(' ', '-', $str);
+
+                $str3 = $postRecommend[1]->title;
+                $str4 = str_replace(' ', '-', $str);
+                ?>
                 <div class="row">
                     <div class="btn-seta">
                         <div class="prev">
                             <i class="fas fa-chevron-left"></i>
-                            <a href="#" style="color:#00A3EE; text-decoration:underline">Meu negocio minha vida</a>
+                            <a  href={{route('blog.page').'/'.$str2.'/'.$postRecommend[0]->id}} style="color:#00A3EE; text-decoration:underline">{{$postRecommend[0]->title}}</a>
                         </div>
                         <div class="next">
-                            <a href="#" style="color:#00A3EE; text-decoration:underline">Meu negocio minha vida</a>
+                            <a href={{route('blog.page').'/'.$str4.'/'.$postRecommend[1]->id}} style="color:#00A3EE; text-decoration:underline">{{$postRecommend[1]->title}}</a>
                             <i class="fas fa-chevron-right"></i>
-
                         </div>
                     </div>
                 </div>
+                @endif
             </article>
         </div>
     </div>

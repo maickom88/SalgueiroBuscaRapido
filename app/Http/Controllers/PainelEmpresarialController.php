@@ -105,10 +105,13 @@ class PainelEmpresarialController extends Controller
     $pDezembro = Period::create ($startDezembro , $endDezembro);
     $dezembro = Analytics::fetchVisitorsAndPageViews($pDezembro);
     array_push($arrayDates, $dezembro);
-    $arrayAnalytics= [];
+    $arrayAnalytics= ['Janeiro'=> 0 , 'Fevereiro'=> 0, 'Março'=> 0, 'Abril'=> 0, 'Maio'=> 0,
+                        'Junho'=> 0, 'Julho'=> 0, 'Agosto'=> 0, 'Setembro'=> 0, 'Outubro'=> 0, 'Novembro'=> 0, 'Dezembro'=> 0];
+    $quantMes = 0;
     $user = Auth::User();
     for ($i=0; $i < 12 ; $i++) {
         $count = count($arrayDates[$i]);
+        $mes = array_keys($arrayAnalytics)[$quantMes];
         if(!empty($count)){
         for ($j=0; $j < $count ; $j++) {
             $title = $arrayDates[$i][$j]['pageTitle'];
@@ -119,12 +122,13 @@ class PainelEmpresarialController extends Controller
                 if(is_numeric($idEmp[1])){
                     if($user->empresas->id == $idEmp[1] & $user->empresas->name == $idEmp[0]){
                         $views = $arrayDates[$i][$j]['pageViews'];
-                        array_push($arrayAnalytics, $views);
+                        $arrayAnalytics[$mes] = $views;
                     }
                 }
             }
         }
     }
+    $quantMes++;
 }
 
 while(count($arrayAnalytics) < 12){
@@ -146,17 +150,17 @@ while(count($arrayAnalytics) < 12){
     $evento = Evento::orderBy('id','desc')->first();
     $charts = new SampleChart;
     $charts->labels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto', 'Setembro','Outubro','Novembro','Dezembro']);
-    $charts->dataset('Visitas Mensais', 'bar', [$arrayAnalytics[0],$arrayAnalytics[1],
-    $arrayAnalytics[2],
-    $arrayAnalytics[3],
-    $arrayAnalytics[4],
-    $arrayAnalytics[5],
-    $arrayAnalytics[6],
-    $arrayAnalytics[7],
-    $arrayAnalytics[8],
-    $arrayAnalytics[9],
-    $arrayAnalytics[10],
-    $arrayAnalytics[11]
+    $charts->dataset('Visitas Mensais', 'bar', [$arrayAnalytics['Janeiro'],$arrayAnalytics['Fevereiro'],
+    $arrayAnalytics['Março'],
+    $arrayAnalytics['Abril'],
+    $arrayAnalytics['Maio'],
+    $arrayAnalytics['Junho'],
+    $arrayAnalytics['Julho'],
+    $arrayAnalytics['Agosto'],
+    $arrayAnalytics['Setembro'],
+    $arrayAnalytics['Outubro'],
+    $arrayAnalytics['Novembro'],
+    $arrayAnalytics['Dezembro']
     ])->options([
     'color' => '#fff',
         'backgroundColor' => '#00A3EE',

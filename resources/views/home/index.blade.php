@@ -3,7 +3,24 @@
 
 
 @section('titulo','SALGUEIRO BUSCA RAPIDO: HOME')
+@section('descricao',"Encontre os melhores serviços e empresas de salgueiro, tenha acesso a novidades, promoções, eventos da região e notícias tudo sem sair de casa!")
+@section('tags', "guia comercial, empresas de salgueiro, notícias da região, novidades, eventos em salgueiro, salgueiro busca rapido")
+
 @section('links')
+<meta property="og:locale" content="pt_BR">
+
+<meta property="og:url" content="https://www.salgueirobuscarapido.com">
+
+<meta property="og:title" content="Home">
+<meta property="og:site_name" content="Salgueiro Busca Rápido">
+
+<meta property="og:description" content="Econtre as melhores empresas de salgueiro e seus melhores serviços, tenha acesso a
+novidades, eventos e notícias da região.">
+<meta property="og:image" content={{asset('img/LOGOSITE.png')}}>
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="600">
+<meta property="og:type" content="website">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
 <script>
@@ -201,8 +218,8 @@ window.addEventListener('appinstalled', (evt) => {
                                     $str = $emp->name;
                                     $str2 = str_replace(' ', '-', $str);
                                 @endphp
-                                <h5 class="card-title"><a href="/empresa/{{$str2}}/{{$emp->id}}" >{{$emp->name}}</a></h5>
-                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="/empresa/{{$str2}}/{{$emp->id}}" style="color:blue;">Ler mais</a></p>
+                                <h5 class="card-title"><a href="pagina/{{$str2}}/{{$emp->id}}" >{{$emp->name}}</a></h5>
+                                <p class="card-text">{{substr($emp->description, 0 , 140).'...'}}<a href="pagina/{{$str2}}/{{$emp->id}}" style="color:blue;">Ler mais</a></p>
                             </div>
                             <div class="star">
                                 <i class="fas fa-star"></i>

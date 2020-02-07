@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact\Contact;
+use App\Empresa\Promotion\Promotion;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -29,13 +31,15 @@ class BlogController extends Controller
         {
             $idUser = '';
         }
+
         $post = Post::find($id);
+        $postRecommend = Post::where('id', '!=' , $id)->orderBy('id','desc')->take(2)->get();
         $post->views++;
         $post->save();
         if(Auth::check()){
 			$idUser = Auth::user()->id;
 			$user = User::find($idUser);
-			return view('noticias.blog',compact('post', 'user','idUser'));
+			return view('noticias.blog',compact('post', 'user','idUser','postRecommend'));
 		}
 		return view('noticias.blog',compact('post','idUser'));
     }
@@ -76,14 +80,17 @@ class BlogController extends Controller
         $idUser = Auth::user()->id;
         $user = User::find($idUser);
         $postEdit = Post::find($id);
-        return view('login.dashboardManenger.noticia', compact('postEdit','user'));
+        $userNotif = User::all()->count();
+        $contactNotif = Contact::all()->count();
+        $promotionNotif = Promotion::all()->count();
+        return view('login.dashboardManenger.noticia', compact('postEdit','user','userNotif','contactNotif','promotionNotif'));
     }
 
     public function editarUserPost($id){
         $idUser = Auth::user()->id;
         $user = User::find($idUser);
         $postEdit = Post::find($id);
-        return view('login.dashboardUser.paginas.noticiasUser', compact('postEdit','user'));
+        return view('login.dashboardUser.paginas.postarNoticias', compact('postEdit','user'));
     }
     public function publicarPostEditado(Request $req){
         $post = Post::find($req->input('idPost'));

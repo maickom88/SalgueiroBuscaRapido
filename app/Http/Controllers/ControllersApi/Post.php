@@ -13,18 +13,16 @@ class Post extends Controller
     public function uploadAction(Request $req)
     {
         if($req->hasFile('upload') && $req->file('upload')->isValid()){
-            $user = Auth::user()->id;
-				$id = $user->id;
 				$name = uniqid(date('HisYmd'));
 				$extension = $req->upload->extension();
 				$nameFile = "{$name}.{$extension}";
-				$upload = $req->upload->storeAs('storage/AlbumPost/'.$id, $nameFile, 'pictures');
+				$upload = $req->upload->storeAs('storage/AlbumPost/', $nameFile, 'pictures');
 			if ( !$upload ){
 				return response()->json("ErrorSavedImg");
 			}
             $echo = '{
             "uploaded" : true ,
-            "url" : "http://127.0.0.1:8000/storage/AlbumPost/'.$id.'/'.$nameFile.'"
+            "url" : "http://127.0.0.1:8000/storage/AlbumPost/'.$nameFile.'"
             }';
             return $echo;
 	}

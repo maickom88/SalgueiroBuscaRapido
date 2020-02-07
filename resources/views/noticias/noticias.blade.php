@@ -1,6 +1,20 @@
 @extends('templetes.site')
 
 @section('links')
+    <meta property="og:locale" content="pt_BR">
+
+    <meta property="og:url" content="https://www.salgueirobuscarapido.com/noticias">
+
+    <meta property="og:title" content="Notícias">
+    <meta property="og:site_name" content="Notícias">
+    <meta property="og:description" content="Encontre as melhores notícias da cidade e região aqui!">
+
+    <meta property="og:image" content="{{asset('img/lendo3.jpg')}}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="600">
+    <meta property="og:type" content="website">
+    
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>

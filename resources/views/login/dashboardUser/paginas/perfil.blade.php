@@ -223,13 +223,13 @@
 @section('scripts')
 <script>
 $('#mudarSenha').click(function(){
-			$('#inputMudarSenha').css('display', 'flex');
-		});
+    $('#inputMudarSenha').css('display', 'flex');
+});
 
-        function limparInputSenha(){
-            $('#password').val('');
-            $('#inputMudarSenha').slideUp();
-        }
+function limparInputSenha(){
+    $('#password').val('');
+    $('#inputMudarSenha').slideUp();
+}
 
 
 function carregarPerfil(){
@@ -377,8 +377,6 @@ $("#form-data-senha").submit(function(e){
 			complete: function(){
 				load("close");
 				modalSenha.open();
-				carregarEmpresa();
-				carregarInfo();
                 limparInputSenha();
 			}
 		});

@@ -46,13 +46,13 @@
                 $str = $empresa[0]->name;
                 $str2 = str_replace(' ', '-', $str);
                 @endphp
-			<a href="/empresa/{{$str2}}/{{$id}}"  style="color:white"><h3>{{$empresa[0]->name}}</h3></a>
+			<a href="/pagina/{{$str2}}/{{$id}}"  style="color:white"><h3>{{$empresa[0]->name}}</h3></a>
 			</div>
 			<div class="play">
 			<i class="fa fa-play-circle"></i>
 			</div>
 			</div>
-			<p class="followers" style="color:white; font-weight:bold; "><i class="fa fa-user"></i> {{$empresa[0]->likes->count()}}</p>
+			<p class="followers" style="color:white; font-weight:bold; "><i class="fa fa-heart"></i> {{$empresa[0]->likes->count()}}</p>
 			</div>
             </div>
             @endif
@@ -77,17 +77,19 @@
 
 		<div class="col-lg-4 col-md-4 col-sm-4 mb">
 			<div class="text-center">
+                @php
+                @endphp
             @if(!empty($evento))
                 @php
-                $str = $evento->nome_evento;
+                $str = $evento[0]->nome_evento;
                 $str2 = str_replace(' ', '-', $str);
             @endphp
-		<div class="instagram-panel pn" style="background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.6)), url({{asset('storage/eventos/'.$evento->banner)}}); background-size:cover; background-repeat:no-repeat">
+		<div class="instagram-panel pn" style="background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.6)), url({{asset('storage/eventos/'.$evento[0]->banner)}}); background-size:cover; background-repeat:no-repeat">
 			<i class="fa fa-calendar fa-4x"></i>
-			<h3 style="color:white; font-weight:900">EVENTO</h3>
-            <h4 style="color:white">{{$evento->nome_evento}}</h4>
-			<h4 style="color:white">{{$evento->inicio_data_evento}} as {{$evento->inicio_hora_evento}}</h4>
-            <a style="color:white" href={{route('eventos').'/'.$str2.'_'.$evento->id}} class="mt btn btn-info">Mais informações</a>
+			<h4 style="color:white; font-weight:700">EVENTO</h4>
+            <h4 style="color:white">{{$evento[0]->nome_evento}}</h4>
+			<h5 style="color:white">{{$evento[0]->inicio_data_evento}} as {{$evento[0]->inicio_hora_evento}}</h5>
+            <a style="color:white" href={{route('eventos').'/'.$str2.'_'.$evento[0]->id}} class="mt btn btn-info">Mais informações</a>
             </div>
 		</div>
         @else
@@ -184,7 +186,7 @@
 			<img src={{asset("img/product.png")}} width="100" style="margin-top:20px;" alt="">
 			<h5 class="mt" style="color: #fff;">{{$promotion->title}}</h5>
 
-			<a href="/empresa/{{$str2}}/{{$id}}" class="btn btn-small btn-theme04">Visitar pagina!</a>
+			<a href="/{{$str2}}/{{$id}}" class="btn btn-small btn-theme04">Visitar pagina!</a>
 			</div>
 		</div>
         @endforeach

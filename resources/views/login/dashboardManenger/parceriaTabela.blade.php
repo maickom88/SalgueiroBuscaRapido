@@ -13,7 +13,6 @@
 										<th>Email</th>
                                         <th>Postagens na plataforma</th>
 										<th>Pedido</th>
-										<th>Status</th>
 										<th>Ação</th>
 								</tr>
 							</thead>

@@ -343,40 +343,40 @@ var modalErroSenha = new jBox('Modal', {
 		});
 
 
-		$("#form-data-senha").submit(function(e){
-		var validpass = $('#password').val();
-		if(validpass.length > 7){
-			$.ajax({
-			type:"POST",
-			url:'../api/painel/alterar/senha',
-			data: new FormData(this),
-			contentType: false,
-			cache: false,
-			processData: false,
-			beforeSend: function(){
-				load("open");
-			},
-			success: function(Response) {
-				console.log(Response);
+            $("#form-data-senha").submit(function(e){
+            var validpass = $('#password').val();
+            if(validpass.length > 7){
+                $.ajax({
+                type:"POST",
+                url:'../api/painel/alterar/senha',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function(){
+                    load("open");
+                },
+                success: function(Response) {
+                    console.log(Response);
 
-			},
-            error: function(error){
-                console.log(error);
-            },
-			complete: function(){
-				load("close");
-				modalSenha.open();
-				carregarEmpresa();
-				carregarInfo();
-                limparInputSenha();
-			}
-		});
-		}
-		else{
-			modalErroSenha.open();
-		}
-		e.preventDefault();
-	});
+                },
+                error: function(error){
+                    console.log(error);
+                },
+                complete: function(){
+                    load("close");
+                    modalSenha.open();
+                    carregarEmpresa();
+                    carregarInfo();
+                    limparInputSenha();
+                }
+            });
+            }
+            else{
+                modalErroSenha.open();
+            }
+            e.preventDefault();
+        });
 
 });
 	</script>

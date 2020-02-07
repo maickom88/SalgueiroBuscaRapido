@@ -1064,7 +1064,7 @@ function carregarEmpresa(id){
 		$('#nameEmpEdit').val(data[0].name);
         var nome = data[0].name;
         var nomeUrl = nome.replace(" ", '-');
-        $('#visualizar').attr('href', '../empresa/'+nomeUrl+'/'+idEmpresa);
+        $('#visualizar').attr('href', '../pagina/'+nomeUrl+'/'+idEmpresa);
 		$('#descriptionEmpEdit').val(data[0].description);
 		$('#tagsEmpEdit').val(data[0].tags);
 		$('#selectNinchoEdit').val(data[0].nincho);

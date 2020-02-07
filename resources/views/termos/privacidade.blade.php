@@ -8,12 +8,11 @@
     <link rel="stylesheet" href={{asset('css/eventos.css')}}>
     <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <style>
-    /*.cabecalho::after{
-        background:url({{asset('img/img-04.jpg')}})
-    }*/
     </style>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: POLÍTICA DE PRIVACIDADE')
+@section('descricao',"Conhece os termos de privacidade da nossa plataforma")
+@section('tags', "termos de privacidade, privete")
 
 @section('conteudo')
 

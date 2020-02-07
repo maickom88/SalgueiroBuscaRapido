@@ -27,6 +27,9 @@ p{
     overflow: hidden;
 
 }
+.descEvent img{
+    width:80%;
+}
 .img-banner{
     height:431px;
     width: 100%;

@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-use FarhanWazir\GoogleMaps\GMaps;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Spatie\Analytics\AnalyticsFacade;
-use Spatie\Analytics\Period;
-use Illuminate\Support\Carbon;
 //-----------------------Pagina Inicial---------------------//
 Route::get('/', ['uses'=>'IndexController@index'])->name('home');
 
@@ -41,7 +37,7 @@ Route::post('/resultado-pesquisa', 'ResultSearchController@result')->name('resul
 
 
 //------------------------Pagina da empresa---------------------------//
-Route::get('/empresa/{nomeEmpresa}/{id}',['uses'=>'PaginaIndividualController@page'])->name('pagina.empresa');
+Route::get('pagina/{nomeEmpresa}/{id}',['uses'=>'PaginaIndividualController@page'])->name('pagina.empresa');
 
 
 //-----------------------Noticias individual------------------------//
@@ -139,7 +135,6 @@ Route::get('/painel/sair', ['uses'=>'PainelEmpresarialController@logout'])->name
 
 //-----------------------Rota de empresas do perfil adm--------------//
 Route::get('administrativo/empresas', ['uses'=>'PainelManengerController@empresas'])->name('empManenger');
-
 
 
 //-----------------------Rota de Perfil de Conta do perfil adm--------------//

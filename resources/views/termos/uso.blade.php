@@ -13,7 +13,9 @@
     }*/
     </style>
 @endsection
-@section('titulo','SALGUEIRO BUSCA RÁPIDO: POLÍTICA DE PRIVACIDADE')
+@section('titulo','SALGUEIRO BUSCA RÁPIDO: TERMOS DE USO')
+@section('descricao',"Conhece os termos de uso da nossa plataforma")
+@section('tags', "termos de uso, usabilidade, site, plataforma, salgueiro busca rapido")
 
 @section('conteudo')
 

@@ -84,7 +84,7 @@
 					<label class="btn btn-theme04 btn-lg" id="photosLabel" style="margin-top:20px;" for="photos">Enviar fotos</label>
 					<label class="btn btn-theme02 btn-lg"style="margin-top:20px;display:none;" id="cancelImg" for=""  data-toggle="tooltip" title="Cancelar"><i class="fa fa-times"></i></label>
 					<input type="file" name="album[]" multiple id="photos" style="display:none" >
-					<button type="submit" id="enviar" class="btn btn-theme03 btn-lg" style="margin-top:20px;">Publicar Novidades</button><br>
+					<button type="submit" id="enviar" class="btn btn-theme03 btn-lg" style="margin-top:20px;">Publicar fotos</button><br>
 				</form>
 			</div>
         <div class="container" >
@@ -114,8 +114,8 @@
 							</ul>
 					</div>
                     @else
-                        <h4>Sua empresa não possui fotos! <br> Clique para adcionar pois é importante para os usúarios <br>
-                        conhecer mais sobre seu serviço/negócio...
+                        <h4>Sua empresa não possui fotos! <br> Clique em enviar fotos e publique, pois é importante para visibilidade e credibilidade <br>
+                        do seu serviço/negócio...
                         </h4>
 					@endif
 					</div>

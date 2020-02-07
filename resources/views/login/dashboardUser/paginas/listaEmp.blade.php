@@ -10,6 +10,7 @@
    <section class="wrapper site-min-height">
 <!--------------------------------conteudo das empresa---------->
 		<div class="row mt" >
+        @if($user->likes->count() > 0)
             @if(!empty($novidades[0]))
                 @foreach($novidades as $novidade)
                 <div class="container">
@@ -63,12 +64,17 @@
         @else
         <div class="container" style="padding:5px;">
             <div class="row" style="text-align:center">
-            <h3>Você ainda não favoritou uma empresa. Basta clicar no botão de gostei na pagina da empresa e você receberá todas as novidades!</h3>
+            <h3>Você receberá novidades assim que publicarem!</h3>
         </div>
 
         </div>
         @endif
-
+        @else
+        <div class="container" style="padding:5px;">
+            <div class="row" style="text-align:center">
+            <h3>Você ainda não favoritou uma empresa. Basta clicar no botão de gostei na pagina da empresa e você receberá todas as novidades!</h3>
+        </div>
+        @endif
         </div>
 	</section>
 </section>

@@ -206,12 +206,8 @@ ClassicEditor
     .create( document.querySelector( '#editor' ), {
         removePlugins: [ 'Link' ],
         toolbar: [ 'Heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload'],
-        ckfinder: {
-            // Upload the images to the server using the CKFinder QuickUpload command.
-            uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
-            options: {
-                resourceType: 'Images'
-            }
+         ckfinder: {
+            uploadUrl: 'http://127.0.0.1:8000/api/post/upload',
         }
     } )
     .catch( error => {

@@ -2,7 +2,7 @@
     scroll-behavior: smooth
 }
 .artigo img, figcaption{
-    width:300px !important;
+    width:80% !important;
 }
 @media (max-width: 340px) {
     .artigo img, figcaption{

@@ -14,6 +14,8 @@
     </style>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: '.$evento->nome_evento)
+@section('descricao',"{{$evento->descricao_evento}}")
+@section('tags', "{{$evento->tags}}")
 
 @section('conteudo')
 

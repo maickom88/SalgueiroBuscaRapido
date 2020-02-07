@@ -1,20 +1,33 @@
 @extends('templetes.site')
-
 @section('links')
+ @php
+    $str = $empresa->name;
+    $str2 = str_replace(' ', '-', $str);
+@endphp
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://www.salgueirobuscarapido.com/"{{$empresa->name.'/'.$empresa->id}}>
+<meta property="og:title" content="{{$empresa->name}}">
+<meta property="og:site_name" content="{{$empresa->name}}">
+<meta property="og:description" content="{{substr($empresa->description, 0 , 140).'...'}}">
+<meta property="og:image" content="{{asset('storage/logo-empresas/'.$empresa->banner)}}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="600">
+<meta property="og:type" content="website">
 	<link href={{asset('css/style-empresa.css')}} rel="stylesheet">
 	<link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.11/css/lightgallery.css">
     <link href={{asset('css/style-painel.css')}} rel="stylesheet">
     <script data-ad-client="ca-pub-1803332419619783" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+   gtag('config', 'UA-157182219-1');
 
-    gtag('config', 'UA-157182219-1');
     </script>
 
     <style>
@@ -24,6 +37,7 @@
     </style>
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO:'.$empresa->name.'_'.$empresa->id);
+@section('descricao',"{{substr($empresa->description, 0 , 140).'...'}}")
 
 @section('conteudo')
 @include('templetes.top-menu')
@@ -58,9 +72,8 @@
                     <i class="fas fa-share-alt"></i>
                     Compartilhar
                     <div class="compart" id="sharepage">
-                        <a href="#"><i class="fab fa-facebook-square"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></i></a>
-                        <a href="#"><i class="fab fa-whatsapp-square"></i></a>
+                        <div class="fb-share-button" data-href="https://www.salgueirobuscarapido.com/pagina/"{{$empresa->name.'/'.$empresa->id}}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2Fspatie%2Flaravel-analytics&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"></i></a></div>
+                        <a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?text=Conheça {{$empresa->name}}"><i class="fab fa-whatsapp-square"></i></a>
                     </div>
                     </div>
                 </div>
@@ -251,7 +264,7 @@
 					 <input type="hidden" name="idUser" value={{Auth::id()}}>
             </div>
             <div class="btn-enviar-comentario">
-                <label for="enviar">Enviar comentário<i class="fas fa-paper-plane"></i></label>
+                <label id="btnEnviar" for="enviar">Enviar comentário<i class="fas fa-paper-plane"></i></label>
                 <input type="submit" id="enviar" name="enviar">
             </div>
         </form>
@@ -377,39 +390,24 @@
 <section id="vejamais">
 	<div class="container">
 			<div class="row card-empresas" >
-				@foreach ($empresas as $emp)
+                @php
+                    $num = [1,2,3,4];
+                @endphp
+				@foreach ($num as $emp)
 					 <div class="col-md-4" style="outline:none !important">
-                    <div class="empresa-content">
-                        <img src={{asset("storage/logo-empresas/$emp->banner")}} class="img-fluid">
-
-                        <div class="name-empresa">
-                            <h4>{{$emp->name}}</h4>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
-                        </div>
-                        <div class="rodape">
-                            <button ID="btn-modal" style="display:none;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">                          </button>
-
-                            <label for="btn-modal"><i class="fas fa-window-restore"></i></label>
-                            <i onclick="blue(1)" id="like1"  class="coracao-1 fas fa-heart"></i>
-                            <i onclick="share(1)"  class="fas fa-share-alt"></i>
-                            <div id="share1" class="share2">
-                                <a href="#"><i class="fab fa-facebook-square"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></i></a>
-                                <a href="#"><i class="fab fa-whatsapp-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- Anuncios carrosel -->
+                        <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-1803332419619783"
+                            data-ad-slot="2067293701"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                 </div>
 				@endforeach
-
-
-
-
-
 			</div>
 	</div>
 </section>
@@ -426,7 +424,43 @@
 @endif
 
 <script>
-
+ var controller = 0
+    var aux = 0
+    function sharepage(){
+            controller++
+            if(controller==1 & aux==0){
+                var ol = $('#sharebloco')
+                ol.addClass("blocoshare")
+                document.getElementById('sharepage').style.opacity="1"
+                document.getElementById('sharepage').style.transform="translateY(0)"
+                document.getElementById('sharepage').style.zIndex="1"
+                aux++
+            }
+            else if(controller==2 & aux!=0){
+                var ol = $('#sharebloco')
+                ol.removeClass("blocoshare")
+                document.getElementById('sharepage').style.opacity="0"
+                document.getElementById('sharepage').style.transform="translateY(-100px)"
+                document.getElementById('sharepage').style.zIndex="-1"
+                controller=0
+                aux=0
+            }
+        }
+var errorComment = new jBox("Tooltip",{
+    target:"#btnEnviar",
+    theme:"TooltipBorder",
+    trigger:"click",adjustTracker:!0,
+    closeOnClick:"body",
+    closeButton:"box",
+    animation:"move",
+    position:{x:"left",y:"top"},
+    outside:"y",
+    pointer:"left:20",
+    offset:{x:25},
+    content:"Para comentar é necessário está logado na plataforma, <a href='/cadastro'>clique aqui </a> para se cadastrar",
+    adjustDistance:{top:55,right:5,bottom:5,left:5},
+    zIndex:4e3
+});
 
 var successDelete = new jBox('Modal', {
         attach: '#test',
@@ -508,6 +542,7 @@ var successDelete = new jBox('Modal', {
 $(function(){
 	getData(1);
 	IsLike();
+
 @if(Auth::check())
 	$("#form-data").submit(function(e){
 		var idEmp = {{$empresa->id}}
@@ -588,15 +623,7 @@ $('.card-empresas').slick({
 	});
 </script>
 <script>
-var modalCommentInfo = new jBox('Modal', {
-	attach: '#test',
-	title: '<div width="100%" class="text-center"><i class="fa fa-ban fa-3x" style="color: red"></i></div>',
-	content: "Para comentar é necessário estar logado na plataforma, caso não possua uma conta <a href='/cadastro'>Clique aqui</a> e cadastre-se, é grátis! ",
-	animation: 'zoomIn',
-	closeButton: true,
-	delayOnHover: true,
-	showCountdown: true
-});
+
 function load(action){
 	var load_div = $(".loader");
 	if(action==="open"){
@@ -606,17 +633,21 @@ function load(action){
 	load_div.removeClass("is-active");
 	}
 }
-@if(!Auth::check()	)
-var likeIsLogin = new jBox('Modal', {
-	attach: '#test',
-	title: '<div width="100%" class="text-center"><h3>Ops</h3></div>',
-	content: "Para avaliar é necessário estar logado ou ter um conta na plataforma, se não tiver uma conta <a href='/cadastro'><b>Clique Aqui</b></a> e cadastre-se é grátis!",
-	animation: 'pulse',
-	audio: '../audio/bling2',
-	volume: 80,
-	closeButton: true,
-	delayOnHover: true,
-	showCountdown: true
+@if(!Auth::check())
+var likeIsLogin = new jBox("Tooltip",{
+    target:"#likepage",
+    theme:"TooltipBorder",
+    trigger:"click",adjustTracker:!0,
+    closeOnClick:"body",
+    closeButton:"box",
+    animation:"move",
+    position:{x:"left",y:"top"},
+    outside:"y",
+    pointer:"left:20",
+    offset:{x:25},
+    content:"Para avaliar é necessário está logado na plataforma, <a href='/cadastro'>clique aqui </a> para se cadastrar",
+    adjustDistance:{top:55,right:5,bottom:5,left:5},
+    zIndex:4e3
 });
 @endif
 function IsLike(){
@@ -639,7 +670,7 @@ function IsLike(){
 }
 @if(!Auth::check())
 	$("#form-data").submit(function(e){
-	modalCommentInfo.open();
+	errorComment.open();
 	e.preventDefault();
 });
 @endif

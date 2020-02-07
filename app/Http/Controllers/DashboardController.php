@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Empresa\Empresa;
 use App\Empresa\Feed\NovidadeEmpresa;
 use App\Empresa\Promotion\Promotion;
+use App\Evento\Evento;
 use App\User;
 use App\Parceiro;
 use App\Post\Post;
@@ -84,6 +85,7 @@ class DashboardController extends Controller
         $user->save();
         $empresasAtv = Empresa::whereIn('id', $idEmpresa)->orderBy('id','desc')->limit(3)->get();
         $empresasPostAtv = [];
+        $evento = Evento::orderBy('id','desc')->take(1)->get();
         foreach ($empresasAtv as $empresa){
             $count = $empresa->novidades->count();
             if($count >= 1){
@@ -97,7 +99,7 @@ class DashboardController extends Controller
 		try{
 			$dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
-			return view('login.dashboardUser.paginas.painel', compact(['user','promotions','post', 'insta', 'empresa', 'dados','empresasPostAtv']));
+			return view('login.dashboardUser.paginas.painel', compact(['user','promotions','post', 'insta', 'empresa', 'dados','empresasPostAtv','evento']));
 
 		}
 		catch(Exception $e){
@@ -107,7 +109,7 @@ class DashboardController extends Controller
 			]
 		]);
 
-		return view('login.dashboardUser.paginas.painel', compact(['user','promotions','post', 'empresasPostAtv', 'insta', 'empresa', 'dados']));
+		return view('login.dashboardUser.paginas.painel', compact(['user','promotions','post', 'empresasPostAtv', 'insta', 'empresa', 'dados','evento']));
 		}
 
 
@@ -144,11 +146,11 @@ class DashboardController extends Controller
 	public function noticia(){
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-
+        $post = Post::orderBy('id','desc')->first();
 		$verificacao = $user->permissions->user;
 
 		if($verificacao=="sim"){
-		return view('login.dashboardUser.paginas.noticiasUser', compact('user'));
+		return view('login.dashboardUser.paginas.noticiasUser', compact('user','post'));
 		}
 		return redirect()->back();
 	}
@@ -156,11 +158,11 @@ class DashboardController extends Controller
 
 		$idUser = Auth::id();
 		$user = User::find($idUser);
-
+        $eventos = Evento::orderBy('id', 'desc')->limit(3)->get();
 		$verificacao = $user->permissions->user;
 
 		if($verificacao=="sim"){
-		return view('login.dashboardUser.paginas.eventos', compact('user'));
+		return view('login.dashboardUser.paginas.eventos', compact('user','eventos'));
 		}
 		return redirect()->back();
 	}

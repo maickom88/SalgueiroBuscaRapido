@@ -37,7 +37,7 @@
                     $dataBr = $dataBr[2].'/'.$dataBr[1].'/'.$dataBr[0];
                 @endphp
                 <div style="margin:10px; background-color:#D4D4D4; padding:20px; border-radius:4px;">
-                    <h5 style="color:white; line-height:1.5em; ">{!!substr($novidade->content, 0, 30)!!}...<br><b style="color:#3e3e3e">{{$dataBr}}</b></h5><a href ="../empresa/{{$str2}}/{{$novidade->empresa_id}}#novidades" class="btn btn-info" style=" margin-right:5px;" >Visualizar</a><button onclick="deleteNovidade({{$novidade->id}})" class="btn btn-dark"><i class="fa fa-trash-o"></i></button>
+                    <h5 style="color:white; line-height:1.5em; ">{!!substr($novidade->content, 0, 30)!!}...<br><b style="color:#3e3e3e">{{$dataBr}}</b></h5><a href ="../{{$str2}}/{{$novidade->empresa_id}}#novidades" class="btn btn-info" style=" margin-right:5px;" >Visualizar</a><button onclick="deleteNovidade({{$novidade->id}})" class="btn btn-dark"><i class="fa fa-trash-o"></i></button>
                 </div>
                 @endforeach
             </div>
