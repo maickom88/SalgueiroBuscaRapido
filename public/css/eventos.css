@@ -140,6 +140,7 @@ p{
     }
     .img-banner{
         display: none;
+
     }
     .banner img{
         border-radius: 0;
@@ -149,6 +150,10 @@ p{
     }
     .banner{
         z-index: 0 !important;
+        height: 240px;
+        position: relative;
+        top: -95px;
+        overflow: hidden;
     }
 }
 

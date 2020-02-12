@@ -11,8 +11,8 @@
 @section('conteudo')
 @include('templetes.top-menu')
 
- <section class="content-services" >
-                    <div class="container text-center" style="margin-top:60px;">
+ <section class="content-services" style="margin-top:20px !important" >
+                    <div class="container text-center" >
                         <a href="http://www.freepik.com">
                         <img  width="700px" class="img-fluid" src={{asset('img/404.png')}} alt="">
                         </a>

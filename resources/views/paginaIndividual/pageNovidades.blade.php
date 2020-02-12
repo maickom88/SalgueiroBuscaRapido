@@ -27,7 +27,7 @@
 					@endphp
 					<li  class="visi" data-src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
 					<a href="">
-						<img class="img-responsive" style="width:120px !important;" src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
+						<img class="img-responsive" style="width:120px !important; height:120px !important" src={{asset('storage/album-novidades/'.$email.'/'.$novidade->photos[$i]->album)}}>
 						<div class="demo-gallery-poster">
 						<img src="https://sachinchoolur.github.io/lightGallery/static/img/zoom.png">
 

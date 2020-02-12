@@ -23,6 +23,7 @@ novidades, eventos e notícias da região.">
 <meta property="og:type" content="website">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -98,9 +99,9 @@ window.addEventListener('appinstalled', (evt) => {
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="listar-bannercontent">
-                            <h1>Salgueiro busca rápido!</h1>
+                            <h1 data-aos="zoom-in">Salgueiro busca rápido!</h1>
                             <div class="listar-description">
-                            <p>Encontre tudo o que precisa aqui com apenas poucos cliques!</p>
+                            <p data-aos="zoom-in">Encontre tudo o que precisa aqui com apenas poucos cliques!</p>
                             </div>
                             <form method="POST" action={{route('resultSearch')}} class="listar-formtheme listar-formsearchlisting">
                                 @csrf
@@ -136,7 +137,7 @@ window.addEventListener('appinstalled', (evt) => {
     <section class="intro-area white" id="intro">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 text-center ">
+                <div class="col-sm-12 text-center" data-aos="fade-right">
                     <h2>Encontre Tudo aqui!</h2>
                 <div class="sub-header">
                     <p>Tenha acesso a um conteúdo exclusivo, com ofertas promocionais e notícias da cidade
@@ -146,7 +147,7 @@ window.addEventListener('appinstalled', (evt) => {
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4" data-aos="zoom-in">
                 <div class="intro-block">
                     <span class="intro-icon"><i class="fas fa-location-arrow"></i></span>
                     <h3>Melhores empresas</h3>
@@ -154,7 +155,7 @@ window.addEventListener('appinstalled', (evt) => {
                     </p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" data-aos="zoom-in">
                 <div class="intro-block">
                     <span class="intro-icon"><i class="fas fa-percentage"></i></span>
                     <h3>Descontos e vales</h3>
@@ -163,7 +164,7 @@ window.addEventListener('appinstalled', (evt) => {
                     </p>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" data-aos="zoom-in">
                 <div class="intro-block">
                     <span class="intro-icon"><i class="fas far fa-newspaper"></i></span>
                     <h3>Notícias e eventos</h3>
@@ -197,7 +198,7 @@ window.addEventListener('appinstalled', (evt) => {
             <div class="container">
                 <div class="row card-slide">
                     @foreach ($empresa as $emp)
-								<div class="col-md-4 card-content " style="outline:none !important;">
+								<div class="col-md-4 card-content " style="outline:none !important;" data-aos="fade-right"D>
                         <div class="likes">
                             <span>{{$emp->likes->count()}} <i class="fas fa-heart"></i></span>
                         </div>
@@ -258,8 +259,8 @@ window.addEventListener('appinstalled', (evt) => {
             </div>
 			<div class="row">
 					<div class="col-md-12 content-app-2">
-						<button type="button" class="btn" onclick="installApp()"><a>Download</a></button>
-						<button id="modalNews" type="button" class="btn orange" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Newslatter</button>
+						<button data-aos="zoom-in" data-aos-delay="50" type="button" class="btn" onclick="installApp()"><a>Download</a></button>
+						<button data-aos="zoom-in" data-aos-duration="100" id="modalNews" type="button" class="btn orange" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Newslatter</button>
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-newsletter" role="document">
 							<div class="modal-content">
@@ -314,7 +315,7 @@ window.addEventListener('appinstalled', (evt) => {
                         $mes = $data1[1];
                         $mes = $dataMes[$mes];
                     @endphp
-                    <div class="col-md-4 card-conteudo" style="outline:none">
+                    <div class="col-md-4 card-conteudo" data-aos="flip-left" style="outline:none">
                         <div class="promo-atual">
                                 <a style="outline:none">{{$promotion->desconto}}%</a>
                             </div>
@@ -345,7 +346,7 @@ window.addEventListener('appinstalled', (evt) => {
                         $mes = $data1[1];
                         $mes = $dataMes[$mes];
                     @endphp
-                    <div class="col-md-4 card-conteudo" style="outline:none">
+                    <div class="col-md-4 card-conteudo" data-aos="flip-left" style="outline:none">
                         <div class="promo-atual" style="z-index:1 !important">
                                 <a style="outline:none">{{$promotion->desconto}}%</a>
                             </div>
@@ -390,7 +391,7 @@ window.addEventListener('appinstalled', (evt) => {
     $str2 = str_replace(' ', '-', $str);
     ?>
 
-    <div class="col-md-4 card-content">
+    <div class="col-md-4 card-content" data-aos="flip-left">
     <div class="card" style="width: 19rem;">
         <div class="img-card">
             <div class="gradient">
@@ -450,7 +451,7 @@ window.addEventListener('appinstalled', (evt) => {
             <div class="row">
                 <div class="col-md-6">
                     <h1>Anuncie no nosso site e obtenha <span class="type"></span></h1>
-                    <p>Tenha uma equipe de marketing gerando seu conteúdo
+                    <p data-aos="fade-up">Tenha uma equipe de marketing gerando seu conteúdo
                         Aumente suas vendas investindo em campanhas, tenha também relatórios
                         Saiba o que as pessoas pensam sobre sua empresa/serviço!
                     </p>
@@ -460,13 +461,17 @@ window.addEventListener('appinstalled', (evt) => {
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="img">
+                    <div class="img" data-aos="fade-up-left">
                         <img src={{asset('img/praosite.png')}} class="img-fluid">
                     </div>
                 </div>
             <div>
         </div>
     </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 @endsection
 
 

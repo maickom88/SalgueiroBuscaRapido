@@ -14,9 +14,9 @@
 				<a href={{route('privacidade')}}>Política de Privacidade</a> / <a href={{route('condicoes')}}>Termos e condições</a>
             </div>
             <div class="col-md-3">
-                    <a href="https://www.facebook.com/salgueirosbr/"><i class="fab fa-facebook-square"></i></a>
-                    <a href=""><i class="fab fa-instagram"></i></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=5587988382558"><i class="fab fa-whatsapp-square"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/salgueirosbr/"><i class="fab fa-facebook-square"></i></a>
+                    <a target="_blank" href=""><i class="fab fa-instagram"></i></i></a>
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=5587988382558"><i class="fab fa-whatsapp-square"></i></a>
             </div>
         </div>
     </div>

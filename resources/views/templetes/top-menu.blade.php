@@ -58,7 +58,7 @@
 				</div>
 				<div class="col-md-6 "  style=" padding-left:20px;">
 					<ul style="list-style:none;">
-						@if ($user->permissions->user == 'sim')
+						@if ($user->permissions->user == 'sim' and $user->permissions->blogueiro == 'nao')
 								<li class="mb-2"><a  href={{route('userPerfil')}} style="text-transform:none">Perfil</a></li>
 								<li class="mb-2"><a href={{route('listaEmp')}} style="text-transform:none">Empresas Favoritas</a></li>
 								<li class="mb-2"><a href={{route('noticia')}} style="text-transform:none">Notícias da Cidade</a></li>
@@ -66,13 +66,13 @@
 								<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
 						@elseif($user->permissions->empresario == 'sim')
 								<li class="mb-2"><a  href={{route('perfilEmp')}} style="text-transform:none">Perfil</a></li>
-								<li class="mb-2"><a href="" style="text-transform:none">Pagina da Empresa</a></li>
+								<li class="mb-2"><a href={{route('editarEmp')}} style="text-transform:none">Pagina da Empresa</a></li>
 								<li class="mb-2"><a href={{route('noticiasEmp')}} style="text-transform:none">Notícias da Cidade</a></li>
 								<li class="mb-2"><a href={{route('eventoManenger')}} style="text-transform:none">Eventos da Cidade</a></li>
 								<li class="mb-2"><a href={{route('logoutEmp')}} style="text-transform:none">Sair da Conta</a></li>
-						@elseif($user->permissions->blogueiro == 'sim')
+						@elseif($user->permissions->blogueiro == 'sim' and $user->permissions->user == 'sim' )
 							<li class="mb-2"><a  href={{route('userPerfil')}} style="text-transform:none">Perfil</a></li>
-							<li class="mb-2"><a  href={{route('')}} style="text-transform:none">Publicar Poste</a></li>
+							<li class="mb-2"><a  href={{route('blogUser')}} style="text-transform:none">Publicar Poste</a></li>
 							<li class="mb-2"><a href={{route('listaEmp')}} style="text-transform:none">Empresas Favoritas</a></li>
 							<li class="mb-2"><a href={{route('noticia')}} style="text-transform:none">Notícias da Cidade</a></li>
 							<li class="mb-2"><a href={{route('eventosUser')}} style="text-transform:none">Eventos da Cidade</a></li>
@@ -88,7 +88,7 @@
 						@endif
 
 						<div class="dropdown-divider mt-1 mb-2"></div>
-						<li class="mb-2"><a href="" style="text-transform:none"> <i class="fas fa-user-plus"></i>  Indique um Amigo</a></li>
+						<li class="mb-2"><a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?text=Já conhece a nova plataforma de Salgueiro?" style="text-transform:none"> <i class="fas fa-user-plus"></i>  Indique um Amigo</a></li>
 					</ul>
 				</div>
 			</div>
@@ -138,7 +138,7 @@
 				<li class="mb-2"><a href={{route('logoutUser')}} style="text-transform:none">Sair da Conta</a></li>
 			@elseif($user->permissions->empresario == 'sim')
 				<li class="mb-2"><a  href={{route('perfilEmp')}} style="text-transform:none">Perfil</a></li>
-				<li class="mb-2"><a href="" style="text-transform:none">Pagina da Empresa</a></li>
+				<li class="mb-2"><a href={{route('editarEmp')}} style="text-transform:none">Pagina da Empresa</a></li>
 				<li class="mb-2"><a href={{route('noticiasEmp')}} style="text-transform:none">Notícias da Cidade</a></li>
 				<li class="mb-2"><a href={{route('eventEmp')}} style="text-transform:none">Eventos da Cidade</a></li>
 				<li class="mb-2"><a href={{route('logoutEmp')}} style="text-transform:none">Sair da Conta</a></li>

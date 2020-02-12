@@ -51,7 +51,7 @@ class EventosController extends Controller
 			}
 			$evento->banner = $nameFile;
 		}else{
-            $evento->banner = 'vazio';
+            $evento->banner = 'vazio.png';
         }
         $valid = $user->eventos()->save($evento);
         if($valid){

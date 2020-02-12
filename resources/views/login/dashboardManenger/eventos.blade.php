@@ -123,11 +123,11 @@ endif;
 					<p style="margin-left:20px">Conte um pouco sobre você ou a sua empresa. É importante mostrar ao público quem está por trás do evento, dando mais credibilidade à sua produção.</p>
 					<div id="nome" class="form-group" style="width:80%;">
 							<label>Nome</label>
-							<input type="text" name="nomeOrg" id="nomeOrg" class="form-control" >
+							<input type="text" name="nomeOrg" id="nomeOrg" class="form-control" required>
 					</div>
 					<div class="form-group" style="width:100%;">
 							<label>Descrição</label>
-							<textarea class="form-control" id="descOrg" name="descOrg" maxlength="400"></textarea>
+							<textarea class="form-control" id="descOrg" name="descOrg" maxlength="400" required></textarea>
 					</div>
 					<h2>7. Outras definições</h2>
 					<div class="row">
