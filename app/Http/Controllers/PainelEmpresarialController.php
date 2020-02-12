@@ -23,7 +23,7 @@ use App\BuscasOnSite\Search;
 use App\Comment\Comment;
 use App\Empresa\Album\Album;
 use App\Like;
-
+use Vinkla\Instagram\Instagram;
 class PainelEmpresarialController extends Controller
 {
 
@@ -144,7 +144,31 @@ while(count($arrayAnalytics) < 12){
     }
     $user = Auth::User();
     $chave='385bc83d';
-    $cid = '457982'; // CID da sua cidade, encontre a sua em http://hgbrasil.com/weather
+    $cid = '457982';
+    try{
+        $instagram = new Instagram('2089363990.1677ed0.96d466364c2d4f4fbf55e7097920f69d');
+        $insta = $instagram->media(['count'=>2	]);
+    }
+    catch(Exception $e){
+        $j = '{
+                "link" : "https://www.instagram.com/p/BsLUGRJHPs2/",
+                "user" : {
+                    "username": "srfrank__",
+                    "profile_picture":"https://scontent.cdninstagram.com/vp/a89b9961ba543c9e0ad50668df298fb9/5E2B1EB4/t51.2885-19/s150x150/41994235_273303863291015_8073893064499789824_n.jpg?_nc_ht=scontent.cdninstagram.com"
+                },
+                "images" : {
+                    "low_resolution" :{
+                        "url": "https://scontent.cdninstagram.com/vp/1f21c4419622421ee407be1d90a58933/5E24DD9B/t51.2885-15/e35/p320x320/47689688_287224058651439_5941001623868708459_n.jpg?_nc_ht=scontent.cdninstagram.com"
+                    }
+                }
+            }';
+            $m = json_decode($j);
+        $json =[
+            0 =>  $m,
+            1 => $m
+            ];
+        $insta = $json;
+    };
     $promotion = $user->permissions->empresas->promotion;
     $post = Post::orderBy('views','desc')->first();
     $evento = Evento::orderBy('id','desc')->first();
@@ -179,7 +203,7 @@ while(count($arrayAnalytics) < 12){
     try{
         $dados = json_decode(file_get_contents('http://api.hgbrasil.com/weather?woeid='.$cid.'&format=json&key='.$chave), true);
 
-        return view('login.dashboard.dashboardEmp',compact('userModel','commentsUser','likesUser','user' ,'dados', 'charts','promotion','evento', 'post','buscas'));
+        return view('login.dashboard.dashboardEmp',compact('userModel','commentsUser','likesUser','user' ,'dados', 'charts','promotion','evento', 'post','buscas','insta'));
 
     }
     catch(Exception $e){
@@ -188,8 +212,7 @@ while(count($arrayAnalytics) < 12){
             "temp"=>25
         ]
     ]);
-    return view('login.dashboard.dashboardEmp',compact('userModel','commentsUser','likesUser','user' ,'buscas','dados', 'charts', 'promotion','evento'
-    ));
+    return view('login.dashboard.dashboardEmp',compact('userModel','commentsUser','likesUser','user' ,'buscas','dados', 'charts', 'promotion','evento','insta'));
     }
 }
 	public function perfil(){

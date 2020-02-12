@@ -290,7 +290,7 @@ window.addEventListener('appinstalled', (evt) => {
     </section>
     <!-----------start news------->
     <!--Promoçoes-->
-    @if (!empty($promotions))
+    @if($promotions->isNotEmpty())
     <section class="promo">
         <div class="container">
             <div class="row">

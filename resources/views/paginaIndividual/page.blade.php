@@ -71,8 +71,12 @@
                     <div  id="sharebloco" onclick="sharepage()" class="bloco">
                     <i class="fas fa-share-alt"></i>
                     Compartilhar
+                    @php
+                        $str = $empresa->name;
+                        $str2 = str_replace(' ', '-', $str);
+                    @endphp
                     <div class="compart" id="sharepage">
-                        <div class="fb-share-button" data-href="https://www.salgueirobuscarapido.com/pagina/"{{$empresa->name.'/'.$empresa->id}}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgithub.com%2Fspatie%2Flaravel-analytics&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"></i></a></div>
+                        <div class="fb-share-button" data-href="https://www.salgueirobuscarapido.com/pagina/{{$str2.'/'.$empresa->id}}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.salgueirobuscarapido.com/pagina/{{$str2.'/'.$empresa->id}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"></i></a></div>
                         <a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?text=Conheça {{$empresa->name}}"><i class="fab fa-whatsapp-square"></i></a>
                     </div>
                     </div>

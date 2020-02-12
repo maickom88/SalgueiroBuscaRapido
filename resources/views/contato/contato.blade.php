@@ -87,13 +87,13 @@ window.addEventListener('appinstalled', (evt) => {
                     </div>
                     <div class="single-feature">
                         <span class="featured-icon"><i class="fa fa-newspaper"></i></span>
-                        <h3>NOTÍÇIAS E EVENTOS</h3>
+                        <h3>NOTÍCIAS E EVENTOS</h3>
                         <p>Fique por dentro de todas as notícias, novidades e eventos da região!</p>
                     </div>
                     <div class="single-feature">
                         <span class="featured-icon"><i class="fa fa-mobile"></i></span>
                         <h3>TECNOLOGIA PWA</h3>
-                        <p>Baixe o nosso aplicativo em qualquer dispositivo que esteja usando!</p>
+                        <p>Adicione a sua tela e tenha acesso facilmente a nossa plataforma</p>
                     </div>
                     <div class="single-feature">
                         <span class="featured-icon"><i class="fa fa-search"></i></span>

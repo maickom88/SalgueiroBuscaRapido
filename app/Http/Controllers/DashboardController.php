@@ -42,9 +42,6 @@ class DashboardController extends Controller
 		$user = User::find($idUser);
 		$chave='385bc83d';
 		$cid = '457982';
-
-
-
 		try{
 			$instagram = new Instagram('2089363990.1677ed0.96d466364c2d4f4fbf55e7097920f69d');
 			$insta = $instagram->media(['count'=>2	]);

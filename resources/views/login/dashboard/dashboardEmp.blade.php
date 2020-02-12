@@ -9,10 +9,16 @@
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
+@php
+    $str = $user->empresas->name;
+    $str2 = str_replace(' ', '-', $str);
+@endphp
           <div class="col-lg-9 main-chart">
+              <a href={{'pagina/'.$str2.'/'.$user->empresas->id}} class="btn btn-info">Visualizar minha empresa!</a>
             <div style="width=100% ; height:400px;"> {!! $charts->container() !!}
 				</div>
 				<div class="row mt">
+
               <!-- SERVER STATUS PANELS -->
               <div class="col-md-4 col-sm-4 mb">
                 <div class="grey-panel pn donut-chart">
@@ -171,7 +177,7 @@
               <!--  PROFILE 02 PANEL -->
 		<div class="col-lg-4 col-md-4 col-sm-4 mb">
 			<div class="content-panel pn" >
-			<div id="profile-02" style="background: url('https://scontent.cdninstagram.com/vp/1f21c4419622421ee407be1d90a58933/5E24DD9B/t51.2885-15/e35/p320x320/47689688_287224058651439_5941001623868708459_n.jpg?_nc_ht=scontent.cdninstagram.com'); background-size:cover; background-position:center;	">
+			<div id="profile-02" style="background: url('{{$insta[0]->images->low_resolution->url}}'); background-size:cover; background-position:center;	">
 				<span class="label label-info" >SIGA E CURTA NOSSO INSTAGRAM</span><br>
 				<a target="_blank"href="https://www.instagram.com/accounts/login/?next=%2Fsrfrank__%2F&source=follow" class="label label-info">SEGUIR</a>
 			</div>
@@ -180,8 +186,8 @@
 			</div>
 			</div>
 			<!-- /panel -->
-              </div>
-              <!--/ col-md-4 -->
+        </div>
+        <!--/ col-md-4 -->
 
 		<div class="col-md-4 mb">
                 <div class="twitter-panel pn">
@@ -191,9 +197,10 @@
                 </div>
               </div>
               <div class="col-md-4 mb">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <!-- Anuncio para painel --> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1803332419619783" data-ad-slot="5463619402" data-ad-format="auto" data-full-width-responsive="true"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                <!-- Anuncio para painel --> <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1803332419619783" data-ad-slot="5463619402" data-ad-format="auto" data-full-width-responsive="true"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
               </div>
               <!-- /col-md-4 -->
+
             </div>
             <!-- /row -->
 
@@ -217,17 +224,17 @@
 			<div class="insta-photos mb" >
 				<div class="pr2-social centered" style="background:white; padding:10px; height:60px">
 					<div class="img-insta" style="float:left;display:flex;justify-content:center; align-items:center">
-						<a target="_blank"href=https://www.instagram.com/p/BoE9CjhnLHE/><img id="insta-img" class="img-circle" src=https://scontent.cdninstagram.com/vp/a89b9961ba543c9e0ad50668df298fb9/5E2B1EB4/t51.2885-19/s150x150/41994235_273303863291015_8073893064499789824_n.jpg?_nc_ht=scontent.cdninstagram.com></a>
+						<a target="_blank"href={{$insta[1]->link}}><img id="insta-img" class="img-circle" src={{$insta[0]->user->profile_picture}}></a>
 					</div>
 					<div class="info-insta" style="margin-bottom:5px;">
-						@.srfrank__ <br>
+						@.{{$insta[0]->user->username}} <br>
 						<p style="font-size:11px; ">
 						A plataforma de salgueiro mais completa
 						</p>
 					</div>
 				</div>
 			<div class="img" style="display:flex;justify-content:center; align-items:center; overflow:hidden; width:100%; height: 200px; background:chartreuse;" >
-				<img id="igm-insta-zoom" src=https://scontent.cdninstagram.com/vp/b9e996c9e4f534ae5494430995da69ee/5E2CA01F/t51.2885-15/e35/p320x320/40658088_263064664346958_268131613545433157_n.jpg?_nc_ht=scontent.cdninstagram.com alt="" >
+				<img id="igm-insta-zoom" src={{$insta[1]->images->low_resolution->url}} alt="" >
 			</div>
 			</div>
 

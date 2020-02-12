@@ -68,7 +68,7 @@ class Empresas extends Controller
 			$name = uniqid(date('HisYmd'));
 			$extension = $request->imagem->extension();
 			$nameFile = "{$name}.{$extension}";
-			$upload = $request->imagem->storeAs('logo-empresas', $nameFile);
+			$upload = $request->imagem->storeAs('storage/logo-empresas', $nameFile, 'pictures');
 			if ( !$upload ){
 				return "error";
 			}
@@ -105,7 +105,7 @@ class Empresas extends Controller
                 $name = uniqid(date('HisYmd'));
                 $extension = $req->banner->extension();
                 $nameFile = "{$name}.{$extension}";
-                $upload = $req->banner->storeAs('promocoes', $nameFile);
+                $upload = $req->banner->storeAs('storage/promocoes', $nameFile, 'pictures');
                 if ( !$upload ){
                     return response()->json("ErrorSavedImg");
                 }
@@ -126,7 +126,7 @@ class Empresas extends Controller
             $name = uniqid(date('HisYmd'));
             $extension = $req->banner->extension();
             $nameFile = "{$name}.{$extension}";
-            $upload = $req->banner->storeAs('promocoes', $nameFile);
+            $upload = $req->banner->storeAs('storage/promocoes', $nameFile, 'pictures');
             if ( !$upload ){
                 return response()->json("ErrorSavedImg");
             }

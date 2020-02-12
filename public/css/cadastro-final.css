@@ -16,6 +16,12 @@ body{
     width:100%;
     height:100vh !important;
 }
+
+@media(max-width:410px){
+    body{
+        height: auto !important;
+    }
+}
 .bloco{
     width: 300px;
     height: auto;
@@ -220,8 +226,8 @@ body{
     color:white !important
 }
 .login .login-usuario form input[id="termos"]{
-    width:18px;
-    height:18px;
+    width:30px;
+    height:30px;
     margin-left:-5px;
     font-size:13px;
 }

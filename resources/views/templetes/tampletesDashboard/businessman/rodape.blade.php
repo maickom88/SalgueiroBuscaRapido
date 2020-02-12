@@ -1,4 +1,4 @@
-	
+
 <section class="footer-empresa"  style="position:relative; z-index:1">
     <div class="container">
         <div class="row" style="z-index:-1 !important;">
@@ -11,9 +11,9 @@
             <a href={{route('privacidade')}}>Política de Privacidade</a> / <a href={{route('condicoes')}}>Termos e condições</a>
             </div>
             <div class="col-md-3">
-                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/salgueirosbr/"><i class="fa fa-facebook"></i></a>
                     <a href=""><i class="fa fa-instagram"></i></i></a>
-                    <a href=""><i class="fa fa-whatsapp"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=5587988382558"><i class="fa fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
 		window.onload = function() {
 			var segundos = 4;
 			setTimeout(function () {
-				
+
 		var n = new jBox('Notice', {
 		content: 'Você completou suas informações!',
 		color: 'green',
@@ -57,7 +57,7 @@
 		delayOnHover: true,
 		showCountdown: true
 		});
-			
+
 			}, segundos * 1000);
 			};
 		}
@@ -69,7 +69,7 @@
 
 		$.getJSON('../api/painel/info/user/'+idUser , function(data){
 		$('#avatar-menu').attr('src', "{!!asset('storage/avatar/"+data.avatar+"')!!}");
-		});				
+		});
 	}
 
 	$(function(){

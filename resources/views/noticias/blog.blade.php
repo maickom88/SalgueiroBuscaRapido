@@ -90,10 +90,13 @@
                         <button style="background-color:transparent; border:none;"class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-share-alt"></i>
                         </button>
-
-                        <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#"><i class="fab fa-facebook-square"style="color:black;"></i></a>
-                            <a class="dropdown-item" href="#"><i style="color:black;" class="fab fa-whatsapp-square"></i></a>
+                        <?php
+                        $str = $post->title;
+                        $str2 = str_replace(' ', '-', $str);
+                        ?>
+                        <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton" style="background:rgba(0, 0, 0, 0.5) !important; padding:4px !important">
+                            <div class="fb-share-button" data-href="https://www.salgueirobuscarapido.com/noticias/{{$str2.'/'.$post->id}}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.salgueirobuscarapido.com/noticias/{{$str2.'/'.$post->id}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa fa-facebook"></i></a></div>
+                            <a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?text={{$post->title}}"><i class="fab fa-whatsapp-square"></i></a>
                         </div>
                         </div>
                 </div>
@@ -106,6 +109,8 @@
     <div class="container">
         <div class="artigo">
             <article>
+                {!!$post->conteudo!!}
+                @if(($postRecommend->count() > 1)) <br>
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <ins class="adsbygoogle"
                 style="display:block; text-align:center;"
@@ -116,9 +121,7 @@
                 <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-                {!!$post->conteudo!!}
                 <div class="dropdown-divider"></div><br>
-                @if(($postRecommend->count() > 1))
                 <?php
                 $str = $postRecommend[0]->title;
                 $str2 = str_replace(' ', '-', $str);
