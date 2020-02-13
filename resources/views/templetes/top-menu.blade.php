@@ -68,7 +68,7 @@
 								<li class="mb-2"><a  href={{route('perfilEmp')}} style="text-transform:none">Perfil</a></li>
 								<li class="mb-2"><a href={{route('editarEmp')}} style="text-transform:none">Pagina da Empresa</a></li>
 								<li class="mb-2"><a href={{route('noticiasEmp')}} style="text-transform:none">Notícias da Cidade</a></li>
-								<li class="mb-2"><a href={{route('eventoManenger')}} style="text-transform:none">Eventos da Cidade</a></li>
+								<li class="mb-2"><a href={{route('eventEmp')}} style="text-transform:none">Eventos da Cidade</a></li>
 								<li class="mb-2"><a href={{route('logoutEmp')}} style="text-transform:none">Sair da Conta</a></li>
 						@elseif($user->permissions->blogueiro == 'sim' and $user->permissions->user == 'sim' )
 							<li class="mb-2"><a  href={{route('userPerfil')}} style="text-transform:none">Perfil</a></li>

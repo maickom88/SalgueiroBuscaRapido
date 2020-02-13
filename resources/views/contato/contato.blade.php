@@ -17,6 +17,7 @@
 <link href={{asset('css/style-contato.css')}} rel="stylesheet">
 <link href={{asset('css/loader-bouncing.css')}} rel="stylesheet">
 <link rel="stylesheet" href={{asset('css/jBox.all.css')}}>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -79,32 +80,32 @@ window.addEventListener('appinstalled', (evt) => {
       <div class="row">
             <div class="col-sm-12 col-lg-8 text-center">
                 <div class="feature-block">
-                    <div class="single-feature feature-circule">
+                    <div class="single-feature feature-circule" data-aos="zoom-in" data-aos-duration="20">
                         <div class="circule"></div>
                         <span class="featured-icon"><i class="fa fa-bolt"></i></span>
                         <h3>RAPIDEZ</h3>
                         <p>Sistema com alta performasse, velocidade e requisições amigáveis!</p>
                     </div>
-                    <div class="single-feature">
+                    <div class="single-feature" data-aos="zoom-in" data-aos-duration="30">
                         <span class="featured-icon"><i class="fa fa-newspaper"></i></span>
                         <h3>NOTÍCIAS E EVENTOS</h3>
                         <p>Fique por dentro de todas as notícias, novidades e eventos da região!</p>
                     </div>
-                    <div class="single-feature">
+                    <div class="single-feature" data-aos="zoom-in" data-aos-delay="50">
                         <span class="featured-icon"><i class="fa fa-mobile"></i></span>
                         <h3>TECNOLOGIA PWA</h3>
                         <p>Adicione a sua tela e tenha acesso facilmente a nossa plataforma</p>
                     </div>
-                    <div class="single-feature">
+                    <div class="single-feature" data-aos="zoom-in" data-aos-delay="100">
                         <span class="featured-icon"><i class="fa fa-search"></i></span>
                         <h3>SISTEMA DE BUSCA RÁPIDA</h3>
                         <p>Tenha acesso a geolocalização, horários e detalhes das empresas e serviços da cidade!</p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-lg-4">
+            <div class="col-sm-4 col-lg-4" >
                 <div class="feature-mockup" style="display:flex; align-items:center; justify-content:center">
-                    <img src="img/contato-img.png" class="img-center img-contato" style="width:1000px !important; margin-bottom:20%;margin-right:150px;">
+                    <img data-aos="fade-up" data-aos-delay="120" src="img/contato-img.png" class="img-center img-contato" style="width:1000px !important; margin-bottom:20%;margin-right:150px;">
                 </div>
             </div>
         </div>
@@ -127,7 +128,7 @@ window.addEventListener('appinstalled', (evt) => {
             <div class="col-sm-12 col-md-5">
                 <div class="feature-list">
                     <ul>
-                        <li>
+                        <li data-aos="fade-up" data-aos-delay="30">
                             <div class="feature-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
@@ -136,7 +137,7 @@ window.addEventListener('appinstalled', (evt) => {
                                 <p>Tenha acesso a um lindo painel e gerencie seu negócio!</p>
                             </div>
                         </li>
-                        <li>
+                        <li data-aos="fade-up" data-aos-delay="40">
                             <div class="feature-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
@@ -145,7 +146,7 @@ window.addEventListener('appinstalled', (evt) => {
                                 <p>Tenha relatórios mensais de visitas!</p>
                             </div>
                         </li>
-                         <li>
+                         <li data-aos="fade-up" data-aos-delay="60">
                             <div class="feature-icon">
                                 <i class="fas fa-user-plus"></i>
                             </div>
@@ -154,7 +155,7 @@ window.addEventListener('appinstalled', (evt) => {
                                 <p>Fidelize clientes através de novidades do seu serviço</p>
                             </div>
                         </li>
-                        <li>
+                        <li data-aos="fade-up" data-aos-delay="80">
                             <div class="feature-icon">
                                 <i class="fas fa-percentage"></i>
                             </div>
@@ -208,7 +209,10 @@ window.addEventListener('appinstalled', (evt) => {
 </section>
 
 
-
+ <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 @endsection
 
 @section('script')
