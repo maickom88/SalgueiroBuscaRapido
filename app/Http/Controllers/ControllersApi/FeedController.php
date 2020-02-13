@@ -22,11 +22,9 @@ class FeedController extends Controller
 		$novidade->content = $dados;
 		$valid = $empresa->novidades()->save($novidade);
         $empresa = Empresa::find($req->input('empresa'));
-        $novidadesId = $empresa->novidades->id;
-
+        $id = $empresa->id;
 		if($req->hasFile('photos')){
 			$len = count($req->photos);
-			$id = $empresa->id;
 			$email = $empresa->permissions->users->email;
 			for($i= 0; $i<$len ; $i++){
 				$name = uniqid(date('HisYmd'));
@@ -40,7 +38,9 @@ class FeedController extends Controller
 		return response()->json('Publicado');
 	}
 	public function savePhotos($id, $nameFile){
-		$novidade = NovidadeEmpresa::find($id)->orderBy('id', 'desc')->first()->get();
+        $id = $id;
+        $nameFile = $nameFile;
+		$novidade = NovidadeEmpresa::where('empresa_id', $id)->orderBy('id','desc')->first();
 		$album = new PhotosFeed();
 		$album->album = $nameFile;
 		$album->novidade_empresa_id = $novidade->id;

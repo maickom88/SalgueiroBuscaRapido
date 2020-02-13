@@ -544,7 +544,6 @@ var successDelete = new jBox('Modal', {
 		});
 	}
 $(function(){
-	getData(1);
 	IsLike();
 
 @if(Auth::check())
