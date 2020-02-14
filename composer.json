@@ -17,6 +17,7 @@
         "laravel/tinker": "^1.0",
         "php-http/guzzle6-adapter": "^2.0",
         "php-http/message": "^1.8",
+        "renatomarinho/laravel-page-speed": "^1.8",
         "silviolleite/laravelpwa": "^1.0",
         "spatie/laravel-analytics": "3.7.0",
         "vinkla/instagram": "^9.3",

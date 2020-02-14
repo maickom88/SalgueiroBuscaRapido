@@ -66,7 +66,7 @@ class PaginaIndividualController extends Controller
 			$sextatoJson = 'Fechado';
 		}
 		else{
-			$sextatoJson = json_decode($segunda);
+			$sextatoJson = json_decode($sexta);
 		}
 		if($sabado=='Fechado'){
 			$sabadotoJson = 'Fechado';

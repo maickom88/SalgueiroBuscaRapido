@@ -21,7 +21,7 @@ $str2 = str_replace(' ', '-', $str);
     <div class="card" style="width: 20rem;">
         <div class="img-card" style="width:318px; height:180px;">
             <div class="gradient">
-                <img  class="card-img-top"  src={{asset('storage/eventos/'.$evento->banner)}} alt={{$evento->nome_evento}}>
+                <img  class="card-img-top"  src={{asset('storage/eventos/'.$evento->banner)}} alt="Eventos de salgueiro {{$evento->nome_evento}}">
             </div>
         </div>
         <div class="card-body">

@@ -62,7 +62,7 @@ window.addEventListener('appinstalled', (evt) => {
 @endsection
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: CONTATO')
 @section('descricao',"Saiba mais detalhes de como ser nosso parceiro!")
-@section('tags', "guia comercial, empresas de salgueiro, parceria, contrato, aumentar vendas, crescer negócios, internet")
+@section('tags', "guia comercial, empresas de salgueiro, parceria, contrato, aumentar vendas, crescer negócios, internet, publicidade")
 
 @section('conteudo')
 @include('templetes.top-menu')

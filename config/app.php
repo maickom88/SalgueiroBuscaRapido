@@ -166,7 +166,8 @@ return [
         FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
         Spatie\Analytics\AnalyticsServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
-        /*
+        RenatoMarinho\LaravelPageSpeed\ServiceProvider::class,
+        /*clear
          * Package Service Providers...
          */
 

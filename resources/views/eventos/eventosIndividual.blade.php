@@ -61,7 +61,7 @@ $str2 = str_replace(' ', '-', $str);
         </div>
         <div class="banner-center">
             <div class="banner" >
-                <img src="{{asset('storage/eventos/'.$evento->banner)}}" style="width:100%; height:100%" alt={{$evento->nome_evento}}>
+                <img src="{{asset('storage/eventos/'.$evento->banner)}}" style="width:100%; height:100%" alt="Eventos de salgueiro {{$evento->nome_evento}}">
             </div>
         </div>
     </div>

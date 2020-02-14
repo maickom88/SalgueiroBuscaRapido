@@ -20,7 +20,7 @@
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: EVENTOS')
 @section('descricao',"Encotre os melhores eventos da cidade aqui!")
-@section('tags', "eventos, salgueiro, 2020, 2021, região, melhores, novos, salgueiro busca rapido")
+@section('tags', "eventos, salgueiro, 2020, 2021, região, melhores, novos, salgueiro busca rapido, festas, novidades")
 
 @section('conteudo')
 @include('templetes.top-menu')
@@ -41,8 +41,8 @@
 		<div class="owl-carousel owl-theme owl-loaded" style="padding:10px;">
 		<div class="owl-stage-outer">
 			<div class="owl-stage">
-				<div class="owl-item"><img class="img-fluid"  src={{'img/eventos1.jpg'}} alt=""></div>
-				<div class="owl-item"><img class="img-fluid"  src={{'img/eventos2.jpg'}} alt=""></div>
+				<div class="owl-item"><img class="img-fluid"  src={{'img/eventos1.jpg'}} alt="Eventos de salgueiro, salgueiro busca rapido"></div>
+				<div class="owl-item"><img class="img-fluid"  src={{'img/eventos2.jpg'}} alt="Econtre os melhores eventos de salgueiro"></div>
 			</div>
 		</div>
 		<div class="owl-nav">

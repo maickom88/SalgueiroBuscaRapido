@@ -24,7 +24,17 @@ novidades, eventos e notícias da região.">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 <script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "0e6c27ea-b922-443a-885c-cabe6b4d81cd",
+    });
+  });
+</script>
+<script>
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -81,16 +91,16 @@ window.addEventListener('appinstalled', (evt) => {
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src={{asset('img/img-05.jpg')}} alt="Primeiro Slide">
+                    <img class="d-block w-100" src={{asset('img/img-05.jpg')}} alt="Primeiro Slide do salgueiro busca rápido">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src={{asset('img/img-02.jpg')}} alt="Primeiro Slide">
+                    <img class="d-block w-100" src={{asset('img/img-02.jpg')}} alt="Segundo Slide do salgueiro busca rápido">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src={{asset('img/img-04.jpg')}} alt="Primeiro Slide">
+                    <img class="d-block w-100" src={{asset('img/img-04.jpg')}} alt="Terceiro Slide do salgueiro busca rápido">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src={{asset('img/img-01.jpg')}} alt="Segundo Slide">
+                    <img class="d-block w-100" src={{asset('img/img-01.jpg')}} alt="Quarto Slide do salgueiro busca rápido">
                 </div>
             </div>
         </div>
@@ -199,13 +209,13 @@ window.addEventListener('appinstalled', (evt) => {
                 <div class="row card-slide">
                     @foreach ($empresa as $emp)
 								<div class="col-md-4 card-content " style="outline:none !important;" data-aos="fade-right"D>
-                        <div class="likes">
+                        <div class="likes" style="z-index:1">
                             <span>{{$emp->likes->count()}} <i class="fas fa-heart"></i></span>
                         </div>
                         <div class="card" style="width: 19rem;">
                             <div class="img-card">
                                 <div class="gradient">
-                                    <img class="card-img-top" src={{asset('storage/logo-empresas/'.$emp->banner)}} alt="Banner da empresa, {{$emp->name}}">
+                                    <img class="card-img-top" src={{asset('storage/logo-empresas/'.$emp->banner)}} alt="logo, Banner da empresa, {{$emp->name}}">
                                 </div>
                             </div>
                             <div class="avatar">
@@ -247,8 +257,8 @@ window.addEventListener('appinstalled', (evt) => {
             <div class="row">
                 <div class="col-md-12">
                     <div class="content-app">
-                        <h3>BAIXE TAMBÉM O NOSSO <span>APLICATIVO!</span></h3>
-                        <p>Tenha vantagens com o nosso aplicativo, receba notificações sobre promoções <br>
+                        <h3>ADICIONE A TELA O NOSSO <span>APLICATIVO!</span></h3>
+                        <p>Tenha vantagens com o nosso aplicativo PWA, tenha acesso rápido sobre promoções, <br>
                             ofertas exclusivas, saiba sobre eventos noticias da cidade e vagas de emprego!
                         </p>
                         <span class="android"><i class="fab fa-android"></i></span>
@@ -320,7 +330,7 @@ window.addEventListener('appinstalled', (evt) => {
                                 <a style="outline:none">{{$promotion->desconto}}%</a>
                             </div>
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src={{asset('storage/promocoes/'.$promotion->photo)}} alt="Card image cap">
+                            <img class="card-img-top" src={{asset('storage/promocoes/'.$promotion->photo)}} alt="promoção {{$promotion->title}}">
                         <div class="card-body">
                             <h5 class="card-title">{{$promotion->title}}</h5>
                             <p class="card-text">{{$promotion->description}}</p>
@@ -395,18 +405,18 @@ window.addEventListener('appinstalled', (evt) => {
     <div class="card" style="width: 19rem;">
         <div class="img-card">
             <div class="gradient">
-            <img class="card-img-top" height="182px" src={{asset('storage/posts-header/'.$post->banner)}} alt="Card image cap">
+            <img class="card-img-top" height="182px" src={{asset('storage/posts-header/'.$post->banner)}} alt={{$post->title}}>
             </div>
         </div>
         <div class="avatar">
             @if(!empty($post->user->info))
                 @if(!empty($post->user->info->avatar))
-                    <img src={{asset('storage/avatar/'.$post->user->info->avatar)}} alt="">
+                    <img src={{asset('storage/avatar/'.$post->user->info->avatar)}} alt={{$post->user->name}}>
                 @else
-                    <img src={{asset('img/profilezim.png')}} alt="">
+                    <img src={{asset('img/profilezim.png')}} alt="Usúario do salgueiro busca rapido">
                 @endif
             @else
-                <img src={{asset('img/profilezim.png')}} alt="">
+                <img src={{asset('img/profilezim.png')}} alt="Usúario do salgueiro busca rapido">
             @endif
         </div>
         <div class="card-body">

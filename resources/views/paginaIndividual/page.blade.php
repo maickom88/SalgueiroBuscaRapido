@@ -41,6 +41,107 @@
 
 @section('conteudo')
 @include('templetes.top-menu')
+@php
+date_default_timezone_set('America/Recife');
+$day = date("D");
+$hora = date('H:i');
+switch ($day) {
+case 'Mon':
+    if($array['segunda']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['segunda']->Inicio, 0, 5);
+        $horafim = substr($array['segunda']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+case 'Tue':
+    if($array['terca']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['terca']->Inicio, 0, 5);
+        $horafim = substr($array['terca']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+case 'Wed':
+    if($array['quarta']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['quarta']->Inicio, 0, 5);
+        $horafim = substr($array['quarta']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+case 'Thu':
+    if($array['quinta']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['quinta']->Inicio, 0, 5);
+        $horafim = substr($array['quinta']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+case 'Fri':
+    if($array['sexta']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['sexta']->Inicio, 0, 5);
+        $horafim = substr($array['sexta']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+case 'Sat':
+    if($array['sabado']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['sabado']->Inicio, 0, 5);
+        $horafim = substr($array['sabado']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+case 'Sun':
+    if($array['domingo']=='Fechado'){
+        $OpenOrClose = "Horário Indefinido";
+    }else{
+        $horaini = substr($array['domingo']->Inicio, 0, 5);
+        $horafim = substr($array['domingo']->Fim, 0, 5);
+        if($hora >= $horaini and $hora <= $horafim){
+            $OpenOrClose = "Aberto";
+        }else{
+            $OpenOrClose = "Fechado";
+        }
+    }
+break;
+default:
+    # code...
+    break;
+}
+@endphp
 
 
 <div class="loader loader-bouncing "></div>
@@ -100,7 +201,15 @@
                 <i class="fas fa-map-marker-alt"></i> {{$empresa->location}}
             </div>
             <div class="col-md-4">
-                <i class="fas fa-clock"></i>Hoje <span style="color:green"> Aberto agora</span> 08:00 AM - 18:00 PM
+                @if($OpenOrClose == "Horário Indefinido")
+                <i class="fas fa-clock"></i>Hoje <span style="color:red">Fechado</span>
+                @else
+                @if($OpenOrClose == "Aberto")
+                    <i class="fas fa-clock"></i>Hoje <span style="color:green">Aberto</span> {{$horaini}} - {{$horafim}}
+                @else
+                <i class="fas fa-clock"></i>Hoje <span style="color:red">Fechado</span> {{$horaini}} - {{$horafim}}
+                @endif
+                @endif
             </div>
         </div>
     </div>
@@ -287,49 +396,53 @@
             <div class="col-md-5">
                 <div class="horario">
                     <div class="aberto-fechado text-center">
-                        <i class="fas fa-clock"></i><h5>Aberto Agora</h5>
+                        @if($OpenOrClose == "Aberto")
+                        <i class="fas fa-clock"></i><h5>Aberto</h5>
+						@else
+						<i class="fas fa-clock"></i><h5 style="color:rgb(255, 92, 92)">Fechado</h5>
+						@endif
                     </div>
                     <div class="horario-empresa">
                         <div class="hora-aberto">
 								@if($array['segunda']=='Fechado')
 								<p>Segunda</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
 								@else
-									<p>Segunda</p><span><p>{{substr($array['segunda']->Inicio, 0 , 2)}}h - {{substr($array['segunda']->Fim, 0 , 2)}}h</p></span>
+									<p>Segunda</p><span><p>{{substr($array['segunda']->Inicio, 0 , 5)}}h - {{substr($array['segunda']->Fim, 0 , 5)}}h</p></span>
 								@endif
                         </div>
 								<div class="hora-aberto">
 								@if($array['terca']=='Fechado')
 								<p>Terça</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
 								@else
-								<p>Terça</p><span><p>{{substr($array['terca']->Inicio, 0 , 2)}}h - {{substr($array['terca']->Fim, 0 , 2)}}h</p></span>
+								<p>Terça</p><span><p>{{substr($array['terca']->Inicio, 0 , 5)}}h - {{substr($array['terca']->Fim, 0 , 5)}}h</p></span>
 								@endif
                         </div>
                         <div class="hora-aberto">
 								@if($array['quarta']=='Fechado')
 								<p>Quarta</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
 								@else
-                        <p>Quarta</p><span><p>{{substr($array['quarta']->Inicio, 0 , 2)}}h - {{substr($array['quarta']->Fim, 0 , 2)}}h</p></span>
+                        <p>Quarta</p><span><p>{{substr($array['quarta']->Inicio, 0 , 5)}}h - {{substr($array['quarta']->Fim, 0 , 5)}}h</p></span>
                         @endif
 								</div>
                         <div class="hora-aberto">
 								@if($array['quinta']=='Fechado')
 								<p>Quinta</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
 								@else
-                        <p>Quinta</p><span><p>{{substr($array['quinta']->Inicio, 0 , 2)}}h - {{substr($array['quinta']->Fim, 0 , 2)}}h</p></span>
+                        <p>Quinta</p><span><p>{{substr($array['quinta']->Inicio, 0 , 5)}}h - {{substr($array['quinta']->Fim, 0 , 5)}}h</p></span>
                         @endif
 								</div>
                         <div class="hora-aberto">
                         @if($array['sexta']=='Fechado')
 								<p>Sexta</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
 								@else
-								<p>Sexta</p><span><p>{{substr($array['sexta']->Inicio, 0 , 2)}}h - {{substr($array['sexta']->Fim, 0 , 2)}}h</p></span>
+								<p>Sexta</p><span><p>{{substr($array['sexta']->Inicio, 0 , 5)}}h - {{substr($array['sexta']->Fim, 0 , 5)}}h</p></span>
 								@endif
 								</div>
                         <div class="hora-aberto">
 								@if($array['sabado']=='Fechado')
 								<p>Sabádo</p><span><p style="color:rgb(255, 92, 92)">Fechado</p></span>
 								@else
-                        <p>Sabádo</p><span><p>{{substr($array['sabado']->Inicio, 0 , 2)}}h - {{substr($array['sabado']->Fim, 0 , 2)}}h</p></span>
+                        <p>Sabádo</p><span><p>{{substr($array['sabado']->Inicio, 0 , 5)}}h - {{substr($array['sabado']->Fim, 0 , 5)}}h</p></span>
                         @endif
 								</div>
                         <div class="hora-aberto">

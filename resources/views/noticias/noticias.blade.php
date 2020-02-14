@@ -14,7 +14,7 @@
     <meta property="og:image:width" content="800">
     <meta property="og:image:height" content="600">
     <meta property="og:type" content="website">
-    
+
     <link rel="stylesheet" href={{asset('css/blog.css')}}>
     <link href={{asset('css/blog-single.css')}} rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157182219-1"></script>
@@ -30,6 +30,8 @@
 @endsection
 
 @section('titulo','SALGUEIRO BUSCA RÁPIDO: NOTÍCIAS')
+@section('descricao',"Saiba as melhores notícias de salgueiro e região")
+@section('tags', "Salgueiro, sbr, busca rapido, noticias, melhores, região, blog, informação, conteudo, artigos, blogueiro, postagens , post")
 
 @section('conteudo')
 @include('templetes.top-menu')
