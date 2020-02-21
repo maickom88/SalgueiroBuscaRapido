@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href={{asset('css/offline.css')}}>
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/offline.css">
     <title>Sem acesso a internet</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
         </p>
     </div>
     <div class="col-md-6">
-        <img src={{asset('images/icons/offlines.png')}}>
+        <img src="http://127.0.0.1:8000/images/icons/offlines.png">
     </div>
     </div>
 </body>
