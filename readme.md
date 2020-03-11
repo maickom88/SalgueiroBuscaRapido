@@ -7,10 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## SOBRE A PLATAFORMA
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O sistema foi desenvolvido a princípio para fornecer as empresas visibilidades por meio da ‘internet’ e transparência, assim também podendo fidelizar clientes de uma maneira fácil já que, com a Plataforma é possível dar total atenção aos usuários, podendo ser publicado Novidades e Promoções. Na plataforma também é permitido publicar notícias e eventos da cidade gerando tráfego.
 
+A plataforma foi desenvolvida usando:
+
+A principal framework envolvida é o LARAVEL na versão 5.8
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+
+Bootstrap 4x
+<p align="center"><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgetbootstrap.com.br%2F&psig=AOvVaw0WzE7Ja1kl8kjzr1ljQhd7&ust=1584019684597000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDY2afDkugCFQAAAAAdAAAAABAD"></p>
+a
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
