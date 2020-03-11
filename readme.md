@@ -1,7 +1,9 @@
 
 <p align="center">
 <a href="https://salgueirobuscarapido.com/">LINK PREVIEW PLATAFORM</a> 
-    ## ||
+
+||
+
 <a href="https://packagist.org/packages/laravel/framework">LINK INFO VIDEO</a>
 </p>
 
