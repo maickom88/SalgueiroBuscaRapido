@@ -1,7 +1,7 @@
 
 <p align="center">
-<a href="https://salgueirobuscarapido.com/"><img src="https://travis-ci.org/laravel/framework.svg" alt="Preview Plataform"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Info Video"></a>
+<a href="https://salgueirobuscarapido.com/">LINK PREVIEW PLATAFORM</a> 
+<a href="https://packagist.org/packages/laravel/framework">LINK INFO VIDEO</a>
 </p>
 
 ## SOBRE A PLATAFORMA
